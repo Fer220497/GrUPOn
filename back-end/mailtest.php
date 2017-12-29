@@ -14,7 +14,7 @@ and open the template in the editor.
 $to      = 'nobody@example.com';
 $subject = 'the subject';
 $message = 'hello';
-$headers = 'From: webmaster@example.com' . "\r\n" .
+$headers = 'From: webmaster@example.com' . "\r\n" .p
     'Reply-To: webmaster@example.com' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
 
