@@ -8,6 +8,8 @@ Una cuenta empresa puede publicar ofertas. Para ello, debe tener puesto primero 
 y su link payme de paypal.
 
 
+Google Maps: https://stackoverflow.com/questions/5757533/allowing-users-to-add-markers-to-google-maps-and-getting-the-coordinates
+
 Combo provincias España:
 
     <select name="provincia">
