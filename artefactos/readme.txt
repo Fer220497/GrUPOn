@@ -7,6 +7,8 @@ Una vez una cuenta gana el status de empresa, tiene una variable de sesión que 
 Una cuenta empresa puede publicar ofertas. Para ello, debe tener puesto primero en la configuración el lugar de la empresa mediante google maps
 y su link payme de paypal.
 
+Carrito: https://www.uno-de-piera.com/carrito-de-compras-con-php/
+
 Paypal: https://developer.paypal.com/docs/classic/paypal-payments-standard/integration-guide/buy_now_step_1/
 
 Google Maps: https://stackoverflow.com/questions/5757533/allowing-users-to-add-markers-to-google-maps-and-getting-the-coordinates
