@@ -22,6 +22,8 @@
     
     //Hay que cambiar la KEY ya que esta es de prueba.
     $recaptcha = '<div data-theme="dark" class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>';
+    //KEY secreta del Recaptcha 
+    $secret = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe';
 
     /**
      * Función que genera un HTML con un array de errores 
