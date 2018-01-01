@@ -1,11 +1,21 @@
-<?php
-require '../back-end/generacion_formularios.php';
-
-echo formularioLogin();
-
-?>
-
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <html>
-    ¿No est&aacute;s registrado? ¡Reg&iacute;strate aqu&iacute;!<br/>
-    <button type="submit" onclick="location.href='registro_cliente.php'">Registro como cliente</button> <button type="submit" onclick="location.href='registro_empresa.php'">Registro como empresa</button>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <?php
+        require '../back-end/generacion_formularios.php';
+
+        echo formularioLogin();
+        echo formularioRegistroCliente();
+        echo formularioRegistroEmpresa();
+        ?>
+    </body>
 </html>
