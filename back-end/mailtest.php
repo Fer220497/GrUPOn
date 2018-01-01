@@ -11,14 +11,13 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-$to      = 'nobody@example.com';
-$subject = 'the subject';
-$message = 'hello';
-$headers = 'From: webmaster@example.com' . "\r\n" .p
-    'Reply-To: webmaster@example.com' . "\r\n" .
-    'X-Mailer: PHP/' . phpversion();
+        $to = 'nobody@example.com';
+        $subject = 'the subject';
+        $message = 'hello';
+        $headers = 'From: webmaster@example.com' . "\r\n" . 'Reply-To: webmaster@example.com' . "\r\n" .
+                'X-Mailer: PHP/' . phpversion();
 
-mail($to, $subject, $message, $headers);
+        mail($to, $subject, $message, $headers);
 
         $cuerpo = '
 <html>
@@ -33,7 +32,7 @@ mail($to, $subject, $message, $headers);
 </body>
 </html>
 ';
-          mail("****@gmail.com","Asunto",$cuerpo);
+        mail("****@gmail.com", "Asunto", $cuerpo);
         ?>
     </body>
 </html>
