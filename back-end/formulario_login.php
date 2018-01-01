@@ -1,29 +1,62 @@
 <?php
-    require_once '../back-end/libs/recaptchalib.php';
-    require_once '../back-end/conexion_db.php';
-    require_once '../back-end/funciones.php';
-    
-    if(isset($_POST['login'])){
-        
-    }else{
-        echo formularioLogin();
+
+require_once '../back-end/libs/recaptchalib.php';
+require_once '../back-end/conexion_db.php';
+require_once '../back-end/funciones.php';
+
+if (isset($_POST['login'])) {
+    if (!isset($_POST['correo'])) {
+        $errores[] = "Debes introducir correo.";
     }
-    
-    /**
-    * Esta funcion genera un login en forma de string
-    * @return string
-    */
-   function formularioLogin() {
+    if (!isset($_POST['pwd'])) {
+        $errores[] = "Debes introducir contrase&ntilde;a.";
+    }
+    if (preg_match('/^[A-z0-9\\._-]+@[A-z0-9][A-z0-9-]*(\\.[A-z0-9_-]+)*\\.([A-z]{2,6})$/', $_POST['correo'])) {
+        $errores[] = "Correo electr&oacute;nico incorrecto.";
+    }
+    $response = null;
+    $recap = new ReCaptcha($secret);
+    if ($_POST["g-recaptcha-response"]) {
+        $response = $recap->verifyResponse(
+                $_SERVER["REMOTE_ADDR"], $_POST["g-recaptcha-response"]
+        );
+        if ($response == null && !$response->success) {
+            $error[] = 'BOT DETECTADO.';
+        }
+    }
+    if (!isset($errores)) {
+        $correo = sanitarString($_POST['correo']);
+        $pwd = $_POST['pwd'];
+        $query = "SELECT * FROM CUENTA WHERE CORREO='$correo'";
+        $result = realizarQuery('grupon', $query);
+        if (mysqli_num_rows($result) > 0 && password_verify($pwd, $fila['password'])) {
+            header('Location: index.php');
+        } else {
+            $errores[] = "Credenciales incorrectas.";
+        }
+    }
+}if (!isset($_POST['login']) || isset($errores)) {
+    if (isset($errores)) {
+        echo muestraErrores($errores);
+    }
+    echo formularioLogin();
+}
 
-       global $recaptcha;
+/**
+ * Esta funcion genera un login en forma de string
+ * @return string
+ */
+function formularioLogin() {
 
-       $form = ' <form action="" method="post">' .
-               ' Correo: <input type="text" name="correo" /><br/>' .
-               ' Contrase&ntilde;a: <input type="password" name="pwd" /><br/>' .
-               $recaptcha .
-               ' <input type="submit" name="login" value="Enviar"/>' .
-               ' </form>';
-       return $form;
-   }
+    global $recaptcha;
+
+    $form = ' <form action="" method="post">' .
+            ' Correo: <input type="text" name="correo" /><br/>' .
+            ' Contrase&ntilde;a: <input type="password" name="pwd" /><br/>' .
+            $recaptcha .
+            ' <input type="submit" name="login" value="Enviar"/>' .
+            ' </form>';
+    return $form;
+}
 
 ?>
