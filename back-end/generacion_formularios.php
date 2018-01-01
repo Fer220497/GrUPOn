@@ -43,7 +43,7 @@ function formularioRegistroEmpresa() {
     
     global $recaptcha;
 
-    $form = '<form action="" method="post">' .
+    $form = '<form action="../back-end/tratamiento_formulario_registro_empresa.php" method="post">' .
             'Correo: <input type="text" name="correo"/ ><br/>' .
             'Contrase&ntilde;a: <input type="password" name="pwd" /><br/>' .
             'Confirmar Contrase&ntilde;a: <input type="password" name="pwd_confirmar"/ ><br/>' .
