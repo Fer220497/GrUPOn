@@ -23,6 +23,8 @@ function muestraErrores($error) {
  * @return string
  */
 function formularioLogin() {
+    
+    global $recaptcha;
 
     $form = ' <form action="" method="post">' .
             ' Correo: <input type="text" name="correo" /><br/>' .
@@ -38,6 +40,8 @@ function formularioLogin() {
  * @return string
  */
 function formularioRegistroEmpresa() {
+    
+    global $recaptcha;
 
     $form = '<form action="" method="post">' .
             'Correo: <input type="text" name="correo"/ ><br/>' .
@@ -81,6 +85,8 @@ function formularioRegistroEmpresa() {
  * Esta funcion genera un formulario para que los clientes puedan registrarse en forma de string
  */
 function formularioRegistroCliente() {
+    
+    global $recaptcha;
 
     $form = '<form action="" method="post">' .
             'Correo: <input type="text" name="correo" /><br/>' .

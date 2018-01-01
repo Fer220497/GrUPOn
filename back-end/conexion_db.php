@@ -41,4 +41,4 @@
             $string = mysqli_escape_string($con, $string);
             return $string;
         }
-        ?>
+?>

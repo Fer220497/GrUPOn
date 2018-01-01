@@ -1,4 +1,6 @@
-
+<?php
+    require_once '../back-end/generacion_formularios.php';
+?>
 <html>
     <head>
         <meta charset="UTF-8">
