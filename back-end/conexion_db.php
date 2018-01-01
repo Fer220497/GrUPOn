@@ -27,14 +27,11 @@
         
         /**
          * Función que sanea un string para escapar caracteres peligrosos.
-         * @param string $dir
-         * @param string $usr
-         * @param string $pass
          * @param string $string
          * @return string
          */
-        function sanitarString($dir, $usr, $pass, $string){
-            $con = mysqli_connect($dir, $usr, $pass);
+        function sanitarString($string){
+            $con = mysqli_connect("localhost", "root", "");
             $string = mysqli_escape_string($con, $string);
             return $string;
         }

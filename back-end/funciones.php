@@ -14,9 +14,9 @@
     $arrayComunidades[] = "islas_baleares";
     $arrayComunidades[] = "extremadura";
     $arrayComunidades[] = "asturias";
-    $arrayComunidades[] ="navarra";
+    $arrayComunidades[] = "navarra";
     $arrayComunidades[] = "cantabria";
-    $arrayComunidades[] ="la_rioja";
+    $arrayComunidades[] = "la_rioja";
     $arrayComunidades[] = "melilla";
     $arrayComunidades[] = "ceuta";
     
