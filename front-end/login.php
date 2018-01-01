@@ -12,10 +12,10 @@ and open the template in the editor.
     <body>
         <?php
         require '../back-end/generacion_formularios.php';
-
-        echo formularioLogin();
-        echo formularioRegistroCliente();
-        echo formularioRegistroEmpresa();
+        
+        echo '<h2>Login</h2>' . formularioLogin();
+        echo '<h2>Registro Cliente</h2>' . formularioRegistroCliente();
+        echo '<h2>Registro Empresa</h2>' . formularioRegistroEmpresa();
         ?>
     </body>
 </html>
