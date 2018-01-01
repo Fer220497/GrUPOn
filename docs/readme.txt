@@ -13,6 +13,8 @@ Paypal: https://developer.paypal.com/docs/classic/paypal-payments-standard/integ
 
 Google Maps: https://stackoverflow.com/questions/5757533/allowing-users-to-add-markers-to-google-maps-and-getting-the-coordinates
 
+Maps: https://developers.google.com/maps/documentation/javascript/examples/place-search
+
 Combo provincias España:
 
     <select name="provincia">
