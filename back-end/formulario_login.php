@@ -11,7 +11,7 @@ if (isset($_POST['login'])) {
     if (!isset($_POST['pwd'])) {
         $errores[] = "Debes introducir contrase&ntilde;a.";
     }
-    if (preg_match('/^[A-z0-9\\._-]+@[A-z0-9][A-z0-9-]*(\\.[A-z0-9_-]+)*\\.([A-z]{2,6})$/', $_POST['correo'])) {
+    if (!preg_match('/^[A-z0-9\\._-]+@[A-z0-9][A-z0-9-]*(\\.[A-z0-9_-]+)*\\.([A-z]{2,6})$/', $_POST['correo'])) {
         $errores[] = "Correo electr&oacute;nico incorrecto.";
     }
     $response = null;
