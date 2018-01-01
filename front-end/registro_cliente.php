@@ -1,6 +1,4 @@
-<?php
-    require_once '../back-end/generacion_formularios.php';
-?>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -9,6 +7,6 @@
     </head>
     <body>
         <h2>Registro Cliente</h2>
-        <?php echo formularioRegistroCliente();?>
+        <?php require_once '../back-end/formulario_registro_cliente.php'; ?>
     </body>
 </html>

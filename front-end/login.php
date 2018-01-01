@@ -1,6 +1,3 @@
-<?php
-require_once '../back-end/generacion_formularios.php';
-?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -9,8 +6,7 @@ require_once '../back-end/generacion_formularios.php';
     </head>
     <body>
         <h2>Login</h2>
-        <?php
-        echo formularioLogin();?>
+        <?php require_once '../back-end/formulario_login.php'; ?>
         &iquest;No est&aacute;s registrado? ¡Reg&iacute;strate aqu&iacute;!<br/>
         <button type="submit" onclick="location.href = 'registro_cliente.php'">Registro como cliente</button> <button type="submit" onclick="location.href = 'registro_empresa.php'">Registro como empresa</button>
 

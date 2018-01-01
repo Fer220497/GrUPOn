@@ -1,6 +1,3 @@
-<?php
-    require_once '../back-end/generacion_formularios.php';
-?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -9,6 +6,6 @@
     </head>
     <body>
         <h2>Registro Empresa</h2>
-        <?php echo formularioRegistroEmpresa(); ?>
+        <?php require_once '../back-end/formulario_registro_empresa.php'; ?>
     </body>
 </html>
