@@ -16,6 +16,7 @@ and open the template in the editor.
         echo formularioLogin();
         echo formularioRegistroCliente();
         echo formularioRegistroEmpresa();
+        sdasddfsdfsd
         ?>
     </body>
 </html>
