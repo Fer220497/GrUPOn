@@ -19,13 +19,11 @@ function muestraErrores($error) {
  * Esta funcion genera un login en forma de string
  * @return string
  */
-
-
 function formularioLogin() {
 
     $form = ' <form action="" method="post">' .
             ' Correo: <input type="text" name="correo" /><br/>' .
-            ' Contraseña: <input type="password" name="contraseña" /><br/>' .
+            ' Contrase&ntilde;a: <input type="password" name="pwd" /><br/>' .
             ' <input type="submit" name="login" value="Enviar"/>' .
             ' </form>';
     return $form;
@@ -33,14 +31,14 @@ function formularioLogin() {
 
 /*
  * Esta funcion genera un formulario para que las empresas puedan registrarse en forma de string
+ * @return string
  */
-
 function formularioRegistroEmpresa() {
 
     $form = '<form action="" method="post">' .
             'Correo: <input type="text" name="correo"/ ><br/>' .
-            'Contraseña: <input type="password" name="contraseña" /><br/>' .
-            'Confirmar Contraseña: <input type="password" name="contraseña_confirmar"/ ><br/>' .
+            'Contrase&ntilde;a: <input type="password" name="pwd" /><br/>' .
+            'Confirmar Contrase&ntilde;a: <input type="password" name="pwd_confirmar"/ ><br/>' .
             'Nombre Empresa: <input type="text" name="nombre_empresa"/><br/>' .
             'NIF : <input type="text" name="nif_empresa"/><br/>' .
             'Web Empresa: <input type="text" name="web_empresa" /> <br/>' .
@@ -68,6 +66,7 @@ function formularioRegistroEmpresa() {
             '<option value="pais_vasco">Pa&iacute;s Vasco</option>' . 
             '<option value="valencia">Valencia</option>' .
             '</select><br>' .
+            '<div class="g-recaptcha" data-sitekey="6LeMsT4UAAAAANlQBAx2IskglT3VZYP78Z3s51Rd"></div>' .
             '<input type="submit" name="registroEmpresa" value="Enviar"/>' .
             '</form>';
     return $form;
@@ -77,16 +76,16 @@ function formularioRegistroEmpresa() {
 /*
  * Esta funcion genera un formulario para que los clientes puedan registrarse en forma de string
  */
-
 function formularioRegistroCliente() {
 
     $form = '<form action="" method="post">' .
             'Correo: <input type="text" name="correo" /><br/>' .
-            'Contraseña: <input type="password" name="contraseña"/><br/>' .
+            'Contrase&ntilde;a: <input type="password" name="pwd"/><br/>' .
             'Confirmar Contraseña: <input type="password" name="contraseña_confirmar" /><br/>' .
             'Nombre: <input type="text" name="nombre_cliente"/><br/>' .
             'Apellidos: <input type="text" name="apellidos_cliente"/> <br/>'.
-           '<input type="submit" name="registroCliente" value="Enviar"/>' .
+            '<div class="g-recaptcha" data-sitekey="6LeMsT4UAAAAANlQBAx2IskglT3VZYP78Z3s51Rd"></div>' . 
+            '<input type="submit" name="registroCliente" value="Enviar"/>' .
             '</form>';
     return $form;
 }
