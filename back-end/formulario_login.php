@@ -29,7 +29,8 @@ if (isset($_POST['login'])) {
         $pwd = $_POST['pwd'];
         $query = "SELECT * FROM CUENTA WHERE CORREO='$correo'";
         $result = realizarQuery('grupon', $query);
-        if (mysqli_num_rows($result) > 0 && password_verify($pwd, $fila['password'])) {
+        $fila = mysqli_fetch_array($result);
+        if (mysqli_num_rows($result) > 0 && password_verify($pwd, $fila['pwd'])) {
             header('Location: index.php');
         } else {
             $errores[] = "Credenciales incorrectas.";
