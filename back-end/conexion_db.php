@@ -1,15 +1,12 @@
 <?php
         /**
          * Función que realiza una query sobre una base de datos y retorna el resultado.
-         * @param string $dir
-         * @param string $usr
-         * @param string $pass
          * @param string $esquema
          * @param string $query
          * @return result
          */
-        function realizarQuery($dir, $usr, $pass, $esquema, $query){
-            $con = mysqli_connect($dir,$usr,$pass);
+        function realizarQuery($esquema, $query){
+            $con = mysqli_connect("localhost", "root", "");
             if(!$con){
                 die('No se puede conectar con la DB' . mysqli_error($con));
             }
