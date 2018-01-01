@@ -24,64 +24,70 @@ function muestraErrores($error) {
 function formularioLogin() {
 
     $form = ' <form action="" method="post">' .
-            ' Correo: <input type="text" name="correo" >' .
-            ' Contraseña: <input type="password" name="contraseña" >' .
-            ' <input type="submit" name="login" value="Enviar">' .
+            ' Correo: <input type="text" name="correo" /><br/>' .
+            ' Contraseña: <input type="password" name="contraseña" /><br/>' .
+            ' <input type="submit" name="login" value="Enviar"/>' .
             ' </form>';
     return $form;
 }
 
 /*
- * Esta funcion genera un login en forma de string
+ * Esta funcion genera un formulario para que las empresas puedan registrarse en forma de string
  */
 
 function formularioRegistroEmpresa() {
 
-    $form = '<form action="" method="post"><p>' .
-            'Correo: <input type="text" name="correo" ><p>' .
-            'Contraseña: <input type="password" name="contraseña" ><p>' .
-            'Confirmar Contraseña: <input type="password" name="contraseña_confirmar" ><p>' .
-            'Nombre Empresa: <input type="text" name="nombre_empresa"><p>' .
-            'NIF : <input type="text" name="nif_empresa"><p>' .
-            'Web Empresa: <input type="text" name="web_empresa" > <p>' .
-            'Cuenta Bancaria: <input type="number" name="cuenta_bancaria" ><p>' .
-            'Telefono: <input type="number" name="telefono_empresa"><p>' .
-            'Correo Electronico: <input type="email" name="mail_empresa"> <p>' .
-            'Comunidad Autonoma: <select>' .
+    $form = '<form action="" method="post">' .
+            'Correo: <input type="text" name="correo"/ ><br/>' .
+            'Contraseña: <input type="password" name="contraseña" /><br/>' .
+            'Confirmar Contraseña: <input type="password" name="contraseña_confirmar"/ ><br/>' .
+            'Nombre Empresa: <input type="text" name="nombre_empresa"/><br/>' .
+            'NIF : <input type="text" name="nif_empresa"/><br/>' .
+            'Web Empresa: <input type="text" name="web_empresa" /> <br/>' .
+            'Cuenta Bancaria: <input type="number" name="cuenta_bancaria"/ ><br/>' .
+            'Tel&eacute;fono: <input type="number" name="telefono_empresa"/><br/>' .
+            'Correo Electr&oacute;nico: <input type="email" name="mail_empresa"/> <br/>' .
+            'Comunidad Aut&oacute;noma: <select>' .
             '<option value="andalucia">Andalucia</option>' .
-            '<option value="catalunya">Catalu&ntilde;a</option>' .
-            '<option value="galicia">Galicia </option>' .
-            '<option value="castillo_y_leon">Castilla y Le&oacute;n </option>' .
-            '<option value="pais_vasco">Pa&iacute;s Vasco</option>' .
-            '<option value="canarias">Canarias</option>' .
-            '<option value="valencia">Valencia</option>' .
-            '<option value="madrid">Madrid</option>' .
-            '<option value="castilla_la_mancha">Castilla La Mancha </option>' .
-            '<option value="murcia">Murcia</option>' .
             '<option value="aragon">Arag&oacute;n</option>' .
-            '<option value="islas_baleares">Islas Baleares</option>' .
-            '<option value="extremadura">Extremadura</option>' .
             '<option value="asturias">Asturias</option>' .
-            '<option value="navarra">Navarra</option>' .
+            '<option value="canarias">Canarias</option>' .
             '<option value="cantabria">Cantabria</option>' .
-            '<option value="la_rioja">La Rioja</option>' .
-            '<option value="melilla"> Melilla</option>' .
+            '<option value="castilla_la_mancha">Castilla La Mancha </option>' .
+            '<option value="castillo_y_leon">Castilla y Le&oacute;n </option>' .
+            '<option value="catalunya">Catalu&ntilde;a</option>' .
             '<option value="ceuta">Ceuta</option>' .
-            '</select><p>' .
-            '<input type="submit" name="login" value="Enviar">' .
+            '<option value="extremadura">Extremadura</option>' .
+            '<option value="galicia">Galicia </option>' .
+            '<option value="islas_baleares">Islas Baleares</option>' .
+            '<option value="la_rioja">La Rioja</option>' .
+            '<option value="madrid">Madrid</option>' .
+            '<option value="melilla"> Melilla</option>' .
+            '<option value="murcia">Murcia</option>' .
+            '<option value="navarra">Navarra</option>' .
+            '<option value="pais_vasco">Pa&iacute;s Vasco</option>' . 
+            '<option value="valencia">Valencia</option>' .
+            '</select><br>' .
+            '<input type="submit" name="registroEmpresa" value="Enviar"/>' .
             '</form>';
     return $form;
 }
 
+
+/*
+ * Esta funcion genera un formulario para que los clientes puedan registrarse en forma de string
+ */
+
 function formularioRegistroCliente() {
 
-    $form = '<form action="" method="post"><p>' .
-            'Correo: <input type="text" name="correo" ><p>' .
-            'Contraseña: <input type="password" name="contraseña" ><p>' .
-            'Confirmar Contraseña: <input type="password" name="contraseña_confirmar" ><p>' .
-            'Nombre: <input type="text" name="nombre_cliente"><p>' .
-            'Apellidos: <input type="text" name="apellidos_cliente"> <p>';
-
+    $form = '<form action="" method="post">' .
+            'Correo: <input type="text" name="correo" /><br/>' .
+            'Contraseña: <input type="password" name="contraseña"/><br/>' .
+            'Confirmar Contraseña: <input type="password" name="contraseña_confirmar" /><br/>' .
+            'Nombre: <input type="text" name="nombre_cliente"/><br/>' .
+            'Apellidos: <input type="text" name="apellidos_cliente"/> <br/>'.
+           '<input type="submit" name="registroCliente" value="Enviar"/>' .
+            '</form>';
     return $form;
 }
 
