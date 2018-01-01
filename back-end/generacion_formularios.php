@@ -51,7 +51,7 @@ function formularioRegistroEmpresa() {
             '<option value="andalucia">Andalucia</option>' .
             '<option value="catalunya">Catalu&ntilde;a</option>' .
             '<option value="galicia">Galicia </option>' .
-            '<option value="castilla y León">Castilla y Le&oacute;n </option>' .
+            '<option value="castillo_y_leon">Castilla y Le&oacute;n </option>' .
             '<option value="pais_vasco">Pa&iacute;s Vasco</option>' .
             '<option value="canarias">Canarias</option>' .
             '<option value="valencia">Valencia</option>' .
