@@ -4,7 +4,7 @@ require '../back-end/generacion_formularios.php';
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Login</title>
         <script src='https://www.google.com/recaptcha/api.js'></script>
     </head>
     <body>
