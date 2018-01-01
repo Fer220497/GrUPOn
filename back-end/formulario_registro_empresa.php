@@ -5,8 +5,12 @@ require_once '../back-end/conexion_db.php';
 require_once '../back-end/funciones.php';
 
 foreach ($arrayComunidades as $comunidad) {
-    $sql = "INSERT INTO COMUNIDAD_AUTONOMA VALUES ('$comunidad')";
-    realizarQuery('grupon', $sql);
+    $sql = 'SELECT * FROM COMUNIDAD_AUTONOMA';
+    $result = realizarQuery('grupon', $sql);
+    if(mysqli_num_rows($result) == 0){
+        $sql = "INSERT INTO COMUNIDAD_AUTONOMA VALUES ('$comunidad')";
+        realizarQuery('grupon', $sql);
+    }
 }
 
 //Si el usuario ha enviado...
@@ -45,6 +49,9 @@ if (isset($_POST['registroEmpresa'])) {
     if (!isset($_POST['comunidad_autonoma'])) {
         $error[] = 'Debes introducir la comunidad aut&oacute;noma';
     }
+    if(!isset($_POST['direccion_empresa'])){
+        $error[] = 'Debes introducir una direcci&oacute;n de empresa.';
+    }
     if (!isset($_POST['g-recaptcha-response'])) {
         $error[] = 'Has trampeado el reCaptcha';
     }
@@ -57,10 +64,9 @@ if (isset($_POST['registroEmpresa'])) {
         $error[] = 'Las contrase&ntilde;as no coinciden';
     }
     //RESTRICCION: Captcha funcionando:
-    
     $response = null;
     $recap = new ReCaptcha($secret);
-    if ($_POST["g-recaptcha-response"]) {
+    if (!isset($error)) {
         $response = $recap->verifyResponse(
                 $_SERVER["REMOTE_ADDR"], $_POST["g-recaptcha-response"]
         );
@@ -81,18 +87,22 @@ if (isset($_POST['registroEmpresa'])) {
         $telefono_empresa = $_POST['telefono_empresa'];
         $mail_empresa = sanitarString($_POST['mail_empresa']);
         $comunidad_autonoma = $_POST['comunidad_autonoma'];
+        $direccion_empresa = sanitarString($_POST['direccion_empresa']);
         $sql = "SELECT * FROM CUENTA WHERE CORREO='$correo'";
 
         $result = realizarQuery('grupon', $sql);
         //Check de si existia ya la cuenta.
-        if (mysqli_num_row($result) > 0) {
+        if (mysqli_num_rows($result) > 0) {
             $error[] = 'Ya exist&iacute;a ese correo.';
         } else {
             //No existe esa cuenta, creo una nueva.
-            $hash = password_hash($pass, PASSWORD_BCRYPT); //60 chars wide.
-            $sql = "INSERT INTO CUENTA VALUES('$correo','$hash','$comunidad_autonoma')";
+            $hash = password_hash($pwd, PASSWORD_BCRYPT); //60 chars wide.
+            $sql = "INSERT INTO CUENTA VALUES('$correo','$comunidad_autonoma', '$hash')";
             realizarQuery('grupon', $sql);
-            $sql = "";
+            $sql = "INSERT INTO EMPRESA VALUES('$correo','$nombre_empresa',"
+                    . "'$direccion_empresa',$nif_empresa,'$web_empresa',$cuenta_bancaria,"
+                    . "$telefono_empresa, '$mail_empresa')";
+            realizarQuery('grupon', $sql);
         }
     }
 }
@@ -114,7 +124,7 @@ function formularioRegistroEmpresa() {
 
     global $recaptcha;
 
-    $form = '<form action="../back-end/tratamiento_formulario_registro_empresa.php" method="post">' .
+    $form = '<form action="../back-end/formulario_registro_empresa.php" method="post">' .
             'Correo: <input type="text" name="correo"/ ><br/>' .
             'Contrase&ntilde;a: <input type="password" name="pwd" /><br/>' .
             'Confirmar Contrase&ntilde;a: <input type="password" name="pwd_confirmar"/ ><br/>' .
@@ -145,6 +155,7 @@ function formularioRegistroEmpresa() {
             '<option value="pais_vasco">Pa&iacute;s Vasco</option>' .
             '<option value="valencia">Valencia</option>' .
             '</select><br>' .
+            'Direcci&oacute;n Empresa: <input type="text" name="direccion_empresa" />'.
             $recaptcha .
             '<input type="submit" name="registroEmpresa" value="Enviar"/>' .
             '</form>';
