@@ -1,5 +1,8 @@
 <?php
 
+//Hay que cambiar la KEY ya que esta es de prueba.
+$recaptcha = '<div data-theme="dark" class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>';
+
 /**
  * Función que genera un HTML con un array de errores 
  * (el array de errores debe contener unicamente strings)
@@ -24,6 +27,7 @@ function formularioLogin() {
     $form = ' <form action="" method="post">' .
             ' Correo: <input type="text" name="correo" /><br/>' .
             ' Contrase&ntilde;a: <input type="password" name="pwd" /><br/>' .
+            $recaptcha .
             ' <input type="submit" name="login" value="Enviar"/>' .
             ' </form>';
     return $form;
@@ -66,7 +70,7 @@ function formularioRegistroEmpresa() {
             '<option value="pais_vasco">Pa&iacute;s Vasco</option>' . 
             '<option value="valencia">Valencia</option>' .
             '</select><br>' .
-            '<div class="g-recaptcha" data-sitekey="6LeMsT4UAAAAANlQBAx2IskglT3VZYP78Z3s51Rd"></div>' .
+            $recaptcha .
             '<input type="submit" name="registroEmpresa" value="Enviar"/>' .
             '</form>';
     return $form;
@@ -84,7 +88,28 @@ function formularioRegistroCliente() {
             'Confirmar Contraseña: <input type="password" name="contraseña_confirmar" /><br/>' .
             'Nombre: <input type="text" name="nombre_cliente"/><br/>' .
             'Apellidos: <input type="text" name="apellidos_cliente"/> <br/>'.
-            '<div class="g-recaptcha" data-sitekey="6LeMsT4UAAAAANlQBAx2IskglT3VZYP78Z3s51Rd"></div>' . 
+            'Comunidad Aut&oacute;noma: <select>' .
+            '<option value="andalucia">Andalucia</option>' .
+            '<option value="aragon">Arag&oacute;n</option>' .
+            '<option value="asturias">Asturias</option>' .
+            '<option value="canarias">Canarias</option>' .
+            '<option value="cantabria">Cantabria</option>' .
+            '<option value="castilla_la_mancha">Castilla La Mancha </option>' .
+            '<option value="castillo_y_leon">Castilla y Le&oacute;n </option>' .
+            '<option value="catalunya">Catalu&ntilde;a</option>' .
+            '<option value="ceuta">Ceuta</option>' .
+            '<option value="extremadura">Extremadura</option>' .
+            '<option value="galicia">Galicia </option>' .
+            '<option value="islas_baleares">Islas Baleares</option>' .
+            '<option value="la_rioja">La Rioja</option>' .
+            '<option value="madrid">Madrid</option>' .
+            '<option value="melilla"> Melilla</option>' .
+            '<option value="murcia">Murcia</option>' .
+            '<option value="navarra">Navarra</option>' .
+            '<option value="pais_vasco">Pa&iacute;s Vasco</option>' . 
+            '<option value="valencia">Valencia</option>' .
+            '</select><br>' .
+            $recaptcha . 
             '<input type="submit" name="registroCliente" value="Enviar"/>' .
             '</form>';
     return $form;

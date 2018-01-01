@@ -17,6 +17,12 @@ Maps: https://developers.google.com/maps/documentation/javascript/examples/place
 
 Añadir recaptcha: https://webdesign.tutsplus.com/es/tutorials/how-to-integrate-no-captcha-recaptcha-in-your-website--cms-23024
 
+Keys recaptcha de prank:
+
+    Site key: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
+    Secret key: 6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe
+
+
 Combo provincias España:
 
     <select name="provincia">
