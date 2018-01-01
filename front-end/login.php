@@ -14,8 +14,10 @@ and open the template in the editor.
         require '../back-end/generacion_formularios.php';
 
         echo formularioLogin();
+        ?>
         echo formularioRegistroCliente();
         echo formularioRegistroEmpresa();
+        asdas
         ?>
     </body>
 </html>
