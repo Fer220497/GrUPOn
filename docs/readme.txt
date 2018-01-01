@@ -15,6 +15,8 @@ Google Maps: https://stackoverflow.com/questions/5757533/allowing-users-to-add-m
 
 Maps: https://developers.google.com/maps/documentation/javascript/examples/place-search
 
+Añadir recaptcha: https://webdesign.tutsplus.com/es/tutorials/how-to-integrate-no-captcha-recaptcha-in-your-website--cms-23024
+
 Combo provincias España:
 
     <select name="provincia">
