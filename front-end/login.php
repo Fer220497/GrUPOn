@@ -1,5 +1,5 @@
 <?php
-    require '../back-end/generacion_formularios.php';
+require '../back-end/generacion_formularios.php';
 ?>
 <html>
     <head>
@@ -9,11 +9,12 @@
     </head>
     <body>
         <?php
-        
-        
-        echo '<h2>Login</h2>' . formularioLogin();
-        echo '<h2>Registro Cliente</h2>' . formularioRegistroCliente();
-        echo '<h2>Registro Empresa</h2>' . formularioRegistroEmpresa();
+        require '../back-end/generacion_formularios.php';
+
+        echo formularioLogin();
         ?>
+        ¿No est&aacute;s registrado? ¡Reg&iacute;strate aqu&iacute;!<br/>
+        <button type="submit" onclick="location.href = 'registro_cliente.php'">Registro como cliente</button> <button type="submit" onclick="location.href = 'registro_empresa.php'">Registro como empresa</button>
+
     </body>
 </html>
