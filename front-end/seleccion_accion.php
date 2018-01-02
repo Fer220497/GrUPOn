@@ -13,8 +13,13 @@ and open the template in the editor.
         <h2>Login</h2>
        
         Seleccione que quiere hacer<br/>
+        Crear:<br/>
         <button type="submit" onclick="location.href = 'creacion_catalogo.php'">Crear Cat&aacute;logo</button> 
         <button type="submit" onclick="location.href = 'creacion_producto.php'">Crear Producto</button> 
-        
+        Modificar:<br/>
+        <button type="submit" onclick="location.href = 'modificar_catalogo.php'">Crear Cat&aacute;logo</button> 
+        <button type="submit" onclick="location.href = 'modificar_producto.php'">Crear Producto</button> 
+        <button type="submit" onclick="location.href = 'modificar_cuenta_cliente.php'">Crear Cat&aacute;logo</button> 
+        <button type="submit" onclick="location.href = 'modificar_cuenta_empresa.php'">Crear Producto</button> 
     </body>
 </html>
