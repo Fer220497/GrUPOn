@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../back-end/libs/recaptchalib.php';
 require_once '../back-end/conexion_db.php';
 require_once '../back-end/funciones.php';
@@ -30,6 +31,20 @@ if (isset($_POST['login'])) {
         $result = realizarQuery('grupon', $query);
         $fila = mysqli_fetch_array($result);
         if (mysqli_num_rows($result) > 0 && password_verify($pwd, $fila['pwd'])) {
+            $_SESSION['cuenta'] = $fila['cuenta'];
+            $queryEmpresa = "SELECT * FROM CUENTA,EMPRESA WHERE CUENTA.CORREO='$correo' AND EMPRESA.CORREO='$correo'";
+            $queryCliente = "SELECT * FROM CUENTA,CLIENTE WHERE CUENTA.CORREO='$correo' AND CLIENTE.CORREO='$correo'";
+            $resultadoEmpresa = realizarQuery('grupon', $queryEmpresa);
+            $resultadoCliente = realizarQuery('grupon', $queryCliente);
+            if(mysqli_num_rows($resultadoEmpresa) > 0){
+                $_SESSION['tipo'] = 'empresa';
+                $fila = mysqli_fetch_array($resultadoEmpresa);
+                $_SESSION['nombre'] = $fila['nombre_empresa'];
+            }else{
+                $_SESSION['tipo'] = 'cliente';
+                $fila = mysqli_fetch_array($resultadoCliente);
+                $_SESSION['nombre'] = $fila['nombre'];
+            }
             header('Location: seleccion_accion.php');
         } else {
             $errores[] = "Credenciales incorrectas.";
