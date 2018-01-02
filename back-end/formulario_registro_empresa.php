@@ -103,6 +103,8 @@ if (isset($_POST['registroEmpresa'])) {
                     . "'$direccion_empresa',$nif_empresa,'$web_empresa',$cuenta_bancaria,"
                     . "$telefono_empresa, '$mail_empresa')";
             realizarQuery('grupon', $sql);
+            //Finalmente redirigimos al usuario
+            header('Location: login.php');
         }
     }
 }

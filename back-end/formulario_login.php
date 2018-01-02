@@ -31,7 +31,7 @@ if (isset($_POST['login'])) {
         $result = realizarQuery('grupon', $query);
         $fila = mysqli_fetch_array($result);
         if (mysqli_num_rows($result) > 0 && password_verify($pwd, $fila['pwd'])) {
-            header('Location: index.php');
+            header('Location: seleccion_accion.php');
         } else {
             $errores[] = "Credenciales incorrectas.";
         }

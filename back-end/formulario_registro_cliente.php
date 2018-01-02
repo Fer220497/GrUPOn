@@ -111,6 +111,8 @@ if (isset($_POST['registroCliente'])) {
                     realizarQuery('grupon', $sql);
                 }
             }
+            //Finalmente redirigimos al usuario
+            header('Location: login.php');
         }
         
     }
