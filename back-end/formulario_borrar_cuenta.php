@@ -16,7 +16,7 @@
     }
     
     if(isset($_POST['borrar']) && isset($_POST['check'])){
-        $sql = "DELETE FROM CUENTAS WHERE CORREO='$correo'";
+        $sql = "DELETE FROM CUENTA WHERE CORREO='$correo'";
         realizarQuery('grupon', $sql);
         header('Location: ../back-end/logout.php');
     }
