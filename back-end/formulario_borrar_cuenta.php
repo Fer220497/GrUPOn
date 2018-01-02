@@ -6,18 +6,18 @@
     if($_SESSION['tipo'] === 'cliente'){
         $sql = "SELECT * FROM CUENTA,CLIENTE WHERE CUENTA.CORREO='$correo' AND CLIENTE.CORREO='$correo'";
         $result = realizarQuery('grupon', $sql);
-        $fila = mysqli_fetch_array($result);
+        $fila = mysqli_fetch_array($result);    //OP READ SOBRE CLIENTE
         echo muestraDatosCliente($fila);
     }else{
         $sql = "SELECT * FROM CUENTA,EMPRESA WHERE EMPRESA.CORREO='$correo' AND CUENTA.CORREO='$correo'";
         $result = realizarQuery('grupon', $sql);
-        $fila = mysqli_fetch_array($result);
+        $fila = mysqli_fetch_array($result);    //OP READ SOBRE EMPRESA
         echo muestraDatosEmpresa($fila);
     }
     
     if(isset($_POST['borrar']) && isset($_POST['check'])){
         $sql = "DELETE FROM CUENTA WHERE CORREO='$correo'";
-        realizarQuery('grupon', $sql);
+        realizarQuery('grupon', $sql);  //OP DELETE SOBRE CUENTA, CLIENTE Y EMPRESA
         header('Location: ../back-end/logout.php');
     }
     
