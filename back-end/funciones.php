@@ -20,6 +20,16 @@
     $arrayComunidades[] = "melilla";
     $arrayComunidades[] = "ceuta";
     
+    $arrayCategorias[] = "viajes";
+    $arrayCategorias[] = "entretenimiento";
+    $arrayCategorias[] = "gastronomia";
+    $arrayCategorias[] = "electronica";
+    $arrayCategorias[] = "ropa";
+    $arrayCategorias[] = "salud_y_belleza";
+    $arrayCategorias[] = "deporte";
+    
+    
+    
     //Hay que cambiar la KEY ya que esta es de prueba.
     $recaptcha = '<div data-theme="dark" class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>';
     //KEY secreta del Recaptcha 

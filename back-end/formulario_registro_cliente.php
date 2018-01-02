@@ -8,14 +8,24 @@ require_once '../back-end/funciones.php';
 foreach ($arrayComunidades as $comunidad) {
     $sql = 'SELECT * FROM COMUNIDAD_AUTONOMA';
     $result = realizarQuery('grupon', $sql);
-    if(mysqli_num_rows($result) == 0){
+    if (mysqli_num_rows($result) == 0) {
         $sql = "INSERT INTO COMUNIDAD_AUTONOMA VALUES ('$comunidad')";
+        realizarQuery('grupon', $sql);
+    }
+}
+foreach ($arrayCategorias as $categoria) {
+    $sql = 'SELECT * FROM CATEGORIA';
+    $result = realizarQuery('grupon', $sql);
+    if (mysqli_num_rows($result) == 0) {
+        $sql = "INSERT INTO CATEGORIA VALUES ('$categoria')";
         realizarQuery('grupon', $sql);
     }
 }
 
 if (isset($_POST['registroCliente'])) {
     //Comprobacion del captcha
+
+
     if (!isset($_POST['g-recaptcha-response'])) {
         $error[] = 'Has trampeado el reCaptcha';
     }
@@ -42,12 +52,28 @@ if (isset($_POST['registroCliente'])) {
     if (!in_array($_POST['comunidad_autonoma'], $arrayComunidades)) {
         $error[] = 'Has trampeado las comunidades aut&oacute;nomas, campe&oacute;n';
     }
+    //RESTRICCIONES Para evitar el cambio de afinidad
+    
+    $contador = 0;
+    foreach ($arrayCategorias as $categoria) {
+        if (isset($_POST[$categoria])) {
+            if (!in_array($_POST[$categoria], $arrayCategorias)) {
+                $error[] = "No existe la categoria";
+            } else {
+                $contador++;
+            }
+        }
+    }
+
+    if ($contador == 0) {
+        $error[] = "Tiene que seleccionar una categoria";
+    }
     if ($_POST['pwd'] !== $_POST['pwd_confirmar']) {
         $error[] = 'Las contrase&ntilde;as no coinciden';
     }
 
     //RESTRICCION: Captcha funcionando:
-    
+
     $response = null;
     $recap = new ReCaptcha($secret);
     if ($_POST["g-recaptcha-response"]) {
@@ -68,22 +94,31 @@ if (isset($_POST['registroCliente'])) {
         $apellidos_cliente = sanitarString($_POST["apellidos_cliente"]);
         $comunidad = sanitarString($_POST["comunidad_autonoma"]);
 
+
         $sql = "SELECT * FROM CUENTA WHERE CORREO=' " . $correo . "'";
-        $result= realizarQuery("grupon", $sql);
-        if(mysqli_num_rows($result)>0){
-            $error[]="Ya existe este correo";
-        }else{
-            $hash= password_hash($pwd, PASSWORD_BCRYPT);
-            $sql = "INSERT INTO CUENTA VALUES('".$correo."','".$comunidad ."','".$hash."')";
+        $result = realizarQuery("grupon", $sql);
+        if (mysqli_num_rows($result) > 0) {
+            $error[] = "Ya existe este correo";
+        } else {
+            $hash = password_hash($pwd, PASSWORD_BCRYPT);
+            $sql = "INSERT INTO CUENTA VALUES('" . $correo . "','" . $comunidad . "','" . $hash . "')";
             realizarQuery("grupon", $sql);
-            $sql = "INSERT INTO CLIENTE VALUES('".$correo."','".$nombre_cliente ."','".$apellidos_cliente."')";
-            realizarQuery("grupon", $sql);
+           
         }
+        $sql = "INSERT INTO CLIENTE VALUES('" . $correo . "','" . $nombre_cliente . "','" . $apellidos_cliente . "')";
+        realizarQuery("grupon", $sql);
+         foreach ($arrayCategorias as $categoria) {
+                if (isset($_POST[$categoria])) {
+                    $sql = "INSERT INTO AFINIDADES VALUES ('$correo','$categoria')";
+                    realizarQuery('grupon', $sql);
+                }
+            }
     }
 }
+
 if (!isset($_POST["registroCliente"]) || isset($error)) {
     if (isset($error)) {
-       echo muestraErrores($error);
+        echo muestraErrores($error);
     }
 
     echo formularioRegistroCliente();
@@ -124,6 +159,14 @@ function formularioRegistroCliente() {
             '<option value="pais_vasco">Pa&iacute;s Vasco</option>' .
             '<option value="valencia">Valencia</option>' .
             '</select><br>' .
+            'Afinidades:<br/>' .
+            'Viajes: <input type="checkbox" name="viajes" value="viajes"/><br/>' .
+            'Entretenimiento: <input type="checkbox" name="entretenimiento" value="entretenimiento"/><br/>' .
+            'Gastronom&iacute;a: <input type="checkbox" name="gastronomia" value="gastronomia" /><br/>' .
+            'Electr&oacute;nica: <input type="checkbox" name="electronica" value="electronica" /><br/>' .
+            'Ropa: <input type="checkbox" name="ropa" value="ropa" /><br/>' .
+            'Salud y belleza: <input type="checkbox" name="salud_belleza" value="salud_belleza"/><br/>' .
+            'Deporte: <input type="checkbox" name="deporte" value="deporte"/><br/>' .
             $recaptcha .
             '<input type="submit" name="registroCliente" value="Enviar"/>' .
             '</form>';
