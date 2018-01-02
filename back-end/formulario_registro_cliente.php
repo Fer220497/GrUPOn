@@ -8,7 +8,7 @@ require_once '../back-end/funciones.php';
 foreach ($arrayComunidades as $comunidad) {
     $sql = 'SELECT * FROM COMUNIDAD_AUTONOMA';
     $result = realizarQuery('grupon', $sql);
-    if (mysqli_num_rows($result) == 0) {
+    if (mysqli_num_rows($result) != count($arrayComunidades)) {
         $sql = "INSERT INTO COMUNIDAD_AUTONOMA VALUES ('$comunidad')";
         realizarQuery('grupon', $sql);
     }
@@ -16,7 +16,7 @@ foreach ($arrayComunidades as $comunidad) {
 foreach ($arrayCategorias as $categoria) {
     $sql = 'SELECT * FROM CATEGORIA';
     $result = realizarQuery('grupon', $sql);
-    if (mysqli_num_rows($result) == 0) {
+    if (mysqli_num_rows($result) != count($arrayCategorias)) {
         $sql = "INSERT INTO CATEGORIA VALUES ('$categoria')";
         realizarQuery('grupon', $sql);
     }
@@ -95,7 +95,7 @@ if (isset($_POST['registroCliente'])) {
         $comunidad = sanitarString($_POST["comunidad_autonoma"]);
 
 
-        $sql = "SELECT * FROM CUENTA WHERE CORREO=' " . $correo . "'";
+        $sql = "SELECT * FROM CUENTA WHERE CORREO='" . $correo . "'";
         $result = realizarQuery("grupon", $sql);
         if (mysqli_num_rows($result) > 0) {
             $error[] = "Ya existe este correo";
@@ -103,16 +103,16 @@ if (isset($_POST['registroCliente'])) {
             $hash = password_hash($pwd, PASSWORD_BCRYPT);
             $sql = "INSERT INTO CUENTA VALUES('" . $correo . "','" . $comunidad . "','" . $hash . "')";
             realizarQuery("grupon", $sql);
-           
-        }
-        $sql = "INSERT INTO CLIENTE VALUES('" . $correo . "','" . $nombre_cliente . "','" . $apellidos_cliente . "')";
-        realizarQuery("grupon", $sql);
-         foreach ($arrayCategorias as $categoria) {
+            $sql = "INSERT INTO CLIENTE VALUES('" . $correo . "','" . $nombre_cliente . "','" . $apellidos_cliente . "')";
+            realizarQuery("grupon", $sql);
+            foreach ($arrayCategorias as $categoria) {
                 if (isset($_POST[$categoria])) {
                     $sql = "INSERT INTO AFINIDADES VALUES ('$correo','$categoria')";
                     realizarQuery('grupon', $sql);
                 }
             }
+        }
+        
     }
 }
 
