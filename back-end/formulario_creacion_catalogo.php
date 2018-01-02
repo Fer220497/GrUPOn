@@ -4,6 +4,15 @@ session_start();
 require_once '../back-end/conexion_db.php';
 require_once '../back-end/funciones.php';
 
+foreach ($arrayCategorias as $categoria) {
+    $sql = 'SELECT * FROM CATEGORIA';
+    $result = realizarQuery('grupon', $sql);
+    if (mysqli_num_rows($result) != count($arrayCategorias)) {
+        $sql = "INSERT INTO CATEGORIA VALUES ('$categoria')";
+        realizarQuery('grupon', $sql);
+    }
+}
+
 if (isset($_POST['nuevo_cat'])) {
     if (!isset($_POST['nombre'])) {
         $errores[] = "Debes introducir nombre.";
@@ -15,9 +24,8 @@ if (isset($_POST['nuevo_cat'])) {
         $correo = $_SESSION['cuenta'];
         $nombre = sanitarString($_POST['nombre']);
         $categoria = $_POST['categoria'];
-        $query = "INSERT INTO CATALOGO (`correo`, `nombre_categoria`, `nombre`) VALUES ('". $correo ."', '". $nombre ."','". $categoria ."')";
-        $result = realizarQuery('grupon', $query);
-        if (mysqli_num_rows($result)) {
+        $query = "INSERT INTO CATALOGO (correo, nombre_categoria, nombre) VALUES ('". $correo ."', '". $categoria ."','". $nombre ."')";
+        if(realizarQuery('grupon', $query)){
             echo 'placeholder bueno';
         } else {
             echo 'placeholder malo';
@@ -35,7 +43,6 @@ if (isset($_POST['nuevo_cat'])) {
  * @return string
  */
 function formularioCreacionCatalogo() {
-
     $form = ' <form action="" method="post">' .
             ' Nombre: <input type="text" name="nombre" /><br/>' .
             ' Categor&iacute;a: <select name="categoria">' .
