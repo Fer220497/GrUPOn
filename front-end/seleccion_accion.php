@@ -10,16 +10,16 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <h2>Login</h2>
+        <h2>Acciones: TESTING PURPOSES ONLY.</h2>
        
         Seleccione que quiere hacer<br/>
         Crear:<br/>
         <button type="submit" onclick="location.href = 'creacion_catalogo.php'">Crear Cat&aacute;logo</button> 
         <button type="submit" onclick="location.href = 'creacion_producto.php'">Crear Producto</button> 
-        Modificar:<br/>
-        <button type="submit" onclick="location.href = 'modificar_catalogo.php'">Crear Cat&aacute;logo</button> 
-        <button type="submit" onclick="location.href = 'modificar_producto.php'">Crear Producto</button> 
-        <button type="submit" onclick="location.href = 'modificar_cuenta_cliente.php'">Crear Cat&aacute;logo</button> 
-        <button type="submit" onclick="location.href = 'modificar_cuenta_empresa.php'">Crear Producto</button> 
+        <br/>Modificar:<br/>
+        <button type="submit" onclick="location.href = 'modificar_catalogo.php'">Modificar Cat&aacute;logo</button> 
+        <button type="submit" onclick="location.href = 'modificar_producto.php'">Modificar Producto</button> 
+        <button type="submit" onclick="location.href = 'modificar_cuenta_cliente.php'">Modificar Cat&aacute;logo</button> 
+        <button type="submit" onclick="location.href = 'modificar_cuenta_empresa.php'">Modificar Producto</button> 
     </body>
 </html>
