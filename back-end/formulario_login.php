@@ -31,7 +31,7 @@ if (isset($_POST['login'])) {
         $result = realizarQuery('grupon', $query);
         $fila = mysqli_fetch_array($result);
         if (mysqli_num_rows($result) > 0 && password_verify($pwd, $fila['pwd'])) {
-            $_SESSION['cuenta'] = $fila['cuenta'];
+            $_SESSION['cuenta'] = $fila['correo'];
             $queryEmpresa = "SELECT * FROM CUENTA,EMPRESA WHERE CUENTA.CORREO='$correo' AND EMPRESA.CORREO='$correo'";
             $queryCliente = "SELECT * FROM CUENTA,CLIENTE WHERE CUENTA.CORREO='$correo' AND CLIENTE.CORREO='$correo'";
             $resultadoEmpresa = realizarQuery('grupon', $queryEmpresa);
