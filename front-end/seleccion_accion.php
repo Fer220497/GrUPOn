@@ -20,6 +20,7 @@ and open the template in the editor.
         <button type="submit" onclick="location.href = 'modificar_catalogo.php'">Modificar Cat&aacute;logo</button> 
         <button type="submit" onclick="location.href = 'modificar_producto.php'">Modificar Producto</button>
         <br/>Cuentas:<br/>
+        <button type="submit" onclick="location.href = 'cuenta'">Ir al Menú de cuenta</button>
         <button type="submit" onclick="location.href = 'modificar_cuenta_cliente.php'">Modificar Cuenta Cliente</button> 
         <button type="submit" onclick="location.href = 'modificar_cuenta_empresa.php'">Modificar Cuenta Empresa</button> 
     </body>

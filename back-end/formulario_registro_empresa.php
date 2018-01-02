@@ -7,12 +7,19 @@ require_once '../back-end/funciones.php';
 foreach ($arrayComunidades as $comunidad) {
     $sql = 'SELECT * FROM COMUNIDAD_AUTONOMA';
     $result = realizarQuery('grupon', $sql);
-    if(mysqli_num_rows($result) == 0){
+    if (mysqli_num_rows($result) != count($arrayComunidades)) {
         $sql = "INSERT INTO COMUNIDAD_AUTONOMA VALUES ('$comunidad')";
         realizarQuery('grupon', $sql);
     }
 }
-
+foreach ($arrayCategorias as $categoria) {
+    $sql = 'SELECT * FROM CATEGORIA';
+    $result = realizarQuery('grupon', $sql);
+    if (mysqli_num_rows($result) != count($arrayCategorias)) {
+        $sql = "INSERT INTO CATEGORIA VALUES ('$categoria')";
+        realizarQuery('grupon', $sql);
+    }
+}
 //Si el usuario ha enviado...
 if (isset($_POST['registroEmpresa'])) {
     //Checkeo de que no hayan tocado el HTML
