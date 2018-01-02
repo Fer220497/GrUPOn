@@ -20,7 +20,7 @@
             if(!$result){
                 echo $query;
                 //NO SE HA PODIDO EJECUTAR LA CONSULTA
-                die('No se puedo obtener resultado' . mysqli_error($con)); 
+                die('No se pudo obtener resultado' . mysqli_error($con)); 
             }
             return $result;
         }
