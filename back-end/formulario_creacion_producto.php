@@ -1,10 +1,11 @@
 
 <?php
-$correo=$_SESSION["cuenta"];
+
+$correo = $_SESSION["cuenta"];
 require_once '../back-end/conexion_db.php';
 require_once '../back-end/funciones.php';
 
-if (isset($_POST['registroCliente'])) {
+if (isset($_POST['crearProducto'])) {
 //
 
 
@@ -15,14 +16,17 @@ if (isset($_POST['registroCliente'])) {
     if (!in_array($_POST["nombre_ca"], $arrayComunidades)) {
         $error[] = "No existe la categoria";
     }
-   /////TERMINAR LA SQL
-    $id_catalogo=$_POST["id_catalogo"];
-    $sql = "SELECT id_catalogo, nombre FROM CATALOGO WHERE correo='$correo ' AND id_catalogo='$id_catalogo'";
-    $result = realizarQuery('grupon', $sql);
-    if (mysqli_num_rows($result) > 0) {
-            $error[] = "No existe ese catalogo";
-    }
    
+    if (!isset($_POST["id_catalogo"])) {
+        $error[] = "Debes introducir un catalogo";
+    }
+    $id_catalogo = $_POST["id_catalogo"];
+    $sql = "SELECT id_catalogo FROM CATALOGO WHERE correo='$correo ' AND id_catalogo='$id_catalogo'";
+    $result = realizarQuery('grupon', $sql);
+    if (mysqli_num_rows($result) == 0) {
+        $error[] = "No existe ese catalogo";
+    }
+
     if (!isset($_POST["nombre"])) {
         $error[] = "Debes introducir un nombre";
     }
@@ -41,35 +45,45 @@ if (isset($_POST['registroCliente'])) {
     if (!isset($_POST["cantidad_disponible"])) {
         $error[] = "Debes introducir cantidad";
     }
-    if($_POST["cantidad_disponible"]==0){
-        $error[]="Ponga una cantidad";
+    if ($_POST["cantidad_disponible"] == 0) {
+        $error[] = "Ponga una cantidad";
     }
-    
+
     if (!isset($error)) {
-        $nombre=sanitarString($_POST["nombre"]);
-        $precio=sanitarString($_POST["precio"]);
-        $descripcion=sanitarString($_POST["descripcion"]);
-        $localizacion=sanitarString($_POST["localizacion"]);
-        $porcentaje_descuento=sanitarString($_POST["porcentaje_descuento"]);
-        $cantidad_disponible=sanitarString($_POST["cantidad_disponible"]);
-        $id_catalogo=$_POST['id_catalogo'];
-        $nombre_categoria=$_POST['nombre_categoria'];
-        $hoy = getdate();
-        $sql="INSERT INTO PRODUCTO VALUES('".$_POST['nombre_categoria']."','".$_POST['nombre_ca']."','".$_POST['id_catalogo']."','".$nombre.
-                "','".$precio."','".$descripcion."','".$localizacion."','".$porcentaje_descuento."','0','".$cantidad_disponible."','".$cantidad_disponible."')";
-        realizarQuery("grupon", $sql);
-        $sql="SELECT id_producto, cantidad_total WHERE nombre='".$nombre."'";
-        $result=realizarQuery("grupon", $sql);
-        $datospro=mysql_fetch_array($result);
-        $sql="INSERT INTO LANZAMIENTOS VALUES('$correo','$datospro[0]','$hoy','','$datospro[1]')";
-        realizarQuery("grupon", $sql);
-        if(isset($_POST["id_catalogo"])){
-             $sql="INSERT INTO CATALOGOS VALUES('$id_catalogo','$correo','$nombre_categoria')";
+        $nombre = sanitarString($_POST["nombre"]);
+        $precio = sanitarString($_POST["precio"]);
+        $descripcion = sanitarString($_POST["descripcion"]);
+        $localizacion = sanitarString($_POST["localizacion"]);
+        $porcentaje_descuento = sanitarString($_POST["porcentaje_descuento"]);
+        $cantidad_disponible = sanitarString($_POST["cantidad_disponible"]);
+        $id_catalogo = $_POST['id_catalogo'];
+        $nombre_categoria = $_POST['nombre_categoria'];
+       
+        if ($_POST["id_catalogo"]=="") {
+           $id_catalogo="NULL";
+            $sql = "INSERT INTO PRODUCTO (nombre_categoria, nombre_ca, id_catalogo, nombre, precio, descripcion, localizacion, porcentaje_descuento, cantidad_vendida, cantidad_total, cantidad_disponible )"
+                    . " VALUES('" . $_POST['nombre_categoria'] . "','" . $_POST['nombre_ca'] . "'," . $id_catalogo . ",'" . $nombre .
+                    "','" . $precio . "','" . $descripcion . "','" . $localizacion . "','" . $porcentaje_descuento . "','0','" . $cantidad_disponible . "','" . $cantidad_disponible . "')";
+        } else {
+            $sql = "INSERT INTO PRODUCTO (nombre_categoria, nombre_ca, id_catalogo, nombre, precio, descripcion, localizacion, porcentaje_descuento, cantidad_vendida, cantidad_total, cantidad_disponible )"
+                    . " VALUES('" . $_POST['nombre_categoria'] . "','" . $_POST['nombre_ca'] . "','" . $_POST['id_catalogo'] . "','" . $nombre .
+                    "','" . $precio . "','" . $descripcion . "','" . $localizacion . "','" . $porcentaje_descuento . "','0','" . $cantidad_disponible . "','" . $cantidad_disponible . "')";
         }
+        realizarQuery("grupon", $sql);
+        $sql = "SELECT id_producto FROM PRODUCTO WHERE NOMBRE='".$nombre."'";
+        $result = realizarQuery("grupon", $sql);
+        $datospro = mysqli_fetch_array($result);
+        $idproducto=$datospro['id_producto'];
+       
+        $sql = "INSERT INTO LANZAMIENTOS VALUES('$correo','$idproducto',curdate(),'NULL ','0')";
+        realizarQuery("grupon", $sql);
+        
     }
 }
 
-if (!isset($_POST["registroCliente"]) || isset($error)) {
+
+
+if (!isset($_POST["crearProducto"]) || isset($error)) {
     if (isset($error)) {
         echo muestraErrores($error);
     }
@@ -83,7 +97,7 @@ if (!isset($_POST["registroCliente"]) || isset($error)) {
  */
 
 function formularioCrearProducto() {
-
+    $correo = $_SESSION["cuenta"];
 
 
     $form = '<form action="" method="post">' .
