@@ -29,7 +29,6 @@ if (isset($_POST['registroCliente'])) {
     if (!isset($_POST['g-recaptcha-response'])) {
         $error[] = 'Has trampeado el reCaptcha';
     }
-
     if (!isset($_POST["correo"])) {
         $error[] = "Debes introducir correo";
     }

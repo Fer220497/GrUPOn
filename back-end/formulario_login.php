@@ -14,8 +14,8 @@ if (isset($_POST['login'])) {
     if (!preg_match('/^[A-z0-9\\._-]+@[A-z0-9][A-z0-9-]*(\\.[A-z0-9_-]+)*\\.([A-z]{2,6})$/', $_POST['correo'])) {
         $errores[] = "Correo electr&oacute;nico incorrecto.";
     }
-    if(isset($_POST['g-recaptcha-response'])){
-        $errores[] = "Has trampeado el recaptcha";
+    if (!isset($_POST['g-recaptcha-response'])) {
+        $error[] = 'Has trampeado el reCaptcha';
     }
     $response = null;
     $recap = new ReCaptcha($secret);
