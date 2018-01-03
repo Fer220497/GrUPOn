@@ -1,9 +1,12 @@
 <?php
-
-$correo = $_SESSION["cuenta"];
-require_once '../back-end/libs/recaptchalib.php';
 require_once '../back-end/conexion_db.php';
 require_once '../back-end/funciones.php';
+
+echo $_SESSION['cuenta'];
+if(!isset($_SESSION)){
+    echo 'desdefinida';
+}
+$correo = $_SESSION['cuenta'];
 
 if (isset($_POST['modificarEmpresa'])) {
 
@@ -77,9 +80,10 @@ if (isset($_POST['modificarEmpresa'])) {
     }
     $_SESSION['cuenta'] = $correonuevo;
     $_SESSION['nombre'] = $nombre_empresa;
-    header('Location: seleccion_accion.php');
+    header('Location: formulario_modificar_empresa.php');
 }
-if (isset($_POST['cambioContraseña'])) {
+
+if (isset($_POST['cambioContrasenya'])) {
     if (!isset($_POST['pwd_antigua'])) {
         $error[] = 'Debes introducir contrase&ntilde;a';
     }
@@ -89,9 +93,7 @@ if (isset($_POST['cambioContraseña'])) {
     if (!isset($_POST['pwd_confirmar'])) {
         $error[] = 'Debes introducir la confirmacion de la contrase&ntilde;a';
     }
-    if ($_POST['pwd'] != $_POST['pwd_confirmar']) {
-        $error[] = 'Las contrase&ntilde;as nuevas no coinciden';
-    }
+    //RESTRICCION: Contraseña antigua debe ser correcta
     $sql = "SELECT * FROM CUENTA WHERE CORREO='$correo'";
     $result = realizarQuery("grupon", $sql);
     $datopwd = mysqli_fetch_array($result);
@@ -102,27 +104,25 @@ if (isset($_POST['cambioContraseña'])) {
         $error[] = "La contraseña antigua es incorrecta";
     }
     //RESTRICCION: Contraseñas deben ser iguales:
-
-    if (isset($error)) {
-        if ($_POST['pwd'] != "") {
-            $pwd = $contra;
-            $hash = password_hash($pwd, PASSWORD_BCRYPT); //60 chars wide.
-            $sql = "UPDATE CUENTA SET PWD='$hash' WHERE CORREO='$correo'";
-            realizarQuery('grupon', $sql);
-
-        }
+    if ($_POST['pwd'] != $_POST['pwd_confirmar']) {
+        $error[] = 'Las contrase&ntilde;as nuevas no coinciden';
+    }
+    //A
+    //A
+    
+    if (!isset($error)) {
+        $pwd = $_POST['pwd'];
+        $hash = password_hash($pwd, PASSWORD_BCRYPT); //60 chars wide.
+        $sql = "UPDATE CUENTA SET PWD='$hash' WHERE CORREO='$correo'";
+        realizarQuery('grupon', $sql);
     }
 }
 
-
-
-
-if (!isset($_POST['registroEmpresa']) || isset($error)) {
     if (isset($error)) {
         echo muestraErrores($error);
     }
     echo formularioModEmpresa();
-}
+
 
 function formularioModEmpresa() {
     $correo = $_SESSION["cuenta"];
@@ -139,7 +139,7 @@ function formularioModEmpresa() {
 
 
 
-    $form = '<form action="../back-end/formulario_modificar_empresa.php" method="post">' .
+    $form = '<form action="" method="post">' .
             'Correo: <input type="text" name="correo" value="' . $correo . '"/><br/>' .
             'Nombre Empresa: <input type="text" name="nombre_empresa" value="' . $nombre_empresa . '"/><br/>' .
             'NIF : <input type="text" name="nif_empresa" value="' . $nif_empresa . '"/><br/>' .
@@ -172,11 +172,11 @@ function formularioModEmpresa() {
             '<input type="submit" name="modificarEmpresa" value="Enviar"/>' .
             '</form>'.
 
-    '<form action="../back-end/formulario_modificar_empresa.php" method="post">' .
+            '<form action="" method="post">' .
             'Contrase&ntilde;a Antigua: <input type="password" name="pwd_antigua" /><br/>' .
             'Contrase&ntilde;a Nueva: <input type="password" name="pwd" /><br/>' .
             'Confirmar Contrase&ntilde;a Nueva: <input type="password" name="pwd_confirmar" /><br/>' .
-            '<input type="submit" name="cambioContraseña" value="Enviar"/>' .
+            '<input type="submit" name="cambioContrasenya" value="Enviar"/>' .
             '</form>';
 
     return $form;
