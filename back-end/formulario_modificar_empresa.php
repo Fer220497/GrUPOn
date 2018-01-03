@@ -1,9 +1,10 @@
 <?php
+
 require_once '../back-end/conexion_db.php';
 require_once '../back-end/funciones.php';
 
 echo $_SESSION['cuenta'];
-if(!isset($_SESSION)){
+if (!isset($_SESSION)) {
     echo 'desdefinida';
 }
 $correo = $_SESSION['cuenta'];
@@ -17,7 +18,6 @@ if (isset($_POST['modificarEmpresa'])) {
     if (!isset($_POST['nombre_empresa'])) {
         $error[] = 'Debes introducir el nombre de la empresa';
     }
-
     if (!isset($_POST['nif_empresa'])) {
         $error[] = 'Debes introducir el NIF de la empresa';
     }
@@ -50,11 +50,16 @@ if (isset($_POST['modificarEmpresa'])) {
         $error[] = 'Has trampeado las comunidades aut&oacute;nomas, campe&oacute;n';
     }
 
+    //RESTRICCION: SI EL CORREO INTRODUCIDO ES NUEVO, DEBE CHECKEARSE QUE NO EXISTA YA.
+    if ($correo !== $_POST['correo']) {
+        if (existeCorreo($_POST['correo'])) {
+            $error[] = 'Ese correo ya existe';
+        }
+    }
     if (!isset($error)) {
 
         $correonuevo = sanitarString($_POST['correo']);
 
-        $pwd = sanitarString($pwd);
         $nombre_empresa = sanitarString($_POST['nombre_empresa']);
         $nif_empresa = sanitarString($_POST['nif_empresa']);
         $web_empresa = sanitarString($_POST['web_empresa']);
@@ -64,23 +69,18 @@ if (isset($_POST['modificarEmpresa'])) {
         $comunidad_autonoma = $_POST['comunidad_autonoma'];
         $direccion_empresa = sanitarString($_POST['direccion_empresa']);
 
-        if (existeCorreo($correo)) {
-            $error[] = 'Ya exist&iacute;a ese correo.';
-        } else {
-           
-            
-            $sql = "UPDATE CUENTA SET CORREO='$correonuevo', NOMBRE_CA='$comunidad_autonoma' WHERE CORREO='$correo'";
 
-            realizarQuery('grupon', $sql);
-            $sql = "UPDATE EMPRESA SET nombre_empresa='$nombre_empresa', direccion_empresa='$direccion_empresa', "
-                    . "nif_empresa='$nif_empresa', web_empresa='$web_empresa', cuenta_bancaria='$cuenta_bancaria', "
-                    . "telefono_empresa='$telefono_empresa', email_empresa='$mail_empresa' WHERE correo='$correonuevo'";
-            realizarQuery('grupon', $sql);
-        }
+
+        $sql = "UPDATE CUENTA SET CORREO='$correonuevo', NOMBRE_CA='$comunidad_autonoma' WHERE CORREO='$correo'";
+
+        realizarQuery('grupon', $sql);
+        $sql = "UPDATE EMPRESA SET nombre_empresa='$nombre_empresa', direccion_empresa='$direccion_empresa', "
+                . "nif_empresa='$nif_empresa', web_empresa='$web_empresa', cuenta_bancaria='$cuenta_bancaria', "
+                . "telefono_empresa='$telefono_empresa', email_empresa='$mail_empresa' WHERE correo='$correonuevo'";
+        realizarQuery('grupon', $sql);
+        $_SESSION['cuenta'] = $correonuevo;
+        $_SESSION['nombre'] = $nombre_empresa;
     }
-    $_SESSION['cuenta'] = $correonuevo;
-    $_SESSION['nombre'] = $nombre_empresa;
-    header('Location: formulario_modificar_empresa.php');
 }
 
 if (isset($_POST['cambioContrasenya'])) {
@@ -109,7 +109,7 @@ if (isset($_POST['cambioContrasenya'])) {
     }
     //A
     //A
-    
+
     if (!isset($error)) {
         $pwd = $_POST['pwd'];
         $hash = password_hash($pwd, PASSWORD_BCRYPT); //60 chars wide.
@@ -118,11 +118,10 @@ if (isset($_POST['cambioContrasenya'])) {
     }
 }
 
-    if (isset($error)) {
-        echo muestraErrores($error);
-    }
-    echo formularioModEmpresa();
-
+if (isset($error)) {
+    echo muestraErrores($error);
+}
+echo formularioModEmpresa();
 
 function formularioModEmpresa() {
     $correo = $_SESSION["cuenta"];
@@ -170,8 +169,7 @@ function formularioModEmpresa() {
             '</select><br>' .
             'Direcci&oacute;n Empresa: <input type="text" name="direccion_empresa" value="' . $direccion_empresa . '" />' .
             '<input type="submit" name="modificarEmpresa" value="Enviar"/>' .
-            '</form>'.
-
+            '</form>' .
             '<form action="" method="post">' .
             'Contrase&ntilde;a Antigua: <input type="password" name="pwd_antigua" /><br/>' .
             'Contrase&ntilde;a Nueva: <input type="password" name="pwd" /><br/>' .
