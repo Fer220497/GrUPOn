@@ -1,4 +1,3 @@
-
 <?php
 
 $correo = $_SESSION["cuenta"];
@@ -16,15 +15,17 @@ if (isset($_POST['crearProducto'])) {
     if (!in_array($_POST["nombre_ca"], $arrayComunidades)) {
         $error[] = "No existe la categoria";
     }
-   
+
     if (!isset($_POST["id_catalogo"])) {
         $error[] = "Debes introducir un catalogo";
     }
     $id_catalogo = $_POST["id_catalogo"];
-    $sql = "SELECT id_catalogo FROM CATALOGO WHERE correo='$correo ' AND id_catalogo='$id_catalogo'";
-    $result = realizarQuery('grupon', $sql);
-    if (mysqli_num_rows($result) == 0) {
-        $error[] = "No existe ese catalogo";
+    if ($_POST["id_catalogo"] != "") {
+        $sql = "SELECT id_catalogo FROM CATALOGO WHERE correo='$correo ' AND id_catalogo='$id_catalogo'";
+        $result = realizarQuery('grupon', $sql);
+        if (mysqli_num_rows($result) == 0) {
+            $error[] = "No existe ese catalogo";
+        }
     }
 
     if (!isset($_POST["nombre"])) {
@@ -58,9 +59,9 @@ if (isset($_POST['crearProducto'])) {
         $cantidad_disponible = sanitarString($_POST["cantidad_disponible"]);
         $id_catalogo = $_POST['id_catalogo'];
         $nombre_categoria = $_POST['nombre_categoria'];
-       
-        if ($_POST["id_catalogo"]=="") {
-           $id_catalogo="NULL";
+
+        if ($_POST["id_catalogo"] == "") {
+            $id_catalogo = "NULL";
             $sql = "INSERT INTO PRODUCTO (nombre_categoria, nombre_ca, id_catalogo, nombre, precio, descripcion, localizacion, porcentaje_descuento, cantidad_vendida, cantidad_total, cantidad_disponible )"
                     . " VALUES('" . $_POST['nombre_categoria'] . "','" . $_POST['nombre_ca'] . "'," . $id_catalogo . ",'" . $nombre .
                     "','" . $precio . "','" . $descripcion . "','" . $localizacion . "','" . $porcentaje_descuento . "','0','" . $cantidad_disponible . "','" . $cantidad_disponible . "')";
@@ -70,14 +71,13 @@ if (isset($_POST['crearProducto'])) {
                     "','" . $precio . "','" . $descripcion . "','" . $localizacion . "','" . $porcentaje_descuento . "','0','" . $cantidad_disponible . "','" . $cantidad_disponible . "')";
         }
         realizarQuery("grupon", $sql);
-        $sql = "SELECT id_producto FROM PRODUCTO WHERE NOMBRE='".$nombre."'";
+        $sql = "SELECT id_producto FROM PRODUCTO WHERE NOMBRE='" . $nombre . "'";
         $result = realizarQuery("grupon", $sql);
         $datospro = mysqli_fetch_array($result);
-        $idproducto=$datospro['id_producto'];
-       
+        $idproducto = $datospro['id_producto'];
+
         $sql = "INSERT INTO LANZAMIENTOS VALUES('$correo','$idproducto',curdate(),'NULL ','0')";
         realizarQuery("grupon", $sql);
-        
     }
 }
 

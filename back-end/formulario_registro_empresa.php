@@ -133,7 +133,7 @@ if (!isset($_POST['registroEmpresa']) || isset($error)) {
 function formularioRegistroEmpresa() {
 
     global $recaptcha;
-
+    global $selectComunidadesAutonomas;
     $form = '<form action="../back-end/formulario_registro_empresa.php" method="post">' .
             'Correo: <input type="text" name="correo"/ ><br/>' .
             'Contrase&ntilde;a: <input type="password" name="pwd" /><br/>' .

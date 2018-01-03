@@ -125,7 +125,7 @@ if (!isset($_POST["registroCliente"]) || isset($error)) {
 function formularioRegistroCliente() {
 
     global $recaptcha;
-
+    global $selectComunidadAutonoma;
     $form = '<form action="" method="post">' .
             'Correo: <input type="text" name="correo" /><br/>' .
             'Contrase&ntilde;a: <input type="password" name="pwd"/><br/>' .
