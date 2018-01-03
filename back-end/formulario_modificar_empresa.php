@@ -80,7 +80,7 @@ if (isset($_POST['modificarEmpresa'])) {
         realizarQuery('grupon', $sql);
         $_SESSION['cuenta'] = $correonuevo;
         $_SESSION['nombre'] = $nombre_empresa;
-        header('Location: formulario_modificar_empresa.php');
+        header('Location: modificar_cuenta_empresa.php');
     }
 }
 
@@ -137,7 +137,7 @@ function formularioModEmpresa() {
     $telefono_empresa = $datosempresa["telefono_empresa"];
     $email_empresa = $datosempresa["email_empresa"];
     $ca = $datosempresa["nombre_ca"];
-
+    echo $ca;
 
 
     $form = '<form action="" method="post">' .
