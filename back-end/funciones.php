@@ -64,15 +64,55 @@
         return $opt;
     }
     
- $arrayCategorias = array(
-    "viajes" => "Viajes",
-    "entretenimiento" => "Entretenimiento",
-    "gastronomia" => "Gastronom&iacute;a",
-    "electronica" => "Electr&oacute;nica",
-    "ropa" => "Ropa",
-    "salud_y_belleza" => "Salud y belleza",
-    "deporte" => "Deporte",
-);
+    function checkboxesCategorias(){
+        $form .= '';
+        foreach($arrayCategorias as $key => $val){
+            $form .= $value .': <input type="checkbox" name="'.$key.'" value="'.$key.'"/><br/>';
+        }
+        return $form;
+    }
+    
+    function checkboxesCategoriasSeleccionadas($afinidades){
+        $form .= '';
+        foreach($arrayCategorias as $key => $val){
+            if(in_array($key, $afinidades)){
+                $form .= $value .': <input type="checkbox" name="'.$key.'" value="'.$key.'" checked/><br/>';
+            }else{
+                $form .= $value .': <input type="checkbox" name="'.$key.'" value="'.$key.'"/><br/>';
+            }
+        }
+        return $form;
+    }
+    
+    function optionCategorias(){
+        $form = '';
+        foreach($arrayCategorias as $key => $val){
+            $form .= '<option value="'.$key.'" selected="selected">'.$val.'</option>';
+        }
+        return $form;
+    }
+    
+    function optionCategoriasSeleccionadas($cat){
+        $opt = '';
+        foreach($arrayCategorias as $key => $val){
+            if($cat == $key){
+                $opt .= '<option value="'.$key.'" selected="selected">'.$val.'</option>';
+            }else{
+                $opt .= '<option value="'.$key.'">'.$val.'</option>';
+            }
+        }
+        return $opt;
+    }
+    
+    $arrayCategorias = array(
+       "viajes" => "Viajes",
+       "entretenimiento" => "Entretenimiento",
+       "gastronomia" => "Gastronom&iacute;a",
+       "electronica" => "Electr&oacute;nica",
+       "ropa" => "Ropa",
+       "salud_y_belleza" => "Salud y belleza",
+       "deporte" => "Deporte",
+   );
     
     //Hay que cambiar la KEY ya que esta es de prueba.
     $recaptcha = '<div data-theme="dark" class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>';

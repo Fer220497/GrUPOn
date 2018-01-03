@@ -129,43 +129,7 @@
                 'Nombre: <input type="text" name="nombre_cliente" value="' . $nombre . '"/><br/>' .
                 'Apellidos: <input type="text" name="apellidos_cliente" value="' . $apellidos . '"/> <br/>' .
                 'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma">' .opcionesComunidadSeleccionada($ca).
-                '</select><br>Afinidades:<br/>';
-        if (in_array('viajes', $afinidades)) {
-            $form .= 'Viajes: <input type="checkbox" name="viajes" value="viajes" checked/><br/>';
-        } else {
-            $form .= 'Viajes: <input type="checkbox" name="viajes" value="viajes"/><br/>';
-        }
-        if (in_array('entretenimiento', $afinidades)) {
-            $form .= 'Entretenimiento: <input type="checkbox" name="entretenimiento" value="entretenimiento" checked/><br/>';
-        } else {
-            $form .= 'Entretenimiento: <input type="checkbox" name="entretenimiento" value="entretenimiento"/><br/>';
-        }
-        if (in_array('gastronomia', $afinidades)) {
-            $form .= 'Gastronom&iacute;a: <input type="checkbox" name="gastronomia" value="gastronomia" checked/><br/>';
-        } else {
-            $form .= 'Gastronom&iacute;a: <input type="checkbox" name="gastronomia" value="gastronomia" /><br/>';
-        }
-        if (in_array('electronica', $afinidades)) {
-            $form .= 'Electr&oacute;nica: <input type="checkbox" name="electronica" value="electronica" checked/><br/>';
-        } else {
-            $form .= 'Electr&oacute;nica: <input type="checkbox" name="electronica" value="electronica" /><br/>';
-        }
-        if (in_array('ropa', $afinidades)) {
-            $form .= 'Ropa: <input type="checkbox" name="ropa" value="ropa" checked /><br/>';
-        } else {
-            $form .= 'Ropa: <input type="checkbox" name="ropa" value="ropa" /><br/>';
-        }
-        if (in_array('salud_y_belleza', $afinidades)) {
-            $form .= 'Salud y belleza: <input type="checkbox" name="salud_y_belleza" value="salud_y_belleza" checked /><br/>';
-        } else {
-            $form .= 'Salud y belleza: <input type="checkbox" name="salud_y_belleza" value="salud_y_belleza"/><br/>';
-        }
-        if (in_array('deporte', $afinidades)) {
-            $form .= 'Deporte: <input type="checkbox" name="deporte" value="deporte" checked/><br/>';
-        } else {
-            $form .= 'Deporte: <input type="checkbox" name="deporte" value="deporte"/><br/>';
-        }
-        $form .='<input type="submit" name="cambiarDatos" value="Guardar"/>' .
+                '</select><br>Afinidades:<br/>'.checkboxesCategoriasSeleccionadas($afinidades).'<input type="submit" name="cambiarDatos" value="Guardar"/>' .
                 '</form>';
         return $form;
     }

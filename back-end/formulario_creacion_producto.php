@@ -101,14 +101,7 @@ function formularioCrearProducto() {
 
 
     $form = '<form action="" method="post">' .
-            'Categor&iacute;a: <select name="nombre_categoria">' .
-            '<option value="viajes">Viajes</option>' .
-            '<option value="entretenimiento">Entretenimiento</option>' .
-            '<option value="gastronomia">Gastronom&iacute;a</option>' .
-            '<option value="electronica">Electr&oacute;nica</option>' .
-            '<option value="ropa">Ropa</option>' .
-            '<option value="salud_belleza">Salud y belleza </option>' .
-            '<option value="deporte">Deporte </option>' .
+            'Categor&iacute;a: <select name="nombre_categoria">' .optionCategorias().
             '</select><br>' .
             'Comunidad Aut&oacute;noma: <select name="nombre_ca">' . opcionesComunidades() .
             '</select><br>' .

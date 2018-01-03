@@ -45,14 +45,7 @@ if (isset($_POST['nuevo_cat'])) {
 function formularioCreacionCatalogo() {
     $form = ' <form action="" method="post">' .
             ' Nombre: <input type="text" name="nombre" /><br/>' .
-            ' Categor&iacute;a: <select name="categoria">' .
-            '<option value="viajes">Viajes</option>' .
-            '<option value="entretenimiento">Entretenimiento</option>' .
-            '<option value="gastronomia">Gastronom&iacutea</option>' .
-            '<option value="electronica">Electr&oacutenica</option>' .
-            '<option value="ropa">Ropa</option>' .
-            '<option value="salud_y_belleza">Salud y belleza</option>' .
-            '<option value="deporte">Deporte</option>' .
+            ' Categor&iacute;a: <select name="categoria">' . optionCategorias() .
             '</select>' .
             ' <input type="submit" name="nuevo_cat" value="Enviar"/>' .
             ' </form>';

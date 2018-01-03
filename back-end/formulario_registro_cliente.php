@@ -116,14 +116,7 @@ function formularioRegistroCliente() {
             'Nombre: <input type="text" name="nombre_cliente"/><br/>' .
             'Apellidos: <input type="text" name="apellidos_cliente"/> <br/>' .
             'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma">'.opcionesComunidades().'</select><br>' .
-            'Afinidades:<br/>' .
-            'Viajes: <input type="checkbox" name="viajes" value="viajes"/><br/>' .
-            'Entretenimiento: <input type="checkbox" name="entretenimiento" value="entretenimiento"/><br/>' .
-            'Gastronom&iacute;a: <input type="checkbox" name="gastronomia" value="gastronomia" /><br/>' .
-            'Electr&oacute;nica: <input type="checkbox" name="electronica" value="electronica" /><br/>' .
-            'Ropa: <input type="checkbox" name="ropa" value="ropa" /><br/>' .
-            'Salud y belleza: <input type="checkbox" name="salud_y_belleza" value="salud_y_belleza"/><br/>' .
-            'Deporte: <input type="checkbox" name="deporte" value="deporte"/><br/>' .
+            'Afinidades:<br/>'.checkboxesCategorias().'<br/>' .
             $recaptcha .
             '<input type="submit" name="registroCliente" value="Enviar"/>' .
             '</form>';
