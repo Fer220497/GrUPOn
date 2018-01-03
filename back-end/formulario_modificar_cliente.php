@@ -128,7 +128,8 @@
                 'Correo: <input type="text" name="correo" value="' . $correo . '"/><br/>' .
                 'Nombre: <input type="text" name="nombre_cliente" value="' . $nombre . '"/><br/>' .
                 'Apellidos: <input type="text" name="apellidos_cliente" value="' . $apellidos . '"/> <br/>' .
-                'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma" value="' . $ca . '">' .
+                'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma">' .
+                
                 '<option value="andalucia">Andalucia</option>' .
                 '<option value="aragon">Arag&oacute;n</option>' .
                 '<option value="asturias">Asturias</option>' .
