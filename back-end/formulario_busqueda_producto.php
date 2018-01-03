@@ -27,7 +27,7 @@ if (isset($errores)) {
 }
 
 function formularioBusquedaProducto() {
-    $form = '<form actrion="" method="post">' .
+    $form = '<form action="" method="post">' .
             '<input type="text" name="nombre"/>' .
             '<input type="submit" value="Buscar" name="busqueda"/>' .
             '</form>';
