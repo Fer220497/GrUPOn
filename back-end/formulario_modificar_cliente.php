@@ -55,6 +55,12 @@
         if ($contador == 0) {
             $error[] = "Tiene que seleccionar una categoria";
         }
+        //RESTRICCION: SI EL CORREO INTRODUCIDO ES NUEVO, DEBE CHECKEARSE QUE NO EXISTA YA.
+        if($correo !== $_POST['correo']){
+            if(existeCorreo($_POST['correo'])){
+                $error[] = 'Ese correo ya existe';
+            }
+        }
         //Checkeo de entradas correctas
         //Depuracion de entradas (sanitize)
         if(!isset($error)){
