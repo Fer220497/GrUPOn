@@ -23,6 +23,9 @@ foreach ($arrayCategorias as $categoria) {
 //Si el usuario ha enviado...
 if (isset($_POST['registroEmpresa'])) {
     //Checkeo de que no hayan tocado el HTML
+    if(!isset($_POST['nombre_empresa'])){
+        $error[] = 'Debes poner el nombre de la empresa';
+    }
     if (!isset($_POST['correo'])) {
         $error[] = 'Debes introducir correo';
     }
