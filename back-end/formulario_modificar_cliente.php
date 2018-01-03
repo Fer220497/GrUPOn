@@ -76,6 +76,7 @@
             }
             $_SESSION['cuenta'] = $correoNuevo;
             $_SESSION['nombre'] = $nombre;
+            header('Location: modificar_cuenta_cliente.php');
         }
     } else if (isset($_POST['cambiarPwd'])) {
         if(!isset($_POST['pwd_old'])){
