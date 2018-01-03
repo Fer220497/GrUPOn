@@ -95,11 +95,9 @@ if (isset($_POST['registroEmpresa'])) {
         $mail_empresa = sanitarString($_POST['mail_empresa']);
         $comunidad_autonoma = $_POST['comunidad_autonoma'];
         $direccion_empresa = sanitarString($_POST['direccion_empresa']);
-        $sql = "SELECT * FROM CUENTA WHERE CORREO='$correo'";
 
-        $result = realizarQuery('grupon', $sql);
         //Check de si existia ya la cuenta.
-        if (mysqli_num_rows($result) > 0) {
+        if (existeCorreo($correo)) {
             $error[] = 'Ya exist&iacute;a ese correo.';
         } else {
             //No existe esa cuenta, creo una nueva.

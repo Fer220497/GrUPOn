@@ -92,11 +92,7 @@ if (isset($_POST['registroCliente'])) {
         $nombre_cliente = sanitarString($_POST["nombre_cliente"]);
         $apellidos_cliente = sanitarString($_POST["apellidos_cliente"]);
         $comunidad = sanitarString($_POST["comunidad_autonoma"]);
-
-
-        $sql = "SELECT * FROM CUENTA WHERE CORREO='" . $correo . "'";
-        $result = realizarQuery("grupon", $sql);
-        if (mysqli_num_rows($result) > 0) {
+        if (existeCorreo($correo)) {
             $error[] = "Ya existe este correo";
         } else {
             $hash = password_hash($pwd, PASSWORD_BCRYPT);

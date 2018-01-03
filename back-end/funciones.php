@@ -1,4 +1,20 @@
 <?php
+    require_once '../back-end/conexion_db';
+    
+    /**
+     * Función que checkea si existe un correo que se le pase ya en la DB.
+     * @param type $correo
+     * @return boolean
+     */
+    function existeCorreo($correo){
+        $sql = "SELECT * FROM CUENTA WHERE CORREO='" . $correo . "'";
+        $result = realizarQuery("grupon", $sql);
+        if (mysqli_num_rows($result) > 0) {
+            return true;
+        }else{
+            return false;
+        }
+    }
     
     $arrayComunidades[] = "andalucia";
     $arrayComunidades[] = "catalunya";
