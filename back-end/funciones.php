@@ -87,12 +87,12 @@
     
     function checkboxesCategoriasSeleccionadas($afinidades){
         global $arrayCategorias;
-        $form .= '';
+        $form = '';
         foreach($arrayCategorias as $key=>$val){
             if(in_array($key, $afinidades)){
-                $form .= $value .': <input type="checkbox" name="'.$key.'" value="'.$key.'" checked/><br/>';
+                $form .= $val .': <input type="checkbox" name="'.$key.'" value="'.$key.'" checked/><br/>';
             }else{
-                $form .= $value .': <input type="checkbox" name="'.$key.'" value="'.$key.'"/><br/>';
+                $form .= $val .': <input type="checkbox" name="'.$key.'" value="'.$key.'"/><br/>';
             }
         }
         return $form;
