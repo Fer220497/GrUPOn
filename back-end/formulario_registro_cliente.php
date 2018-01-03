@@ -5,23 +5,6 @@ require_once '../back-end/conexion_db.php';
 require_once '../back-end/funciones.php';
 //Si el usuario ha enviado
 
-foreach ($arrayComunidades as $comunidad) {
-    $sql = 'SELECT * FROM COMUNIDAD_AUTONOMA';
-    $result = realizarQuery('grupon', $sql);
-    if (mysqli_num_rows($result) != count($arrayComunidades)) {
-        $sql = "INSERT INTO COMUNIDAD_AUTONOMA VALUES ('$comunidad')";
-        realizarQuery('grupon', $sql);
-    }
-}
-foreach ($arrayCategorias as $categoria) {
-    $sql = 'SELECT * FROM CATEGORIA';
-    $result = realizarQuery('grupon', $sql);
-    if (mysqli_num_rows($result) != count($arrayCategorias)) {
-        $sql = "INSERT INTO CATEGORIA VALUES ('$categoria')";
-        realizarQuery('grupon', $sql);
-    }
-}
-
 if (isset($_POST['registroCliente'])) {
     //Comprobacion del captcha
     if (!isset($_POST['g-recaptcha-response'])) {
@@ -47,7 +30,7 @@ if (isset($_POST['registroCliente'])) {
     }
     
     //RESTRICCION: Para evitar el cambio de una comunidad autonoma
-    if (!in_array($_POST['comunidad_autonoma'], $arrayComunidades)) {
+    if (!array_key_exists($_POST['comunidad_autonoma'], $arrayComunidades)) {
         $error[] = 'Has trampeado las comunidades aut&oacute;nomas, campe&oacute;n';
     }
     
@@ -55,7 +38,7 @@ if (isset($_POST['registroCliente'])) {
     $contador = 0;
     foreach ($arrayCategorias as $categoria) {
         if (isset($_POST[$categoria])) {
-            if (!in_array($_POST[$categoria], $arrayCategorias)) {
+            if (!array_key_exists($_POST[$categoria], $arrayCategorias)) {
                 $error[] = "No existe la categoria";
             } else {
                 $contador++;
@@ -132,7 +115,7 @@ function formularioRegistroCliente() {
             'Confirmar Contraseña: <input type="password" name="pwd_confirmar" /><br/>' .
             'Nombre: <input type="text" name="nombre_cliente"/><br/>' .
             'Apellidos: <input type="text" name="apellidos_cliente"/> <br/>' .
-            'Comunidad Aut&oacute;noma: '.$selectComunidadAutonoma.'<br>' .
+            'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma">'.opcionesComunidades().'</select><br>' .
             'Afinidades:<br/>' .
             'Viajes: <input type="checkbox" name="viajes" value="viajes"/><br/>' .
             'Entretenimiento: <input type="checkbox" name="entretenimiento" value="entretenimiento"/><br/>' .

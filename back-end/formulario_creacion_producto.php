@@ -8,11 +8,11 @@ if (isset($_POST['crearProducto'])) {
 //
 
 
-    if (!in_array($_POST["nombre_categoria"], $arrayCategorias)) {
+    if (!array_key_exists($_POST["nombre_categoria"], $arrayCategorias)) {
         $error[] = "No existe la categoria";
     }
 
-    if (!in_array($_POST["nombre_ca"], $arrayComunidades)) {
+    if (!array_key_exists($_POST["nombre_ca"], $arrayComunidades)) {
         $error[] = "No existe la categoria";
     }
 
@@ -110,26 +110,7 @@ function formularioCrearProducto() {
             '<option value="salud_belleza">Salud y belleza </option>' .
             '<option value="deporte">Deporte </option>' .
             '</select><br>' .
-            'Comunidad Aut&oacute;noma: <select name="nombre_ca">' .
-            '<option value="andalucia">Andalucia</option>' .
-            '<option value="aragon">Arag&oacute;n</option>' .
-            '<option value="asturias">Asturias</option>' .
-            '<option value="canarias">Canarias</option>' .
-            '<option value="cantabria">Cantabria</option>' .
-            '<option value="castilla_la_mancha">Castilla La Mancha </option>' .
-            '<option value="castillo_y_leon">Castilla y Le&oacute;n </option>' .
-            '<option value="catalunya">Catalu&ntilde;a</option>' .
-            '<option value="ceuta">Ceuta</option>' .
-            '<option value="extremadura">Extremadura</option>' .
-            '<option value="galicia">Galicia </option>' .
-            '<option value="islas_baleares">Islas Baleares</option>' .
-            '<option value="la_rioja">La Rioja</option>' .
-            '<option value="madrid">Madrid</option>' .
-            '<option value="melilla"> Melilla</option>' .
-            '<option value="murcia">Murcia</option>' .
-            '<option value="navarra">Navarra</option>' .
-            '<option value="pais_vasco">Pa&iacute;s Vasco</option>' .
-            '<option value="valencia">Valencia</option>' .
+            'Comunidad Aut&oacute;noma: <select name="nombre_ca">' . opcionesComunidades() .
             '</select><br>' .
             'Cat&aacute;logo <select name="id_catalogo">' .
             '<option value=""></option>'; ///////////POR AÑADIR

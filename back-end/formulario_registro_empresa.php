@@ -4,22 +4,6 @@ require_once '../back-end/libs/recaptchalib.php';
 require_once '../back-end/conexion_db.php';
 require_once '../back-end/funciones.php';
 
-foreach ($arrayComunidades as $comunidad) {
-    $sql = 'SELECT * FROM COMUNIDAD_AUTONOMA';
-    $result = realizarQuery('grupon', $sql);
-    if (mysqli_num_rows($result) != count($arrayComunidades)) {
-        $sql = "INSERT INTO COMUNIDAD_AUTONOMA VALUES ('$comunidad')";
-        realizarQuery('grupon', $sql);
-    }
-}
-foreach ($arrayCategorias as $categoria) {
-    $sql = 'SELECT * FROM CATEGORIA';
-    $result = realizarQuery('grupon', $sql);
-    if (mysqli_num_rows($result) != count($arrayCategorias)) {
-        $sql = "INSERT INTO CATEGORIA VALUES ('$categoria')";
-        realizarQuery('grupon', $sql);
-    }
-}
 //Si el usuario ha enviado...
 if (isset($_POST['registroEmpresa'])) {
     //Checkeo de que no hayan tocado el HTML
@@ -66,7 +50,7 @@ if (isset($_POST['registroEmpresa'])) {
         $error[] = 'Has trampeado el reCaptcha';
     }
     //RESTRICCION: Check de que las comunidades autonomas estén bien
-    if (!in_array($_POST['comunidad_autonoma'], $arrayComunidades)) {
+    if (!array_key_exists($_POST['comunidad_autonoma'], $arrayComunidades)) {
         $error[] = 'Has trampeado las comunidades aut&oacute;nomas, campe&oacute;n';
     }
     //RESTRICCION: Contraseñas deben ser iguales:
@@ -144,7 +128,7 @@ function formularioRegistroEmpresa() {
             'Cuenta Bancaria: <input type="number" name="cuenta_bancaria"/ ><br/>' .
             'Tel&eacute;fono: <input type="number" name="telefono_empresa"/><br/>' .
             'Correo Electr&oacute;nico: <input type="email" name="mail_empresa"/> <br/>' .
-            'Comunidad Aut&oacute;noma: '.$selectComunidadesAutonomas.'<br>' .
+            'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma">'.opcionesComunidades().'</select><br>' .
             'Direcci&oacute;n Empresa: <input type="text" name="direccion_empresa" />'.
             $recaptcha .
             '<input type="submit" name="registroEmpresa" value="Enviar"/>' .

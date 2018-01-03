@@ -16,56 +16,63 @@
         }
     }
     
-    $arrayComunidades[] = "andalucia";
-    $arrayComunidades[] = "catalunya";
-    $arrayComunidades[] = "galicia";
-    $arrayComunidades[] = "castillo_y_leon";
-    $arrayComunidades[] = "pais_vasco";
-    $arrayComunidades[] = "canarias";
-    $arrayComunidades[] = "valencia";
-    $arrayComunidades[] = "madrid";
-    $arrayComunidades[] = "castilla_la_mancha";
-    $arrayComunidades[] = "murcia";
-    $arrayComunidades[] = "aragon";
-    $arrayComunidades[] = "islas_baleares";
-    $arrayComunidades[] = "extremadura";
-    $arrayComunidades[] = "asturias";
-    $arrayComunidades[] = "navarra";
-    $arrayComunidades[] = "cantabria";
-    $arrayComunidades[] = "la_rioja";
-    $arrayComunidades[] = "melilla";
-    $arrayComunidades[] = "ceuta";
+    $arrayComunidades = array(
+    "andalucia" => "Andalucia",
+    "aragon" => "Arag&oacute;n",
+    "asturias" => "Asturias",
+    "canarias" => "Canarias",
+    "cantabria" => "Cantabria",
+    "castilla_la_mancha" => "Castilla La Mancha",
+    "castillo_y_leon" => "Castilla y Le&oacute;n",
+    "catalunya" => "Catalu&ntilde;a",
+    "ceuta" => "Ceuta",
+    "extremadura" => "Extremadura",
+    "galicia" => "Galicia",
+    "islas_baleares" => "Islas Baleares",
+    "la_rioja" => "La Rioja",
+    "madrid" => "Madrid",
+    "melilla" => "Melilla",
+    "murcia" => "Murcia",
+    "navarra" => "Navarra",
+    "pais_vasco" => "Pa&iacute;s Vasco",
+    "valencia" => "Valencia",
+);
     
-    $arrayCategorias[] = "viajes";
-    $arrayCategorias[] = "entretenimiento";
-    $arrayCategorias[] = "gastronomia";
-    $arrayCategorias[] = "electronica";
-    $arrayCategorias[] = "ropa";
-    $arrayCategorias[] = "salud_y_belleza";
-    $arrayCategorias[] = "deporte";
+    /**
+     * Función que genera options con las comunidades autonomas
+     */
+    function opcionesComunidades(){
+        $opt = '';
+        foreach($arrayComunidades as $key => $val){
+            $opt .= '<option value="'.$key.'">'.$val.'</option>';
+        }
+        return $opt;
+    }
+    /**
+     * Función que genera options con las comunidades autonomas y una seleccionada.
+     * @param type $comunidadAutonoma
+     */
+    function opcionesComunidadSeleccionada($comunidadAutonoma){
+        $opt = '';
+        foreach($arrayComunidades as $key => $val){
+            if($comunidadAutonoma == $key){
+                $opt .= '<option value="'.$key.'" selected="selected">'.$val.'</option>';
+            }else{
+                $opt .= '<option value="'.$key.'">'.$val.'</option>';
+            }
+        }
+        return $opt;
+    }
     
-    $selectComunidadesAutonomas = '<select name="comunidad_autonoma">' .
-            '<option value="andalucia">Andalucia</option>' .
-            '<option value="aragon">Arag&oacute;n</option>' .
-            '<option value="asturias">Asturias</option>' .
-            '<option value="canarias">Canarias</option>' .
-            '<option value="cantabria">Cantabria</option>' .
-            '<option value="castilla_la_mancha">Castilla La Mancha </option>' .
-            '<option value="castillo_y_leon">Castilla y Le&oacute;n </option>' .
-            '<option value="catalunya">Catalu&ntilde;a</option>' .
-            '<option value="ceuta">Ceuta</option>' .
-            '<option value="extremadura">Extremadura</option>' .
-            '<option value="galicia">Galicia </option>' .
-            '<option value="islas_baleares">Islas Baleares</option>' .
-            '<option value="la_rioja">La Rioja</option>' .
-            '<option value="madrid">Madrid</option>' .
-            '<option value="melilla"> Melilla</option>' .
-            '<option value="murcia">Murcia</option>' .
-            '<option value="navarra">Navarra</option>' .
-            '<option value="pais_vasco">Pa&iacute;s Vasco</option>' .
-            '<option value="valencia">Valencia</option>' .
-            '</select>';
-    
+ $arrayCategorias = array(
+    "viajes" => "Viajes",
+    "entretenimiento" => "Entretenimiento",
+    "gastronomia" => "Gastronom&iacute;a",
+    "electronica" => "Electr&oacute;nica",
+    "ropa" => "Ropa",
+    "salud_y_belleza" => "Salud y belleza",
+    "deporte" => "Deporte",
+);
     
     //Hay que cambiar la KEY ya que esta es de prueba.
     $recaptcha = '<div data-theme="dark" class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>';
@@ -86,4 +93,25 @@
         $bloqueHTML .= '</ul></div>';
         return $bloqueHTML;
     }    
+    
+    function inicializarDB() {
+    global $arrayCategorias;
+    global $arrayComunidades;
+    foreach ($arrayComunidades as $key => $val) {
+        $sql = 'SELECT * FROM COMUNIDAD_AUTONOMA';
+        $result = realizarQuery('grupon', $sql);
+        if (mysqli_num_rows($result) != count($arrayComunidades)) {
+            $sql = "INSERT INTO COMUNIDAD_AUTONOMA VALUES ('$key')";
+            realizarQuery('grupon', $sql);
+        }
+    }
+    foreach ($arrayCategorias as $key => $val) {
+        $sql = 'SELECT * FROM CATEGORIA';
+        $result = realizarQuery('grupon', $sql);
+        if (mysqli_num_rows($result) != count($arrayCategorias)) {
+            $sql = "INSERT INTO CATEGORIA VALUES ('$key')";
+            realizarQuery('grupon', $sql);
+        }
+    }
+}
 ?>
