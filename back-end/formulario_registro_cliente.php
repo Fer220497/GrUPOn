@@ -24,8 +24,6 @@ foreach ($arrayCategorias as $categoria) {
 
 if (isset($_POST['registroCliente'])) {
     //Comprobacion del captcha
-
-
     if (!isset($_POST['g-recaptcha-response'])) {
         $error[] = 'Has trampeado el reCaptcha';
     }
@@ -47,12 +45,13 @@ if (isset($_POST['registroCliente'])) {
     if (!isset($_POST["comunidad_autonoma"])) {
         $error[] = "Debes introducir una comunidad aut&oacute;noma";
     }
+    
     //RESTRICCION: Para evitar el cambio de una comunidad autonoma
     if (!in_array($_POST['comunidad_autonoma'], $arrayComunidades)) {
         $error[] = 'Has trampeado las comunidades aut&oacute;nomas, campe&oacute;n';
     }
-    //RESTRICCIONES Para evitar el cambio de afinidad
     
+    //RESTRICCIONES Para evitar el cambio de afinidad
     $contador = 0;
     foreach ($arrayCategorias as $categoria) {
         if (isset($_POST[$categoria])) {
@@ -63,7 +62,6 @@ if (isset($_POST['registroCliente'])) {
             }
         }
     }
-
     if ($contador == 0) {
         $error[] = "Tiene que seleccionar una categoria";
     }
@@ -72,7 +70,6 @@ if (isset($_POST['registroCliente'])) {
     }
 
     //RESTRICCION: Captcha funcionando:
-
     $response = null;
     $recap = new ReCaptcha($secret);
     if ($_POST["g-recaptcha-response"]) {
@@ -135,27 +132,7 @@ function formularioRegistroCliente() {
             'Confirmar Contraseña: <input type="password" name="pwd_confirmar" /><br/>' .
             'Nombre: <input type="text" name="nombre_cliente"/><br/>' .
             'Apellidos: <input type="text" name="apellidos_cliente"/> <br/>' .
-            'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma">' .
-            '<option value="andalucia">Andalucia</option>' .
-            '<option value="aragon">Arag&oacute;n</option>' .
-            '<option value="asturias">Asturias</option>' .
-            '<option value="canarias">Canarias</option>' .
-            '<option value="cantabria">Cantabria</option>' .
-            '<option value="castilla_la_mancha">Castilla La Mancha </option>' .
-            '<option value="castillo_y_leon">Castilla y Le&oacute;n </option>' .
-            '<option value="catalunya">Catalu&ntilde;a</option>' .
-            '<option value="ceuta">Ceuta</option>' .
-            '<option value="extremadura">Extremadura</option>' .
-            '<option value="galicia">Galicia </option>' .
-            '<option value="islas_baleares">Islas Baleares</option>' .
-            '<option value="la_rioja">La Rioja</option>' .
-            '<option value="madrid">Madrid</option>' .
-            '<option value="melilla"> Melilla</option>' .
-            '<option value="murcia">Murcia</option>' .
-            '<option value="navarra">Navarra</option>' .
-            '<option value="pais_vasco">Pa&iacute;s Vasco</option>' .
-            '<option value="valencia">Valencia</option>' .
-            '</select><br>' .
+            'Comunidad Aut&oacute;noma: '.$selectComunidadAutonoma.'<br>' .
             'Afinidades:<br/>' .
             'Viajes: <input type="checkbox" name="viajes" value="viajes"/><br/>' .
             'Entretenimiento: <input type="checkbox" name="entretenimiento" value="entretenimiento"/><br/>' .

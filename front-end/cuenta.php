@@ -5,7 +5,7 @@
         <title></title>
     </head>
     <body>
-        <h2>Bienvenido, <?php$_SESSION['nombre']?></h2>
+        <h2>Hola <?php$_SESSION['nombre']?>, aqu&iacute; est&aacute; la informaci&oacute;n de su cuenta</h2>
         <!--Esto debería ser el submenú de datos, que muestra las opciones del empresario o cliente dependiendo de la cuenta-->
         <?php
         if ($_SESSION['tipo'] === 'empresa') {
