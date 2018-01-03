@@ -91,8 +91,8 @@
         $sql = "SELECT * FROM CUENTA WHERE CORREO='$correo'";
         $resultado = realizarQuery('grupon', $sql);
         $fila = mysqli_fetch_array($resultado);
-        if(password_verify($_POST['pwd_old'], $fila['pwd'])){
-            $error[] = 'Contrase &ntilde;a incorrecta';
+        if(!password_verify($_POST['pwd_old'], $fila['pwd'])){
+            $error[] = 'Contrase&ntilde;a incorrecta';
         }
         //RESTRICCIÓN 2: la nueva contraseña debe coincidir con su confirmación:
         if($_POST['pwd_new']!==$_POST['pwd_new_confirm']){
