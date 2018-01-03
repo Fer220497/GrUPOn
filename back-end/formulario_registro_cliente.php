@@ -24,12 +24,9 @@ foreach ($arrayCategorias as $categoria) {
 
 if (isset($_POST['registroCliente'])) {
     //Comprobacion del captcha
-
-
     if (!isset($_POST['g-recaptcha-response'])) {
         $error[] = 'Has trampeado el reCaptcha';
     }
-
     if (!isset($_POST["correo"])) {
         $error[] = "Debes introducir correo";
     }
@@ -48,12 +45,13 @@ if (isset($_POST['registroCliente'])) {
     if (!isset($_POST["comunidad_autonoma"])) {
         $error[] = "Debes introducir una comunidad aut&oacute;noma";
     }
+    
     //RESTRICCION: Para evitar el cambio de una comunidad autonoma
     if (!in_array($_POST['comunidad_autonoma'], $arrayComunidades)) {
         $error[] = 'Has trampeado las comunidades aut&oacute;nomas, campe&oacute;n';
     }
-    //RESTRICCIONES Para evitar el cambio de afinidad
     
+    //RESTRICCIONES Para evitar el cambio de afinidad
     $contador = 0;
     foreach ($arrayCategorias as $categoria) {
         if (isset($_POST[$categoria])) {
@@ -64,7 +62,6 @@ if (isset($_POST['registroCliente'])) {
             }
         }
     }
-
     if ($contador == 0) {
         $error[] = "Tiene que seleccionar una categoria";
     }
@@ -73,7 +70,6 @@ if (isset($_POST['registroCliente'])) {
     }
 
     //RESTRICCION: Captcha funcionando:
-
     $response = null;
     $recap = new ReCaptcha($secret);
     if ($_POST["g-recaptcha-response"]) {
@@ -93,11 +89,7 @@ if (isset($_POST['registroCliente'])) {
         $nombre_cliente = sanitarString($_POST["nombre_cliente"]);
         $apellidos_cliente = sanitarString($_POST["apellidos_cliente"]);
         $comunidad = sanitarString($_POST["comunidad_autonoma"]);
-
-
-        $sql = "SELECT * FROM CUENTA WHERE CORREO='" . $correo . "'";
-        $result = realizarQuery("grupon", $sql);
-        if (mysqli_num_rows($result) > 0) {
+        if (existeCorreo($correo)) {
             $error[] = "Ya existe este correo";
         } else {
             $hash = password_hash($pwd, PASSWORD_BCRYPT);
@@ -133,41 +125,21 @@ if (!isset($_POST["registroCliente"]) || isset($error)) {
 function formularioRegistroCliente() {
 
     global $recaptcha;
-
+    global $selectComunidadAutonoma;
     $form = '<form action="" method="post">' .
             'Correo: <input type="text" name="correo" /><br/>' .
             'Contrase&ntilde;a: <input type="password" name="pwd"/><br/>' .
             'Confirmar Contraseña: <input type="password" name="pwd_confirmar" /><br/>' .
             'Nombre: <input type="text" name="nombre_cliente"/><br/>' .
             'Apellidos: <input type="text" name="apellidos_cliente"/> <br/>' .
-            'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma">' .
-            '<option value="andalucia">Andalucia</option>' .
-            '<option value="aragon">Arag&oacute;n</option>' .
-            '<option value="asturias">Asturias</option>' .
-            '<option value="canarias">Canarias</option>' .
-            '<option value="cantabria">Cantabria</option>' .
-            '<option value="castilla_la_mancha">Castilla La Mancha </option>' .
-            '<option value="castillo_y_leon">Castilla y Le&oacute;n </option>' .
-            '<option value="catalunya">Catalu&ntilde;a</option>' .
-            '<option value="ceuta">Ceuta</option>' .
-            '<option value="extremadura">Extremadura</option>' .
-            '<option value="galicia">Galicia </option>' .
-            '<option value="islas_baleares">Islas Baleares</option>' .
-            '<option value="la_rioja">La Rioja</option>' .
-            '<option value="madrid">Madrid</option>' .
-            '<option value="melilla"> Melilla</option>' .
-            '<option value="murcia">Murcia</option>' .
-            '<option value="navarra">Navarra</option>' .
-            '<option value="pais_vasco">Pa&iacute;s Vasco</option>' .
-            '<option value="valencia">Valencia</option>' .
-            '</select><br>' .
+            'Comunidad Aut&oacute;noma: '.$selectComunidadAutonoma.'<br>' .
             'Afinidades:<br/>' .
             'Viajes: <input type="checkbox" name="viajes" value="viajes"/><br/>' .
             'Entretenimiento: <input type="checkbox" name="entretenimiento" value="entretenimiento"/><br/>' .
             'Gastronom&iacute;a: <input type="checkbox" name="gastronomia" value="gastronomia" /><br/>' .
             'Electr&oacute;nica: <input type="checkbox" name="electronica" value="electronica" /><br/>' .
             'Ropa: <input type="checkbox" name="ropa" value="ropa" /><br/>' .
-            'Salud y belleza: <input type="checkbox" name="salud_belleza" value="salud_belleza"/><br/>' .
+            'Salud y belleza: <input type="checkbox" name="salud_y_belleza" value="salud_y_belleza"/><br/>' .
             'Deporte: <input type="checkbox" name="deporte" value="deporte"/><br/>' .
             $recaptcha .
             '<input type="submit" name="registroCliente" value="Enviar"/>' .

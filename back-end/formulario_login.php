@@ -14,6 +14,9 @@ if (isset($_POST['login'])) {
     if (!preg_match('/^[A-z0-9\\._-]+@[A-z0-9][A-z0-9-]*(\\.[A-z0-9_-]+)*\\.([A-z]{2,6})$/', $_POST['correo'])) {
         $errores[] = "Correo electr&oacute;nico incorrecto.";
     }
+    if (!isset($_POST['g-recaptcha-response'])) {
+        $error[] = 'Has trampeado el reCaptcha';
+    }
     $response = null;
     $recap = new ReCaptcha($secret);
     if ($_POST["g-recaptcha-response"]) {
@@ -43,7 +46,7 @@ if (isset($_POST['login'])) {
             }else{
                 $_SESSION['tipo'] = 'cliente';
                 $fila = mysqli_fetch_array($resultadoCliente);
-                $_SESSION['nombre'] = $fila['nombre'];
+                $_SESSION['nombre'] = $fila['nombre_cliente'];
             }
             header('Location: seleccion_accion.php');
         } else {

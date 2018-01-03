@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -13,7 +10,7 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-       <h2>Creaci&oacute;n Producti</h2>
-        <?php require_once '../back-end/formulario_creacion_producto.php'; ?>
+        <h2>B&uacute;squeda de producto</h2>
+        <?php require_once '../back-end/formulario_busqueda_producto.php'; ?>
     </body>
 </html>

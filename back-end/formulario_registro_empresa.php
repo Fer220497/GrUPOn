@@ -23,6 +23,9 @@ foreach ($arrayCategorias as $categoria) {
 //Si el usuario ha enviado...
 if (isset($_POST['registroEmpresa'])) {
     //Checkeo de que no hayan tocado el HTML
+    if(!isset($_POST['nombre_empresa'])){
+        $error[] = 'Debes poner el nombre de la empresa';
+    }
     if (!isset($_POST['correo'])) {
         $error[] = 'Debes introducir correo';
     }
@@ -95,11 +98,9 @@ if (isset($_POST['registroEmpresa'])) {
         $mail_empresa = sanitarString($_POST['mail_empresa']);
         $comunidad_autonoma = $_POST['comunidad_autonoma'];
         $direccion_empresa = sanitarString($_POST['direccion_empresa']);
-        $sql = "SELECT * FROM CUENTA WHERE CORREO='$correo'";
 
-        $result = realizarQuery('grupon', $sql);
         //Check de si existia ya la cuenta.
-        if (mysqli_num_rows($result) > 0) {
+        if (existeCorreo($correo)) {
             $error[] = 'Ya exist&iacute;a ese correo.';
         } else {
             //No existe esa cuenta, creo una nueva.
@@ -132,7 +133,7 @@ if (!isset($_POST['registroEmpresa']) || isset($error)) {
 function formularioRegistroEmpresa() {
 
     global $recaptcha;
-
+    global $selectComunidadesAutonomas;
     $form = '<form action="../back-end/formulario_registro_empresa.php" method="post">' .
             'Correo: <input type="text" name="correo"/ ><br/>' .
             'Contrase&ntilde;a: <input type="password" name="pwd" /><br/>' .
@@ -143,27 +144,7 @@ function formularioRegistroEmpresa() {
             'Cuenta Bancaria: <input type="number" name="cuenta_bancaria"/ ><br/>' .
             'Tel&eacute;fono: <input type="number" name="telefono_empresa"/><br/>' .
             'Correo Electr&oacute;nico: <input type="email" name="mail_empresa"/> <br/>' .
-            'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma">' .
-            '<option value="andalucia">Andalucia</option>' .
-            '<option value="aragon">Arag&oacute;n</option>' .
-            '<option value="asturias">Asturias</option>' .
-            '<option value="canarias">Canarias</option>' .
-            '<option value="cantabria">Cantabria</option>' .
-            '<option value="castilla_la_mancha">Castilla La Mancha </option>' .
-            '<option value="castillo_y_leon">Castilla y Le&oacute;n </option>' .
-            '<option value="catalunya">Catalu&ntilde;a</option>' .
-            '<option value="ceuta">Ceuta</option>' .
-            '<option value="extremadura">Extremadura</option>' .
-            '<option value="galicia">Galicia </option>' .
-            '<option value="islas_baleares">Islas Baleares</option>' .
-            '<option value="la_rioja">La Rioja</option>' .
-            '<option value="madrid">Madrid</option>' .
-            '<option value="melilla"> Melilla</option>' .
-            '<option value="murcia">Murcia</option>' .
-            '<option value="navarra">Navarra</option>' .
-            '<option value="pais_vasco">Pa&iacute;s Vasco</option>' .
-            '<option value="valencia">Valencia</option>' .
-            '</select><br>' .
+            'Comunidad Aut&oacute;noma: '.$selectComunidadesAutonomas.'<br>' .
             'Direcci&oacute;n Empresa: <input type="text" name="direccion_empresa" />'.
             $recaptcha .
             '<input type="submit" name="registroEmpresa" value="Enviar"/>' .
