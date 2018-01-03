@@ -80,6 +80,7 @@ if (isset($_POST['modificarEmpresa'])) {
         realizarQuery('grupon', $sql);
         $_SESSION['cuenta'] = $correonuevo;
         $_SESSION['nombre'] = $nombre_empresa;
+        header('Location: formulario_modificar_empresa.php');
     }
 }
 
@@ -125,7 +126,7 @@ echo formularioModEmpresa();
 
 function formularioModEmpresa() {
     $correo = $_SESSION["cuenta"];
-    $sql = "SELECT * FROM EMPRESA WHERE CORREO='$correo'";
+    $sql = "SELECT * FROM EMPRESA,CUENTA WHERE EMPRESA.CORREO='$correo' AND CUENTA.CORREO='$correo'";
     $result = realizarQuery("grupon", $sql);
     $datosempresa = mysqli_fetch_array($result);
     $nombre_empresa = $datosempresa["nombre_empresa"];
@@ -135,6 +136,7 @@ function formularioModEmpresa() {
     $cuenta_bancaria = $datosempresa["cuenta_bancaria"];
     $telefono_empresa = $datosempresa["telefono_empresa"];
     $email_empresa = $datosempresa["email_empresa"];
+    $ca = $datosempresa["nombre_ca"];
 
 
 
@@ -146,7 +148,7 @@ function formularioModEmpresa() {
             'Cuenta Bancaria: <input type="number" name="cuenta_bancaria" value="' . $cuenta_bancaria . '" /><br/>' .
             'Tel&eacute;fono: <input type="number" name="telefono_empresa" value="' . $telefono_empresa . '"/><br/>' .
             'Correo Electr&oacute;nico: <input type="email" name="mail_empresa" value="' . $email_empresa . '"/> <br/>' .
-            'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma">' .
+            'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma" value="'.$ca.'">' .
             '<option value="andalucia">Andalucia</option>' .
             '<option value="aragon">Arag&oacute;n</option>' .
             '<option value="asturias">Asturias</option>' .
