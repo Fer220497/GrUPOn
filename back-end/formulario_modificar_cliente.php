@@ -43,7 +43,7 @@
         }
         //RESTRICCIONES Para evitar el cambio de afinidad
         $contador = 0;
-        foreach ($arrayCategorias as $categoria) {
+        foreach ($arrayCategorias as $categoria=>$val) {
             if (isset($_POST[$categoria])) {
                 if (!array_key_exists($_POST[$categoria], $arrayCategorias)) {
                     $error[] = "No existe la categoria";
@@ -74,7 +74,7 @@
             realizarQuery('grupon',$sql);
             $sql = "DELETE FROM AFINIDADES WHERE CORREO='$correoNuevo'";
             realizarQuery('grupon',$sql);
-            foreach ($arrayCategorias as $categoria) {
+            foreach ($arrayCategorias as $categoria=>$val) {
                 if (isset($_POST[$categoria])) {
                     $sql = "INSERT INTO AFINIDADES VALUES('$correoNuevo','$categoria')";
                     realizarQuery('grupon', $sql);

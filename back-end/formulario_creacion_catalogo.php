@@ -4,7 +4,7 @@ session_start();
 require_once '../back-end/conexion_db.php';
 require_once '../back-end/funciones.php';
 
-foreach ($arrayCategorias as $categoria) {
+foreach ($arrayCategorias as $categoria=>$val) {
     $sql = 'SELECT * FROM CATEGORIA';
     $result = realizarQuery('grupon', $sql);
     if (mysqli_num_rows($result) != count($arrayCategorias)) {
