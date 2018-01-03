@@ -36,73 +36,7 @@
     "navarra" => "Navarra",
     "pais_vasco" => "Pa&iacute;s Vasco",
     "valencia" => "Valencia",
-);
-    
-    /**
-     * Función que genera options con las comunidades autonomas
-     */
-    function opcionesComunidades(){
-        $opt = '';
-        foreach($arrayComunidades as $key => $val){
-            $opt .= '<option value="'.$key.'">'.$val.'</option>';
-        }
-        return $opt;
-    }
-    /**
-     * Función que genera options con las comunidades autonomas y una seleccionada.
-     * @param type $comunidadAutonoma
-     */
-    function opcionesComunidadSeleccionada($comunidadAutonoma){
-        $opt = '';
-        foreach($arrayComunidades as $key => $val){
-            if($comunidadAutonoma == $key){
-                $opt .= '<option value="'.$key.'" selected="selected">'.$val.'</option>';
-            }else{
-                $opt .= '<option value="'.$key.'">'.$val.'</option>';
-            }
-        }
-        return $opt;
-    }
-    
-    function checkboxesCategorias(){
-        $form .= '';
-        foreach($arrayCategorias as $key => $val){
-            $form .= $value .': <input type="checkbox" name="'.$key.'" value="'.$key.'"/><br/>';
-        }
-        return $form;
-    }
-    
-    function checkboxesCategoriasSeleccionadas($afinidades){
-        $form .= '';
-        foreach($arrayCategorias as $key => $val){
-            if(in_array($key, $afinidades)){
-                $form .= $value .': <input type="checkbox" name="'.$key.'" value="'.$key.'" checked/><br/>';
-            }else{
-                $form .= $value .': <input type="checkbox" name="'.$key.'" value="'.$key.'"/><br/>';
-            }
-        }
-        return $form;
-    }
-    
-    function optionCategorias(){
-        $form = '';
-        foreach($arrayCategorias as $key => $val){
-            $form .= '<option value="'.$key.'" selected="selected">'.$val.'</option>';
-        }
-        return $form;
-    }
-    
-    function optionCategoriasSeleccionadas($cat){
-        $opt = '';
-        foreach($arrayCategorias as $key => $val){
-            if($cat == $key){
-                $opt .= '<option value="'.$key.'" selected="selected">'.$val.'</option>';
-            }else{
-                $opt .= '<option value="'.$key.'">'.$val.'</option>';
-            }
-        }
-        return $opt;
-    }
+    );
     
     $arrayCategorias = array(
        "viajes" => "Viajes",
@@ -114,6 +48,72 @@
        "deporte" => "Deporte",
    );
     
+    /**
+     * Función que genera options con las comunidades autonomas
+     */
+    function opcionesComunidades(){
+        $opt = '';
+        foreach($arrayComunidades as $key=>$val){
+            $opt .= '<option value="'.$key.'">'.$val.'</option>';
+        }
+        return $opt;
+    }
+    /**
+     * Función que genera options con las comunidades autonomas y una seleccionada.
+     * @param type $comunidadAutonoma
+     */
+    function opcionesComunidadSeleccionada($comunidadAutonoma){
+        $opt = '';
+        foreach($arrayComunidades as $key=>$val){
+            if($comunidadAutonoma == $key){
+                $opt .= '<option value="'.$key.'" selected="selected">'.$val.'</option>';
+            }else{
+                $opt .= '<option value="'.$key.'">'.$val.'</option>';
+            }
+        }
+        return $opt;
+    }
+    
+    function checkboxesCategorias(){
+        $form .= '';
+        foreach($arrayCategorias as $key=>$val){
+            $form .= $value .': <input type="checkbox" name="'.$key.'" value="'.$key.'"/><br/>';
+        }
+        return $form;
+    }
+    
+    function checkboxesCategoriasSeleccionadas($afinidades){
+        $form .= '';
+        foreach($arrayCategorias as $key=>$val){
+            if(in_array($key, $afinidades)){
+                $form .= $value .': <input type="checkbox" name="'.$key.'" value="'.$key.'" checked/><br/>';
+            }else{
+                $form .= $value .': <input type="checkbox" name="'.$key.'" value="'.$key.'"/><br/>';
+            }
+        }
+        return $form;
+    }
+    
+    function optionCategorias(){
+        $form = '';
+        foreach($arrayCategorias as $key=>$val){
+            $form .= '<option value="'.$key.'" selected="selected">'.$val.'</option>';
+        }
+        return $form;
+    }
+    
+    function optionCategoriasSeleccionadas($cat){
+        $opt = '';
+        foreach($arrayCategorias as $key=>$val){
+            if($cat == $key){
+                $opt .= '<option value="'.$key.'" selected="selected">'.$val.'</option>';
+            }else{
+                $opt .= '<option value="'.$key.'">'.$val.'</option>';
+            }
+        }
+        return $opt;
+    }
+
     //Hay que cambiar la KEY ya que esta es de prueba.
     $recaptcha = '<div data-theme="dark" class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>';
     //KEY secreta del Recaptcha 
