@@ -4,6 +4,7 @@
     require_once '../back-end/funciones.php';
 
     $correo = $_SESSION['cuenta'];
+    
 
     //Primero traemos los datos del cliente de la DB
     $sql = "SELECT * FROM CUENTA,CLIENTE WHERE CUENTA.CORREO='$correo' AND CLIENTE.CORREO='$correo'";
@@ -19,7 +20,7 @@
     $sql = "SELECT * FROM AFINIDADES WHERE CORREO='$correo'";
     $resultado = realizarQuery('grupon', $sql);
     while ($fila = mysqli_fetch_array($resultado)) {
-        $afinidades[] = $fila['categoria'];
+        $afinidades[] = $fila['nombre_categoria'];
     }
 
     if (isset($_POST['cambiarDatos'])) {
@@ -54,15 +55,63 @@
         if ($contador == 0) {
             $error[] = "Tiene que seleccionar una categoria";
         }
-        if ($_POST['pwd'] !== $_POST['pwd_confirmar']) {
-            $error[] = 'Las contrase&ntilde;as no coinciden';
+        //Checkeo de entradas correctas
+        //Depuracion de entradas (sanitize)
+        if(!isset($error)){
+            $correoNuevo = sanitarString($_POST['correo']);
+            $nombre= sanitarString($_POST['nombre_cliente']);
+            $apellidos = sanitarString($_POST['apellidos_cliente']);
+            $nombre_ca = $_POST['comunidad_autonoma'];
+            $sql = "UPDATE CUENTA SET CORREO='$correoNuevo', NOMBRE_CA='$nombre_ca' WHERE CORREO='$correo'";
+            realizarQuery('grupon', $sql);
+            $sql = "UPDATE CLIENTE SET NOMBRE_CLIENTE='$nombre', APELLIDOS_CLIENTE='$apellidos' WHERE CORREO='$correoNuevo'";
+            realizarQuery('grupon',$sql);
+            $sql = "DELETE FROM AFINIDADES WHERE CORREO='$correoNuevo'";
+            realizarQuery('grupon',$sql);
+            foreach ($arrayCategorias as $categoria) {
+                if (isset($_POST[$categoria])) {
+                    $sql = "INSERT INTO AFINIDADES VALUES('$correoNuevo','$categoria')";
+                    realizarQuery('grupon', $sql);
+                }
+            }
+            $_SESSION['cuenta'] = $correoNuevo;
+            $_SESSION['nombre'] = $nombre;
         }
     } else if (isset($_POST['cambiarPwd'])) {
+        if(!isset($_POST['pwd_old'])){
+            $error[] = 'No has introducido la contrase&ntilde;a actual';
+        }
+        if(!isset($_POST['pwd_new'])){
+            $error[] = 'No has introducido la nueva contrase&ntilde;a';
+        }
+        if(!isset($_POST['pwd_new_confirm'])){
+            $error[] = 'No has introducido la confirmaci&oacute;n de la contrase&ntilde;a';
+        }
+        //RESTRICCIÓN 1: la contraseña actual debe ser correcta.
+        $sql = "SELECT * FROM CUENTA WHERE CORREO='$correo'";
+        $resultado = realizarQuery('grupon', $sql);
+        $fila = mysqli_fetch_array($resultado);
+        if(password_verify($_POST['pwd_old'], $fila['pwd'])){
+            $error[] = 'Contrase &ntilde;a incorrecta';
+        }
+        //RESTRICCIÓN 2: la nueva contraseña debe coincidir con su confirmación:
+        if($_POST['pwd_new']!==$_POST['pwd_new_confirm']){
+            $error[] = 'Las contrase&ntilde;s no coinciden';
+        }
+        //Checkeo de entradas correctas (no vacias, min caracteres,regexp....)
+        //Depuracion de entradas (sanitize)
+        if(!isset($error)){
+            $pwdNew = sanitarString($_POST['pwd_new']);
+            $hash = $hash = password_hash($pwdNew, PASSWORD_BCRYPT); 
+            $sql = "UPDATE CUENTA SET PWD='$hash' WHERE CORREO='$correo'";
+            realizarQuery('grupon', $sql);
+        }
+        
 
     }
     
     if(isset($error)){
-        muestraErrores($error);
+        echo muestraErrores($error);
     }
     echo muestraFormularioDatos($correo, $ca, $nombre, $apellidos, $afinidades);
     echo muestraFormularioPwd();
@@ -71,7 +120,7 @@
         $form = '<form action="" method="post">' .
                 'Correo: <input type="text" name="correo" value="' . $correo . '"/><br/>' .
                 'Nombre: <input type="text" name="nombre_cliente" value="' . $nombre . '"/><br/>' .
-                'Apellidos: <input type="text" name="apellidos_cliente" value"' . $apellidos . '"/> <br/>' .
+                'Apellidos: <input type="text" name="apellidos_cliente" value="' . $apellidos . '"/> <br/>' .
                 'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma" value="' . $ca . '">' .
                 '<option value="andalucia">Andalucia</option>' .
                 '<option value="aragon">Arag&oacute;n</option>' .
@@ -92,9 +141,7 @@
                 '<option value="navarra">Navarra</option>' .
                 '<option value="pais_vasco">Pa&iacute;s Vasco</option>' .
                 '<option value="valencia">Valencia</option>' .
-                '</select>';
-        '<br>' .
-                'Afinidades:<br/>';
+                '</select><br>Afinidades:<br/>';
         if (in_array('viajes', $afinidades)) {
             $form .= 'Viajes: <input type="checkbox" name="viajes" value="viajes" checked/><br/>';
         } else {
@@ -120,28 +167,27 @@
         } else {
             $form .= 'Ropa: <input type="checkbox" name="ropa" value="ropa" /><br/>';
         }
-        if (in_array('salud_belleza')) {
-            $form .= 'Salud y belleza: <input type="checkbox" name="salud_belleza" value="salud_belleza" checked /><br/>';
+        if (in_array('salud_y_belleza', $afinidades)) {
+            $form .= 'Salud y belleza: <input type="checkbox" name="salud_y_belleza" value="salud_y_belleza" checked /><br/>';
         } else {
-            $form .= 'Salud y belleza: <input type="checkbox" name="salud_belleza" value="salud_belleza"/><br/>';
+            $form .= 'Salud y belleza: <input type="checkbox" name="salud_y_belleza" value="salud_y_belleza"/><br/>';
         }
         if (in_array('deporte', $afinidades)) {
             $form .= 'Deporte: <input type="checkbox" name="deporte" value="deporte" checked/><br/>';
         } else {
             $form .= 'Deporte: <input type="checkbox" name="deporte" value="deporte"/><br/>';
         }
-        $form .= $recaptcha .
-                '<input type="submit" name="cambiarDatos" value="Guardar"/>' .
+        $form .='<input type="submit" name="cambiarDatos" value="Guardar"/>' .
                 '</form>';
         return $form;
     }
 
     function muestraFormularioPwd() {
         $form = '<form action="" method="post">' .
-                'Contrase&ntilde;a antigua: <input type="password" name="pwd_old"/><br/>' .
+                'Contrase&ntilde;a actual: <input type="password" name="pwd_old"/><br/>' .
                 'Nueva contrase&ntilde;a: <input type="password" name="pwd_new" /><br/>' .
                 'Confirmar nueva contrase&ntilde;a: <input type="password" name="pwd_new_confirm" /><br/>' .
-                '<input type="submit" name="cambiarPwd" value="Guardar cambios"/>' .
+                '<input type="submit" name="cambiarPwd" value="Cambiar"/>' .
                 '</form>';
         return $form;
     }

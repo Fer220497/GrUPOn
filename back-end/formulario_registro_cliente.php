@@ -139,7 +139,7 @@ function formularioRegistroCliente() {
             'Gastronom&iacute;a: <input type="checkbox" name="gastronomia" value="gastronomia" /><br/>' .
             'Electr&oacute;nica: <input type="checkbox" name="electronica" value="electronica" /><br/>' .
             'Ropa: <input type="checkbox" name="ropa" value="ropa" /><br/>' .
-            'Salud y belleza: <input type="checkbox" name="salud_belleza" value="salud_belleza"/><br/>' .
+            'Salud y belleza: <input type="checkbox" name="salud_y_belleza" value="salud_y_belleza"/><br/>' .
             'Deporte: <input type="checkbox" name="deporte" value="deporte"/><br/>' .
             $recaptcha .
             '<input type="submit" name="registroCliente" value="Enviar"/>' .

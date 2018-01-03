@@ -1,5 +1,5 @@
 <?php
-    require_once '../back-end/conexion_db';
+    require_once '../back-end/conexion_db.php';
     
     /**
      * Función que checkea si existe un correo que se le pase ya en la DB.
