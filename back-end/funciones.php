@@ -46,12 +46,13 @@
        "ropa" => "Ropa",
        "salud_y_belleza" => "Salud y belleza",
        "deporte" => "Deporte",
-   );
+    );
     
     /**
      * Función que genera options con las comunidades autonomas
      */
     function opcionesComunidades(){
+        global $arrayComunidades;
         $opt = '';
         foreach($arrayComunidades as $key=>$val){
             $opt .= '<option value="'.$key.'">'.$val.'</option>';
@@ -63,6 +64,7 @@
      * @param type $comunidadAutonoma
      */
     function opcionesComunidadSeleccionada($comunidadAutonoma){
+        global $arrayComunidades;
         $opt = '';
         foreach($arrayComunidades as $key=>$val){
             if($comunidadAutonoma == $key){
@@ -75,6 +77,7 @@
     }
     
     function checkboxesCategorias(){
+        global $arrayCategorias;
         $form .= '';
         foreach($arrayCategorias as $key=>$val){
             $form .= $value .': <input type="checkbox" name="'.$key.'" value="'.$key.'"/><br/>';
@@ -83,6 +86,7 @@
     }
     
     function checkboxesCategoriasSeleccionadas($afinidades){
+        global $arrayCategorias;
         $form .= '';
         foreach($arrayCategorias as $key=>$val){
             if(in_array($key, $afinidades)){
@@ -95,6 +99,7 @@
     }
     
     function optionCategorias(){
+        global $arrayCategorias;
         $form = '';
         foreach($arrayCategorias as $key=>$val){
             $form .= '<option value="'.$key.'" selected="selected">'.$val.'</option>';
@@ -103,6 +108,7 @@
     }
     
     function optionCategoriasSeleccionadas($cat){
+        global $arrayCategorias;
         $opt = '';
         foreach($arrayCategorias as $key=>$val){
             if($cat == $key){
