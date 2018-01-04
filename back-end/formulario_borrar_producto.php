@@ -4,7 +4,7 @@
     
     if(isset($_POST['borrar']) && isset($_POST['check'])){
         $id = null; //HAY QUE ENCONTRAR UNA FORMA DE OBTENER EL ID DEL PRODUCTO
-        $sql = "DELETE FROM PRODUCTOS WHERE PRODUCTO_ID='$id'";
+        $sql = "DELETE FROM PRODUCTOS WHERE PRODUCTO_ID=$id";
         realizarQuery('grupon', $sql);  //OP DELETE SOBRE CUENTA, CLIENTE Y EMPRESA
         //header('Location: ../back-end/logout.php'); LLEVALRO AL MENU PRINCIPAL?
     }
