@@ -28,15 +28,15 @@ if (isset($_POST['registroCliente'])) {
     if (!isset($_POST["comunidad_autonoma"])) {
         $error[] = "Debes introducir una comunidad aut&oacute;noma";
     }
-    
+
     //RESTRICCION: Para evitar el cambio de una comunidad autonoma
     if (!array_key_exists($_POST['comunidad_autonoma'], $arrayComunidades)) {
         $error[] = 'Has trampeado las comunidades aut&oacute;nomas, campe&oacute;n';
     }
-    
+
     //RESTRICCIONES Para evitar el cambio de afinidad
     $contador = 0;
-    foreach ($arrayCategorias as $categoria=>$val) {
+    foreach ($arrayCategorias as $categoria => $val) {
         if (isset($_POST[$categoria])) {
             if (!array_key_exists($_POST[$categoria], $arrayCategorias)) {
                 $error[] = "No existe la categoria";
@@ -63,8 +63,28 @@ if (isset($_POST['registroCliente'])) {
             $error[] = 'BOT DETECTADO.';
         }
     }
-    //Checkeo entradas correctas
-    //DepuracionEntradas
+
+    if (trim($_POST['correo']) == '' || strlen($_POST['correo']) > $tamCorreo) {
+        $error[] = 'Correo de cuenta no cumple criterios de tama&ntilde;o';
+    }
+    if (trim($_POST['nombre_cliente']) == '' || strlen($_POST['nombre_cliente']) > $tamNombreCliente) {
+        $error[] = 'Nombre de cliente no cumple criterios de tama&ntilde;o';
+    }
+    if (trim($_POST['apellidos_cliente']) == '' || strlen($_POST['apellidos_cliente']) > $tamApellidosCliente) {
+        $error[] = 'Apellidos de cliente no cumple criterios de tama&ntilde;o';
+    }
+    if (trim($_POST['pwd'])) {
+        $error[] = 'Contrase&ntilde;a no cumple criterios de tama&ntilde;o';
+    }
+    
+    //Checkeo de entradas correctas
+    $filtros = array(
+        "correo" => FILTER_VALIDATE_EMAIL
+    );
+    $result = filter_input_array(INPUT_POST, $filtros);
+    if(!$result['correo']){
+        $error[] = 'El correo no tiene el formato adecuado';
+    }
 
     if (!isset($error)) {
         $correo = sanitarString($_POST["correo"]);
@@ -80,7 +100,7 @@ if (isset($_POST['registroCliente'])) {
             realizarQuery("grupon", $sql);
             $sql = "INSERT INTO CLIENTE VALUES('" . $correo . "','" . $nombre_cliente . "','" . $apellidos_cliente . "')";
             realizarQuery("grupon", $sql);
-            foreach ($arrayCategorias as $categoria=>$val) {
+            foreach ($arrayCategorias as $categoria => $val) {
                 if (isset($_POST[$categoria])) {
                     $sql = "INSERT INTO AFINIDADES VALUES ('$correo','$categoria')";
                     realizarQuery('grupon', $sql);
@@ -89,7 +109,6 @@ if (isset($_POST['registroCliente'])) {
             //Finalmente redirigimos al usuario
             header('Location: login.php');
         }
-        
     }
 }
 
@@ -115,8 +134,8 @@ function formularioRegistroCliente() {
             'Confirmar Contraseña: <input type="password" name="pwd_confirmar" /><br/>' .
             'Nombre: <input type="text" name="nombre_cliente"/><br/>' .
             'Apellidos: <input type="text" name="apellidos_cliente"/> <br/>' .
-            'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma">'.opcionesComunidades().'</select><br>' .
-            'Afinidades:<br/>'.checkboxesCategorias().'<br/>' .
+            'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma">' . opcionesComunidades() . '</select><br>' .
+            'Afinidades:<br/>' . checkboxesCategorias() . '<br/>' .
             $recaptcha .
             '<input type="submit" name="registroCliente" value="Enviar"/>' .
             '</form>';
