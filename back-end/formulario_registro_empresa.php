@@ -3,7 +3,7 @@
 require_once '../back-end/libs/recaptchalib.php';
 require_once '../back-end/conexion_db.php';
 require_once '../back-end/funciones.php';
-
+inicializarDB();
 //Si el usuario ha enviado...
 if (isset($_POST['registroEmpresa'])) {
     //Checkeo de que no hayan tocado el HTML
@@ -135,7 +135,7 @@ if (isset($_POST['registroEmpresa'])) {
         } else {
             //No existe esa cuenta, creo una nueva.
             $hash = password_hash($pwd, PASSWORD_BCRYPT); //60 chars wide.
-            $sql = "INSERT INTO CUENTA VALUES('$correo','$comunidad_autonoma', '$hash')";
+            $sql = "INSERT INTO CUENTA VALUES('$correo', '$comunidad_autonoma', '$hash')";
             realizarQuery('grupon', $sql);
             $sql = "INSERT INTO EMPRESA VALUES('$correo','$nombre_empresa',"
                     . "'$direccion_empresa','$nif_empresa','$web_empresa',$cuenta_bancaria,"

@@ -108,9 +108,9 @@ function opcionesCatSeleccionada($catsel) {
 
 function checkboxesCategorias() {
     global $arrayCategorias;
-    $form .= '';
+    $form = '';
     foreach ($arrayCategorias as $key => $val) {
-        $form .= $value . ': <input type="checkbox" name="' . $key . '" value="' . $key . '"/><br/>';
+        $form .= $val . ': <input type="checkbox" name="' . $key . '" value="' . $key . '"/><br/>';
     }
     return $form;
 }
