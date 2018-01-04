@@ -115,9 +115,6 @@ if (isset($_POST['registroEmpresa'])) {
     if(!$result['telefono_empresa']){
         $error[] = 'El telefono no tiene el formato adecuado';
     }
-    if(!$result['telefono_empresa']){
-        $error[] = 'El telefono no tiene el formato adecuado';
-    }
         
     if (!isset($error)) {
         //Depuracion de entradas (sanitize)

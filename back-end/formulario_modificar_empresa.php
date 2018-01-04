@@ -106,9 +106,6 @@ if (isset($_POST['modificarEmpresa'])) {
     if(!$result['telefono_empresa']){
         $error[] = 'El telefono no tiene el formato adecuado';
     }
-    if(!$result['telefono_empresa']){
-        $error[] = 'El telefono no tiene el formato adecuado';
-    }
     
     if (!isset($error)) {
 
