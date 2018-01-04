@@ -54,22 +54,22 @@ if (isset($_POST['modificarEmpresa'])) {
         }
     }
     //RESTRICCION: QUE NO HAYA COSAS VACIAS:
-    if(trim($_POST['nombre_empresa']) != '' || strlen($_POST['nombre_empresa']) > $tamNombreEmpresa){
+    if(trim($_POST['nombre_empresa']) == '' || strlen($_POST['nombre_empresa']) > $tamNombreEmpresa){
         $error[] = 'Nombre empresa no cumple criterios de tama&ntilde;o';
     }
-    if (trim($_POST['correo']) != ''|| strlen($_POST['correo']) > $tamCorreo) {
+    if (trim($_POST['correo']) == ''|| strlen($_POST['correo']) > $tamCorreo) {
         $error[] = 'Correo de cuenta no cumple criterios de tama&ntilde;o';
     }
-    if (trim($_POST['pwd']) != '') {
+    if (trim($_POST['pwd']) == '') {
         $error[] = 'Contrase&ntilde;a empresa no cumple criterios de tama&ntilde;o';
     }
-    if (trim($_POST['web_empresa']) != '' || strlen($_POST['web_empresa']) > $tamWeb) {
+    if (trim($_POST['web_empresa']) == '' || strlen($_POST['web_empresa']) > $tamWeb) {
         $error[] = 'Web de la empresa no cumple criterios de tama&ntilde;o';
     }
-    if (trim($_POST['mail_empresa']) != '' || strlen($_POST['mail_empresa']) > $tamCorreo) {
+    if (trim($_POST['mail_empresa']) == '' || strlen($_POST['mail_empresa']) > $tamCorreo) {
         $error[] = 'Mail de contacto de la empresa no cumple criterios de tama&ntilde;o';
     }
-    if(trim($_POST['direccion_empresa']) != '' || strlen($_POST['direccion_empresa']) > $tamDireccion){
+    if(trim($_POST['direccion_empresa']) == '' || strlen($_POST['direccion_empresa']) > $tamDireccion){
         $error[] = 'Direcci&oacute;n de la empresa no cumple criterios de tama&ntilde;o';
     }
     //Checkeo de entradas correctas
