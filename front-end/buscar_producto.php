@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -46,6 +47,9 @@ and open the template in the editor.
         <script>
             $("#cookie").append(document.createTextNode(getCookie("categoria")));
         </script>    
+        <?php
+        require_once '../back-end/funciones.php';
+        echo menuCategorias()?>
         <?php require_once '../back-end/formulario_busqueda_producto.php'; ?>
         
     </body>

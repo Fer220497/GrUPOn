@@ -49,6 +49,18 @@
        "deporte" => "Deporte",
    );
     
+    function menuCategorias(){
+        $form="";
+        global $arrayCategorias;
+        $cookie_name="categoria";
+        
+        foreach($arrayCategorias as $key=>$val){
+            
+            $form.='<a href="buscar_producto.php" onclick="setCookie(\''.$cookie_name.'\',\''.$key.'\', 1)">'.$val.'</a>   ';
+        }
+        return $form;
+    }
+    
     /**
      * Función que genera options con las comunidades autonomas
      */
