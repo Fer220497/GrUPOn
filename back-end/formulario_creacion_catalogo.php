@@ -15,12 +15,12 @@ foreach ($arrayCategorias as $categoria=>$val) {
 
 if (isset($_POST['nuevo_cat'])) {
     if (!isset($_POST['nombre'])) {
-        $errores[] = "Debes introducir nombre.";
+        $error[] = "Debes introducir nombre.";
     }
     if (!isset($_POST['categoria'])) {
-        $errores[] = "Debes introducir categor&iacutea.";
+        $error[] = "Debes introducir categor&iacutea.";
     }
-    if (!isset($errores)) {
+    if (!isset($error)) {
         $correo = $_SESSION['cuenta'];
         $nombre = sanitarString($_POST['nombre']);
         $categoria = $_POST['categoria'];
@@ -31,9 +31,9 @@ if (isset($_POST['nuevo_cat'])) {
             echo 'placeholder malo';
         }
     }
-}if (!isset($_POST['login']) || isset($errores)) {
-    if (isset($errores)) {
-        echo muestraErrores($errores);
+}if (!isset($_POST['login']) || isset($error)) {
+    if (isset($error)) {
+        echo muestraErrores($error);
     }
     echo formularioCreacionCatalogo();
 }

@@ -6,13 +6,13 @@ require_once '../back-end/funciones.php';
 
 if (isset($_POST['login'])) {
     if (!isset($_POST['correo'])) {
-        $errores[] = "Debes introducir correo.";
+        $error[] = "Debes introducir correo.";
     }
     if (!isset($_POST['pwd'])) {
-        $errores[] = "Debes introducir contrase&ntilde;a.";
+        $error[] = "Debes introducir contrase&ntilde;a.";
     }
     if (!preg_match('/^[A-z0-9\\._-]+@[A-z0-9][A-z0-9-]*(\\.[A-z0-9_-]+)*\\.([A-z]{2,6})$/', $_POST['correo'])) {
-        $errores[] = "Correo electr&oacute;nico incorrecto.";
+        $error[] = "Correo electr&oacute;nico incorrecto.";
     }
     if (!isset($_POST['g-recaptcha-response'])) {
         $error[] = 'Has trampeado el reCaptcha';
@@ -27,7 +27,7 @@ if (isset($_POST['login'])) {
             $error[] = 'BOT DETECTADO.';
         }
     }
-    if (!isset($errores)) {
+    if (!isset($error)) {
         $correo = sanitarString($_POST['correo']);
         $pwd = $_POST['pwd'];
         $query = "SELECT * FROM CUENTA WHERE CORREO='$correo'";
@@ -50,12 +50,12 @@ if (isset($_POST['login'])) {
             }
             header('Location: seleccion_accion.php');
         } else {
-            $errores[] = "Credenciales incorrectas.";
+            $error[] = "Credenciales incorrectas.";
         }
     }
-}if (!isset($_POST['login']) || isset($errores)) {
-    if (isset($errores)) {
-        echo muestraErrores($errores);
+}if (!isset($_POST['login']) || isset($error)) {
+    if (isset($error)) {
+        echo muestraErrores($error);
     }
     echo formularioLogin();
 }

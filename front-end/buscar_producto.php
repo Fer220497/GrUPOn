@@ -43,14 +43,15 @@ and open the template in the editor.
     <body>
         <h2>B&uacute;squeda de producto</h2>
         <div id="cookie">La Categoria es:</div>
-        
+
         <script>
             $("#cookie").append(document.createTextNode(getCookie("categoria")));
         </script>    
         <?php
         require_once '../back-end/funciones.php';
-        echo menuCategorias()?>
-        <?php require_once '../back-end/formulario_busqueda_producto.php'; ?>
-        
+        echo menuCategorias()
+        ?>
+<?php require_once '../back-end/formulario_busqueda_producto.php'; ?>
+
     </body>
 </html>
