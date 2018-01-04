@@ -18,7 +18,7 @@
     }
     
     $arrayComunidades = array(
-    "andalucia" => "Andalucia",
+    "andalucia" => "Andaluc&iacute;a",
     "aragon" => "Arag&oacute;n",
     "asturias" => "Asturias",
     "canarias" => "Canarias",
