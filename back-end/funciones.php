@@ -1,23 +1,24 @@
 
 <?php
-    require_once '../back-end/conexion_db.php';
-    
-    /**
-     * Función que checkea si existe un correo que se le pase ya en la DB.
-     * @param type $correo
-     * @return boolean
-     */
-    function existeCorreo($correo){
-        $sql = "SELECT * FROM CUENTA WHERE CORREO='" . $correo . "'";
-        $result = realizarQuery("grupon", $sql);
-        if (mysqli_num_rows($result) > 0) {
-            return true;
-        }else{
-            return false;
-        }
+
+require_once '../back-end/conexion_db.php';
+
+/**
+ * Función que checkea si existe un correo que se le pase ya en la DB.
+ * @param type $correo
+ * @return boolean
+ */
+function existeCorreo($correo) {
+    $sql = "SELECT * FROM CUENTA WHERE CORREO='" . $correo . "'";
+    $result = realizarQuery("grupon", $sql);
+    if (mysqli_num_rows($result) > 0) {
+        return true;
+    } else {
+        return false;
     }
-    
-    $arrayComunidades = array(
+}
+
+$arrayComunidades = array(
     "andalucia" => "Andaluc&iacute;a",
     "aragon" => "Arag&oacute;n",
     "asturias" => "Asturias",
@@ -37,135 +38,136 @@
     "navarra" => "Navarra",
     "pais_vasco" => "Pa&iacute;s Vasco",
     "valencia" => "Valencia",
-    );
-    
-    $arrayCategorias = array(
-       "viajes" => "Viajes",
-       "entretenimiento" => "Entretenimiento",
-       "gastronomia" => "Gastronom&iacute;a",
-       "electronica" => "Electr&oacute;nica",
-       "ropa" => "Ropa",
-       "salud_y_belleza" => "Salud y belleza",
-       "deporte" => "Deporte",
-   );
-    
-    function menuCategorias(){
-        $form="";
-        global $arrayCategorias;
-        $cookie_name="categoria";
-        
-        foreach($arrayCategorias as $key=>$val){
-            
-            $form.='<a href="buscar_producto.php" onclick="setCookie(\''.$cookie_name.'\',\''.$key.'\', 1)">'.$val.'</a>   ';
-        }
-        return $form;
-    }
-    
-    /**
-     * Función que genera options con las comunidades autonomas
-     */
-    function opcionesComunidades(){
-        $opt = '';
-        global $arrayComunidades;
-        foreach($arrayComunidades as $key=>$val){
-            $opt .= '<option value="'.$key.'">'.$val.'</option>';
-        }
-        return $opt;
-    }
-    /**
-     * Función que genera options con las comunidades autonomas y una seleccionada.
-     * @param type $comunidadAutonoma
-     */
-    function opcionesComunidadSeleccionada($comunidadAutonoma){
-        $opt = '';
-        global $arrayComunidades;
-        foreach($arrayComunidades as $key=>$val){
-            if($comunidadAutonoma == $key){
-                $opt .= '<option value="'.$key.'" selected="selected">'.$val.'</option>';
-            }else{
-                $opt .= '<option value="'.$key.'">'.$val.'</option>';
-            }
-        }
-        return $opt;
-    }
-    
-    function opcionesCatSeleccionada($catsel){
-        $opt = '';
-        global $arrayCategorias;
-        foreach($arrayCategorias as $key=>$val){
-            if($catsel == $key){
-                $opt .= '<option value="'.$key.'" selected="selected">'.$val.'</option>';
-            }else{
-                $opt .= '<option value="'.$key.'">'.$val.'</option>';
-            }
-        }
-        return $opt;
-    }
-    
-    function checkboxesCategorias(){
-        global $arrayCategorias;
-        $form .= '';
-        foreach($arrayCategorias as $key=>$val){
-            $form .= $value .': <input type="checkbox" name="'.$key.'" value="'.$key.'"/><br/>';
-        }
-        return $form;
-    }
-    
-    function checkboxesCategoriasSeleccionadas($afinidades){
-        $form .= '';
-        foreach($arrayCategorias as $key=>$val){
-            if(in_array($key, $afinidades)){
-                $form .= $value .': <input type="checkbox" name="'.$key.'" value="'.$key.'" checked/><br/>';
-            }else{
-                $form .= $value .': <input type="checkbox" name="'.$key.'" value="'.$key.'"/><br/>';
-            }
-        }
-        return $form;
-    }
-    
-    function optionCategorias(){
-        $form = '';
-        global $arrayCategorias;
-        foreach($arrayCategorias as $key=>$val){
-            $form .= '<option value="'.$key.'">'.$val.'</option>';
-        }
-        return $form;
-    }
-    
-    function optionCategoriasSeleccionadas($cat){
-        $opt = '';
-        global $arrayCategorias;
-        foreach($arrayCategorias as $key=>$val){
-            if($cat == $key){
-                $opt .= '<option value="'.$key.'" selected="selected">'.$val.'</option>';
-            }else{
-                $opt .= '<option value="'.$key.'">'.$val.'</option>';
-            }
-        }
-        return $opt;
-    }
+);
 
-    //Hay que cambiar la KEY ya que esta es de prueba.
-    $recaptcha = '<div data-theme="dark" class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>';
-    //KEY secreta del Recaptcha 
-    $secret = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe';
+$arrayCategorias = array(
+    "viajes" => "Viajes",
+    "entretenimiento" => "Entretenimiento",
+    "gastronomia" => "Gastronom&iacute;a",
+    "electronica" => "Electr&oacute;nica",
+    "ropa" => "Ropa",
+    "salud_y_belleza" => "Salud y belleza",
+    "deporte" => "Deporte",
+);
 
-    /**
-     * Función que genera un HTML con un array de errores 
-     * (el array de errores debe contener unicamente strings)
-     * @param string $error
-     * @return string
-     */
-    function muestraErrores($error) {
-        $bloqueHTML = '<div class="error"><h1>Se han producido los siguientes errores:</h1><ul>';
-        foreach ($error as $err) {
-            $bloqueHTML .= "<li>$err</li>";
+function menuCategorias() {
+    $form = "";
+    global $arrayCategorias;
+    $cookie_name = "categoria";
+
+    foreach ($arrayCategorias as $key => $val) {
+
+        $form .= '<a href="buscar_producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $key . '\', 1)">' . $val . '</a>   ';
+    }
+    return $form;
+}
+
+/**
+ * Función que genera options con las comunidades autonomas
+ */
+function opcionesComunidades() {
+    $opt = '';
+    global $arrayComunidades;
+    foreach ($arrayComunidades as $key => $val) {
+        $opt .= '<option value="' . $key . '">' . $val . '</option>';
+    }
+    return $opt;
+}
+
+/**
+ * Función que genera options con las comunidades autonomas y una seleccionada.
+ * @param type $comunidadAutonoma
+ */
+function opcionesComunidadSeleccionada($comunidadAutonoma) {
+    $opt = '';
+    global $arrayComunidades;
+    foreach ($arrayComunidades as $key => $val) {
+        if ($comunidadAutonoma == $key) {
+            $opt .= '<option value="' . $key . '" selected="selected">' . $val . '</option>';
+        } else {
+            $opt .= '<option value="' . $key . '">' . $val . '</option>';
         }
-        $bloqueHTML .= '</ul></div>';
-        return $bloqueHTML;
-    }    
-    
-    function inicializarDB() {
+    }
+    return $opt;
+}
+
+function opcionesCatSeleccionada($catsel) {
+    $opt = '';
+    global $arrayCategorias;
+    foreach ($arrayCategorias as $key => $val) {
+        if ($catsel == $key) {
+            $opt .= '<option value="' . $key . '" selected="selected">' . $val . '</option>';
+        } else {
+            $opt .= '<option value="' . $key . '">' . $val . '</option>';
+        }
+    }
+    return $opt;
+}
+
+function checkboxesCategorias() {
+    global $arrayCategorias;
+    $form .= '';
+    foreach ($arrayCategorias as $key => $val) {
+        $form .= $value . ': <input type="checkbox" name="' . $key . '" value="' . $key . '"/><br/>';
+    }
+    return $form;
+}
+
+function checkboxesCategoriasSeleccionadas($afinidades) {
+    $form .= '';
+    foreach ($arrayCategorias as $key => $val) {
+        if (in_array($key, $afinidades)) {
+            $form .= $value . ': <input type="checkbox" name="' . $key . '" value="' . $key . '" checked/><br/>';
+        } else {
+            $form .= $value . ': <input type="checkbox" name="' . $key . '" value="' . $key . '"/><br/>';
+        }
+    }
+    return $form;
+}
+
+function optionCategorias() {
+    $form = '';
+    global $arrayCategorias;
+    foreach ($arrayCategorias as $key => $val) {
+        $form .= '<option value="' . $key . '">' . $val . '</option>';
+    }
+    return $form;
+}
+
+function optionCategoriasSeleccionadas($cat) {
+    $opt = '';
+    global $arrayCategorias;
+    foreach ($arrayCategorias as $key => $val) {
+        if ($cat == $key) {
+            $opt .= '<option value="' . $key . '" selected="selected">' . $val . '</option>';
+        } else {
+            $opt .= '<option value="' . $key . '">' . $val . '</option>';
+        }
+    }
+    return $opt;
+}
+
+//Hay que cambiar la KEY ya que esta es de prueba.
+$recaptcha = '<div data-theme="dark" class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>';
+//KEY secreta del Recaptcha 
+$secret = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe';
+
+/**
+ * Función que genera un HTML con un array de errores 
+ * (el array de errores debe contener unicamente strings)
+ * @param string $error
+ * @return string
+ */
+function muestraErrores($error) {
+    $bloqueHTML = '<div class="error"><h1>Se han producido los siguientes errores:</h1><ul>';
+    foreach ($error as $err) {
+        $bloqueHTML .= "<li>$err</li>";
+    }
+    $bloqueHTML .= '</ul></div>';
+    return $bloqueHTML;
+}
+
+function inicializarDB() {
     global $arrayCategorias;
     global $arrayComunidades;
     foreach ($arrayComunidades as $key => $val) {
@@ -184,15 +186,16 @@
             realizarQuery('grupon', $sql);
         }
     }
-    
-   
-    }
-    /**TAMAÑOS MAXIMOS DE LAS VARIABLES EN LA DB**/
-    $tamCorreo = 75;
-    $tamNombreEmpresa=100;
-    $tamNIF=9;
-    $tamWeb=255;
-    $tamDireccion=255;
-    $tamCuentaBancaria=20;
-    $tamTelefono=9;
+}
+
+/* * TAMAÑOS MAXIMOS DE LAS VARIABLES EN LA DB* */
+$tamCorreo = 75;
+$tamNombreEmpresa = 100;
+$tamNIF = 9;
+$tamWeb = 255;
+$tamDireccion = 255;
+$tamCuentaBancaria = 20;
+$tamTelefono = 9;
+$tamNombreCliente = 50;
+$tamApellidosCliente = 50;
 ?>
