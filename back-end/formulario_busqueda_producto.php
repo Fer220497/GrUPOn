@@ -5,7 +5,9 @@ session_start();
 require_once '../back-end/conexion_db.php';
 require_once '../back-end/funciones.php';
 
+echo menuCategorias();
 echo formularioBusquedaProducto() . '<br/>';
+
 
 if (isset($_POST['busqueda'])) {
     if (!isset($_POST['nombre'])) {
@@ -31,6 +33,15 @@ function formularioBusquedaProducto() {
             '<input type="text" name="nombre"/>' .
             '<input type="submit" value="Buscar" name="busqueda"/>' .
             '</form>';
-
+    
     return $form;
 }
+ function menuCategorias(){
+        $form="p";
+        global $arrayCategorias;
+        $cookie_name="categoria";
+        foreach($arrayCategorias as $key=>$val){
+            $form.='<a href="buscar_producto" onclick="setCookie('.$cookie_name.','.$key.', 1)>'.$val.'</a>"';
+        }
+        return $form;
+    }
