@@ -18,13 +18,13 @@
     }
     
     $arrayComunidades = array(
-    "andalucia" => "Andalucia",
+    "andalucia" => "Andaluc&iacute;a",
     "aragon" => "Arag&oacute;n",
     "asturias" => "Asturias",
     "canarias" => "Canarias",
     "cantabria" => "Cantabria",
     "castilla_la_mancha" => "Castilla La Mancha",
-    "castillo_y_leon" => "Castilla y Le&oacute;n",
+    "castilla_y_leon" => "Castilla y Le&oacute;n",
     "catalunya" => "Catalu&ntilde;a",
     "ceuta" => "Ceuta",
     "extremadura" => "Extremadura",
