@@ -4,7 +4,7 @@
     
     if(isset($_POST['borrar']) && isset($_POST['check'])){
         $id = null; //HAY QUE ENCONTRAR UNA FORMA DE OBTENER EL ID DEL PRODUCTO
-        $sql = "DELETE FROM PRODUCTOS WHERE PRODUCTO_ID='$id'";
+        $sql = "DELETE FROM PRODUCTOS WHERE PRODUCTO_ID=$id";
         realizarQuery('grupon', $sql);  //OP DELETE SOBRE CUENTA, CLIENTE Y EMPRESA
         //header('Location: ../back-end/logout.php'); LLEVALRO AL MENU PRINCIPAL?
     }
@@ -35,7 +35,7 @@
      */
     function muestraFormularioBorrar(){
         return '<form action="" method="post">
-                    <input type="submit" name="borrar" value="Borrar Producto"/> Marcar si est&aacute;s seguro de que quieres borrrar la cuenta <input type="checkbox" name="check" value="Borrar"/>
+                    <input type="submit" name="borrar" value="Borrar Producto"/> Marcar si est&aacute;s seguro de que quieres borrrar el producto <input type="checkbox" name="check" value="Borrar"/>
                 </form>';
         
     }

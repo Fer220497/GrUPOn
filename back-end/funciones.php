@@ -184,5 +184,15 @@
             realizarQuery('grupon', $sql);
         }
     }
-}
+    
+   
+    }
+    /**TAMAÑOS MAXIMOS DE LAS VARIABLES EN LA DB**/
+    $tamCorreo = 75;
+    $tamNombreEmpresa=100;
+    $tamNIF=9;
+    $tamWeb=255;
+    $tamDireccion=255;
+    $tamCuentaBancaria=20;
+    $tamTelefono=9;
 ?>

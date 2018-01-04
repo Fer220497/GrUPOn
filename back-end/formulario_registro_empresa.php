@@ -25,9 +25,6 @@ if (isset($_POST['registroEmpresa'])) {
     if (!isset($_POST['web_empresa'])) {
         $error[] = 'Debes introducir la web de la empresa';
     }
-    if (!isset($_POST['web_empresa'])) {
-        $error[] = 'Debes introducir la web de la empresa';
-    }
     if (!isset($_POST['cuenta_bancaria'])) {
         $error[] = 'Debes introducir la cuenta bancaria';
     }
@@ -36,9 +33,6 @@ if (isset($_POST['registroEmpresa'])) {
     }
     if (!isset($_POST['mail_empresa'])) {
         $error[] = 'Debes introducir el email de la empresa';
-    }
-    if (!isset($_POST['web_empresa'])) {
-        $error[] = 'Debes introducir la web de la empresa';
     }
     if (!isset($_POST['comunidad_autonoma'])) {
         $error[] = 'Debes introducir la comunidad aut&oacute;noma';
@@ -57,6 +51,25 @@ if (isset($_POST['registroEmpresa'])) {
     if ($_POST['pwd'] !== $_POST['pwd_confirmar']) {
         $error[] = 'Las contrase&ntilde;as no coinciden';
     }
+    //RESTRICCION: QUE NO HAYA COSAS VACIAS:
+    if(count($_POST['nombre_empresa']) == 0 || count($_POST['nombre_empresa']) > $tamNombreEmpresa){
+        $error[] = 'Nombre empresa no cumple criterios de tama&ntilde;o';
+    }
+    if (count($_POST['correo']) == 0 || count($_POST['correo']) > $tamCorreo) {
+        $error[] = 'Correo de cuenta no cumple criterios de tama&ntilde;o';
+    }
+    if (count($_POST['pwd']) == 0) {
+        $error[] = 'Contrase&ntilde;a empresa no cumple criterios de tama&ntilde;o';
+    }
+    if (count($_POST['web_empresa']) == 0 || count($_POST['web_empresa']) > $tamWeb) {
+        $error[] = 'Web de la empresa no cumple criterios de tama&ntilde;o';
+    }
+    if (count($_POST['mail_empresa']) == 0 || count($_POST['mail_empresa']) > $tamCorreo) {
+        $error[] = 'Mail de contacto de la empresa no cumple criterios de tama&ntilde;o';
+    }
+    if(count($_POST['direccion_empresa']) == 0 || count($_POST['direccion_empresa']) > $tamDireccion){
+        $error[] = 'Direcci&oacute;n de la empresa no cumple criterios de tama&ntilde;o';
+    }
     //RESTRICCION: Captcha funcionando:
     $response = null;
     $recap = new ReCaptcha($secret);
@@ -68,10 +81,46 @@ if (isset($_POST['registroEmpresa'])) {
             $error[] = 'BOT DETECTADO.';
         }
     }
-
     //Checkeo de entradas correctas
-    //Depuracion de entradas (sanitize)
+    $filtros = array(
+        "correo"=>FILTER_VALIDATE_EMAIL,
+        "nif_empresa"=>array(
+            "filter"=>FILTER_VALIDATE_REGEXP,
+            "options"=>array("regexp"=>"/^([A-HJUV]\d{8})|([NP-SW]\d{7}[A-Z])$/")
+            ),
+        "web_empresa"=>FILTER_VALIDATE_URL,
+        "telefono_empresa"=>array(
+            "filter"=>FILTER_VALIDATE_REGEXP,
+            "options"=>array("regexp"=>"/^\d{9}$/")
+            ),
+        "cuenta_bancaria"=>array(
+            "filter"=>FILTER_VALIDATE_REGEXP,
+            "options"=>array("regexp"=>"/^\d{20}$/")
+            ),
+        "mail_empresa"=>FILTER_VALIDATE_EMAIL
+        );
+    $result = filter_input_array(INPUT_POST, $filtros);
+    if(!$result['correo'] || !result['mail_empresa']){
+        $error[] = 'El correo no tiene el formato adecuado';
+    }
+    if(!$result['nif_empresa']){
+        $error[] = 'El NIF no tiene el formato adecuado';
+    }
+    if(!$result['web_empresa']){
+        $error[] = 'La web no tiene el formato adecuado';
+    }
+    if(!$result['cuenta_bancaria']){
+        $error[] = 'La cuenta bancaria no tiene el formato adecuado';
+    }
+    if(!$result['telefono_empresa']){
+        $error[] = 'El telefono no tiene el formato adecuado';
+    }
+    if(!$result['telefono_empresa']){
+        $error[] = 'El telefono no tiene el formato adecuado';
+    }
+        
     if (!isset($error)) {
+        //Depuracion de entradas (sanitize)
         $correo = sanitarString($_POST['correo']);
         $pwd = sanitarString($_POST['pwd']);
         $nombre_empresa = sanitarString($_POST['nombre_empresa']);
@@ -119,17 +168,17 @@ function formularioRegistroEmpresa() {
     global $recaptcha;
     global $selectComunidadesAutonomas;
     $form = '<form action="../back-end/formulario_registro_empresa.php" method="post">' .
-            'Correo: <input type="text" name="correo"/ ><br/>' .
-            'Contrase&ntilde;a: <input type="password" name="pwd" /><br/>' .
-            'Confirmar Contrase&ntilde;a: <input type="password" name="pwd_confirmar"/ ><br/>' .
-            'Nombre Empresa: <input type="text" name="nombre_empresa"/><br/>' .
-            'NIF : <input type="text" name="nif_empresa"/><br/>' .
-            'Web Empresa: <input type="text" name="web_empresa" /> <br/>' .
-            'Cuenta Bancaria: <input type="number" name="cuenta_bancaria"/ ><br/>' .
-            'Tel&eacute;fono: <input type="number" name="telefono_empresa"/><br/>' .
-            'Correo Electr&oacute;nico: <input type="email" name="mail_empresa"/> <br/>' .
+            'Correo: <input type="email" name="correo" required/><br/>' .
+            'Contrase&ntilde;a: <input type="password" name="pwd" required/><br/>' .
+            'Confirmar Contrase&ntilde;a: <input type="password" name="pwd_confirmar" required/ ><br/>' .
+            'Nombre Empresa: <input type="text" name="nombre_empresa" required/><br/>' .
+            'NIF: <input type="text" name="nif_empresa" required/><br/>' .
+            'Web Empresa: <input type="text" name="web_empresa" required/> <br/>' .
+            'Cuenta Bancaria: <input type="number" name="cuenta_bancaria" required/ ><br/>' .
+            'Tel&eacute;fono: <input type="number" name="telefono_empresa" required/><br/>' .
+            'Correo Electr&oacute;nico: <input type="email" name="mail_empresa" required/> <br/>' .
             'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma">'.opcionesComunidades().'</select><br>' .
-            'Direcci&oacute;n Empresa: <input type="text" name="direccion_empresa" />'.
+            'Direcci&oacute;n Empresa: <input type="text" name="direccion_empresa" required />'.
             $recaptcha .
             '<input type="submit" name="registroEmpresa" value="Enviar"/>' .
             '</form>';
