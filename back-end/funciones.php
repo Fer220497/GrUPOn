@@ -102,7 +102,7 @@
         global $arrayCategorias;
         $form = '';
         foreach($arrayCategorias as $key=>$val){
-            $form .= '<option value="'.$key.'" selected="selected">'.$val.'</option>';
+            $form .= '<option value="'.$key.'">'.$val.'</option>';
         }
         return $form;
     }
