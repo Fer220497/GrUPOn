@@ -96,13 +96,13 @@ if (isset($_POST['registroCliente'])) {
             $error[] = "Ya existe este correo";
         } else {
             $hash = password_hash($pwd, PASSWORD_BCRYPT);
-            $sql = "INSERT INTO CUENTA VALUES('" . $correo . "','" . $comunidad . "','" . $hash . "')";
+            $sql = "INSERT INTO CUENTA VALUES('" . $correo . "', '" . $comunidad . "', '" . $hash . "')";
             realizarQuery("grupon", $sql);
-            $sql = "INSERT INTO CLIENTE VALUES('" . $correo . "','" . $nombre_cliente . "','" . $apellidos_cliente . "')";
+            $sql = "INSERT INTO CLIENTE VALUES('" . $correo . "', '" . $nombre_cliente . "', '" . $apellidos_cliente . "')";
             realizarQuery("grupon", $sql);
             foreach ($arrayCategorias as $categoria => $val) {
                 if (isset($_POST[$categoria])) {
-                    $sql = "INSERT INTO AFINIDADES VALUES ('$correo','$categoria')";
+                    $sql = "INSERT INTO AFINIDADES VALUES ('$correo', '$categoria')";
                     realizarQuery('grupon', $sql);
                 }
             }
