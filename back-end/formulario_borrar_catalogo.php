@@ -9,21 +9,23 @@
         //header('Location: ../back-end/logout.php'); LLEVALRO AL MENU PRINCIPAL?
     }
     
-    echo mostrarCatalogo(null);
+    echo mostrarCatalogo(1);
     echo muestraFormularioBorrar();
 
     function muestraFormularioBorrar(){
         return '<form action="" method="post">
-                    <input type="submit" name="borrar" value="Borrar Cat&aacute;logo"/> Marcar si est&aacute;s seguro de que quieres borrrar la cuenta <input type="checkbox" name="check" value="Borrar"/>
+                    <input type="submit" name="borrar" value="Borrar Cat&aacute;logo"/> Marcar si est&aacute;s seguro de que quieres borrrar el cat&aacute;logo <input type="checkbox" name="check" value="Borrar"/>
                 </form>';
         
     }
     
     function mostrarCatalogo($id){
+        global $arrayCategorias;
         $sql = "SELECT * FROM CATALOGO WHERE ID_CATALOGO='$id'";
         $result = realizarQuery('grupon', $sql);
         $fila = mysqli_fetch_array($result);
-        $table = '<table border="1"><tr><td>Nombre: '.$fila['nombre'].'</td><td>'.$fila['nombre_categoria'].'</td></tr></table>';
+        $table = '<table border="1"><tr><td>Nombre: '.$fila['nombre'].'</td><td>Categor&iacute;a: '.$arrayCategorias[$fila['nombre_categoria']].'</td></tr></table>';
+        return $table;
     }
     
 ?>
