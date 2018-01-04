@@ -5,6 +5,7 @@ require_once '../back-end/funciones.php';
     $correo = $_SESSION['cuenta'];
     
     function muestraCuenta(){
+        global $correo;
         
         if($_SESSION['tipo'] === 'cliente'){
             $sql = "SELECT * FROM CUENTA,CLIENTE WHERE CUENTA.CORREO='$correo' AND CLIENTE.CORREO='$correo'";
@@ -27,6 +28,7 @@ require_once '../back-end/funciones.php';
      */
     function muestraDatosCliente($fila){
         return '<table border="1"><tr><td>Correo</td><td><span class="dato">' . $_SESSION['cuenta'] . '</span></td></tr>' . 
+                '<tr><td>Comunidad Aut&oacute;noma: '.$arrayComunidades[$fila['nombre_ca']].'</td></tr>'.
                '<tr><td>Nombre</td><td><span class="dato">' . $_SESSION['nombre'] . '</span></td>' .
                '<tr><td>Apellidos</td><td><span class="dato">' . $fila['apellidos_cliente'] . '</span></td></table>';
     }
@@ -36,7 +38,9 @@ require_once '../back-end/funciones.php';
      * @param type $arrayEmpresas
      */
     function muestraDatosEmpresa($fila){
-        return '<table border="1"><tr><td>Correo</td><td><span class="dato">' . $_SESSION['cuenta'] . '</span></td></tr>' . 
+        global $arrayComunidades;
+        return '<table border="1"><tr><td>Correo</td><td><span class="dato">' . $_SESSION['cuenta'] . '</span></td></tr>' .
+                '<tr><td>Comunidad Aut&oacute;noma</td><td>'.$arrayComunidades[$fila['nombre_ca']].'</td></tr>'.
                '<tr><td>Nombre</td><td><span class="dato">' . $_SESSION['nombre'] . '</span></td>' .
                '<tr><td>Direcci&oacute;n</td><td><span class="dato">' . $fila['direccion_empresa'] . '</span></td>' .
                '<tr><td>NIF</td><td><span class="dato">' . $fila['nif_empresa'] . '</span></td>' .

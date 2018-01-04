@@ -73,7 +73,7 @@ if (isset($_POST['registroCliente'])) {
     if (trim($_POST['apellidos_cliente']) == '' || strlen($_POST['apellidos_cliente']) > $tamApellidosCliente) {
         $error[] = 'Apellidos de cliente no cumple criterios de tama&ntilde;o';
     }
-    if (trim($_POST['pwd'])) {
+    if (trim($_POST['pwd']) == '') {
         $error[] = 'Contrase&ntilde;a no cumple criterios de tama&ntilde;o';
     }
     

@@ -5,7 +5,7 @@
         <title></title>
     </head>
     <body>
-        <h2>Hola <?php$_SESSION['nombre']?>, aqu&iacute; est&aacute; la informaci&oacute;n de su cuenta</h2>
+        <h2>Hola <?php echo $_SESSION['nombre']?>, aqu&iacute; est&aacute; la informaci&oacute;n de su cuenta</h2>
         <!--Esto debería ser el submenú de datos, que muestra las opciones del empresario o cliente dependiendo de la cuenta-->
         <?php
         require_once '../back-end/formulario_borrar_cuenta.php';
