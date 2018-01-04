@@ -52,22 +52,22 @@ if (isset($_POST['registroEmpresa'])) {
         $error[] = 'Las contrase&ntilde;as no coinciden';
     }
     //RESTRICCION: QUE NO HAYA COSAS VACIAS:
-    if(count($_POST['nombre_empresa']) == 0 || count($_POST['nombre_empresa']) > $tamNombreEmpresa){
+    if(trim($_POST['nombre_empresa']) == '' || strlen($_POST['nombre_empresa']) > $tamNombreEmpresa){
         $error[] = 'Nombre empresa no cumple criterios de tama&ntilde;o';
     }
-    if (count($_POST['correo']) == 0 || count($_POST['correo']) > $tamCorreo) {
+    if (trim($_POST['correo']) == ''|| strlen($_POST['correo']) > $tamCorreo) {
         $error[] = 'Correo de cuenta no cumple criterios de tama&ntilde;o';
     }
-    if (count($_POST['pwd']) == 0) {
+    if (trim($_POST['pwd']) == '') {
         $error[] = 'Contrase&ntilde;a empresa no cumple criterios de tama&ntilde;o';
     }
-    if (count($_POST['web_empresa']) == 0 || count($_POST['web_empresa']) > $tamWeb) {
+    if (trim($_POST['web_empresa']) == '' || strlen($_POST['web_empresa']) > $tamWeb) {
         $error[] = 'Web de la empresa no cumple criterios de tama&ntilde;o';
     }
-    if (count($_POST['mail_empresa']) == 0 || count($_POST['mail_empresa']) > $tamCorreo) {
+    if (trim($_POST['mail_empresa']) == '' || strlen($_POST['mail_empresa']) > $tamCorreo) {
         $error[] = 'Mail de contacto de la empresa no cumple criterios de tama&ntilde;o';
     }
-    if(count($_POST['direccion_empresa']) == 0 || count($_POST['direccion_empresa']) > $tamDireccion){
+    if(trim($_POST['direccion_empresa']) == '' || strlen($_POST['direccion_empresa']) > $tamDireccion){
         $error[] = 'Direcci&oacute;n de la empresa no cumple criterios de tama&ntilde;o';
     }
     //RESTRICCION: Captcha funcionando:
@@ -100,7 +100,7 @@ if (isset($_POST['registroEmpresa'])) {
         "mail_empresa"=>FILTER_VALIDATE_EMAIL
         );
     $result = filter_input_array(INPUT_POST, $filtros);
-    if(!$result['correo'] || !result['mail_empresa']){
+    if(!$result['correo'] || !$result['mail_empresa']){
         $error[] = 'El correo no tiene el formato adecuado';
     }
     if(!$result['nif_empresa']){
@@ -111,9 +111,6 @@ if (isset($_POST['registroEmpresa'])) {
     }
     if(!$result['cuenta_bancaria']){
         $error[] = 'La cuenta bancaria no tiene el formato adecuado';
-    }
-    if(!$result['telefono_empresa']){
-        $error[] = 'El telefono no tiene el formato adecuado';
     }
     if(!$result['telefono_empresa']){
         $error[] = 'El telefono no tiene el formato adecuado';
@@ -141,7 +138,7 @@ if (isset($_POST['registroEmpresa'])) {
             $sql = "INSERT INTO CUENTA VALUES('$correo','$comunidad_autonoma', '$hash')";
             realizarQuery('grupon', $sql);
             $sql = "INSERT INTO EMPRESA VALUES('$correo','$nombre_empresa',"
-                    . "'$direccion_empresa',$nif_empresa,'$web_empresa',$cuenta_bancaria,"
+                    . "'$direccion_empresa','$nif_empresa','$web_empresa',$cuenta_bancaria,"
                     . "$telefono_empresa, '$mail_empresa')";
             realizarQuery('grupon', $sql);
             //Finalmente redirigimos al usuario

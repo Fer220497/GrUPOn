@@ -10,8 +10,6 @@ if (!isset($_SESSION)) {
 $correo = $_SESSION['cuenta'];
 
 if (isset($_POST['modificarEmpresa'])) {
-
-
     if (!isset($_POST['correo'])) {
         $error[] = 'Debes introducir correo';
     }
@@ -49,13 +47,66 @@ if (isset($_POST['modificarEmpresa'])) {
     if (!array_key_exists($_POST['comunidad_autonoma'], $arrayComunidades)) {
         $error[] = 'Has trampeado las comunidades aut&oacute;nomas, campe&oacute;n';
     }
-
     //RESTRICCION: SI EL CORREO INTRODUCIDO ES NUEVO, DEBE CHECKEARSE QUE NO EXISTA YA.
     if ($correo !== $_POST['correo']) {
         if (existeCorreo($_POST['correo'])) {
             $error[] = 'Ese correo ya existe';
         }
     }
+    //RESTRICCION: QUE NO HAYA COSAS VACIAS:
+    if(trim($_POST['nombre_empresa']) == '' || strlen($_POST['nombre_empresa']) > $tamNombreEmpresa){
+        $error[] = 'Nombre empresa no cumple criterios de tama&ntilde;o';
+    }
+    if (trim($_POST['correo']) == ''|| strlen($_POST['correo']) > $tamCorreo) {
+        $error[] = 'Correo de cuenta no cumple criterios de tama&ntilde;o';
+    }
+    if (trim($_POST['pwd']) == '') {
+        $error[] = 'Contrase&ntilde;a empresa no cumple criterios de tama&ntilde;o';
+    }
+    if (trim($_POST['web_empresa']) == '' || strlen($_POST['web_empresa']) > $tamWeb) {
+        $error[] = 'Web de la empresa no cumple criterios de tama&ntilde;o';
+    }
+    if (trim($_POST['mail_empresa']) == '' || strlen($_POST['mail_empresa']) > $tamCorreo) {
+        $error[] = 'Mail de contacto de la empresa no cumple criterios de tama&ntilde;o';
+    }
+    if(trim($_POST['direccion_empresa']) == '' || strlen($_POST['direccion_empresa']) > $tamDireccion){
+        $error[] = 'Direcci&oacute;n de la empresa no cumple criterios de tama&ntilde;o';
+    }
+    //Checkeo de entradas correctas
+    $filtros = array(
+        "correo"=>FILTER_VALIDATE_EMAIL,
+        "nif_empresa"=>array(
+            "filter"=>FILTER_VALIDATE_REGEXP,
+            "options"=>array("regexp"=>"/^([A-HJUV]\d{8})|([NP-SW]\d{7}[A-Z])$/")
+            ),
+        "web_empresa"=>FILTER_VALIDATE_URL,
+        "telefono_empresa"=>array(
+            "filter"=>FILTER_VALIDATE_REGEXP,
+            "options"=>array("regexp"=>"/^\d{9}$/")
+            ),
+        "cuenta_bancaria"=>array(
+            "filter"=>FILTER_VALIDATE_REGEXP,
+            "options"=>array("regexp"=>"/^\d{20}$/")
+            ),
+        "mail_empresa"=>FILTER_VALIDATE_EMAIL
+        );
+    $result = filter_input_array(INPUT_POST, $filtros);
+    if(!$result['correo'] || !$result['mail_empresa']){
+        $error[] = 'El correo no tiene el formato adecuado';
+    }
+    if(!$result['nif_empresa']){
+        $error[] = 'El NIF no tiene el formato adecuado';
+    }
+    if(!$result['web_empresa']){
+        $error[] = 'La web no tiene el formato adecuado';
+    }
+    if(!$result['cuenta_bancaria']){
+        $error[] = 'La cuenta bancaria no tiene el formato adecuado';
+    }
+    if(!$result['telefono_empresa']){
+        $error[] = 'El telefono no tiene el formato adecuado';
+    }
+    
     if (!isset($error)) {
 
         $correonuevo = sanitarString($_POST['correo']);
