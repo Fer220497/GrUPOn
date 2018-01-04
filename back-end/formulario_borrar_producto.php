@@ -3,9 +3,10 @@
     require_once '../back-end/funciones.php';
     
     if(isset($_POST['borrar']) && isset($_POST['check'])){
-        $sql = "DELETE FROM CUENTA WHERE CORREO='$correo'";
+        $id = null; //HAY QUE ENCONTRAR UNA FORMA DE OBTENER EL ID DEL PRODUCTO
+        $sql = "DELETE FROM PRODUCTOS WHERE PRODUCTO_ID='$id'";
         realizarQuery('grupon', $sql);  //OP DELETE SOBRE CUENTA, CLIENTE Y EMPRESA
-        header('Location: ../back-end/logout.php');
+        //header('Location: ../back-end/logout.php'); LLEVALRO AL MENU PRINCIPAL?
     }
     
     echo muestraProducto(1);
