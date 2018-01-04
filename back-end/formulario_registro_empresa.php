@@ -100,7 +100,7 @@ if (isset($_POST['registroEmpresa'])) {
         "mail_empresa"=>FILTER_VALIDATE_EMAIL
         );
     $result = filter_input_array(INPUT_POST, $filtros);
-    if(!$result['correo'] || !result['mail_empresa']){
+    if(!$result['correo'] || !$result['mail_empresa']){
         $error[] = 'El correo no tiene el formato adecuado';
     }
     if(!$result['nif_empresa']){
