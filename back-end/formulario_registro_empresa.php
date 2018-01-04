@@ -52,22 +52,22 @@ if (isset($_POST['registroEmpresa'])) {
         $error[] = 'Las contrase&ntilde;as no coinciden';
     }
     //RESTRICCION: QUE NO HAYA COSAS VACIAS:
-    if(count($_POST['nombre_empresa']) == 0 || count($_POST['nombre_empresa']) > $tamNombreEmpresa){
+    if(trim($_POST['nombre_empresa']) != '' || strlen($_POST['nombre_empresa']) > $tamNombreEmpresa){
         $error[] = 'Nombre empresa no cumple criterios de tama&ntilde;o';
     }
-    if (count($_POST['correo']) == 0 || count($_POST['correo']) > $tamCorreo) {
+    if (trim($_POST['correo']) != ''|| strlen($_POST['correo']) > $tamCorreo) {
         $error[] = 'Correo de cuenta no cumple criterios de tama&ntilde;o';
     }
-    if (count($_POST['pwd']) == 0) {
+    if (trim($_POST['pwd']) != '') {
         $error[] = 'Contrase&ntilde;a empresa no cumple criterios de tama&ntilde;o';
     }
-    if (count($_POST['web_empresa']) == 0 || count($_POST['web_empresa']) > $tamWeb) {
+    if (trim($_POST['web_empresa']) != '' || strlen($_POST['web_empresa']) > $tamWeb) {
         $error[] = 'Web de la empresa no cumple criterios de tama&ntilde;o';
     }
-    if (count($_POST['mail_empresa']) == 0 || count($_POST['mail_empresa']) > $tamCorreo) {
+    if (trim($_POST['mail_empresa']) != '' || strlen($_POST['mail_empresa']) > $tamCorreo) {
         $error[] = 'Mail de contacto de la empresa no cumple criterios de tama&ntilde;o';
     }
-    if(count($_POST['direccion_empresa']) == 0 || count($_POST['direccion_empresa']) > $tamDireccion){
+    if(trim($_POST['direccion_empresa']) != '' || strlen($_POST['direccion_empresa']) > $tamDireccion){
         $error[] = 'Direcci&oacute;n de la empresa no cumple criterios de tama&ntilde;o';
     }
     //RESTRICCION: Captcha funcionando:
