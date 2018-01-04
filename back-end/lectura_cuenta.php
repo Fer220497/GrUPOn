@@ -27,8 +27,9 @@ require_once '../back-end/funciones.php';
      * @param type $arrayClientes
      */
     function muestraDatosCliente($fila){
+        global $arrayComunidades;
         return '<table border="1"><tr><td>Correo</td><td><span class="dato">' . $_SESSION['cuenta'] . '</span></td></tr>' . 
-                '<tr><td>Comunidad Aut&oacute;noma: '.$arrayComunidades[$fila['nombre_ca']].'</td></tr>'.
+                '<tr><td>Comunidad Aut&oacute;noma</td><td>'.$arrayComunidades[$fila['nombre_ca']].'</td></tr>'.
                '<tr><td>Nombre</td><td><span class="dato">' . $_SESSION['nombre'] . '</span></td>' .
                '<tr><td>Apellidos</td><td><span class="dato">' . $fila['apellidos_cliente'] . '</span></td></table>';
     }
