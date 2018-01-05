@@ -32,8 +32,7 @@ and open the template in the editor.
                         return c.substring(name.length, c.length);
                     }
                 }
-                
-                return "";
+                                return "";
             }
           
 

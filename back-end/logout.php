@@ -8,6 +8,7 @@
     session_destroy();
    
     
+    
     header('Location: index.php');  //Devuelve a la página anterior.
      
 ?>
