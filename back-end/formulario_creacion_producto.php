@@ -22,7 +22,7 @@ if (isset($_POST['crearProducto'])) {
     $id_catalogo = $_POST["id_catalogo"];
     if ($_POST["id_catalogo"] != "") {
         $sql = "SELECT id_catalogo FROM CATALOGO WHERE correo='$correo ' AND id_catalogo='$id_catalogo'";
-        $result = realizarQuery('grupon', $sql);
+        $result = realizarQuery($esquema, $sql);
         if (mysqli_num_rows($result) == 0) {
             $error[] = "No existe ese catalogo";
         }
@@ -97,6 +97,7 @@ if (!isset($_POST["crearProducto"]) || isset($error)) {
  */
 
 function formularioCrearProducto() {
+    global $esquema;
     $correo = $_SESSION["cuenta"];
 
 
@@ -108,7 +109,7 @@ function formularioCrearProducto() {
             'Cat&aacute;logo <select name="id_catalogo">' .
             '<option value=""></option>'; ///////////POR AÑADIR
     $sql = "SELECT id_catalogo, nombre FROM CATALOGO WHERE correo='$correo'";
-    $result = realizarQuery('grupon', $sql);
+    $result = realizarQuery($esquema, $sql);
     while ($fila = mysqli_fetch_row($result)) {
         $form .= '<option value="' . $fila[0] . '">' . $fila[1] . '</option>';
     }

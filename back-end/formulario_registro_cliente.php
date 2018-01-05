@@ -103,7 +103,7 @@ if (isset($_POST['registroCliente'])) {
             foreach ($arrayCategorias as $categoria => $val) {
                 if (isset($_POST[$categoria])) {
                     $sql = "INSERT INTO AFINIDADES VALUES ('$correo', '$categoria')";
-                    realizarQuery('grupon', $sql);
+                    realizarQuery($esquema, $sql);
                 }
             }
             //Finalmente redirigimos al usuario

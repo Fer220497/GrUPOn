@@ -5,7 +5,7 @@
     
     if(isset($_POST['borrar']) && isset($_POST['check'])){
             $sql = "DELETE FROM CUENTA WHERE CORREO='$correo'";
-            realizarQuery('grupon', $sql);  //OP DELETE SOBRE CUENTA, CLIENTE Y EMPRESA
+            realizarQuery($esquema, $sql);  //OP DELETE SOBRE CUENTA, CLIENTE Y EMPRESA
             header('Location: ../back-end/logout.php');
         }
     

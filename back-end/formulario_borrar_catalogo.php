@@ -6,7 +6,7 @@
         $id = $_SESSION['id_catalogo_borrar'];
         unset($_SESSION['id_catalogo_borrar']);
         $sql = "DELETE FROM CATALOGO WHERE CATALOGO_ID=$id";
-        realizarQuery('grupon', $sql);  //OP DELETE SOBRE
+        realizarQuery($esquema, $sql);  //OP DELETE SOBRE
         //header('Location: ../back-end/logout.php'); LLEVALRO AL MENU PRINCIPAL?
     }
 

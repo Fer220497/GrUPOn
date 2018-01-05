@@ -9,7 +9,7 @@ $correo = $_SESSION['cuenta'];
 //Primero traemos los datos del cliente de la DB
 $sql = "SELECT * FROM CUENTA,CLIENTE WHERE CUENTA.CORREO='$correo' AND CLIENTE.CORREO='$correo'";
 
-$resultado = realizarQuery('grupon', $sql);
+$resultado = realizarQuery($esquema, $sql);
 $fila = mysqli_fetch_array($resultado);
 
 $nombre = $fila['nombre_cliente'];
@@ -18,7 +18,7 @@ $ca = $fila['nombre_ca'];
 
 //Después obtengo los datos de sus afinidades.
 $sql = "SELECT * FROM AFINIDADES WHERE CORREO='$correo'";
-$resultado = realizarQuery('grupon', $sql);
+$resultado = realizarQuery($esquema, $sql);
 while ($fila = mysqli_fetch_array($resultado)) {
     $afinidades[] = $fila['nombre_categoria'];
 }
@@ -69,15 +69,15 @@ if (isset($_POST['cambiarDatos'])) {
         $apellidos = sanitarString($_POST['apellidos_cliente']);
         $nombre_ca = $_POST['comunidad_autonoma'];
         $sql = "UPDATE CUENTA SET CORREO='$correoNuevo', NOMBRE_CA='$nombre_ca' WHERE CORREO='$correo'";
-        realizarQuery('grupon', $sql);
+        realizarQuery($esquema, $sql);
         $sql = "UPDATE CLIENTE SET NOMBRE_CLIENTE='$nombre', APELLIDOS_CLIENTE='$apellidos' WHERE CORREO='$correoNuevo'";
-        realizarQuery('grupon', $sql);
+        realizarQuery($esquema, $sql);
         $sql = "DELETE FROM AFINIDADES WHERE CORREO='$correoNuevo'";
-        realizarQuery('grupon', $sql);
+        realizarQuery($esquema, $sql);
         foreach ($arrayCategorias as $categoria => $val) {
             if (isset($_POST[$categoria])) {
                 $sql = "INSERT INTO AFINIDADES VALUES('$correoNuevo','$categoria')";
-                realizarQuery('grupon', $sql);
+                realizarQuery($esquema, $sql);
             }
         }
         $_SESSION['cuenta'] = $correoNuevo;
@@ -96,7 +96,7 @@ if (isset($_POST['cambiarDatos'])) {
     }
     //RESTRICCIÓN 1: la contraseña actual debe ser correcta.
     $sql = "SELECT * FROM CUENTA WHERE CORREO='$correo'";
-    $resultado = realizarQuery('grupon', $sql);
+    $resultado = realizarQuery($esquema, $sql);
     $fila = mysqli_fetch_array($resultado);
     if (!password_verify($_POST['pwd_old'], $fila['pwd'])) {
         $error[] = 'Contrase&ntilde;a incorrecta';
@@ -132,7 +132,7 @@ if (isset($_POST['cambiarDatos'])) {
         $pwdNew = sanitarString($_POST['pwd_new']);
         $hash = $hash = password_hash($pwdNew, PASSWORD_BCRYPT);
         $sql = "UPDATE CUENTA SET PWD='$hash' WHERE CORREO='$correo'";
-        realizarQuery('grupon', $sql);
+        realizarQuery($esquema, $sql);
     }
 }
 

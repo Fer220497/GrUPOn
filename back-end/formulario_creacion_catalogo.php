@@ -6,10 +6,10 @@ require_once '../back-end/funciones.php';
 
 foreach ($arrayCategorias as $categoria=>$val) {
     $sql = 'SELECT * FROM CATEGORIA';
-    $result = realizarQuery('grupon', $sql);
+    $result = realizarQuery($esquema, $sql);
     if (mysqli_num_rows($result) != count($arrayCategorias)) {
         $sql = "INSERT INTO CATEGORIA VALUES ('$categoria')";
-        realizarQuery('grupon', $sql);
+        realizarQuery($esquema, $sql);
     }
 }
 
@@ -25,7 +25,7 @@ if (isset($_POST['nuevo_cat'])) {
         $nombre = sanitarString($_POST['nombre']);
         $categoria = $_POST['categoria'];
         $query = "INSERT INTO CATALOGO (correo, nombre_categoria, nombre) VALUES ('". $correo ."', '". $categoria ."','". $nombre ."')";
-        if(realizarQuery('grupon', $query)){
+        if(realizarQuery($esquema, $query)){
             echo 'placeholder bueno';
         } else {
             echo 'placeholder malo';

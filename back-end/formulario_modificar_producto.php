@@ -21,7 +21,7 @@ if (isset($_POST['modificarProducto'])) {
     }
     if (!isset($errores)) {
         $sql = 'SELECT * FROM PRODUCTO WHERE id_producto = "' . 2 . '"';
-        $result = realizarQuery('grupon', $sql);
+        $result = realizarQuery($esquema, $sql);
         $producto = mysqli_fetch_row($result);
         $cantidadVendida = $producto[9];
         $nombre = $_POST['nombre'];
@@ -34,7 +34,7 @@ if (isset($_POST['modificarProducto'])) {
         $cantidad = $_POST['cantidad'];
         $total = $cantidadVendida + $cantidad;
         $sql = "UPDATE PRODUCTO SET nombre_categoria = '" . $categoria . "', nombre_ca = '" . $comunidad . "', nombre = '" . $nombre . "', precio = '" . $precio . "', descripcion = '" . $descripcion . "', localizacion = '" . $localizacion . "', cantidad_disponible = '" . $cantidad . "', cantidad_total ='" . $total . "', porcentaje_descuento = '" . $porcentaje_descuento . "' WHERE id_producto = 2";
-        realizarQuery('grupon', $sql);
+        realizarQuery($esquema, $sql);
     }
 }
 if (!isset($_POST['modificarProducto']) || isset($errores)) {
@@ -45,8 +45,9 @@ if (!isset($_POST['modificarProducto']) || isset($errores)) {
 }
 
 function formularioModificarProducto($id_producto) {
+    global $esquema;
     $sql = 'SELECT * FROM PRODUCTO WHERE id_producto = "' . $id_producto . '"';
-    $result = realizarQuery('grupon', $sql);
+    $result = realizarQuery($esquema, $sql);
     $producto = mysqli_fetch_row($result);
     $form = '<form action="" method="post">' .
             'Nombre: <input type="text" name="nombre" value="' . $producto[4] . '"/><br/>' .

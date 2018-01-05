@@ -28,7 +28,7 @@ if (isset($_POST['modificarCatalogo'])) {
        $nombre_categoria=sanitarString($_POST['categoria']);
        $id_catalogo=$_COOKIE['id_catalogo'];
        $sql="UPDATE CATALOGO SET nombre='$nombre', nombre_categoria='$nombre_categoria' WHERE id_catalogo='$id_catalogo'";
-       realizarQuery('grupon', $sql);
+       realizarQuery($esquema, $sql);
        //header('Location: modificar_catalogo.php');
    }
 }
@@ -80,6 +80,7 @@ echo formularioModificacionCatalogo("Botines23");
  */
 
 function formularioModificacionCatalogo($nombreCatalogo) {
+    global $esquema;
     $correo = $_SESSION['cuenta'];
     $sql = "SELECT * FROM CATALOGO WHERE CORREO='$correo' AND NOMBRE='$nombreCatalogo'";
     $result = realizarQuery("grupon", $sql);

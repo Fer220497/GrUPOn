@@ -177,18 +177,18 @@ function inicializarDB() {
     global $arrayComunidades;
     foreach ($arrayComunidades as $key => $val) {
         $sql = 'SELECT * FROM COMUNIDAD_AUTONOMA';
-        $result = realizarQuery('grupon', $sql);
+        $result = realizarQuery($esquema, $sql);
         if (mysqli_num_rows($result) != count($arrayComunidades)) {
             $sql = "INSERT INTO COMUNIDAD_AUTONOMA VALUES ('$key')";
-            realizarQuery('grupon', $sql);
+            realizarQuery($esquema, $sql);
         }
     }
     foreach ($arrayCategorias as $key => $val) {
         $sql = 'SELECT * FROM CATEGORIA';
-        $result = realizarQuery('grupon', $sql);
+        $result = realizarQuery($esquema, $sql);
         if (mysqli_num_rows($result) != count($arrayCategorias)) {
             $sql = "INSERT INTO CATEGORIA VALUES ('$key')";
-            realizarQuery('grupon', $sql);
+            realizarQuery($esquema, $sql);
         }
     }
 }

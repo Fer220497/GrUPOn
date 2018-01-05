@@ -136,11 +136,11 @@ if (isset($_POST['registroEmpresa'])) {
             //No existe esa cuenta, creo una nueva.
             $hash = password_hash($pwd, PASSWORD_BCRYPT); //60 chars wide.
             $sql = "INSERT INTO CUENTA VALUES('$correo', '$comunidad_autonoma', '$hash')";
-            realizarQuery('grupon', $sql);
+            realizarQuery($esquema, $sql);
             $sql = "INSERT INTO EMPRESA VALUES('$correo','$nombre_empresa',"
                     . "'$direccion_empresa','$nif_empresa','$web_empresa',$cuenta_bancaria,"
                     . "$telefono_empresa, '$mail_empresa')";
-            realizarQuery('grupon', $sql);
+            realizarQuery($esquema, $sql);
             //Finalmente redirigimos al usuario
             header('Location: login.php');
         }

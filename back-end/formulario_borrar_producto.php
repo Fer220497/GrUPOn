@@ -6,7 +6,7 @@
         $id = $_SESSION['id_producto_borrar'];
         unset($_SESSION['id_producto_borrar']);
         $sql = "DELETE FROM PRODUCTOS WHERE PRODUCTO_ID=$id";
-        realizarQuery('grupon', $sql);  //OP DELETE SOBRE CUENTA, CLIENTE Y EMPRESA
+        realizarQuery($esquema, $sql);  //OP DELETE SOBRE CUENTA, CLIENTE Y EMPRESA
         //header('Location: ../back-end/logout.php'); LLEVALRO AL MENU PRINCIPAL?
     }
     

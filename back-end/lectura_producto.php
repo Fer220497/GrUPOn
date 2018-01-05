@@ -6,10 +6,11 @@ require_once '../back-end/funciones.php';
      * Muestra el producto pasado por referencia
      */
     function muestraProducto($id){
+        global $esquema;
         global $arrayComunidades;
         global $arrayCategorias;
         $query = "SELECT * FROM PRODUCTO WHERE ID_PRODUCTO='$id'";
-        $result = realizarQuery('grupon', $query);
+        $result = realizarQuery($esquema, $query);
         $fila = mysqli_fetch_array($result);
         $table = '<table border="1">'
                 . '<tr>'

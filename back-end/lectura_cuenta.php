@@ -9,12 +9,12 @@ require_once '../back-end/funciones.php';
         
         if($_SESSION['tipo'] === 'cliente'){
             $sql = "SELECT * FROM CUENTA,CLIENTE WHERE CUENTA.CORREO='$correo' AND CLIENTE.CORREO='$correo'";
-            $result = realizarQuery('grupon', $sql);
+            $result = realizarQuery($esquema, $sql);
             $fila = mysqli_fetch_array($result);    //OP READ SOBRE CLIENTE
             $string = muestraDatosCliente($fila);
         }else{
             $sql = "SELECT * FROM CUENTA,EMPRESA WHERE EMPRESA.CORREO='$correo' AND CUENTA.CORREO='$correo'";
-            $result = realizarQuery('grupon', $sql);
+            $result = realizarQuery($esquema, $sql);
             $fila = mysqli_fetch_array($result);    //OP READ SOBRE EMPRESA
             $string = muestraDatosEmpresa($fila);
         } 
@@ -39,6 +39,7 @@ require_once '../back-end/funciones.php';
      * @param type $arrayEmpresas
      */
     function muestraDatosEmpresa($fila){
+        global $esquema;
         global $arrayComunidades;
         return '<table border="1"><tr><td>Correo</td><td><span class="dato">' . $_SESSION['cuenta'] . '</span></td></tr>' .
                 '<tr><td>Comunidad Aut&oacute;noma</td><td>'.$arrayComunidades[$fila['nombre_ca']].'</td></tr>'.

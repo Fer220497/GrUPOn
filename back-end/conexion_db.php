@@ -1,4 +1,5 @@
 <?php
+        $esquema = 'grupon';
         /**
          * Función que realiza una query sobre una base de datos y retorna el resultado.
          * @param string $esquema

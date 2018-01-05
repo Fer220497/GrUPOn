@@ -44,7 +44,7 @@ if (isset($_POST['busqueda'])) {
         //BÚSQUEDA LOCAL
         else {
             $sql = "SELECT * FROM CUENTA WHERE correo ='" . $_SESSION['cuenta'] . "'";
-            $result = realizarQuery('grupon', $sql);
+            $result = realizarQuery($esquema, $sql);
             $ca = mysqli_fetch_row($result)[1];
             //BÚSQUEDA CON CATEGORIA
             if ($_COOKIE['categoria'] != 'general') {
