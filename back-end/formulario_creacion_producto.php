@@ -49,8 +49,20 @@ if (isset($_POST['crearProducto'])) {
     if ($_POST["cantidad_disponible"] == 0) {
         $error[] = "Ponga una cantidad";
     }
-    if (!isset($_POST["ruta_imagen"])) {
+    if (!isset($_FILES["imagen"])) {
         $error[] = "Debes introducir una imagen";
+    }
+    if (!(soloIMG($_FILES['imagen']))) {
+        $error[] = "NO ES UNA IMAGEN";
+    }
+    if (!limiteTamanyo($_FILES["imagen"], 1000 * 5120)) {
+        $error[] = "TAMAÑO MAXIMO";
+    }
+    $nombre = sanitarString($_POST["nombre"]);
+    $sql = "SELECT nombre FROM PRODUCTO WHERE nombre='$nombre'";
+    $result = realizarQuery("grupon", $sql);
+    if (mysqli_num_rows($result) > 0) {
+        $error[] = "Nombre ya existente";
     }
     if (!isset($error)) {
         $nombre = sanitarString($_POST["nombre"]);
@@ -59,28 +71,37 @@ if (isset($_POST['crearProducto'])) {
         $localizacion = sanitarString($_POST["localizacion"]);
         $porcentaje_descuento = sanitarString($_POST["porcentaje_descuento"]);
         $cantidad_disponible = sanitarString($_POST["cantidad_disponible"]);
-        $ruta_imagen=sanitarString($_POST["ruta_imagen"]);
+        $imagen = sanitarString($_FILES["imagen"]["name"]);
         $id_catalogo = $_POST['id_catalogo'];
         $nombre_categoria = $_POST['nombre_categoria'];
 
+
+        
+        $dirpath = realpath(dirname(getcwd()));
+        $arch=$_FILES['imagen']['name'];
         if ($_POST["id_catalogo"] == "") {
             $id_catalogo = "NULL";
             $sql = "INSERT INTO PRODUCTO (nombre_categoria, nombre_ca, id_catalogo, nombre, precio, descripcion, localizacion, porcentaje_descuento, cantidad_vendida, cantidad_total, cantidad_disponible, ruta_imagen  )"
                     . " VALUES('" . $_POST['nombre_categoria'] . "','" . $_POST['nombre_ca'] . "'," . $id_catalogo . ",'" . $nombre .
-                    "','" . $precio . "','" . $descripcion . "','" . $localizacion . "','" . $porcentaje_descuento . "','0','" . $cantidad_disponible . "','" . $cantidad_disponible . "','".$ruta_imagen."')";
+                    "','" . $precio . "','" . $descripcion . "','" . $localizacion . "','" . $porcentaje_descuento . "','0','" . $cantidad_disponible . "','" . $cantidad_disponible . "','" .$arch . "')";
         } else {
             $sql = "INSERT INTO PRODUCTO (nombre_categoria, nombre_ca, id_catalogo, nombre, precio, descripcion, localizacion, porcentaje_descuento, cantidad_vendida, cantidad_total, cantidad_disponible, ruta_imagen )"
                     . " VALUES('" . $_POST['nombre_categoria'] . "','" . $_POST['nombre_ca'] . "','" . $_POST['id_catalogo'] . "','" . $nombre .
-                    "','" . $precio . "','" . $descripcion . "','" . $localizacion . "','" . $porcentaje_descuento . "','0','" . $cantidad_disponible . "','" . $cantidad_disponible . "','".$ruta_imagen."')";
+                    "','" . $precio . "','" . $descripcion . "','" . $localizacion . "','" . $porcentaje_descuento . "','0','" . $cantidad_disponible . "','" . $cantidad_disponible . "','" . $arch . "')";
         }
         realizarQuery("grupon", $sql);
-        $sql = "SELECT id_producto FROM PRODUCTO WHERE NOMBRE='" . $nombre . "'";
+        $sql = "SELECT id_producto FROM PRODUCTO WHERE nombre='" . $nombre . "'";
         $result = realizarQuery("grupon", $sql);
         $datospro = mysqli_fetch_array($result);
         $idproducto = $datospro['id_producto'];
 
-        $sql = "INSERT INTO LANZAMIENTOS VALUES('$correo','$idproducto',curdate(),'NULL ','0')";
+        $sql = 'INSERT INTO LANZAMIENTOS(correo, id_producto, fecha_ini, fecha_fin, num_ventas ) VALUES("' . $correo . '",' . $idproducto . ',curdate(),curdate() ,0)';
         realizarQuery("grupon", $sql);
+        $uploadroot="/docs";
+        $arch=$_FILES['imagen']['name'];
+        $tmp=$_FILES['imagen']['tmp_name'];
+        echo $dirpath;
+        move_uploaded_file($tmp,"$dirpath/imagenesSubidas/$arch");
     }
 }
 
@@ -104,8 +125,8 @@ function formularioCrearProducto() {
     $correo = $_SESSION["cuenta"];
 
 
-    $form = '<form action="" method="post">' .
-            'Categor&iacute;a: <select name="nombre_categoria">' .optionCategorias().
+    $form = '<form action="" method="post" enctype="multipart/form-data">' .
+            'Categor&iacute;a: <select name="nombre_categoria">' . optionCategorias() .
             '</select><br>' .
             'Comunidad Aut&oacute;noma: <select name="nombre_ca">' . opcionesComunidades() .
             '</select><br>' .
@@ -123,7 +144,7 @@ function formularioCrearProducto() {
             'Localizaci&oacute;n: <input type="text" name="localizacion" /><br/>' .
             'Porcentaje Descuento: <input type="number" name="porcentaje_descuento" /><br/>' .
             'Cantidad Disponible: <input type="number" name="cantidad_disponible" /><br/>' .
-            'Enlace de la Imagen:<input type="text" name="ruta_imagen"/>'.
+            'Imagen:<input type="file" name="imagen"/>' .
             '<input type="submit" name="crearProducto" value="Enviar"/>' .
             '</form>';
     return $form;

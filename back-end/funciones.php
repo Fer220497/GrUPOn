@@ -19,6 +19,19 @@ function existeCorreo($correo) {
     }
 }
 
+function soloIMG($fichero) {
+    $tiposAceptados = Array('image/gif', 'image/jpeg', 'image/pjpeg');
+    if (array_search($fichero['type'], $tiposAceptados) === false) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function limiteTamanyo($fichero,$limite) {
+    return $fichero['size']<=$limite;
+}
+
 $arrayComunidades = array(
     "andalucia" => "Andaluc&iacute;a",
     "aragon" => "Arag&oacute;n",
@@ -60,8 +73,8 @@ function menuCategorias() {
 
         $form .= '<a href="buscar_producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $key . '\', 1)">' . $val . '</a>   ';
     }
-    
-    $form.='<a href="buscar_producto.php" onclick="setCookie(\''.$cookie_name.'\',\'general\',1)">General</a>';
+
+    $form .= '<a href="buscar_producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'general\',1)">General</a>';
     return $form;
 }
 
@@ -74,7 +87,7 @@ function opcionesComunidades() {
     foreach ($arrayComunidades as $key => $val) {
         $opt .= '<option value="' . $key . '">' . $val . '</option>';
     }
-    
+
     return $opt;
 }
 
