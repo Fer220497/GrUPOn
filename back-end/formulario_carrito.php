@@ -1,8 +1,9 @@
 <?php
     require_once '../back-end/funciones.php';
+    //setcookie('carrito','1,2,3',time()+ 60*60*24*30);
     
     if(isset($_POST['borraCarrito'])){
-        $carrito = $_COOKIE['carrito'];
+        $carrito = explode(',',$_COOKIE['carrito']);
         if(!isset($_POST['id_prod'])){
             $error[] = 'Has trampeado el formulario';
         }else{
@@ -12,7 +13,8 @@
         }
         if(!isset($error)){
             $carrito = array_diff($carrito, [$POST['id_prod']]);
-            setcookie('carrito',$carrito,60*60*24*30);
+            $string = implode(',', $carrito);
+            setcookie('carrito',$string,60*60*24*30);
             header('carrito.php');
         }
     }
