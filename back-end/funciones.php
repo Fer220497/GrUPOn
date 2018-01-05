@@ -8,7 +8,7 @@ function historialCliente($correo){
     $html = '<table border="1"><tr>'
             . '<th>Nombre Producto</th><th>Fecha Compra</th><th>Cantidad</th><th>Precio</th></tr>';
     while($fila = mysqli_fetch_array($result)){
-        $html .= '<tr><td>'.$fila['nombre'].'</td><td>'.$fila['fecha'].'</td><td>'.$fila['cantidad'].'</td><td>'.$fila['cantidad']*$fila['precio'].'</td></tr>';
+        $html .= '<tr><td><a href="producto.php" onclick="setCookie('.$fila['id_producto'].',1)">'.$fila['nombre'].'</a></td><td>'.$fila['fecha'].'</td><td>'.$fila['cantidad'].'</td><td>'.$fila['cantidad']*$fila['precio'].'</td></tr>';
     }
     $html .= '</table>';
     return $html;
@@ -20,7 +20,7 @@ function historialVentas($correo){
     $html = '<table border="1">'
             . '<th>Nombre Producto</th><th>Fecha Venta</th><th>N&uacute;mero Ventas</th><th>Beneficio Obtenido</th>';
     while($fila = mysqli_fetch_array($result)){
-        $html .= '<tr><td>'.$fila['nombre'].'</td><td>'.$fila['fecha_ini'].'</td><td>'.$fila['num_ventas'].'</td><td>'.$fila['num_ventas']*$fila['precio'].'</td></tr>';
+        $html .= '<tr><td><a href="producto.php" onclick="setCookie('.$fila['id_producto'].',1)">'.$fila['nombre'].'</a></td><td>'.$fila['fecha_ini'].'</td><td>'.$fila['num_ventas'].'</td><td>'.$fila['num_ventas']*$fila['precio'].'</td></tr>';
     }
     return $html;
 }
