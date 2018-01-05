@@ -58,6 +58,7 @@ function formularioModificarProducto($id_producto) {
             'Localizaci&oacute;n: <input type="text" name="localizacion" value="' . $producto[7] . '" /><br/>' .
             'Porcentaje descuento: <input type="number" name="porcentaje_descuento" value="' . $producto[8] . '" /><br/>' .
             'Cantidad disponible: <input type="number" name="cantidad" value="' . $producto[11] . '" /><br/>' .
+            '<div><img alt="' . $producto[4] . '" src = "..\img\\' . $producto[12] . ' height = 200/></div>' .
             '<input type="submit" name="modificarProducto" value="Enviar"/>' .
             '</form>';
     return $form;
