@@ -2,25 +2,25 @@
 
 require_once '../back-end/conexion_db.php';
 
-function historialCliente($correo){
+function historialCliente($correo) {
     $sql = "SELECT * FROM COMPRA,PRODUCTO WHERE COMPRA.CORREO='$correo' AND CUENTA.ID_PRODUCTO = PRODUCTO.ID_PRODUCTO";
     $result = realizarQuery($esquema, $sql);
     $html = '<table border="1"><tr>'
             . '<th>Nombre Producto</th><th>Fecha Compra</th><th>Cantidad</th><th>Precio</th></tr>';
-    while($fila = mysqli_fetch_array($result)){
-        $html .= '<tr><td><a href="producto.php" onclick="setCookie('.$fila['id_producto'].',1)">'.$fila['nombre'].'</a></td><td>'.$fila['fecha'].'</td><td>'.$fila['cantidad'].'</td><td>'.$fila['cantidad']*$fila['precio'].'</td></tr>';
+    while ($fila = mysqli_fetch_array($result)) {
+        $html .= '<tr><td><a href="producto.php" onclick="setCookie(' . $fila['id_producto'] . ',1)">' . $fila['nombre'] . '</a></td><td>' . $fila['fecha'] . '</td><td>' . $fila['cantidad'] . '</td><td>' . $fila['cantidad'] * $fila['precio'] . '</td></tr>';
     }
     $html .= '</table>';
     return $html;
 }
 
-function historialVentas($correo){
+function historialVentas($correo) {
     $sql = "SELECT * FROM LANZAMIENTOS,PRODUCTO WHERE LANZAMIENTOS.CORREO='$correo' AND LANZAMIENTOS.PRODUCTO_ID=PRODUCTO.ID_PRODUCTO";
     $result = realizarQuery($esquema, $sql);
     $html = '<table border="1">'
             . '<th>Nombre Producto</th><th>Fecha Venta</th><th>N&uacute;mero Ventas</th><th>Beneficio Obtenido</th>';
-    while($fila = mysqli_fetch_array($result)){
-        $html .= '<tr><td><a href="producto.php" onclick="setCookie('.$fila['id_producto'].',1)">'.$fila['nombre'].'</a></td><td>'.$fila['fecha_ini'].'</td><td>'.$fila['num_ventas'].'</td><td>'.$fila['num_ventas']*$fila['precio'].'</td></tr>';
+    while ($fila = mysqli_fetch_array($result)) {
+        $html .= '<tr><td><a href="producto.php" onclick="setCookie(' . $fila['id_producto'] . ',1)">' . $fila['nombre'] . '</a></td><td>' . $fila['fecha_ini'] . '</td><td>' . $fila['num_ventas'] . '</td><td>' . $fila['num_ventas'] * $fila['precio'] . '</td></tr>';
     }
     return $html;
 }
@@ -42,12 +42,12 @@ function existeCorreo($correo) {
 }
 
 function esImagen($fichero) {
-    $tiposAceptados = Array('image/gif', 'image/jpeg', 'image/pjpeg' , 'image/png');
-    return in_array($fichero['type'],$tiposAceptados);
+    $tiposAceptados = Array('image/gif', 'image/jpeg', 'image/pjpeg', 'image/png');
+    return in_array($fichero['type'], $tiposAceptados);
 }
 
-function limiteTamanyo($fichero,$limite) {
-    return $fichero['size']<=$limite;
+function limiteTamanyo($fichero, $limite) {
+    return $fichero['size'] <= $limite;
 }
 
 $arrayComunidades = array(
@@ -85,7 +85,7 @@ $arrayCategorias = array(
 function menuCategorias() {
     global $arrayCategorias;
     $cookie_name = "categoria";
-  
+
     $form = '<div><a href="" onclick="setCookie(\'' . $cookie_name . '\',\'general\',1)">General</a></div>';
     foreach ($arrayCategorias as $key => $val) {
 
@@ -225,17 +225,74 @@ function inicializarDB() {
     }
 }
 
-function tipoCuenta($correo){
+function tipoCuenta($correo) {
     //True cliente, false empresa
     global $esquema;
     $cuenta = TRUE;
     $query = "SELECT * FROM CLIENTE WHERE correo = '$correo'";
     $result = realizarQuery($esquema, $query);
-    
-    if(mysqli_num_rows($result) == 0){
+
+    if (mysqli_num_rows($result) == 0) {
         $cuenta = FALSE;
     }
     return $cuenta;
+}
+
+function desplegarPaginaPrincipal() {
+    global $esquema;
+    //BÚSQUEDA NACIONAL
+    if (!isset($_SESSION['cuenta'])) {
+        //BÚSQUEDA CON CATEGORIA
+        if ($_COOKIE['categoria'] != 'general') {
+            $sql = 'SELECT * FROM PRODUCTO WHERE nombre_categoria LIKE "' . $_COOKIE['categoria'] . '" AND cantidad_disponible > 0';
+            $result = realizarQuery($esquema, $sql);
+            echo '<table border=1>';
+            while ($fila = mysqli_fetch_row($result)) {
+                $cookie_name = "productoVisitado";
+                echo '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila[0] . '\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
+            }
+            echo '</table>';
+        }
+        //BÚSQUEDA SIN CATEGORIA
+        else {
+            $sql = 'SELECT * FROM PRODUCTO WHERE cantidad_disponible > 0';
+            $result = realizarQuery($esquema, $sql);
+            echo '<table border=1>';
+            while ($fila = mysqli_fetch_row($result)) {
+                $cookie_name = "productoVisitado";
+                echo '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila[0] . '\',1)" >' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
+            }
+            echo '</table>';
+        }
+    }
+    //BÚSQUEDA LOCAL
+    else {
+        $sql = "SELECT * FROM CUENTA WHERE correo ='" . $_SESSION['cuenta'] . "'";
+        $result = realizarQuery($esquema, $sql);
+        $ca = mysqli_fetch_row($result)[1];
+        //BÚSQUEDA CON CATEGORIA
+        if ($_COOKIE['categoria'] != 'general') {
+            $sql = 'SELECT * FROM PRODUCTO WHERE nombre_categoria LIKE "' . $_COOKIE['categoria'] . '" AND nombre_ca LIKE "' . $ca . '" AND cantidad_disponible > 0';
+            $result = realizarQuery($esquema, $sql);
+            echo '<table border=1>';
+            while ($fila = mysqli_fetch_row($result)) {
+                $cookie_name = "productoVisitado";
+                echo '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila[0] . '\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
+            }
+            echo '</table>';
+        }
+        //BÚSQUEDA SIN CATEGORIA
+        else {
+            $sql = 'SELECT * FROM PRODUCTO WHERE nombre_ca LIKE "' . $ca . '" AND cantidad_disponible > 0';
+            $result = realizarQuery("grupon", $sql);
+            echo '<table border=1>';
+            while ($fila = mysqli_fetch_row($result)) {
+                $cookie_name = "productoVisitado";
+                echo '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila[0] . '\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
+            }
+            echo '</table>';
+        }
+    }
 }
 
 /* * TAMAÑOS MAXIMOS DE LAS VARIABLES EN LA DB* */

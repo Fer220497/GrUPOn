@@ -22,7 +22,9 @@ and open the template in the editor.
                 electronica: "Electrónica",
                 ropa: "Ropa",
                 salud_y_belleza: "Salud y belleza",
-                deporte: "Deporte"};
+                deporte: "Deporte",
+                general: ""
+            };
         </script>
     </head>
     <body>
@@ -50,6 +52,11 @@ and open the template in the editor.
         </nav>
         <section id="body">
             <h2 id="categoria_actual"><div id="cookie"></div><script>$("#cookie").append(document.createTextNode(categorias[getCookie('categoria')]));</script></h2>
+            <p>
+                <?php
+                desplegarPaginaPrincipal();
+                ?>
+            </p>
         </section>
         <footer>
             Grupo &num;2 - GrUPOn&copy;, el fruto dado por el odio hacia nosotros mismos

@@ -20,7 +20,7 @@ if (isset($_POST['busqueda'])) {
             if ($_COOKIE['categoria'] != 'general') {
                 $nombre = $_POST['nombre'];
                 $sql = 'SELECT * FROM PRODUCTO WHERE nombre_categoria LIKE "' . $_COOKIE['categoria'] . '" AND (nombre LIKE "%' . $nombre . '%" OR descripcion LIKE "%' . $nombre . '%") AND cantidad_disponible > 0';
-                $result = realizarQuery("grupon", $sql);
+                $result = realizarQuery($esquema, $sql);
                 echo '<table border=1>';
                 while ($fila = mysqli_fetch_row($result)) {
                     $cookie_name="productoVisitado";
@@ -32,7 +32,7 @@ if (isset($_POST['busqueda'])) {
             else {
                 $nombre = $_POST['nombre'];
                 $sql = 'SELECT * FROM PRODUCTO WHERE nombre LIKE "%' . $nombre . '%" OR descripcion LIKE "%' . $nombre . '%" AND cantidad_disponible > 0';
-                $result = realizarQuery("grupon", $sql);
+                $result = realizarQuery($esquema, $sql);
                 echo '<table border=1>';
                 while ($fila = mysqli_fetch_row($result)) {
                     $cookie_name="productoVisitado";
@@ -50,7 +50,7 @@ if (isset($_POST['busqueda'])) {
             if ($_COOKIE['categoria'] != 'general') {
                 $nombre = $_POST['nombre'];
                 $sql = 'SELECT * FROM PRODUCTO WHERE nombre_categoria LIKE "' . $_COOKIE['categoria'] . '" AND (nombre LIKE "%' . $nombre . '%" OR descripcion LIKE "%' . $nombre . '%") AND nombre_ca LIKE "' . $ca . '" AND cantidad_disponible > 0';
-                $result = realizarQuery("grupon", $sql);
+                $result = realizarQuery($esquema, $sql);
                 echo '<table border=1>';
                 while ($fila = mysqli_fetch_row($result)) {
                     $cookie_name="productoVisitado";
@@ -62,7 +62,7 @@ if (isset($_POST['busqueda'])) {
             else {
                 $nombre = $_POST['nombre'];
                 $sql = 'SELECT * FROM PRODUCTO WHERE (nombre LIKE "%' . $nombre . '%" OR descripcion LIKE "%' . $nombre . '%") AND nombre_ca LIKE "' . $ca . '" AND cantidad_disponible > 0';
-                $result = realizarQuery("grupon", $sql);
+                $result = realizarQuery($esquema, $sql);
                 echo '<table border=1>';
                 while ($fila = mysqli_fetch_row($result)) {
                     $cookie_name="productoVisitado";
