@@ -167,6 +167,8 @@ $recaptcha = '<div data-theme="dark" class="g-recaptcha" data-sitekey="6LeIxAcTA
 //KEY secreta del Recaptcha 
 $secret = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe';
 
+$mapsKey = 'AIzaSyD_7fy3mTEXRN4hyiao6hOjoQjnD_HXrbo';
+
 /**
  * Función que genera un HTML con un array de errores 
  * (el array de errores debe contener unicamente strings)
