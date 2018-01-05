@@ -206,10 +206,11 @@ function inicializarDB() {
 
 function tipoCuenta($correo){
     //True cliente, false empresa
+    global $esquema;
     $cuenta = TRUE;
     $query = "SELECT * FROM CLIENTE WHERE correo = '$correo'";
     $result = realizarQuery($esquema, $query);
-    $result = mysqli_fetch_array($result);
+    
     if(mysqli_num_rows($result) == 0){
         $cuenta = FALSE;
     }

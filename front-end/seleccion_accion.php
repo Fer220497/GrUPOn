@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../back-end/funciones.php';
 ?>
 <!DOCTYPE html>
@@ -64,7 +65,12 @@ and open the template in the editor.
         <button type="submit" onclick="location.href = 'modificar_cuenta_empresa.php'">Modificar Cuenta Empresa</button>
         <br/>Buscar:<br/>
         <button type="submit" onclick="location.href = 'buscar_producto.php'">Buscar Producto</button>
-        <a href="seleccion_accion.php" onclick="setCookie('categoria', 'Viaje', 1)">Categoria Viajes</a>
-        <a href="seleccion_accion.php" onclick="setCookie('categoria', 'General', 1)">Quitar Categoria</a>
+        <?php
+            if(tipoCuenta($_SESSION["cuenta"]) || !isset($_SESSION["cuenta"])){
+                echo '<button type="submit" onclick="location.href = \'mostrar_carrito.php\'">Mostrar Carrito </button>';
+                //<button type="submit" onclick="location.href = 'mostrar_carrito.php'">Mostrar Carrito</button>
+            }
+        ?>
+        
     </body>
 </html>

@@ -1,12 +1,13 @@
 <?php
-
 session_start();
+
 ?>
 <html>
     <head>
         <meta charset="UTF-8">
         <title>Login</title>
         <script src='https://www.google.com/recaptcha/api.js'></script>
+        <script src="../back-end/funciones.js"></script>
     </head>
     <body>
         <h2>Login</h2>

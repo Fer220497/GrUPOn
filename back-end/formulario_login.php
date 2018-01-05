@@ -72,9 +72,10 @@ function formularioLogin() {
             ' Correo: <input type="text" name="correo" /><br/>' .
             ' Contrase&ntilde;a: <input type="password" name="pwd" /><br/>' .
             $recaptcha .
-            ' <input type="submit" name="login" value="Enviar"/>' .
+            ' <input type="submit" onclick="iniciarCarrito()" name="login" value="Enviar"/>' .
             ' </form>';
     return $form;
 }
 
+ 
 ?>

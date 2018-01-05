@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <script src="../back-end/funciones.js"></script>
         <title></title>
     </head>
     <body>
@@ -14,6 +15,7 @@
             //$_SESSION['id_producto_borrar'] = $id;
             echo muestraProducto($_COOKIE["productoVisitado"]);
             echo muestraFormularioBorrar();
+            echo mostrarBotonAnadir($_COOKIE["productoVisitado"]);
         ?>
     </body>
 </html>
