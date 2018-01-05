@@ -19,7 +19,7 @@ function existeCorreo($correo) {
     }
 }
 
-function soloIMG($fichero) {
+function esImagen($fichero) {
     $tiposAceptados = Array('image/gif', 'image/jpeg', 'image/pjpeg' , 'image/png');
     return in_array($fichero['type'],$tiposAceptados);
 }

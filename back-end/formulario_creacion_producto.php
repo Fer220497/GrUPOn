@@ -52,7 +52,7 @@ if (isset($_POST['crearProducto'])) {
     if (!isset($_FILES["imagen"])) {
         $error[] = "Debes introducir una imagen";
     }
-    if (!(soloIMG($_FILES['imagen']))) {
+    if (!(esImagen($_FILES['imagen']))) {
         $error[] = "NO ES UNA IMAGEN";
     }
     if (!limiteTamanyo($_FILES["imagen"], 1000 * 5120)) {
@@ -79,15 +79,19 @@ if (isset($_POST['crearProducto'])) {
         
         $dirpath = realpath(dirname(getcwd()));
         $arch=$_FILES['imagen']['name'];
+        $fichero=explode('.',$_FILES['imagen']['name']);
+        //print_r($fichero);
+        $extension = '.'.$fichero[count($fichero)-1];
+        $nombreFichero = microtime() . $extension;
         if ($_POST["id_catalogo"] == "") {
             $id_catalogo = "NULL";
             $sql = "INSERT INTO PRODUCTO (nombre_categoria, nombre_ca, id_catalogo, nombre, precio, descripcion, localizacion, porcentaje_descuento, cantidad_vendida, cantidad_total, cantidad_disponible, ruta_imagen  )"
                     . " VALUES('" . $_POST['nombre_categoria'] . "','" . $_POST['nombre_ca'] . "'," . $id_catalogo . ",'" . $nombre .
-                    "','" . $precio . "','" . $descripcion . "','" . $localizacion . "','" . $porcentaje_descuento . "','0','" . $cantidad_disponible . "','" . $cantidad_disponible . "','" .$arch . "')";
+                    "','" . $precio . "','" . $descripcion . "','" . $localizacion . "','" . $porcentaje_descuento . "','0','" . $cantidad_disponible . "','" . $cantidad_disponible . "','" .$nombreFichero . "')";
         } else {
             $sql = "INSERT INTO PRODUCTO (nombre_categoria, nombre_ca, id_catalogo, nombre, precio, descripcion, localizacion, porcentaje_descuento, cantidad_vendida, cantidad_total, cantidad_disponible, ruta_imagen )"
                     . " VALUES('" . $_POST['nombre_categoria'] . "','" . $_POST['nombre_ca'] . "','" . $_POST['id_catalogo'] . "','" . $nombre .
-                    "','" . $precio . "','" . $descripcion . "','" . $localizacion . "','" . $porcentaje_descuento . "','0','" . $cantidad_disponible . "','" . $cantidad_disponible . "','" . $arch . "')";
+                    "','" . $precio . "','" . $descripcion . "','" . $localizacion . "','" . $porcentaje_descuento . "','0','" . $cantidad_disponible . "','" . $cantidad_disponible . "','" . $nombreFichero . "')";
         }
         realizarQuery("grupon", $sql);
         $sql = "SELECT id_producto FROM PRODUCTO WHERE nombre='" . $nombre . "'";
@@ -100,8 +104,8 @@ if (isset($_POST['crearProducto'])) {
         $uploadroot="/docs";
         $arch=$_FILES['imagen']['name'];
         $tmp=$_FILES['imagen']['tmp_name'];
-        echo $dirpath;
-        move_uploaded_file($tmp,"$dirpath/imagenesSubidas/$arch");
+        //echo $dirpath;
+        move_uploaded_file($tmp,"../imagenesSubidas/$nombreFichero");
     }
 }
 
