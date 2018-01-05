@@ -21,7 +21,7 @@
          */
         //$_SESSION['id_producto_borrar'] = $id;
         echo muestraProducto($_COOKIE["productoVisitado"]);
-        echo muestraFormularioBorrar();
+        echo muestraFormularioBorrar($_COOKIE["productoVisitado"]);
         echo mostrarBotonAnadir($_COOKIE["productoVisitado"]);
         ?>
     </body>

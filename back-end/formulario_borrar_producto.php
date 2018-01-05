@@ -3,11 +3,12 @@
     require_once '../back-end/funciones.php';
     
     if(isset($_POST['borrar']) && isset($_POST['check'])){
-        $id = $_SESSION['id_producto_borrar'];
-        unset($_SESSION['id_producto_borrar']);
-        $sql = "DELETE FROM PRODUCTOS WHERE PRODUCTO_ID=$id";
+        $id = $_COOKIE['productoVisitado'];
+        $sql = "DELETE FROM lanzamientos WHERE id_producto=$id";
         realizarQuery($esquema, $sql);  //OP DELETE SOBRE CUENTA, CLIENTE Y EMPRESA
-        //header('Location: ../back-end/logout.php'); LLEVALRO AL MENU PRINCIPAL?
+        $sql = "DELETE FROM producto WHERE id_producto=$id";
+        realizarQuery($esquema, $sql);  //OP DELETE SOBRE CUENTA, CLIENTE Y EMPRESA
+        header('Location: ../front-end/index.php');
     }
     
     /**
