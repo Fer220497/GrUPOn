@@ -20,12 +20,8 @@ function existeCorreo($correo) {
 }
 
 function soloIMG($fichero) {
-    $tiposAceptados = Array('image/gif', 'image/jpeg', 'image/pjpeg');
-    if (array_search($fichero['type'], $tiposAceptados) === false) {
-        return false;
-    } else {
-        return true;
-    }
+    $tiposAceptados = Array('image/gif', 'image/jpeg', 'image/pjpeg' , 'image/png');
+    return in_array($fichero['type'],$tiposAceptados);
 }
 
 function limiteTamanyo($fichero,$limite) {
