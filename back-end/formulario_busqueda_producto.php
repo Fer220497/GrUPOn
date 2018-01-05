@@ -43,7 +43,7 @@ if (isset($_POST['busqueda'])) {
         }
         //BÚSQUEDA LOCAL
         else {
-            $sql = "SELECT * FROM CUENTA WHERE correo ='" . $_SESSION['cuenta'] . "' AND cantidad_disponible > 0";
+            $sql = "SELECT * FROM CUENTA WHERE correo ='" . $_SESSION['cuenta'] . "'";
             $result = realizarQuery($esquema, $sql);
             $ca = mysqli_fetch_row($result)[1];
             //BÚSQUEDA CON CATEGORIA
@@ -61,7 +61,7 @@ if (isset($_POST['busqueda'])) {
             //BÚSQUEDA SIN CATEGORIA
             else {
                 $nombre = $_POST['nombre'];
-                $sql = 'SELECT * FROM PRODUCTO WHERE (nombre LIKE "%' . $nombre . '%" OR descripcion LIKE "%' . $nombre . '%") AND nombre_ca LIKE "' . $ca . '"';
+                $sql = 'SELECT * FROM PRODUCTO WHERE (nombre LIKE "%' . $nombre . '%" OR descripcion LIKE "%' . $nombre . '%") AND nombre_ca LIKE "' . $ca . '" AND cantidad_disponible > 0';
                 $result = realizarQuery("grupon", $sql);
                 echo '<table border=1>';
                 while ($fila = mysqli_fetch_row($result)) {
