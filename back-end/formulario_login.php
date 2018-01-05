@@ -68,7 +68,7 @@ function formularioLogin() {
 
     global $recaptcha;
 
-    $form = ' <form action="index.php" method="post">' .
+    $form = ' <form action="" method="post">' .
             ' Correo: <input type="text" name="correo" /><br/>' .
             ' Contrase&ntilde;a: <input type="password" name="pwd" /><br/>' .
             $recaptcha .
