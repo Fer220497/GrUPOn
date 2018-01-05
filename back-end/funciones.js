@@ -1,3 +1,6 @@
+
+mapsKey = 'AIzaSyD_7fy3mTEXRN4hyiao6hOjoQjnD_HXrbo';
+
 /**
  * Recibe un id y un string de la siguiente forma 1,2,3,4
  * Añade el id al final
@@ -5,7 +8,6 @@
  * @param string $carritoActual
  * @return string
  */
-
 function iniciarCarrito() {
     //eliminar en caso de querer reiniciar con el login
     if (!getCookie("carrito")) {
