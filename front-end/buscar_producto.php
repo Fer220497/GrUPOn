@@ -49,7 +49,7 @@ and open the template in the editor.
         </script>    
         <?php
         require_once '../back-end/funciones.php';
-        echo menuCategorias()
+        echo menuCategorias();
         ?>
 <?php require_once '../back-end/formulario_busqueda_producto.php'; ?>
 
