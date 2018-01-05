@@ -49,7 +49,9 @@ if (isset($_POST['crearProducto'])) {
     if ($_POST["cantidad_disponible"] == 0) {
         $error[] = "Ponga una cantidad";
     }
-
+    if (!isset($_POST["ruta_imagen"])) {
+        $error[] = "Debes introducir una imagen";
+    }
     if (!isset($error)) {
         $nombre = sanitarString($_POST["nombre"]);
         $precio = sanitarString($_POST["precio"]);
@@ -57,18 +59,19 @@ if (isset($_POST['crearProducto'])) {
         $localizacion = sanitarString($_POST["localizacion"]);
         $porcentaje_descuento = sanitarString($_POST["porcentaje_descuento"]);
         $cantidad_disponible = sanitarString($_POST["cantidad_disponible"]);
+        $ruta_imagen=sanitarString($_POST["ruta_imagen"]);
         $id_catalogo = $_POST['id_catalogo'];
         $nombre_categoria = $_POST['nombre_categoria'];
 
         if ($_POST["id_catalogo"] == "") {
             $id_catalogo = "NULL";
-            $sql = "INSERT INTO PRODUCTO (nombre_categoria, nombre_ca, id_catalogo, nombre, precio, descripcion, localizacion, porcentaje_descuento, cantidad_vendida, cantidad_total, cantidad_disponible )"
+            $sql = "INSERT INTO PRODUCTO (nombre_categoria, nombre_ca, id_catalogo, nombre, precio, descripcion, localizacion, porcentaje_descuento, cantidad_vendida, cantidad_total, cantidad_disponible, ruta_imagen  )"
                     . " VALUES('" . $_POST['nombre_categoria'] . "','" . $_POST['nombre_ca'] . "'," . $id_catalogo . ",'" . $nombre .
-                    "','" . $precio . "','" . $descripcion . "','" . $localizacion . "','" . $porcentaje_descuento . "','0','" . $cantidad_disponible . "','" . $cantidad_disponible . "')";
+                    "','" . $precio . "','" . $descripcion . "','" . $localizacion . "','" . $porcentaje_descuento . "','0','" . $cantidad_disponible . "','" . $cantidad_disponible . "','".$ruta_imagen."')";
         } else {
-            $sql = "INSERT INTO PRODUCTO (nombre_categoria, nombre_ca, id_catalogo, nombre, precio, descripcion, localizacion, porcentaje_descuento, cantidad_vendida, cantidad_total, cantidad_disponible )"
+            $sql = "INSERT INTO PRODUCTO (nombre_categoria, nombre_ca, id_catalogo, nombre, precio, descripcion, localizacion, porcentaje_descuento, cantidad_vendida, cantidad_total, cantidad_disponible, ruta_imagen )"
                     . " VALUES('" . $_POST['nombre_categoria'] . "','" . $_POST['nombre_ca'] . "','" . $_POST['id_catalogo'] . "','" . $nombre .
-                    "','" . $precio . "','" . $descripcion . "','" . $localizacion . "','" . $porcentaje_descuento . "','0','" . $cantidad_disponible . "','" . $cantidad_disponible . "')";
+                    "','" . $precio . "','" . $descripcion . "','" . $localizacion . "','" . $porcentaje_descuento . "','0','" . $cantidad_disponible . "','" . $cantidad_disponible . "','".$ruta_imagen."')";
         }
         realizarQuery("grupon", $sql);
         $sql = "SELECT id_producto FROM PRODUCTO WHERE NOMBRE='" . $nombre . "'";
@@ -120,6 +123,7 @@ function formularioCrearProducto() {
             'Localizaci&oacute;n: <input type="text" name="localizacion" /><br/>' .
             'Porcentaje Descuento: <input type="number" name="porcentaje_descuento" /><br/>' .
             'Cantidad Disponible: <input type="number" name="cantidad_disponible" /><br/>' .
+            'Enlace de la Imagen:<input type="text" name="ruta_imagen"/>'.
             '<input type="submit" name="crearProducto" value="Enviar"/>' .
             '</form>';
     return $form;

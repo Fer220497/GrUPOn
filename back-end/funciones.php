@@ -9,8 +9,9 @@ require_once '../back-end/conexion_db.php';
  * @return boolean
  */
 function existeCorreo($correo) {
+    global $esquema;
     $sql = "SELECT * FROM CUENTA WHERE CORREO='" . $correo . "'";
-    $result = realizarQuery("grupon", $sql);
+    $result = realizarQuery($esquema, $sql);
     if (mysqli_num_rows($result) > 0) {
         return true;
     } else {
@@ -175,6 +176,7 @@ function muestraErrores($error) {
 function inicializarDB() {
     global $arrayCategorias;
     global $arrayComunidades;
+    global $esquema;
     foreach ($arrayComunidades as $key => $val) {
         $sql = 'SELECT * FROM COMUNIDAD_AUTONOMA';
         $result = realizarQuery($esquema, $sql);
