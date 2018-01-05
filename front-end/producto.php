@@ -11,8 +11,8 @@
             /**
              * COMO OBTENEMOS ID PRODUCTO ACTUAL?
              */
-            $_SESSION['id_producto_borrar'] = $id;
-            echo muestraProducto($id);
+            //$_SESSION['id_producto_borrar'] = $id;
+            echo muestraProducto($_COOKIE["productoVisitado"]);
             echo muestraFormularioBorrar();
         ?>
     </body>

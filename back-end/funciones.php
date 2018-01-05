@@ -59,6 +59,7 @@ function menuCategorias() {
 
         $form .= '<a href="buscar_producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $key . '\', 1)">' . $val . '</a>   ';
     }
+    
     $form.='<a href="buscar_producto.php" onclick="setCookie(\''.$cookie_name.'\',\'general\',1)">General</a>';
     return $form;
 }

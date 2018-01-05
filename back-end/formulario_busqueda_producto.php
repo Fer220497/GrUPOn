@@ -23,7 +23,8 @@ if (isset($_POST['busqueda'])) {
                 $result = realizarQuery("grupon", $sql);
                 echo '<table border=1>';
                 while ($fila = mysqli_fetch_row($result)) {
-                    echo '<tr><td>' . $fila[4] . '</td><td>' . $fila[6] . '</tr>';
+                    $cookie_name="productoVisitado";
+                    echo '<tr><td><a href="producto.php" onclick="setCookie(\''.$cookie_name.'\',\''.$fila[0].'\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
                 }
                 echo '</table>';
             }
@@ -34,7 +35,8 @@ if (isset($_POST['busqueda'])) {
                 $result = realizarQuery("grupon", $sql);
                 echo '<table border=1>';
                 while ($fila = mysqli_fetch_row($result)) {
-                    echo '<tr><td>' . $fila[4] . '</td><td>' . $fila[6] . '</tr>';
+                    $cookie_name="productoVisitado";
+                    echo '<tr><td><a href="producto.php" onclick="setCookie(\''.$cookie_name.'\',\''.$fila[0].'\',1)" >' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
                 }
                 echo '</table>';
             }
@@ -51,7 +53,8 @@ if (isset($_POST['busqueda'])) {
                 $result = realizarQuery("grupon", $sql);
                 echo '<table border=1>';
                 while ($fila = mysqli_fetch_row($result)) {
-                    echo '<tr><td>' . $fila[4] . '</td><td>' . $fila[6] . '</tr>';
+                    $cookie_name="productoVisitado";
+                    echo '<tr><td><a href="producto.php" onclick="setCookie(\''.$cookie_name.'\',\''.$fila[0].'\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
                 }
                 echo '</table>';
             }
@@ -62,7 +65,8 @@ if (isset($_POST['busqueda'])) {
                 $result = realizarQuery("grupon", $sql);
                 echo '<table border=1>';
                 while ($fila = mysqli_fetch_row($result)) {
-                    echo '<tr><td>' . $fila[4] . '</td><td>' . $fila[6] . '</tr>';
+                    $cookie_name="productoVisitado";
+                    echo '<tr><td><a href="producto.php" onclick="setCookie(\''.$cookie_name.'\',\''.$fila[0].'\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
                 }
                 echo '</table>';
             }
