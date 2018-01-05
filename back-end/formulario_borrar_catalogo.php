@@ -12,7 +12,7 @@
 
     function muestraFormularioBorrar(){
         return '<form action="" method="post">
-                    <input type="submit" name="borrar" value="Borrar Cat&aacute;logo"/> Marcar si est&aacute;s seguro de que quieres borrrar el cat&aacute;logo <input type="checkbox" name="check" value="Borrar"/>
+                    <input type="submit" name="borrar" value="Borrar Cat&aacute;logo"/> Marcar si est&aacute;s seguro de que quieres borrar el cat&aacute;logo <input type="checkbox" name="check" value="Borrar"/>
                 </form>';
         
     }

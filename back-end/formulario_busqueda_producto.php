@@ -98,8 +98,6 @@ if (isset($error)) {
 }
 
 function formularioBusquedaProducto() {
-    $correo = $_SESSION["cuenta"];
-    echo "<br>" . $correo . "<br>";
     $form = '<form action="" method="post">' .
             '<input type="text" name="nombre"/>';
     if (isset($_SESSION["cuenta"])) {

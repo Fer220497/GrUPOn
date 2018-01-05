@@ -12,7 +12,7 @@
             }
         }
         if(!isset($error)){
-            $carrito = array_diff($carrito, [$POST['id_prod']]);
+            $carrito = array_diff($carrito, [$_POST['id_prod']]);
             $string = implode(',', $carrito);
             setcookie('carrito',$string,60*60*24*30);
             header('carrito.php');

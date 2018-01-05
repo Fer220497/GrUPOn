@@ -1,6 +1,3 @@
-
-mapsKey = 'AIzaSyD_7fy3mTEXRN4hyiao6hOjoQjnD_HXrbo';
-
 /**
  * Recibe un id y un string de la siguiente forma 1,2,3,4
  * Añade el id al final
@@ -8,6 +5,7 @@ mapsKey = 'AIzaSyD_7fy3mTEXRN4hyiao6hOjoQjnD_HXrbo';
  * @param string $carritoActual
  * @return string
  */
+
 function iniciarCarrito() {
     //eliminar en caso de querer reiniciar con el login
     if (!getCookie("carrito")) {
@@ -17,13 +15,13 @@ function iniciarCarrito() {
 }
 function addCarrito(id, carritoActual) {
     var var_string = id;
-    alert("Valor del id producto"+var_string);
+    alert("Valor del id producto" + var_string);
     var valueofCarrito = getCookie("carrito");
-    alert("Valor actual del carrito"+valueofCarrito);
-    if (valueofCarrito== "") {
+    alert("Valor actual del carrito" + valueofCarrito);
+    if (valueofCarrito == "") {
         setCookie("carrito", var_string, 1);
     } else {
-        
+
         var array = getCookie("carrito").split(",");
         array.push(id);
         var string = array.join();
@@ -40,16 +38,16 @@ function addCarrito(id, carritoActual) {
  * @param string $carritoActual
  * @return string
  */
-function removeCarrito(id, carritoActual) {
+function removeCarrito(id, index) {
+    alert("Eliminar producto numero "+index);
+    var carritoActual = getCookie("carrito");
     array = carritoActual.split(",");
-    var i = array.indexOf(id);
-    if (i != -1) {
-        array.splice(i, 1);
-    }
-    var string = array.join();
-    return string;
-
-
+    
+    array.splice(0,1);
+    alert(array);
+    var string=array.join();
+    var cookie_name = "carrito";
+    setCookie(cookie_name, string, 1);
 }
 function setCookie(cname, cvalue, exdays) {
 

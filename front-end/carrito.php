@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title></title>
         <script></script>
+        <script src="../back-end/funciones.js"></script>
     </head>
     <body>
         <?php

@@ -14,7 +14,7 @@ function muestraProducto($id) {
     $query = "SELECT * FROM PRODUCTO WHERE ID_PRODUCTO='$id'";
     $result = realizarQuery($esquema, $query);
     $fila = mysqli_fetch_array($result);
-    $dirpath = realpath(dirname(getcwd()));
+    //$dirpath = realpath(dirname(getcwd()));
    
     $table = '<table border="1">'
             . '<tr>'

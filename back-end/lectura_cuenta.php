@@ -6,6 +6,7 @@ require_once '../back-end/funciones.php';
     
     function muestraCuenta(){
         global $correo;
+        global $esquema;
         
         if($_SESSION['tipo'] === 'cliente'){
             $sql = "SELECT * FROM CUENTA,CLIENTE WHERE CUENTA.CORREO='$correo' AND CLIENTE.CORREO='$correo'";

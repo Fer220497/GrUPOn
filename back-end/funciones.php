@@ -72,16 +72,15 @@ $arrayCategorias = array(
 );
 
 function menuCategorias() {
-    $form = "";
     global $arrayCategorias;
     $cookie_name = "categoria";
-
+  
+    $form = '<div><a href="" onclick="setCookie(\'' . $cookie_name . '\',\'general\',1)">General</a></div>';
     foreach ($arrayCategorias as $key => $val) {
 
-        $form .= '<a href="buscar_producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $key . '\', 1)">' . $val . '</a>   ';
+        $form .= '<div><a href="" onclick="setCookie(\'' . $cookie_name . '\',\'' . $key . '\', 1)">' . $val . '</a></div>';
     }
 
-    $form .= '<a href="buscar_producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'general\',1)">General</a>';
     return $form;
 }
 
