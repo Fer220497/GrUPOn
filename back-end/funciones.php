@@ -5,12 +5,23 @@ require_once '../back-end/conexion_db.php';
 function historialCliente($correo){
     $sql = "SELECT * FROM COMPRA,PRODUCTO WHERE COMPRA.CORREO='$correo' AND CUENTA.ID_PRODUCTO = PRODUCTO.ID_PRODUCTO";
     $result = realizarQuery($esquema, $sql);
-    $html = '<table border="1">'
-            . '<th>Nombre Producto</th><th>Fecha Compra</th><th>Cantidad</th><th>Precio</th>';
+    $html = '<table border="1"><tr>'
+            . '<th>Nombre Producto</th><th>Fecha Compra</th><th>Cantidad</th><th>Precio</th></tr>';
     while($fila = mysqli_fetch_array($result)){
         $html .= '<tr><td>'.$fila['nombre'].'</td><td>'.$fila['fecha'].'</td><td>'.$fila['cantidad'].'</td><td>'.$fila['cantidad']*$fila['precio'].'</td></tr>';
     }
     $html .= '</table>';
+    return $html;
+}
+
+function historialVentas($correo){
+    $sql = "SELECT * FROM LANZAMIENTOS,PRODUCTO WHERE LANZAMIENTOS.CORREO='$correo' AND LANZAMIENTOS.PRODUCTO_ID=PRODUCTO.ID_PRODUCTO";
+    $result = realizarQuery($esquema, $sql);
+    $html = '<table border="1">'
+            . '<th>Nombre Producto</th><th>Fecha Venta</th><th>N&uacute;mero Ventas</th><th>Beneficio Obtenido</th>';
+    while($fila = mysqli_fetch_array($result)){
+        $html .= '<tr><td>'.$fila['nombre'].'</td><td>'.$fila['fecha_ini'].'</td><td>'.$fila['num_ventas'].'</td><td>'.$fila['num_ventas']*$fila['precio'].'</td></tr>';
+    }
     return $html;
 }
 
