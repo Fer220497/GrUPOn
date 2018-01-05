@@ -19,7 +19,22 @@ if (isset($_POST['modificarProducto'])) {
     if (!isset($_POST['porcentaje_descuento'])) {
         $errores[] = 'Debes introducir porcentaje de descuento.';
     }
+    if (!isset($_POST['foto'])) {
+        $errores[] = 'Debes introducir una foto.';
+    }
+    if (isset($_FILES['foto']) && $_FILES['foto']['size'] > 1024 * 5120){
+        $errores[] = 'Error en el tama&ntilde;o de la foto.';
+    }
+    if (isset($_FILES['foto']) && $_FILES['foto']['type'] == 'image/jpeg'){
+        $errores[] = 'Error en el formato de la foto.';
+    }
     if (!isset($errores)) {
+        if (!isset($_FILES['foto'])) {
+            $foto = $producto[13];
+        } else {
+            move_uploaded_file($_FILES['foto']['temp_name'], '..\img\\');
+            $foto = $_FILES['foto']['name'];
+        }
         $sql = 'SELECT * FROM PRODUCTO WHERE id_producto = "' . 2 . '"';
         $result = realizarQuery($esquema, $sql);
         $producto = mysqli_fetch_row($result);
@@ -33,7 +48,7 @@ if (isset($_POST['modificarProducto'])) {
         $comunidad = $_POST['comunidad'];
         $cantidad = $_POST['cantidad'];
         $total = $cantidadVendida + $cantidad;
-        $sql = "UPDATE PRODUCTO SET nombre_categoria = '" . $categoria . "', nombre_ca = '" . $comunidad . "', nombre = '" . $nombre . "', precio = '" . $precio . "', descripcion = '" . $descripcion . "', localizacion = '" . $localizacion . "', cantidad_disponible = '" . $cantidad . "', cantidad_total ='" . $total . "', porcentaje_descuento = '" . $porcentaje_descuento . "' WHERE id_producto = 2";
+        $sql = "UPDATE PRODUCTO SET nombre_categoria = '" . $categoria . "', nombre_ca = '" . $comunidad . "', nombre = '" . $nombre . "', precio = '" . $precio . "', descripcion = '" . $descripcion . "', localizacion = '" . $localizacion . "', cantidad_disponible = '" . $cantidad . "', cantidad_total ='" . $total . "', porcentaje_descuento = '" . $porcentaje_descuento . "', ruta_imagen ='" . $foto . "' WHERE id_producto = 2";
         realizarQuery($esquema, $sql);
     }
 }
@@ -49,16 +64,17 @@ function formularioModificarProducto($id_producto) {
     $sql = 'SELECT * FROM PRODUCTO WHERE id_producto = "' . $id_producto . '"';
     $result = realizarQuery($esquema, $sql);
     $producto = mysqli_fetch_row($result);
-    $form = '<form action="" method="post">' .
-            'Nombre: <input type="text" name="nombre" value="' . $producto[4] . '"/><br/>' .
-            'Precio: <input type="number" name="precio" value="' . $producto[5] . '"/><br/>' .
-            'Descripci&oacute;n: <textarea name="descripcion" rows="4" cols="10">' . $producto[6] . '</textarea><br/>' .
-            'Categor&iacute;a: <select name="categoria">' . optionCategoriasSeleccionadas($producto[1]) . '</select><br/>' .
-            'Comunidad aut&oacute;noma: <select name="comunidad">' . opcionesComunidadSeleccionada($producto[2]) . '</select><br/>' .
-            'Localizaci&oacute;n: <input type="text" name="localizacion" value="' . $producto[7] . '" /><br/>' .
-            'Porcentaje descuento: <input type="number" name="porcentaje_descuento" value="' . $producto[8] . '" /><br/>' .
-            'Cantidad disponible: <input type="number" name="cantidad" value="' . $producto[11] . '" /><br/>' .
-            '<div><img alt="' . $producto[4] . '" src = "..\img\\' . $producto[12] . ' height = 200/></div>' .
+    $form = '<form action="" method="post" enctype="multipart/form-data">' .
+            'Nombre: <input type="text" name="nombre" value="' . $producto[5] . '"/><br/>' .
+            'Precio: <input type="number" name="precio" value="' . $producto[6] . '"/><br/>' .
+            'Descripci&oacute;n: <textarea name="descripcion" rows="4" cols="10">' . $producto[7] . '</textarea><br/>' .
+            'Categor&iacute;a: <select name="categoria">' . optionCategoriasSeleccionadas($producto[2]) . '</select><br/>' .
+            'Comunidad aut&oacute;noma: <select name="comunidad">' . opcionesComunidadSeleccionada($producto[3]) . '</select><br/>' .
+            'Localizaci&oacute;n: <input type="text" name="localizacion" value="' . $producto[8] . '" /><br/>' .
+            'Porcentaje descuento: <input type="number" name="porcentaje_descuento" value="' . $producto[9] . '" /><br/>' .
+            'Cantidad disponible: <input type="number" name="cantidad" value="' . $producto[12] . '" /><br/>' .
+            'Imagen: <div><img alt="' . $producto[5] . '" src = "..\img\\' . $producto[13] . '" height = 200/></div>' .
+            '<input type="file" name="foto"/><br/>' .
             '<input type="submit" name="modificarProducto" value="Enviar"/>' .
             '</form>';
     return $form;
