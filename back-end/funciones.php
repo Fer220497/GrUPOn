@@ -2,6 +2,32 @@
 <?php
 
 require_once '../back-end/conexion_db.php';
+/**
+ * Recibe un id y un string de la siguiente forma 1,2,3,4
+ * Añade el id al final
+ * @param string $id
+ * @param string $carritoActual
+ * @return string
+ */
+function addCarrito($id, $carritoActual){
+    $array = explode(',', $carritoActual);
+    $array[] = $id;
+    $string = implode(',', $array);
+    return $string;
+}
+/**
+ * Recibe un id y un string de la siguiente forma 1,2,3,4
+ * Elimina el id
+ * @param string $id
+ * @param string $carritoActual
+ * @return string
+ */
+function removeCarrito($id, $carritoActual){
+    $array = explode(',', $carritoActual);
+    $carrito = array_diff($carrito, [$id]);
+    $string = implode(',', $carrito);
+    return $string;
+}
 
 /**
  * Función que checkea si existe un correo que se le pase ya en la DB.
