@@ -8,10 +8,14 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <script src="../back-end/funciones.js"></script>
     </head>
     <body>
         <?php
-        // put your code here
+       require_once '../back-end/lectura_carrito.php';
+       require_once '../back-end/lectura_producto.php';
+        echo mostrarCarrito();
+       
         ?>
     </body>
 </html>
