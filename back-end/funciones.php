@@ -319,7 +319,7 @@ function navigation() {
                     '<li><a id="logout" href="../back-end/logout.php">Desconectar</a></li>';
         }
     } else {//NO LOGEADO
-        $nav .= '<li><a id="boton_login" href="login.php">Login|Registro</a></li>' .
+        $nav .= '<li><a id="boton_login" href="login.php">Login y Registro</a></li>' .
                 '<li><a id="carrito" href="mostrar_carrito.php">Carrito</a></li>';
     }
     $nav .= " </ul></div>";

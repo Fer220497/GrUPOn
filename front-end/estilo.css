@@ -48,3 +48,9 @@ footer{
     height: 500px;
     width: 500px;
 }
+
+li{
+    display: inline-block;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+}
