@@ -240,29 +240,30 @@ function tipoCuenta($correo) {
 
 function desplegarPaginaPrincipal() {
     global $esquema;
+    $str = '';
     //BÚSQUEDA NACIONAL
     if (!isset($_SESSION['cuenta'])) {
         //BÚSQUEDA CON CATEGORIA
         if ($_COOKIE['categoria'] != 'general') {
-            $sql = 'SELECT * FROM PRODUCTO WHERE nombre_categoria LIKE "' . $_COOKIE['categoria'] . '" AND cantidad_disponible > 0';
+            $str .= 'SELECT * FROM PRODUCTO WHERE nombre_categoria LIKE "' . $_COOKIE['categoria'] . '" AND cantidad_disponible > 0';
             $result = realizarQuery($esquema, $sql);
-            echo '<table border=1>';
+            $str .= '<table border=1>';
             while ($fila = mysqli_fetch_row($result)) {
                 $cookie_name = "productoVisitado";
-                echo '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila[0] . '\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
+                $str .= '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila[0] . '\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
             }
-            echo '</table>';
+            $str .= '</table>';
         }
         //BÚSQUEDA SIN CATEGORIA
         else {
             $sql = 'SELECT * FROM PRODUCTO WHERE cantidad_disponible > 0';
             $result = realizarQuery($esquema, $sql);
-            echo '<table border=1>';
+            $str .= '<table border=1>';
             while ($fila = mysqli_fetch_row($result)) {
                 $cookie_name = "productoVisitado";
-                echo '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila[0] . '\',1)" >' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
+                $str .= '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila[0] . '\',1)" >' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
             }
-            echo '</table>';
+            $str .= '</table>';
         }
     }
     //BÚSQUEDA LOCAL
@@ -274,24 +275,25 @@ function desplegarPaginaPrincipal() {
         if ($_COOKIE['categoria'] != 'general') {
             $sql = 'SELECT * FROM PRODUCTO WHERE nombre_categoria LIKE "' . $_COOKIE['categoria'] . '" AND nombre_ca LIKE "' . $ca . '" AND cantidad_disponible > 0';
             $result = realizarQuery($esquema, $sql);
-            echo '<table border=1>';
+            $str .= '<table border=1>';
             while ($fila = mysqli_fetch_row($result)) {
                 $cookie_name = "productoVisitado";
-                echo '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila[0] . '\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
+                $str .= '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila[0] . '\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
             }
-            echo '</table>';
+            $str .= '</table>';
         }
         //BÚSQUEDA SIN CATEGORIA
         else {
             $sql = 'SELECT * FROM PRODUCTO WHERE nombre_ca LIKE "' . $ca . '" AND cantidad_disponible > 0';
             $result = realizarQuery("grupon", $sql);
-            echo '<table border=1>';
+            $str .= '<table border=1>';
             while ($fila = mysqli_fetch_row($result)) {
                 $cookie_name = "productoVisitado";
-                echo '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila[0] . '\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
+                $str .= '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila[0] . '\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
             }
-            echo '</table>';
+            $str .= '</table>';
         }
+        return $str;
     }
 }
 

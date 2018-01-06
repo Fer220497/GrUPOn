@@ -25,7 +25,7 @@ require_once '..\back-end\funciones.php';
                 <div id="logo">
                     <a href="index.php"><img alt="GrUPOn" src="..\img\logo.png" height="100"/></a>
                 </div>
-                <div id="banner">
+                <div id="titulo">
                     <a href="index.php">
                     </a>
                     <h1>GrUPOn</h1>
@@ -40,15 +40,12 @@ require_once '..\back-end\funciones.php';
                         <div id="cookie">  
                         </div>
                     </h2>
-                    <?php
-                    echo menuCategorias();
-                    ?>
+                    <?php echo menuCategorias(); ?>
                 </aside>
 
                 <article>
-                    <?php
-                    require_once '../back-end/formulario_busqueda_producto.php';
-                    desplegarPaginaPrincipal();
+                    <?php require_once '../back-end/formulario_busqueda_producto.php';
+                    echo desplegarPaginaPrincipal();
                     ?>
                 </article>
             </main>
