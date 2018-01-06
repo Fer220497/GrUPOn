@@ -61,7 +61,7 @@ require_once '../back-end/funciones.php';
     function muestraDatosEmpresaMapa($correo){
         global $esquema;
         global $arrayComunidades;
-        $sql = "SELECT * FROM EMPRESA WHERE CORREO='$correo'";
+        $sql = "SELECT * FROM EMPRESA,CUENTA WHERE CUENTA.CORREO='$correo' AND EMPRESA.CORREO='$correo'";
         $result = realizarQuery($esquema, $sql);
         $fila = mysqli_fetch_array($result);
         return '<input type=hidden id="localizacion" value="'.$fila['direccion_empresa'].'"/>'
