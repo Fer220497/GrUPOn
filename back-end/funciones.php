@@ -327,7 +327,7 @@ function navigation() {
 }
 
 function formularioBusquedaProducto() {
-    $form = '<form action="busqueda.php" method="post">' .
+    $form = '<form action="busqueda.php" method="get">' .
             '<input type="text" name="nombre"/>';
     if (isset($_SESSION["cuenta"])) {
         $form .= ' Nacional <input type="checkbox" name="nacional" value="nacional"><br>';

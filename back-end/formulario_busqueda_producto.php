@@ -2,19 +2,19 @@
 require_once '../back-end/conexion_db.php';
 require_once '../back-end/funciones.php';
 
-if (isset($_POST['busqueda'])) {
+if (isset($_GET['busqueda'])) {
     if(isset($_SESSION['cuenta'])){
         $correo = $_SESSION["cuenta"];
     }
-    if (!isset($_POST["nombre"])) {
+    if (!isset($_GET["nombre"])) {
         $error[] = "Nombre no introducido";
     }
     if (!isset($error)) {
         //BÚSQUEDA NACIONAL
-        if (!isset($_SESSION['cuenta']) || isset($_POST['nacional'])) {
+        if (!isset($_SESSION['cuenta']) || isset($_GET['nacional'])) {
             //BÚSQUEDA CON CATEGORIA
             if ($_COOKIE['categoria'] != 'general') {
-                $nombre = $_POST['nombre'];
+                $nombre = $_GET['nombre'];
                 $sql = 'SELECT * FROM PRODUCTO WHERE nombre_categoria LIKE "' . $_COOKIE['categoria'] . '" AND (nombre LIKE "%' . $nombre . '%" OR descripcion LIKE "%' . $nombre . '%") AND cantidad_disponible > 0';
                 $result = realizarQuery($esquema, $sql);
                 echo '<table border="1">';
@@ -26,7 +26,7 @@ if (isset($_POST['busqueda'])) {
             }
             //BÚSQUEDA SIN CATEGORIA
             else {
-                $nombre = $_POST['nombre'];
+                $nombre = $_GET['nombre'];
                 $sql = 'SELECT * FROM PRODUCTO WHERE nombre LIKE "%' . $nombre . '%" OR descripcion LIKE "%' . $nombre . '%" AND cantidad_disponible > 0';
                 $result = realizarQuery($esquema, $sql);
                 echo '<table border="1">';
@@ -44,7 +44,7 @@ if (isset($_POST['busqueda'])) {
             $ca = mysqli_fetch_row($result)[1];
             //BÚSQUEDA CON CATEGORIA
             if ($_COOKIE['categoria'] != 'general') {
-                $nombre = $_POST['nombre'];
+                $nombre = $_GET['nombre'];
                 $sql = 'SELECT * FROM PRODUCTO WHERE nombre_categoria LIKE "' . $_COOKIE['categoria'] . '" AND (nombre LIKE "%' . $nombre . '%" OR descripcion LIKE "%' . $nombre . '%") AND nombre_ca LIKE "' . $ca . '" AND cantidad_disponible > 0';
                 $result = realizarQuery($esquema, $sql);
                 echo '<table border="1">';
@@ -56,7 +56,7 @@ if (isset($_POST['busqueda'])) {
             }
             //BÚSQUEDA SIN CATEGORIA
             else {
-                $nombre = $_POST['nombre'];
+                $nombre = $_GET['nombre'];
                 $sql = 'SELECT * FROM PRODUCTO WHERE (nombre LIKE "%' . $nombre . '%" OR descripcion LIKE "%' . $nombre . '%") AND nombre_ca LIKE "' . $ca . '" AND cantidad_disponible > 0';
                 $result = realizarQuery($esquema, $sql);
                 echo '<table border="1">';
@@ -72,12 +72,12 @@ if (isset($_POST['busqueda'])) {
 
 /*
 
-  if (isset($_POST['busqueda'])) {
-  if (!isset($_POST['nombre'])) {
+  if (isset($_GET['busqueda'])) {
+  if (!isset($_GET['nombre'])) {
   $errores[] = 'Debes introducir nombre';
   }
   if (!isset($errores)) {
-  $nombre = $_POST['nombre'];
+  $nombre = $_GET['nombre'];
   $sql = 'SELECT * FROM PRODUCTO WHERE nombre LIKE "%' . $nombre . '%" OR descripcion LIKE "%' . $nombre . '%"';
   $result = realizarQuery("grupon", $sql);
   echo '<table border=1>';
