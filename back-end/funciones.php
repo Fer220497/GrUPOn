@@ -248,9 +248,11 @@ function desplegarPaginaPrincipal() {
             $str .= 'SELECT * FROM PRODUCTO WHERE nombre_categoria LIKE "' . $_COOKIE['categoria'] . '" AND cantidad_disponible > 0';
             $result = realizarQuery($esquema, $sql);
             $str .= '<table border=1>';
-            while ($fila = mysqli_fetch_row($result)) {
+            while ($fila = mysqli_fetch_array($result)) {
                 $cookie_name = "productoVisitado";
-                $str .= '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila[0] . '\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
+                $str .= '<tr><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/> </tr>' .
+                        '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila["id_producto"] . '\',1)" >' . $fila["nombre"] .'</td></tr>'.
+                        '</td></a><td> Precio: ' . $fila["precio"] . '</td><td> Descuento: ' . $fila["porcentaje_descuento"] . '</td></tr>';
             }
             $str .= '</table>';
         }
@@ -259,9 +261,11 @@ function desplegarPaginaPrincipal() {
             $sql = 'SELECT * FROM PRODUCTO WHERE cantidad_disponible > 0';
             $result = realizarQuery($esquema, $sql);
             $str .= '<table border=1>';
-            while ($fila = mysqli_fetch_row($result)) {
+            while ($fila = mysqli_fetch_array($result)) {
                 $cookie_name = "productoVisitado";
-                $str .= '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila[0] . '\',1)" >' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
+                $str .= '<tr><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/> </tr>' .
+                        '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila["id_producto"] . '\',1)" >' . $fila["nombre"] .'</td></tr>'.
+                        '</td></a><td> Precio: ' . $fila["precio"] . '</td><td> Descuento: ' . $fila["porcentaje_descuento"] . '</td></tr>';
             }
             $str .= '</table>';
         }
@@ -276,9 +280,11 @@ function desplegarPaginaPrincipal() {
             $sql = 'SELECT * FROM PRODUCTO WHERE nombre_categoria LIKE "' . $_COOKIE['categoria'] . '" AND nombre_ca LIKE "' . $ca . '" AND cantidad_disponible > 0';
             $result = realizarQuery($esquema, $sql);
             $str .= '<table border=1>';
-            while ($fila = mysqli_fetch_row($result)) {
+            while ($fila = mysqli_fetch_array($result)) {
                 $cookie_name = "productoVisitado";
-                $str .= '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila[0] . '\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
+                $str .= '<tr><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/></tr>' .
+                        '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila["id_producto"] . '\',1)" >' . $fila["nombre"] .
+                        '</td></a><td> Precio: ' . $fila["precio"] . '</td><td> Descuento: ' . $fila["porcentaje_descuento"] . '</tr>';
             }
             $str .= '</table>';
         }
@@ -287,9 +293,11 @@ function desplegarPaginaPrincipal() {
             $sql = 'SELECT * FROM PRODUCTO WHERE nombre_ca LIKE "' . $ca . '" AND cantidad_disponible > 0';
             $result = realizarQuery("grupon", $sql);
             $str .= '<table border=1>';
-            while ($fila = mysqli_fetch_row($result)) {
+            while ($fila = mysqli_fetch_array($result)) {
                 $cookie_name = "productoVisitado";
-                $str .= '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila[0] . '\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
+                $str .= '<tr><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila["id_producto"] . '\',1)" ><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/> </tr>' .
+                        '<tr><td>' . $fila["nombre"] .'</td></tr>'.
+                        '</td></a><td> Precio: ' . $fila["precio"] . '</td><td> Descuento: ' . $fila["porcentaje_descuento"] . '</td></tr>';
             }
             $str .= '</table>';
         }
@@ -302,14 +310,13 @@ function navigation() {
     if (isset($_SESSION["cuenta"])) {
         if ($_SESSION["tipo"] == "cliente") {// LOGEADO COMO CLIENTE
             $nav .= '<li><a id="carrito" href="mostrar_carrito.php">Carrito</a></li>' .
-                    '<li><a id="perfil" href="">Perfil</a></li>' .
-                    '<li><a id="logout" href="../back-end/logout.php">Desconectar</a></li>' ;
-                    
+                    '<li><a id="perfil" href="../back-end/cuenta.php">Perfil</a></li>' .
+                    '<li><a id="logout" href="../back-end/logout.php">Desconectar</a></li>';
         } else {// LOGEADO COMO EMPRESA
             $nav .= '<li><a id="crear_produto" href="creacion_producto.php">Crear Producto</a></li>' .
                     '<li><a id="crear_catalogo" href="creacion_catalogo.php">Crear Catalogo</a></li>' .
-                    '<li><a id="perfil" href="">Perfil</a></li>' .
-                    '<li><a id="logout" href="../back-end/logout.php">Desconectar</a></li>' ;
+                    '<li><a id="perfil" href="../back-end/cuenta.php">Perfil</a></li>' .
+                    '<li><a id="logout" href="../back-end/logout.php">Desconectar</a></li>';
         }
     } else {//NO LOGEADO
         $nav .= '<li><a id="boton_login" href="login.php">Login|Registro</a></li>' .
