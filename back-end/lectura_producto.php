@@ -17,9 +17,9 @@ function muestraProducto($id) {
     $precio=$fila['precio']-($fila['precio']*($fila['porcentaje_descuento']/100));
     //$dirpath = realpath(dirname(getcwd()));
     $sql="SELECT * FROM LANZAMIENTOS WHERE ID_PRODUCTO='$id'";
-   $result = realizarQuery($esquema, $sql);
+    $result = realizarQuery($esquema, $sql);
     $datosEmpresa= mysqli_fetch_array($result);
-    echo $sql;
+    //echo $sql;
     
     $table = '<input type="hidden" id="localizacion" value="'.$fila['localizacion'].'"/>'
             . '<table border="1">'

@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '..\back-end\funciones.php';
+inicializarDB();
 ?>
 <!DOCTYPE html>
 <html>
