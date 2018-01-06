@@ -24,8 +24,8 @@ if (isset($_POST['modificarProducto'])) {
         echo "error5";
         $errores[] = 'Debes introducir porcentaje de descuento.';
     }
-    if ($_FILES['imagen']['name']!='') {
-         echo $_FILES["imagen"]["name"]; 
+    if ($_FILES['imagen']['name'] != '') {
+        echo $_FILES["imagen"]["name"];
         if (!esImagen($_FILES['imagen'])) {
             echo "error6";
             print_r($_FILES["imagen"]);
@@ -35,65 +35,63 @@ if (isset($_POST['modificarProducto'])) {
             echo "error7";
             $errores[] = "TAMAÑO MAXIMO";
         }
-    } else {
+    }
 
+    if (!isset($errores)) {
+        if (!isset($_FILES['imagen'])) {
+            $foto = $producto["ruta_imagen"];
+        } else {
 
-        if (!isset($errores)) {
-            if (!isset($_FILES['imagen'])) {
-                $foto = $producto["ruta_imagen"];
-            } else {
-
-                $foto = $_FILES['imagen']['name'];
-            }
-           
-            $sql = 'SELECT * FROM PRODUCTO WHERE id_producto = "' . $_COOKIE['productoVisitado'] . '"';
-            $result = realizarQuery($esquema, $sql);
-            $producto = mysqli_fetch_array($result);
-            $cantidadVendida = $producto["cantidad_vendida"];
-            $nombre = $_POST['nombre'];
-            $precio = $_POST['precio'];
-            $descripcion = $_POST['descripcion'];
-            $localizacion = $_POST['localizacion'];
-            $porcentaje_descuento = $_POST['porcentaje_descuento'];
-            $categoria = $_POST['categoria'];
-            $comunidad = $_POST['comunidad'];
-            $cantidad = $_POST['cantidad'];
-            if ($_POST["id_catalogo"] == "") {
-                $id_catalogo = "NULL";
-            } else {
-                $id_catalogo = $_POST['id_catalogo'];
-            }
-            //$arch = $_FILES['imagen']['name'];
-             if ($_FILES['imagen']['name']!='') {
-                echo "pene";
-                $fichero = explode('.', $_FILES['imagen']['name']);
-                //print_r($fichero);
-                $extension = '.' . $fichero[count($fichero) - 1];
-                $nombreFichero = microtime() . $extension;
-                
-            } else {
-                echo "pene2";
-                $nombreFichero = $producto["ruta_imagen"];
-            }
-
-          //  echo $nombreFichero;
-            $total = $cantidadVendida + $cantidad;
-            $sql = "UPDATE PRODUCTO SET nombre_categoria = '" . $categoria . "', nombre_ca = '" . $comunidad . "', nombre = '" . $nombre . "'"
-                    . ", precio = '" . $precio . "', descripcion = '" . $descripcion . "', localizacion = '" . $localizacion . "'"
-                    . ", cantidad_disponible = '" . $cantidad . "', cantidad_total ='" . $total . "', "
-                    . "porcentaje_descuento = '" . $porcentaje_descuento . "', ruta_imagen ='" . $nombreFichero . "', id_catalogo = " . $id_catalogo . " WHERE id_producto ='" . $_COOKIE['productoVisitado'] . "'";
-
-            realizarQuery($esquema, $sql);
-            $tmp = $_FILES['imagen']['tmp_name'];
-            move_uploaded_file($tmp, "../img/$nombreFichero");
-            header('Location: seleccion_accion.php');
+            $foto = $_FILES['imagen']['name'];
         }
+
+        $sql = 'SELECT * FROM PRODUCTO WHERE id_producto = "' . $_COOKIE['productoVisitado'] . '"';
+        $result = realizarQuery($esquema, $sql);
+        $producto = mysqli_fetch_array($result);
+        $cantidadVendida = $producto["cantidad_vendida"];
+        $nombre = $_POST['nombre'];
+        $precio = $_POST['precio'];
+        $descripcion = $_POST['descripcion'];
+        $localizacion = $_POST['localizacion'];
+        $porcentaje_descuento = $_POST['porcentaje_descuento'];
+        $categoria = $_POST['categoria'];
+        $comunidad = $_POST['comunidad'];
+        $cantidad = $_POST['cantidad'];
+        if ($_POST["id_catalogo"] == "") {
+            $id_catalogo = "NULL";
+        } else {
+            $id_catalogo = $_POST['id_catalogo'];
+        }
+        //$arch = $_FILES['imagen']['name'];
+        if ($_FILES['imagen']['name'] != '') {
+            echo "pene";
+            $fichero = explode('.', $_FILES['imagen']['name']);
+            //print_r($fichero);
+            $extension = '.' . $fichero[count($fichero) - 1];
+            $nombreFichero = microtime() . $extension;
+        } else {
+            echo "pene2";
+            $nombreFichero = $producto["ruta_imagen"];
+        }
+
+        //  echo $nombreFichero;
+        $total = $cantidadVendida + $cantidad;
+        $sql = "UPDATE PRODUCTO SET nombre_categoria = '" . $categoria . "', nombre_ca = '" . $comunidad . "', nombre = '" . $nombre . "'"
+                . ", precio = '" . $precio . "', descripcion = '" . $descripcion . "', localizacion = '" . $localizacion . "'"
+                . ", cantidad_disponible = '" . $cantidad . "', cantidad_total ='" . $total . "', "
+                . "porcentaje_descuento = '" . $porcentaje_descuento . "', ruta_imagen ='" . $nombreFichero . "', id_catalogo = " . $id_catalogo . " WHERE id_producto ='" . $_COOKIE['productoVisitado'] . "'";
+        echo $sql;
+        realizarQuery($esquema, $sql);
+        $tmp = $_FILES['imagen']['tmp_name'];
+        move_uploaded_file($tmp, "../img/$nombreFichero");
+        header('Location: seleccion_accion.php');
     }
 }
+
 if (!isset($_POST['modificarProducto']) || isset($errores)) {
 
     if (isset($errores)) {
-echo "1";
+        echo "1";
         muestraErrores($errores);
     }
     echo formularioModificarProducto($_COOKIE["productoVisitado"]);
@@ -114,7 +112,7 @@ function formularioModificarProducto($id_producto) {
             'Localizaci&oacute;n: <input type="text" name="localizacion" value="' . $producto["localizacion"] . '" /><br/>' .
             'Porcentaje descuento: <input type="number" name="porcentaje_descuento" value="' . $producto["porcentaje_descuento"] . '" /><br/>' .
             'Cantidad disponible: <input type="number" name="cantidad" value="' . $producto["cantidad_disponible"] . '" /><br/>' .
-            'Imagen: <div><img alt="' . $producto["nombre"] . '" src="../img/'. $producto['ruta_imagen'].'" height = "200"></div>' .
+            'Imagen: <div><img alt="' . $producto["nombre"] . '" src="../img/' . $producto['ruta_imagen'] . '" height = "200"></div>' .
             '<input type="file" name="imagen"/><br/>' .
             '<input type="submit" name="modificarProducto" value="Enviar"/>' .
             '</form>';

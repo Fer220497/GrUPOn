@@ -138,7 +138,7 @@ if (isset($_POST['registroEmpresa'])) {
             $sql = "INSERT INTO CUENTA VALUES('$correo', '$comunidad_autonoma', '$hash')";
             realizarQuery($esquema, $sql);
             $sql = "INSERT INTO EMPRESA VALUES('$correo','$nombre_empresa',"
-                    . "'$direccion_empresa','$nif_empresa','$web_empresa',$cuenta_bancaria,"
+                    . "'$direccion_empresa','$nif_empresa','$web_empresa','$cuenta_bancaria',"
                     . "$telefono_empresa, '$mail_empresa')";
             realizarQuery($esquema, $sql);
             //Finalmente redirigimos al usuario
