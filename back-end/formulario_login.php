@@ -48,7 +48,7 @@ if (isset($_POST['login'])) {
                 $fila = mysqli_fetch_array($resultadoCliente);
                 $_SESSION['nombre'] = $fila['nombre_cliente'];
             }
-            header('Location: seleccion_accion.php');
+            header('Location: index.php');
         } else {
             $error[] = "Credenciales incorrectas.";
         }
