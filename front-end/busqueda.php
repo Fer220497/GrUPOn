@@ -46,7 +46,7 @@ inicializarDB();
                 </aside>
 
                 <article>
-                    <?php echo desplegarPaginaPrincipal(); ?>
+                    <?php require_once '../back-end/formulario_busqueda_producto.php'; ?>
                 </article>
             </main>
 
