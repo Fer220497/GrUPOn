@@ -11,14 +11,15 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
+         <script src="../back-end/funciones.js"></script>
     </head>
     <body>
         <?php
         require_once '../back-end/lectura_carrito.php';
         require_once '../back-end/lectura_producto.php';
-        require_once '../back-end/compraFallida.php';
+        require_once '../back-end/proceso_compra_terminar.php';
 
-        echo pagoFallido();
+        echo pagoConExito();
         ?>
     </body>
 </html>

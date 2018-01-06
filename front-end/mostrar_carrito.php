@@ -18,7 +18,7 @@ and open the template in the editor.
         require_once '../back-end/lectura_carrito.php';
         require_once '../back-end/lectura_producto.php';
        
-        require_once '../back-end/terminarProcesoCompra.php';
+        require_once '../back-end/proceso_compra_terminar.php';
         
         echo mostrarCarrito();
         echo opcionesCompra();
