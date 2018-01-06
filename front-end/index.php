@@ -27,8 +27,9 @@ require_once '..\back-end\funciones.php';
                 </div>
                 <div id="titulo">
                     <a href="index.php">
+                        <h1>GrUPOn</h1>
                     </a>
-                    <h1>GrUPOn</h1>
+                    
                 </div>
             </header>
             <nav>
