@@ -7,7 +7,7 @@ require_once '../back-end/funciones.php';
         <title>Cuenta</title>
         <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
         <link href='estilo.css' rel="stylesheet"/>
-        <link rel="icon" href="img/logo.png"/>
+        <link rel="icon" href="../img/logo.png"/>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <script src="../back-end/funciones.js"></script>
