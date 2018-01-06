@@ -10,7 +10,7 @@ require_once '../back-end/funciones.php'
     </head>
     <body>
         <?php
-        echo historialVentas($_SESSION['correo']);
+        echo historialVentas($_SESSION['cuenta']);
         ?>
     </body>
 </html>
