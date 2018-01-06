@@ -62,10 +62,12 @@ require_once '../back-end/funciones.php';
         global $esquema;
         global $arrayComunidades;
         $sql = "SELECT * FROM EMPRESA WHERE CORREO='$correo'";
+        $result = realizarQuery($esquema, $sql);
+        $fila = mysqli_fetch_array($result);
         return '<input type=hidden id="localizacion" value="'.$fila['direccion_empresa'].'"/>'
-            . '<table border="1"><tr><td>Correo</td><td><span class="dato">' . $_SESSION['cuenta'] . '</span></td></tr>' .
+            . '<table border="1"><tr><td>Correo</td><td><span class="dato">' . $fila['correo'] . '</span></td></tr>' .
                '<tr><td>Comunidad Aut&oacute;noma</td><td>'.$arrayComunidades[$fila['nombre_ca']].'</td></tr>'.
-               '<tr><td>Nombre</td><td><span class="dato">' . $_SESSION['nombre'] . '</span></td>' .
+               '<tr><td>Nombre</td><td><span class="dato">' . $fila['nombre_empresa'] . '</span></td>' .
                '<tr><td>NIF</td><td><span class="dato">' . $fila['nif_empresa'] . '</span></td>' .
                '<tr><td>Web</td><td><span class="dato">' . $fila['web_empresa'] . '</span></td>' .
                '<tr><td>Cuenta Bancaria</td><td><span class="dato">' . $fila['cuenta_bancaria'] . '</span></td>' .
