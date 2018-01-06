@@ -6,22 +6,7 @@ require_once '../back-end/funciones.php';
 $correo = $_SESSION['cuenta'];
 
 
-//Primero traemos los datos del cliente de la DB
-$sql = "SELECT * FROM CUENTA,CLIENTE WHERE CUENTA.CORREO='$correo' AND CLIENTE.CORREO='$correo'";
 
-$resultado = realizarQuery($esquema, $sql);
-$fila = mysqli_fetch_array($resultado);
-
-$nombre = $fila['nombre_cliente'];
-$apellidos = $fila['apellidos_cliente'];
-$ca = $fila['nombre_ca'];
-
-//Después obtengo los datos de sus afinidades.
-$sql = "SELECT * FROM AFINIDADES WHERE CORREO='$correo'";
-$resultado = realizarQuery($esquema, $sql);
-while ($fila = mysqli_fetch_array($resultado)) {
-    $afinidades[] = $fila['nombre_categoria'];
-}
 
 if (isset($_POST['cambiarDatos'])) {
     if (!isset($_POST["correo"])) {
@@ -84,7 +69,8 @@ if (isset($_POST['cambiarDatos'])) {
         $_SESSION['nombre'] = $nombre;
         header('Location: modificar_cuenta_cliente.php');
     }
-} else if (isset($_POST['cambiarPwd'])) {
+}
+if (isset($_POST['cambiarPwd'])) {
     if (!isset($_POST['pwd_old'])) {
         $error[] = 'No has introducido la contrase&ntilde;a actual';
     }
@@ -106,27 +92,12 @@ if (isset($_POST['cambiarDatos'])) {
         $error[] = 'Las contrase&ntilde;s no coinciden';
     }
     //Checkeo de entradas correctas (no vacias, min caracteres,regexp....)
-    if (trim($_POST['correo']) == '' || strlen($_POST['correo']) > $tamCorreo) {
-        $error[] = 'Correo de cuenta no cumple criterios de tama&ntilde;o';
-    }
-    if (trim($_POST['nombre_cliente']) == '' || strlen($_POST['nombre_cliente']) > $tamNombreCliente) {
-        $error[] = 'Nombre de cliente no cumple criterios de tama&ntilde;o';
-    }
-    if (trim($_POST['apellidos_cliente']) == '' || strlen($_POST['apellidos_cliente']) > $tamApellidosCliente) {
-        $error[] = 'Apellidos de cliente no cumple criterios de tama&ntilde;o';
-    }
-    if (trim($_POST['pwd']) == '') {
-        $error[] = 'Contrase&ntilde;a no cumple criterios de tama&ntilde;o';
-    }
+   
+   
 
-    //Checkeo de entradas correctas
-    $filtros = array(
-        "correo" => FILTER_VALIDATE_EMAIL
-    );
-    $result = filter_input_array(INPUT_POST, $filtros);
-    if (!$result['correo']) {
-        $error[] = 'El correo no tiene el formato adecuado';
-    }
+    
+    
+    
     //Depuracion de entradas (sanitize)
     if (!isset($error)) {
         $pwdNew = sanitarString($_POST['pwd_new']);
@@ -138,11 +109,31 @@ if (isset($_POST['cambiarDatos'])) {
 
 if (isset($error)) {
     echo muestraErrores($error);
+} else {
+    echo muestraFormularioDatos();
+    echo muestraFormularioPwd();
 }
-echo muestraFormularioDatos($correo, $ca, $nombre, $apellidos, $afinidades);
-echo muestraFormularioPwd();
 
-function muestraFormularioDatos($correo, $ca, $nombre, $apellidos, $afinidades) {
+function muestraFormularioDatos() {
+    global $esquema;
+    global $correo;
+    //Primero traemos los datos del cliente de la DB
+    $sql = "SELECT * FROM CUENTA,CLIENTE WHERE CUENTA.CORREO='$correo' AND CLIENTE.CORREO='$correo'";
+
+    $resultado = realizarQuery($esquema, $sql);
+    $fila = mysqli_fetch_array($resultado);
+
+    $nombre = $fila['nombre_cliente'];
+    $apellidos = $fila['apellidos_cliente'];
+    $ca = $fila['nombre_ca'];
+
+//Después obtengo los datos de sus afinidades.
+    $sql = "SELECT * FROM AFINIDADES WHERE CORREO='$correo'";
+    $resultado = realizarQuery($esquema, $sql);
+    while ($fila = mysqli_fetch_array($resultado)) {
+        $afinidades[] = $fila['nombre_categoria'];
+    }
+
     $form = '<form action="" method="post">' .
             'Correo: <input type="text" name="correo" value="' . $correo . '"/><br/>' .
             'Nombre: <input type="text" name="nombre_cliente" value="' . $nombre . '"/><br/>' .

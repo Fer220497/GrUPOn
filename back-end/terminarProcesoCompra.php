@@ -60,7 +60,7 @@ function opcionesCompra() {
                 '<input type="hidden" name="amount" value="' . $precio . '">' .
                 //
                 '<input type="hidden" name="return" value="http://localhost//GrUPOn-master/front-end/pantalla_compra_exito.php">' .
-                '<input type="hidden" name="cancel_return" value="pantalla_compra_fallida.php">' .
+                '<input type="hidden" name="cancel_return" value="http://localhost//GrUPOn-master/front-end/pantalla_compra_fallida.php">' .
                 //
                 '<input type="image" src="http://www.paypal.com/es_XC/i/btn/x-click-but01.gif"' .
                 'name="submit"' .

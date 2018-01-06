@@ -60,9 +60,7 @@ if (isset($_POST['modificarEmpresa'])) {
     if (trim($_POST['correo']) == ''|| strlen($_POST['correo']) > $tamCorreo) {
         $error[] = 'Correo de cuenta no cumple criterios de tama&ntilde;o';
     }
-    if (trim($_POST['pwd']) == '') {
-        $error[] = 'Contrase&ntilde;a empresa no cumple criterios de tama&ntilde;o';
-    }
+    
     if (trim($_POST['web_empresa']) == '' || strlen($_POST['web_empresa']) > $tamWeb) {
         $error[] = 'Web de la empresa no cumple criterios de tama&ntilde;o';
     }
@@ -129,9 +127,11 @@ if (isset($_POST['modificarEmpresa'])) {
                 . "nif_empresa='$nif_empresa', web_empresa='$web_empresa', cuenta_bancaria='$cuenta_bancaria', "
                 . "telefono_empresa='$telefono_empresa', email_empresa='$mail_empresa' WHERE correo='$correonuevo'";
         realizarQuery($esquema, $sql);
+        
+        echo $sql;
         $_SESSION['cuenta'] = $correonuevo;
         $_SESSION['nombre'] = $nombre_empresa;
-        header('Location: modificar_cuenta_empresa.php');
+      //  header('Location: modificar_cuenta_empresa.php');
     }
 }
 
@@ -199,7 +199,7 @@ function formularioModEmpresa() {
             'Cuenta Bancaria: <input type="number" name="cuenta_bancaria" value="' . $cuenta_bancaria . '" /><br/>' .
             'Tel&eacute;fono: <input type="number" name="telefono_empresa" value="' . $telefono_empresa . '"/><br/>' .
             'Correo Electr&oacute;nico: <input type="email" name="mail_empresa" value="' . $email_empresa . '"/> <br/>' .
-            'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma>'.opcionesComunidadSeleccionada($ca).'</select><br>' .
+            'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma">'.opcionesComunidadSeleccionada($ca).'</select><br>' .
             'Direcci&oacute;n Empresa: <input type="text" name="direccion_empresa" value="' . $direccion_empresa . '" />' .
             '<input type="submit" name="modificarEmpresa" value="Enviar"/>' .
             '</form>' .
