@@ -7,11 +7,11 @@
  */
 
 function iniciarCarrito() {
-    //eliminar en caso de querer reiniciar con el login
-    if (!getCookie("carrito")) {
+    //añadir // en caso de querer reiniciar con el login
+    if (getCookie("carrito")=="") {
         setCookie("carrito", "", 1);
     }
-
+    setCookie("categoria", "general", 1);
 }
 function addCarrito(id, carritoActual) {
     var var_string = id;
@@ -38,16 +38,21 @@ function addCarrito(id, carritoActual) {
  * @param string $carritoActual
  * @return string
  */
-function removeCarrito(id, index) {
-    alert("Eliminar producto numero "+index);
+function removeCarrito(index) {
+    alert("Eliminar producto numero ".concat(index, " del array"));
     var carritoActual = getCookie("carrito");
-    array = carritoActual.split(",");
-    
-    array.splice(0,1);
-    alert(array);
-    var string=array.join();
+    var array = carritoActual.split(",");
+    array.splice(index, 1);
+    array = array.join();
+
     var cookie_name = "carrito";
-    setCookie(cookie_name, string, 1);
+    setCookie(cookie_name, array, 1);
+    /*
+     array.splice(index,1);
+     alert(array);
+     var string = array.join();
+     var cookie_name = "carrito";
+     setCookie(cookie_name, string, 1);*/
 }
 function setCookie(cname, cvalue, exdays) {
 

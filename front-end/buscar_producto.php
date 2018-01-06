@@ -17,8 +17,8 @@ and open the template in the editor.
         <script>
             $("#cookie").append(document.createTextNode(getCookie("categoria")));
         </script>    
-
-        <?php require_once '../back-end/formulario_busqueda_producto.php'; ?>
+        
+        <?php require_once '../back-end/formulario_busqueda_producto.php'; echo menuCategorias();?>
 
     </body>
 </html>

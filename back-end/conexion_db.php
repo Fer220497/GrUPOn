@@ -7,6 +7,7 @@
          * @return result
          */
         function realizarQuery($esquema, $query){
+            global $esquema;
             $con = mysqli_connect("localhost", "root", "");
             if(!$con){
                 die('No se puede conectar con la DB' . mysqli_error($con));
@@ -24,12 +25,12 @@
                 die('No se pudo obtener resultado' . mysqli_error($con)); 
             }
             return $result;
-        }
+        } 
         
         /**
          * Función que sanea un string para escapar caracteres peligrosos.
          * @param string $string
-         * @return string
+         * @return strings
          */
         function sanitarString($string){
             $con = mysqli_connect("localhost", "root", "");

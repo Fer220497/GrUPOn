@@ -4,7 +4,7 @@
     unset($_SESSION['nombre']);
     unset($_SESSION['tipo']);
     //unset($_SESSION['categoria']);
-
+    
     session_destroy();
    
     

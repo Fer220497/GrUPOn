@@ -105,7 +105,7 @@ if (isset($_POST['crearProducto'])) {
         $arch=$_FILES['imagen']['name'];
         $tmp=$_FILES['imagen']['tmp_name'];
         //echo $dirpath;
-        move_uploaded_file($tmp,"../imagenesSubidas/$nombreFichero");
+        move_uploaded_file($tmp,"../img/$nombreFichero");
     }
 }
 

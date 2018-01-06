@@ -16,9 +16,9 @@ and open the template in the editor.
         <?php
         require_once '../back-end/lectura_carrito.php';
         require_once '../back-end/lectura_producto.php';
-        require_once '../back-end/lectura_compra.php';
+        require_once '../back-end/compraFallida.php';
 
-        echo opcionesCompra();
+        echo pagoFallido();
         ?>
     </body>
 </html>

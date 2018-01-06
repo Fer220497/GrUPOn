@@ -6,6 +6,33 @@
  * and open the template in the editor.
  */
 
+function mostrarCarrito() {
+    
+    global $esquema;
+    $productos = explode(",", $_COOKIE["carrito"]);
+    $contador=0;
+  
+    foreach ($productos as $key => $producto) {
+        
+        echo muestraProducto($producto);
+          print_r($productos);
+        echo '<button href="mostrar_carrito.php" onclick="removeCarrito('.$key.')">Eliminar del carrito</button>';
+        $contador++;
+    }
+    
+        $precio=0;
+        $productos = explode(",", $_COOKIE["carrito"]);
+        foreach ($productos as $id_producto) {
+            $query = "SELECT * FROM PRODUCTO WHERE ID_PRODUCTO='$id_producto'";
+            $result = realizarQuery($esquema, $query);
+            $fila = mysqli_fetch_array($result);
+            $precio += $fila['precio'] - ($fila['precio'] * ($fila['porcentaje_descuento'] / 100));
+        }
+        echo "<br/>El coste total de la compra es de: $precio &euro;<br/>";
+}
+
+
+
 function opcionesCompra() {
     if (!isset($_SESSION["cuenta"])) {
         header('Location: login.php');
@@ -32,8 +59,8 @@ function opcionesCompra() {
                 '<input type="hidden" name="currency_code" value="EUR">' .
                 '<input type="hidden" name="amount" value="' . $precio . '">' .
                 //
-                '<input type="hidden" name="return" value="http://www.sitio.com/pagado.php">' .
-                '<input type="hidden" name="cancel_return" value="http://www.sitio.com/cancelado.php">' .
+                '<input type="hidden" name="return" value="http://localhost//GrUPOn-master/front-end/pantalla_compra_exito.php">' .
+                '<input type="hidden" name="cancel_return" value="pantalla_compra_fallida.php">' .
                 //
                 '<input type="image" src="http://www.paypal.com/es_XC/i/btn/x-click-but01.gif"' .
                 'name="submit"' .
