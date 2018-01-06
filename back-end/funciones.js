@@ -85,4 +85,15 @@ function checkCookie() {
     } else {
 
     }
+    
 }
+
+categorias = {viajes: "Viajes",
+                entretenimiento: "Entretenimiento",
+                gastronomia: "Gastronomía",
+                electronica: "Electrónica",
+                ropa: "Ropa",
+                salud_y_belleza: "Salud y belleza",
+                deporte: "Deporte",
+                general: "General",
+            };

@@ -5,29 +5,19 @@ require_once '..\back-end\funciones.php';
 <!DOCTYPE html>
 <html>
     <head>
-
         <title>GrUPOn</title>
-        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-        <link rel="icon" href="img/logo.png">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-            body{
-                font-family: 'Roboto', sans-serif;
-            }
-        </style>
-        <script src="..\libs\cookieInterface.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+        <link href='estilo.css' rel="stylesheet"/>
+        <link rel="icon" href="img/logo.png"/>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script src="../back-end/funciones.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
         <script>
-            var categorias = {viajes: "Viajes",
-                entretenimiento: "Entretenimiento",
-                gastronomia: "Gastronomía",
-                electronica: "Electrónica",
-                ropa: "Ropa",
-                salud_y_belleza: "Salud y belleza",
-                deporte: "Deporte",
-                general: ""
-            };
-        </script>
+            $(document).ready(function () {
+                $("#cookie").append(document.createTextNode(categorias[getCookie("categoria")]));
+            });
+        </script>   
     </head>
     <body>
         <header>
@@ -46,16 +36,20 @@ require_once '..\back-end\funciones.php';
             </nav>
             <main>
                 <aside>
+                    <h2 id="categoria_actual">
+                        <div id="cookie">  
+                        </div>
+                    </h2>
                     <?php
                     echo menuCategorias();
                     ?>
                 </aside>
 
                 <article>
-                    <h2 id="categoria_actual"><div id="cookie"></div><script>$("#cookie").append(document.createTextNode(categorias[getCookie('categoria')]));</script></h2>
-                            <?php
-                            desplegarPaginaPrincipal();
-                            ?>
+                    <?php
+                    require_once '../back-end/formulario_busqueda_producto.php';
+                    desplegarPaginaPrincipal();
+                    ?>
                 </article>
             </main>
 
