@@ -245,7 +245,7 @@ function desplegarPaginaPrincipal() {
     if (!isset($_SESSION['cuenta'])) {
         //BÚSQUEDA CON CATEGORIA
         if ($_COOKIE['categoria'] != 'general') {
-            $str .= 'SELECT * FROM PRODUCTO WHERE nombre_categoria LIKE "' . $_COOKIE['categoria'] . '" AND cantidad_disponible > 0';
+            $sql = 'SELECT * FROM PRODUCTO WHERE nombre_categoria LIKE "' . $_COOKIE['categoria'] . '" AND cantidad_disponible > 0';
             $result = realizarQuery($esquema, $sql);
             $str .= '<table border=1>';
             while ($fila = mysqli_fetch_array($result)) {
@@ -327,7 +327,7 @@ function navigation() {
 }
 
 function formularioBusquedaProducto() {
-    $form = '<form action="" method="post">' .
+    $form = '<form action="busqueda.php" method="post">' .
             '<input type="text" name="nombre"/>';
     if (isset($_SESSION["cuenta"])) {
         $form .= ' Nacional <input type="checkbox" name="nacional" value="nacional"><br>';

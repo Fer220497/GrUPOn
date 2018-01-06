@@ -3,7 +3,9 @@ require_once '../back-end/conexion_db.php';
 require_once '../back-end/funciones.php';
 
 if (isset($_POST['busqueda'])) {
-    $correo = $_SESSION["cuenta"];
+    if(isset($_SESSION['cuenta'])){
+        $correo = $_SESSION["cuenta"];
+    }
     if (!isset($_POST["nombre"])) {
         $error[] = "Nombre no introducido";
     }
@@ -15,7 +17,7 @@ if (isset($_POST['busqueda'])) {
                 $nombre = $_POST['nombre'];
                 $sql = 'SELECT * FROM PRODUCTO WHERE nombre_categoria LIKE "' . $_COOKIE['categoria'] . '" AND (nombre LIKE "%' . $nombre . '%" OR descripcion LIKE "%' . $nombre . '%") AND cantidad_disponible > 0';
                 $result = realizarQuery($esquema, $sql);
-                echo '<table border=1>';
+                echo '<table border="1">';
                 while ($fila = mysqli_fetch_row($result)) {
                     $cookie_name="productoVisitado";
                     echo '<tr><td><a href="producto.php" onclick="setCookie(\''.$cookie_name.'\',\''.$fila[0].'\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
@@ -27,7 +29,7 @@ if (isset($_POST['busqueda'])) {
                 $nombre = $_POST['nombre'];
                 $sql = 'SELECT * FROM PRODUCTO WHERE nombre LIKE "%' . $nombre . '%" OR descripcion LIKE "%' . $nombre . '%" AND cantidad_disponible > 0';
                 $result = realizarQuery($esquema, $sql);
-                echo '<table border=1>';
+                echo '<table border="1">';
                 while ($fila = mysqli_fetch_row($result)) {
                     $cookie_name="productoVisitado";
                     echo '<tr><td><a href="producto.php" onclick="setCookie(\''.$cookie_name.'\',\''.$fila[0].'\',1)" >' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
@@ -45,7 +47,7 @@ if (isset($_POST['busqueda'])) {
                 $nombre = $_POST['nombre'];
                 $sql = 'SELECT * FROM PRODUCTO WHERE nombre_categoria LIKE "' . $_COOKIE['categoria'] . '" AND (nombre LIKE "%' . $nombre . '%" OR descripcion LIKE "%' . $nombre . '%") AND nombre_ca LIKE "' . $ca . '" AND cantidad_disponible > 0';
                 $result = realizarQuery($esquema, $sql);
-                echo '<table border=1>';
+                echo '<table border="1">';
                 while ($fila = mysqli_fetch_row($result)) {
                     $cookie_name="productoVisitado";
                     echo '<tr><td><a href="producto.php" onclick="setCookie(\''.$cookie_name.'\',\''.$fila[0].'\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
@@ -57,7 +59,7 @@ if (isset($_POST['busqueda'])) {
                 $nombre = $_POST['nombre'];
                 $sql = 'SELECT * FROM PRODUCTO WHERE (nombre LIKE "%' . $nombre . '%" OR descripcion LIKE "%' . $nombre . '%") AND nombre_ca LIKE "' . $ca . '" AND cantidad_disponible > 0';
                 $result = realizarQuery($esquema, $sql);
-                echo '<table border=1>';
+                echo '<table border="1">';
                 while ($fila = mysqli_fetch_row($result)) {
                     $cookie_name="productoVisitado";
                     echo '<tr><td><a href="producto.php" onclick="setCookie(\''.$cookie_name.'\',\''.$fila[0].'\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';

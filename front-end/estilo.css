@@ -43,3 +43,8 @@ footer{
     font-weight: bold;
     text-shadow: 1px 1px white;
 }
+
+#map-canvas{
+    height: 500px;
+    width: 500px;
+}
