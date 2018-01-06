@@ -83,7 +83,7 @@ if (isset($_POST['modificarProducto'])) {
         echo $sql;
         realizarQuery($esquema, $sql);
         $tmp = $_FILES['imagen']['tmp_name'];
-        move_uploaded_file($tmp, "../img/$nombreFichero");
+        move_uploaded_file($tmp, "../imagenesSubidas/$nombreFichero");
         header('Location: seleccion_accion.php');
     }
 }
@@ -112,7 +112,7 @@ function formularioModificarProducto($id_producto) {
             'Localizaci&oacute;n: <input type="text" name="localizacion" value="' . $producto["localizacion"] . '" /><br/>' .
             'Porcentaje descuento: <input type="number" name="porcentaje_descuento" value="' . $producto["porcentaje_descuento"] . '" /><br/>' .
             'Cantidad disponible: <input type="number" name="cantidad" value="' . $producto["cantidad_disponible"] . '" /><br/>' .
-            'Imagen: <div><img alt="' . $producto["nombre"] . '" src="../img/' . $producto['ruta_imagen'] . '" height = "200"></div>' .
+            'Imagen: <div><img alt="' . $producto["nombre"] . '" src="../imagenesSubidas/' . $producto['ruta_imagen'] . '" height = "200"></div>' .
             '<input type="file" name="imagen"/><br/>' .
             '<input type="submit" name="modificarProducto" value="Enviar"/>' .
             '</form>';
