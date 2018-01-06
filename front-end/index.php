@@ -34,7 +34,7 @@ inicializarDB();
                 </div>
             </header>
             <nav>
-                <?php echo navigation(); ?>
+                <?php echo formularioBusquedaProducto(); echo navigation(); ?>
             </nav>
             <main>
                 <aside>
@@ -46,8 +46,7 @@ inicializarDB();
                 </aside>
 
                 <article>
-                    <?php require_once '../back-end/formulario_busqueda_producto.php';
-                    echo desplegarPaginaPrincipal();
+                    <?php require_once '../back-end/formulario_busqueda_producto.php'; echo desplegarPaginaPrincipal();
                     ?>
                 </article>
             </main>

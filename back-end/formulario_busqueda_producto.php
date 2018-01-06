@@ -2,9 +2,6 @@
 require_once '../back-end/conexion_db.php';
 require_once '../back-end/funciones.php';
 
-echo formularioBusquedaProducto() . '<br/>';
-
-
 if (isset($_POST['busqueda'])) {
     $correo = $_SESSION["cuenta"];
     if (!isset($_POST["nombre"])) {
@@ -91,18 +88,7 @@ if (isset($_POST['busqueda'])) {
 
  */
 if (isset($error)) {
-    muestraErrores($error);
+   echo muestraErrores($error);
 }
 
-function formularioBusquedaProducto() {
-    $form = '<form action="" method="post">' .
-            '<input type="text" name="nombre"/>';
-    if (isset($_SESSION["cuenta"])) {
-        $form .= ' Nacional <input type="checkbox" name="nacional" value="nacional"><br>';
-    }
-
-    $form .= '<input type="submit" value="Buscar" name="busqueda"/>' .
-            '</form>';
-
-    return $form;
-}
+/**LA FUNCION QUE GENERA ESTE FORMULARIO ESTÁ EN FUNCIONES.PHP POR RESTRICCION DE DISEÑO DE LA WEB**/
