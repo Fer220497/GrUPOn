@@ -301,8 +301,8 @@ function desplegarPaginaPrincipal() {
             }
             $str .= '</table>';
         }
-        return $str;
     }
+    return $str;
 }
 
 function navigation() {
@@ -324,6 +324,19 @@ function navigation() {
     }
     $nav .= " </ul></div>";
     return $nav;
+}
+
+function formularioBusquedaProducto() {
+    $form = '<form action="" method="post">' .
+            '<input type="text" name="nombre"/>';
+    if (isset($_SESSION["cuenta"])) {
+        $form .= ' Nacional <input type="checkbox" name="nacional" value="nacional"><br>';
+    }
+
+    $form .= '<input type="submit" value="Buscar" name="busqueda"/>' .
+            '</form>';
+
+    return $form;
 }
 
 /* * TAMAÑOS MAXIMOS DE LAS VARIABLES EN LA DB* */
