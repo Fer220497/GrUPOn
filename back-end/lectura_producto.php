@@ -21,7 +21,7 @@ function muestraProducto($id) {
             . '<table border="1">'
             . '<tr>'
             . '<td>' . $fila['nombre'] . '</td></tr>' .
-            ' <tr><td>Imagen:</td><td><img src="' . '../img/'.$fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/>'
+            ' <tr><td>Imagen:</td><td><img src="' . '../imagenesSubidas/'.$fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/>'
             . '<tr><td>Descripci&oacute;n: ' . $fila['descripcion'] . '</td></tr>'
             . '<tr><td>Descuento: ' . $fila['porcentaje_descuento'] . '%</td><td>Precio: ' . $fila['precio'] . '&euro;</td><td>Unidades Restantes:' . $fila['cantidad_disponible'] . '</td></tr>'
             . '<tr><td>Precio: '.$precio.'&euro;</td></tr> '
