@@ -11,6 +11,8 @@ and open the template in the editor.
     </head>
     <body>
          <h2>Modificaci&oacute;n Producto</h2>
-        <?php require_once '../back-end/formulario_modificar_producto.php'; ?>
+        <?php require_once '../back-end/formulario_modificar_producto.php'; 
+       
+        ?>
     </body>
 </html>
