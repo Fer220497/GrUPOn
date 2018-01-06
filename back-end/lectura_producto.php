@@ -31,6 +31,7 @@ function muestraProducto($id) {
             . '<tr><td>Precio: '.$precio.'&euro;</td></tr> '
             . '<tr><td>Vendedor: <a href="../front-end/mostrar_empresa.php" onclick="setCookie(\'empresaVisitada\','.$datosEmpresa["correo"].',1)">'.$datosEmpresa["correo"].'</a></td></tr>'
             . '<tr><td>Categor&iacute;a: ' . $arrayCategorias[$fila['nombre_categoria']] . '</td><td>Ofertado en: ' . $arrayComunidades[$fila['nombre_ca']] . '</td></tr>'
+            . '<tr><td>Localizacion: '.$fila["localizacion"].''
             . '<tr><td><div id="map-canvas"></div></td></tr>'
             . '</td></tr></table>';  
             
