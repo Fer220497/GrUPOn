@@ -11,6 +11,6 @@ and open the template in the editor.
     </head>
     <body>
        <h2>Creaci&oacute;n Catalogo</h2>
-        <?php require_once '../back-end/formulario_creacion_catalogo.php'; ?>
+        <?php session_start();require_once '../back-end/formulario_creacion_catalogo.php'; ?>
     </body>
 </html>
