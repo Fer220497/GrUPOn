@@ -11,7 +11,7 @@ and open the template in the editor.
         <title></title>
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"/>
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="../back-end/libs/cookieInterface.js"></script>
+        <script src="../back-end/funciones.js"></script>
     </head>
     <body>
         <script>
