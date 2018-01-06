@@ -32,7 +32,7 @@ require_once '..\back-end\funciones.php';
                 </div>
             </header>
             <nav>
-
+                <?php echo navigation(); ?>
             </nav>
             <main>
                 <aside>

@@ -3,6 +3,8 @@ body{
 }
 
 footer{
+    clear: both;
+    background-color: orange;
     margin: 0px;
     margin-left: 30px;
     font-size: 20px;
