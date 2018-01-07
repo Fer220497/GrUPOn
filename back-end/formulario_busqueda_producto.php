@@ -1,15 +1,17 @@
 <?php
+
 require_once '../back-end/conexion_db.php';
 require_once '../back-end/funciones.php';
 
 if (isset($_GET['busqueda'])) {
-    if(isset($_SESSION['cuenta'])){
+    if (isset($_SESSION['cuenta'])) {
         $correo = $_SESSION["cuenta"];
     }
     if (!isset($_GET["nombre"])) {
         $error[] = "Nombre no introducido";
     }
     if (!isset($error)) {
+        echo '<h3>Productos</h3><table border="1">';
         //BÚSQUEDA NACIONAL
         if (!isset($_SESSION['cuenta']) || isset($_GET['nacional'])) {
             //BÚSQUEDA CON CATEGORIA
@@ -17,10 +19,9 @@ if (isset($_GET['busqueda'])) {
                 $nombre = $_GET['nombre'];
                 $sql = 'SELECT * FROM PRODUCTO WHERE nombre_categoria LIKE "' . $_COOKIE['categoria'] . '" AND (nombre LIKE "%' . $nombre . '%" OR descripcion LIKE "%' . $nombre . '%") AND cantidad_disponible > 0';
                 $result = realizarQuery($esquema, $sql);
-                echo '<table border="1">';
                 while ($fila = mysqli_fetch_row($result)) {
-                    $cookie_name="productoVisitado";
-                    echo '<tr><td><a href="producto.php" onclick="setCookie(\''.$cookie_name.'\',\''.$fila[0].'\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
+                    $cookie_name = "productoVisitado";
+                    echo '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila[0] . '\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
                 }
                 echo '</table>';
             }
@@ -29,10 +30,9 @@ if (isset($_GET['busqueda'])) {
                 $nombre = $_GET['nombre'];
                 $sql = 'SELECT * FROM PRODUCTO WHERE (nombre LIKE "%' . $nombre . '%" OR descripcion LIKE "%' . $nombre . '%") AND cantidad_disponible > 0';
                 $result = realizarQuery($esquema, $sql);
-                echo '<table border="1">';
                 while ($fila = mysqli_fetch_row($result)) {
-                    $cookie_name="productoVisitado";
-                    echo '<tr><td><a href="producto.php" onclick="setCookie(\''.$cookie_name.'\',\''.$fila[0].'\',1)" >' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
+                    $cookie_name = "productoVisitado";
+                    echo '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila[0] . '\',1)" >' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
                 }
                 echo '</table>';
             }
@@ -47,10 +47,9 @@ if (isset($_GET['busqueda'])) {
                 $nombre = $_GET['nombre'];
                 $sql = 'SELECT * FROM PRODUCTO WHERE nombre_categoria LIKE "' . $_COOKIE['categoria'] . '" AND (nombre LIKE "%' . $nombre . '%" OR descripcion LIKE "%' . $nombre . '%") AND nombre_ca LIKE "' . $ca . '" AND cantidad_disponible > 0';
                 $result = realizarQuery($esquema, $sql);
-                echo '<table border="1">';
                 while ($fila = mysqli_fetch_row($result)) {
-                    $cookie_name="productoVisitado";
-                    echo '<tr><td><a href="producto.php" onclick="setCookie(\''.$cookie_name.'\',\''.$fila[0].'\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
+                    $cookie_name = "productoVisitado";
+                    echo '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila[0] . '\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
                 }
                 echo '</table>';
             }
@@ -59,14 +58,22 @@ if (isset($_GET['busqueda'])) {
                 $nombre = $_GET['nombre'];
                 $sql = 'SELECT * FROM PRODUCTO WHERE (nombre LIKE "%' . $nombre . '%" OR descripcion LIKE "%' . $nombre . '%") AND nombre_ca LIKE "' . $ca . '" AND cantidad_disponible > 0';
                 $result = realizarQuery($esquema, $sql);
-                echo '<table border="1">';
                 while ($fila = mysqli_fetch_row($result)) {
-                    $cookie_name="productoVisitado";
-                    echo '<tr><td><a href="producto.php" onclick="setCookie(\''.$cookie_name.'\',\''.$fila[0].'\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
+                    $cookie_name = "productoVisitado";
+                    echo '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila[0] . '\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
                 }
                 echo '</table>';
             }
         }
+        echo '<h3>Cat&aacute;logos</h3><table border = 1>';
+        $nombre = $_GET['nombre'];
+        $sql = 'SELECT * FROM CATALOGO WHERE nombre LIKE "' . $_COOKIE['categoria'] . '"';
+        $result = realizarQuery($esquema, $sql);
+        while ($fila = mysqli_fetch_row($result)) {
+            $cookie_name = "productoVisitado";
+            echo '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila[0] . '\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
+        }
+        echo '</table>';
     }
 }
 
@@ -90,7 +97,7 @@ if (isset($_GET['busqueda'])) {
 
  */
 if (isset($error)) {
-   echo muestraErrores($error);
+    echo muestraErrores($error);
 }
 
 /**LA FUNCION QUE GENERA ESTE FORMULARIO ESTÁ EN FUNCIONES.PHP POR RESTRICCION DE DISEÑO DE LA WEB**/
