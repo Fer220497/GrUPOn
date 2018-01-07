@@ -28,8 +28,19 @@ require_once '../back-end/funciones.php';
                 </div>
             </header>
             <nav>
-                <?php echo navigation(); ?>
+                <?php echo formularioBusquedaProducto();
+                echo navigation();
+                ?>
             </nav>
+            <main>
+                <aside>
+                <h2 id="categoria_actual">
+                    <div id="cookie">  
+                    </div>
+                </h2>
+<?php echo menuCategorias(); ?>
+            </aside>
+                <article>
             <h2>Hola <?php echo $_SESSION['nombre'] ?>, aqu&iacute; est&aacute; la informaci&oacute;n de su cuenta</h2>
             <!--Esto debería ser el submenú de datos, que muestra las opciones del empresario o cliente dependiendo de la cuenta-->
             <?php
@@ -49,7 +60,7 @@ require_once '../back-end/funciones.php';
             }
             echo muestraCuenta();
             echo muestraFormularioBorrar();
-            ?>
-
+            ?></article>
+            </main>
     </body>
 </html>

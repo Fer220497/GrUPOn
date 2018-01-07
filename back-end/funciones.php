@@ -1,4 +1,5 @@
 <?php
+
 require_once '../back-end/conexion_db.php';
 
 function historialCliente($correo) {
@@ -15,7 +16,7 @@ function historialCliente($correo) {
 }
 
 function historialVentas($correo) {
-    $correo=$_SESSION["cuenta"];
+    $correo = $_SESSION["cuenta"];
     global $esquema;
     $sql = "SELECT * FROM LANZAMIENTOS, PRODUCTO WHERE LANZAMIENTOS.CORREO='$correo' AND LANZAMIENTOS.PRODUCTO_ID=PRODUCTO.ID_PRODUCTO";
     $result = realizarQuery($esquema, $sql);
@@ -253,7 +254,7 @@ function desplegarPaginaPrincipal() {
             while ($fila = mysqli_fetch_array($result)) {
                 $cookie_name = "productoVisitado";
                 $str .= '<tr><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/> </tr>' .
-                        '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila["id_producto"] . '\',1)" >' . $fila["nombre"] .'</td></tr>'.
+                        '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila["id_producto"] . '\',1)" >' . $fila["nombre"] . '</td></tr>' .
                         '</td></a><td> Precio: ' . $fila["precio"] . '</td><td> Descuento: ' . $fila["porcentaje_descuento"] . '</td></tr>';
             }
             $str .= '</table>';
@@ -266,7 +267,7 @@ function desplegarPaginaPrincipal() {
             while ($fila = mysqli_fetch_array($result)) {
                 $cookie_name = "productoVisitado";
                 $str .= '<tr><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/> </tr>' .
-                        '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila["id_producto"] . '\',1)" >' . $fila["nombre"] .'</td></tr>'.
+                        '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila["id_producto"] . '\',1)" >' . $fila["nombre"] . '</td></tr>' .
                         '</td></a><td> Precio: ' . $fila["precio"] . '</td><td> Descuento: ' . $fila["porcentaje_descuento"] . '</td></tr>';
             }
             $str .= '</table>';
@@ -298,7 +299,7 @@ function desplegarPaginaPrincipal() {
             while ($fila = mysqli_fetch_array($result)) {
                 $cookie_name = "productoVisitado";
                 $str .= '<tr><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila["id_producto"] . '\',1)" ><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/> </tr>' .
-                        '<tr><td>' . $fila["nombre"] .'</td></tr>'.
+                        '<tr><td>' . $fila["nombre"] . '</td></tr>' .
                         '</td></a><td> Precio: ' . $fila["precio"] . '</td><td> Descuento: ' . $fila["porcentaje_descuento"] . '</td></tr>';
             }
             $str .= '</table>';

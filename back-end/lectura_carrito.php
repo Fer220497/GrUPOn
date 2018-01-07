@@ -37,7 +37,7 @@ function pagoConExito() {
         }
         
         
-        $sql = 'INSERT INTO COMPRA (correo, id_producto, fecha, cantidad) VALUES(\''.$_COOKIE['cuenta'].'\',\''.$producto.'\',curdate(),\'1\')';
+        $sql = 'INSERT INTO COMPRA (correo, id_producto, fecha, cantidad) VALUES(\''.$_SESSION['cuenta'].'\',\''.$producto.'\',curdate(),\'1\')';
         realizarQuery($esquema, $sql);
     }
     echo "PAGO REALIZADO CON EXITO";

@@ -1,5 +1,6 @@
 <?php session_start();
-require_once '../back-end/funciones.php';?>
+require_once '../back-end/funciones.php';
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -13,6 +14,11 @@ require_once '../back-end/funciones.php';?>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <script src="../back-end/funciones.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+        <script>
+            $(document).ready(function () {
+                $("#cookie").append(document.createTextNode(categorias[getCookie("categoria")]));
+            });
+        </script>  
     </head>
     <body>
         <header>
@@ -24,22 +30,33 @@ require_once '../back-end/funciones.php';?>
                     <a href="index.php">
                         <h1>GrUPOn</h1>
                     </a>
-                    
+
                 </div>
             </header>
-             <nav>
-                <?php echo formularioBusquedaProducto(); echo navigation(); ?>
+            <nav>
+<?php echo formularioBusquedaProducto();
+echo navigation(); ?>
             </nav>
-        <?php
-        require_once '../back-end/formulario_borrar_producto.php';
-        require_once '../back-end/lectura_producto.php';
-        /**
-         * COMO OBTENEMOS ID PRODUCTO ACTUAL?
-         */
-        //$_SESSION['id_producto_borrar'] = $id;
-        echo muestraProducto($_COOKIE["productoVisitado"]);
-        echo muestraFormularioBorrar($_COOKIE["productoVisitado"]);
-        echo mostrarBotonAnadir($_COOKIE["productoVisitado"]);
-        ?>
-    </body>
+            <aside>
+                <h2 id="categoria_actual">
+                    <div id="cookie">  
+                    </div>
+                </h2>
+<?php echo menuCategorias(); ?>
+            </aside>
+            <article>
+                <main>
+                    <?php
+                    require_once '../back-end/formulario_borrar_producto.php';
+                    require_once '../back-end/lectura_producto.php';
+                    /**
+                     * COMO OBTENEMOS ID PRODUCTO ACTUAL?
+                     */
+                    //$_SESSION['id_producto_borrar'] = $id;
+                    echo muestraProducto($_COOKIE["productoVisitado"]);
+                    echo muestraFormularioBorrar($_COOKIE["productoVisitado"]);
+                    echo mostrarBotonAnadir($_COOKIE["productoVisitado"]);
+                    ?></article>
+        </main>
+</body>
 </html>
