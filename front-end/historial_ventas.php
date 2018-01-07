@@ -52,7 +52,7 @@ require_once '..\back-end\funciones.php';
                 <article>
                     <?php
         require_once '../back-end/funciones.php';
-    echo historialVentas($_SESSION['cuenta']);
+        echo historialVentas($_SESSION['cuenta']);
         ?>
                 </article>
         <!--AQUI IRA TODO EL MAIN -->

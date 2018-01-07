@@ -164,7 +164,7 @@ function formularioRegistroEmpresa() {
 
     global $recaptcha;
     global $selectComunidadesAutonomas;
-    $form = '<form action="../back-end/formulario_registro_empresa.php" method="post">' .
+    $form = '<form action="../front-end/registro_empresa.php" method="post">' .
             'Correo: <input type="email" name="correo" required/><br/>' .
             'Contrase&ntilde;a: <input type="password" name="pwd" required/><br/>' .
             'Confirmar Contrase&ntilde;a: <input type="password" name="pwd_confirmar" required/ ><br/>' .

@@ -54,7 +54,11 @@ echo navigation(); ?>
                      */
                     //$_SESSION['id_producto_borrar'] = $id;
                     echo muestraProducto($_COOKIE["productoVisitado"]);
-                    echo muestraFormularioBorrar($_COOKIE["productoVisitado"]);
+                    if($_SESSION['tipo'] == 'empresa'){
+                        if(esVendedor($_COOKIE['productoVisitado'], $_SESSION['cuenta'])){
+                            echo muestraFormularioBorrar($_COOKIE["productoVisitado"]);
+                        }
+                    }
                     echo mostrarBotonAnadir($_COOKIE["productoVisitado"]);
                     ?></article>
         </main>

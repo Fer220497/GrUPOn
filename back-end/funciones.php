@@ -2,6 +2,17 @@
 
 require_once '../back-end/conexion_db.php';
 
+function esVendedor($id_prod, $correo){
+    global $esquema;
+    $query = "SELECT * FROM LANZAMIENTOS WHERE CORREO='$correo' AND ID_PRODUCTO='$id_prod'";
+    $result = realizarQuery($esquema, $query);
+    if(mysqli_num_rows($result) == 0){
+        return false;
+    }else{
+        return true;
+    }
+}
+
 function historialCliente($correo) {
     global $esquema;
     $sql = "SELECT * FROM COMPRA,PRODUCTO WHERE COMPRA.CORREO='$correo' AND COMPRA.ID_PRODUCTO = PRODUCTO.ID_PRODUCTO";
@@ -18,7 +29,7 @@ function historialCliente($correo) {
 function historialVentas($correo) {
     $correo = $_SESSION["cuenta"];
     global $esquema;
-    $sql = "SELECT * FROM LANZAMIENTOS, PRODUCTO WHERE LANZAMIENTOS.CORREO='$correo' AND LANZAMIENTOS.PRODUCTO_ID=PRODUCTO.ID_PRODUCTO";
+    $sql = "SELECT * FROM LANZAMIENTOS,PRODUCTO WHERE LANZAMIENTOS.CORREO='$correo' AND LANZAMIENTOS.ID_PRODUCTO=PRODUCTO.ID_PRODUCTO";
     $result = realizarQuery($esquema, $sql);
     $html = '<table border="1">'
             . '<th>Nombre Producto</th><th>Fecha Venta</th><th>N&uacute;mero Ventas</th><th>Beneficio Obtenido</th>';
