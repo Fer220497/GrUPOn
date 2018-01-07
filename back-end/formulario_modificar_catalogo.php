@@ -84,7 +84,7 @@ function formularioModificacionCatalogo() {
     $cookie_catalogoVisitado=$_COOKIE["catalogo_visitado"];
     $correo = $_SESSION['cuenta'];
     $sql = "SELECT * FROM CATALOGO WHERE CORREO='$correo' AND id_catalogo='$cookie_catalogoVisitado'";
-    $result = realizarQuery("grupon", $sql);
+    $result = realizarQuery($esquema, $sql);
     $datosCatalogo = mysqli_fetch_array($result);
     print_r($datosCatalogo);
     $ca = $datosCatalogo["nombre_categoria"];

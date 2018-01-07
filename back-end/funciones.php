@@ -347,7 +347,7 @@ function busquedaCatalogo(){
     $result = realizarQuery($esquema, $sql);
     $cookie_name="catalogo_visitado";
     while($listaCatalogos= mysqli_fetch_array($result)){
-        $form.='<a href="../front-end/modificar_catalogo.php" onclick="setCookie(\''.$cookie_name.'\',\''.$listaCatalogos["id_Catalogo"].'\',1)">'.$listaCatalogos["nombre"].'</a>';
+        $form.='<a href="../front-end/modificar_catalogo.php" onclick="setCookie(\''.$cookie_name.'\',\''.$listaCatalogos["id_catalogo"].'\',1)">'.$listaCatalogos["nombre"].'</a>';
            
     }
     return $form;
