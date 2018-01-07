@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once '../back-end/conexion_db.php';
 
 function historialCliente($correo) {
