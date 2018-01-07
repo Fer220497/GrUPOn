@@ -58,7 +58,7 @@ require_once '..\back-end\funciones.php';
              */
             //$_SESSION['id_catalogo_borrar'] = $id;
             echo mostrarCatalogo();
-            echo muestraFormularioBorrar();
+            
         ?>
                 </article>
         <!--AQUI IRA TODO EL MAIN -->

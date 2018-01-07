@@ -4,7 +4,7 @@ $correo = $_SESSION['cuenta'];
 
 require_once '../back-end/conexion_db.php';
 require_once '../back-end/funciones.php';
-
+require_once '../back-end/formulario_borrar_catalogo.php';
 
 
 
@@ -37,7 +37,7 @@ if (isset($error)) {
     print_r($error);
 }
 echo formularioModificacionCatalogo();
-
+ echo muestraFormularioBorrar();
 /* BUSQUEDA DE CATALOGOS
   if (isset($_POST['seleccionarCatalogo'])) {
   if (!isset($_POST['nombre_catalogo'])) {

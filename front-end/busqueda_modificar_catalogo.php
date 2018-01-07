@@ -46,7 +46,8 @@ require_once '..\back-end\funciones.php';
                 </aside>
 
                 <article>
-                    <?php echo busquedaCatalogo(); ?>
+                    <?php echo busquedaCatalogo(); 
+                   ?>
                 </article>
             </main>
 
