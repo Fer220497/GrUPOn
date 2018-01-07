@@ -27,7 +27,7 @@ if (isset($_GET['busqueda'])) {
             //BÚSQUEDA SIN CATEGORIA
             else {
                 $nombre = $_GET['nombre'];
-                $sql = 'SELECT * FROM PRODUCTO WHERE nombre LIKE "%' . $nombre . '%" OR descripcion LIKE "%' . $nombre . '%" AND cantidad_disponible > 0';
+                $sql = 'SELECT * FROM PRODUCTO WHERE (nombre LIKE "%' . $nombre . '%" OR descripcion LIKE "%' . $nombre . '%") AND cantidad_disponible > 0';
                 $result = realizarQuery($esquema, $sql);
                 echo '<table border="1">';
                 while ($fila = mysqli_fetch_row($result)) {
