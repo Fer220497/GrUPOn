@@ -94,12 +94,12 @@ if (!isset($_POST['modificarProducto']) || isset($errores)) {
         echo "1";
         muestraErrores($errores);
     }
-    echo formularioModificarProducto($_COOKIE["productoVisitado"]);
+    echo formularioModificarProducto();
 }
 
-function formularioModificarProducto($id_producto) {
+function formularioModificarProducto() {
     global $esquema;
-    $sql = 'SELECT * FROM PRODUCTO WHERE id_producto = "' . $id_producto . '"';
+    $sql = 'SELECT * FROM PRODUCTO WHERE id_producto = "' . $_COOKIE['productoVisitado'] . '"';
     $result = realizarQuery($esquema, $sql);
     $producto = mysqli_fetch_array($result);
     $form = '<form action="" method="post" enctype="multipart/form-data">' .
