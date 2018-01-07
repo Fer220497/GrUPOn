@@ -53,6 +53,7 @@ function removeCarrito(index) {
      var string = array.join();
      var cookie_name = "carrito";
      setCookie(cookie_name, string, 1);*/
+    location.reload();
 }
 function setCookie(cname, cvalue, exdays) {
 

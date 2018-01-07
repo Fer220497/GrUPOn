@@ -35,6 +35,10 @@ function pagoConExito() {
             $sql = "UPDATE LANZAMIENTOS SET num_ventas='$num_ventas' WHERE id_producto=$producto";
             realizarQuery($esquema, $sql);
         }
+        
+        
+        $sql = 'INSERT INTO COMPRA (correo, id_producto, fecha, cantidad) VALUES(\''.$_COOKIE['cuenta'].'\',\''.$producto.'\',curdate(),\'1\')';
+        realizarQuery($esquema, $sql);
     }
     echo "PAGO REALIZADO CON EXITO";
     echo '<a href="../front-end/seleccion_accion.php" onclick="setCookie(\'carrito\', \'\', 1)"> Pulse para terminar proceso</a>';
