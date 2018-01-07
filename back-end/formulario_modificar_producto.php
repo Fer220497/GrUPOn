@@ -3,6 +3,9 @@
 require_once '../back-end/conexion_db.php';
 require_once '../back-end/funciones.php';
 
+
+
+
 if (isset($_POST['modificarProducto'])) {
     if (!isset($_POST['nombre'])) {
         echo "error1";
@@ -116,6 +119,8 @@ function formularioModificarProducto() {
             '<input type="file" name="imagen"/><br/>' .
             '<input type="submit" name="modificarProducto" value="Enviar"/>' .
             '</form>';
+
+   
     return $form;
 }
 

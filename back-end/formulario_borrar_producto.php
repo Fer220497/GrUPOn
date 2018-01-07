@@ -16,7 +16,7 @@
      * @return string
      */
     function muestraFormularioBorrar(){
-        return '<form action="" method="post">
+        return '<form action="../back-end/formulario_borrar_producto.php" method="post">
                     <input type="submit" name="borrar" value="Borrar Producto"/> Marcar si est&aacute;s seguro de que quieres borrar el producto <input type="checkbox" name="check" value="Borrar"/>
                 </form>';
         
