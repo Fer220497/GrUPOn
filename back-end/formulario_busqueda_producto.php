@@ -67,11 +67,15 @@ if (isset($_GET['busqueda'])) {
         }
         echo '<h3>Cat&aacute;logos</h3><table border = 1>';
         $nombre = $_GET['nombre'];
-        $sql = 'SELECT * FROM CATALOGO WHERE nombre LIKE "' . $_COOKIE['categoria'] . '"';
+        if ($_COOKIE['categoria'] != 'general') {
+            $sql = 'SELECT * FROM CATALOGO WHERE nombre LIKE "' . $nombre . '" AND nombre_categoria LIKE "' . $_COOKIE['categoria'] . '"';
+        } else {
+            $sql = 'SELECT * FROM CATALOGO WHERE nombre LIKE "' . $nombre . '"';
+        }
         $result = realizarQuery($esquema, $sql);
         while ($fila = mysqli_fetch_row($result)) {
-            $cookie_name = "productoVisitado";
-            echo '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila[0] . '\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
+            $cookie_name = "catalogoVisitado";
+            echo '<tr><td><a href="catalogo.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila[0] . '\',1)">' . $fila[3] . '</td></a><td>' . $fila[2] . '</tr>';
         }
         echo '</table>';
     }
