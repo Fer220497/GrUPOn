@@ -48,6 +48,16 @@ footer{
     width: 500px;
 }
 
+aside{
+    float: left;
+    width: 30%;
+}
+
+main{
+    float: left;
+    width: 70%;
+}
+
 li{
     display: inline-block;
     margin-left: 0.5%;
