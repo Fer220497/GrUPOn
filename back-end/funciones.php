@@ -2,7 +2,8 @@
 require_once '../back-end/conexion_db.php';
 
 function historialCliente($correo) {
-    $sql = "SELECT * FROM COMPRA,PRODUCTO WHERE COMPRA.CORREO='$correo' AND CUENTA.ID_PRODUCTO = PRODUCTO.ID_PRODUCTO";
+    global $esquema;
+    $sql = "SELECT * FROM COMPRA,PRODUCTO WHERE COMPRA.CORREO='$correo' AND COMPRA.ID_PRODUCTO = PRODUCTO.ID_PRODUCTO";
     $result = realizarQuery($esquema, $sql);
     $html = '<table border="1"><tr>'
             . '<th>Nombre Producto</th><th>Fecha Compra</th><th>Cantidad</th><th>Precio</th></tr>';
