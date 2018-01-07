@@ -3,7 +3,8 @@ require_once '../back-end/conexion_db.php';
 require_once '../back-end/funciones.php';
 
 
-    function mostrarCatalogo($id){
+    function mostrarCatalogo(){
+        $id=$_COOKIE["catalogoVisitado"];
         global $esquema;
         global $arrayCategorias;
         $sql = "SELECT * FROM CATALOGO WHERE ID_CATALOGO='$id'";

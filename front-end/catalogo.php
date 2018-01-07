@@ -52,12 +52,12 @@ require_once '..\back-end\funciones.php';
                 <article>
                   <?php
             require_once '../back-end/formulario_borrar_catalogo.php';
-            require_once '../back-end/lectura_catalago.php';
+            require_once '../back-end/lectura_catalogo.php';
             /**
              * COMO OBTENEMOS ID CATALOGO ACTUAL?
              */
-            $_SESSION['id_catalogo_borrar'] = $id;
-            echo mostrarCatalogo($id);
+            //$_SESSION['id_catalogo_borrar'] = $id;
+            echo mostrarCatalogo();
             echo muestraFormularioBorrar();
         ?>
                 </article>
