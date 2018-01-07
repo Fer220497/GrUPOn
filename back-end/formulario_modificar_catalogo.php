@@ -36,7 +36,7 @@ if (isset($error)) {
     //echo muestraErrores($error);
     print_r($error);
 }
-echo formularioModificacionCatalogo("Botines23");
+echo formularioModificacionCatalogo();
 
 /* BUSQUEDA DE CATALOGOS
   if (isset($_POST['seleccionarCatalogo'])) {
@@ -79,10 +79,11 @@ echo formularioModificacionCatalogo("Botines23");
   }
  */
 
-function formularioModificacionCatalogo($nombreCatalogo) {
+function formularioModificacionCatalogo() {
     global $esquema;
+    $cookie_catalogoVisitado=$_COOKIE["catalogo_visitado"];
     $correo = $_SESSION['cuenta'];
-    $sql = "SELECT * FROM CATALOGO WHERE CORREO='$correo' AND NOMBRE='$nombreCatalogo'";
+    $sql = "SELECT * FROM CATALOGO WHERE CORREO='$correo' AND id_catalogo='$cookie_catalogoVisitado'";
     $result = realizarQuery("grupon", $sql);
     $datosCatalogo = mysqli_fetch_array($result);
     print_r($datosCatalogo);

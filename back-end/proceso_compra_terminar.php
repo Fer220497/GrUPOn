@@ -59,8 +59,8 @@ function opcionesCompra() {
                 '<input type="hidden" name="currency_code" value="EUR">' .
                 '<input type="hidden" name="amount" value="' . $precio . '">' .
                 //PARA HOST PROPIO
-                '<input type="hidden" name="return" value="http://localhost//GrUPOn-master/front-end/compra_exito.php">' .
-                '<input type="hidden" name="cancel_return" value="http://localhost//GrUPOn-master/front-end/compra_fallida.php">' .
+                '<input type="hidden" name="return" value="http://localhost//GrUPOn/front-end/compra_exito.php">' .
+                '<input type="hidden" name="cancel_return" value="http://localhost//GrUPOn/front-end/compra_fallida.php">' .
                 //PARA HOST EN LA PAGINA
               //  '<input type="hidden" name="return" value="https://grupon.000webhostapp.com/front-end/compra_exito.php">' .
                 //'<input type="hidden" name="cancel_return" value="https://grupon.000webhostapp.com/front-end/compra_fallida.php">' .
