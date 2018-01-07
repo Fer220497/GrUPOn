@@ -13,6 +13,11 @@ require_once '../back-end/funciones.php';
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <script src="../back-end/funciones.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+        <script>
+            $(document).ready(function () {
+                $("#cookie").append(document.createTextNode(categorias[getCookie("categoria")]));
+            });
+        </script> 
     </head>
     <body>
         <header>
@@ -51,7 +56,7 @@ require_once '../back-end/funciones.php';
                 echo '<button type="submit" onclick="location.href = \'creacion_catalogo.php\'">Crear Cat&aacute;logo</button> 
         <button type="submit" onclick="location.href = \'creacion_producto.php\'">Crear Producto</button> 
         <button type="submit" onclick="location.href = \'../front-end/busqueda_modificar_catalogo.php\'">Modificar Cat&aacute;logo</button> 
-        <button type="submit" onclick="location.href = \'modificar_producto.php\'">Modificar Producto</button>
+        <button type="submit" onclick="location.href = \'listado_productos.php\'">Modificar Producto</button>
         <button type="submit" onclick="location.href = \'modificar_cuenta_empresa.php\'"> Modificar Cuenta</button>
                <button type="submit" onclick="location.href = \'historial_ventas.php\'"> Mostrar Historial Ventas</button>';
             } else {

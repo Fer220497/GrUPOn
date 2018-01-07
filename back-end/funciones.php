@@ -2,13 +2,31 @@
 
 require_once '../back-end/conexion_db.php';
 
-function esVendedor($id_prod, $correo){
+function mostrarProductosVendedor($correo) {
+    $cookie_name = 'productoVisitado';
+    global $esquema;
+    $query = "SELECT * FROM LANZAMIENTOS,PRODUCTO WHERE PRODUCTO.ID_PRODUCTO = LANZAMIENTOS.ID_PRODUCTO AND LANZAMIENTOS.CORREO = '$correo'";
+    $result = realizarQuery($esquema, $query);
+    if (mysqli_num_rows($result) == 0) {
+        return '<p>No tiene productos en venta</p>';
+    } else {
+        $str = '';
+        while($fila = mysqli_fetch_array($result)){
+            $str .= '<tr><a href="modificar_producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila["id_producto"] . '\',1)" ><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/></a></tr>' .
+                    '<tr><td><a href="modificar_producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila["id_producto"] . '\',1)" >' . $fila["nombre"] . '</td></tr>' .
+                    '</td></a><td> Precio: ' . $fila["precio"] . '</td><td> Descuento: ' . $fila["porcentaje_descuento"] . '</td></tr>';
+        }
+        return $str .= '</table>';
+    }
+}
+
+function esVendedor($id_prod, $correo) {
     global $esquema;
     $query = "SELECT * FROM LANZAMIENTOS WHERE CORREO='$correo' AND ID_PRODUCTO='$id_prod'";
     $result = realizarQuery($esquema, $query);
-    if(mysqli_num_rows($result) == 0){
+    if (mysqli_num_rows($result) == 0) {
         return false;
-    }else{
+    } else {
         return true;
     }
 }
@@ -339,16 +357,16 @@ function navigation() {
     $nav .= " </ul></div>";
     return $nav;
 }
-function busquedaCatalogo(){
+
+function busquedaCatalogo() {
     global $esquema;
-    $form="";
-    $correo=$_SESSION["cuenta"];
-    $sql="SELECT * FROM CATALOGO WHERE CORREO='$correo'";
+    $form = "";
+    $correo = $_SESSION["cuenta"];
+    $sql = "SELECT * FROM CATALOGO WHERE CORREO='$correo'";
     $result = realizarQuery($esquema, $sql);
-    $cookie_name="catalogo_visitado";
-    while($listaCatalogos= mysqli_fetch_array($result)){
-        $form.='<a href="../front-end/modificar_catalogo.php" onclick="setCookie(\''.$cookie_name.'\',\''.$listaCatalogos["id_catalogo"].'\',1)">'.$listaCatalogos["nombre"].'</a>';
-           
+    $cookie_name = "catalogo_visitado";
+    while ($listaCatalogos = mysqli_fetch_array($result)) {
+        $form .= '<a href="../front-end/modificar_catalogo.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $listaCatalogos["id_catalogo"] . '\',1)">' . $listaCatalogos["nombre"] . '</a>';
     }
     return $form;
 }
