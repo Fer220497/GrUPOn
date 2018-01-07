@@ -13,7 +13,7 @@ require_once '../back-end/formulario_login.php';
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <script src="../back-end/funciones.js"></script>
-          <script src='https://www.google.com/recaptcha/api.js'></script>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
         <script>
             $(document).ready(function () {
@@ -34,26 +34,13 @@ require_once '../back-end/formulario_login.php';
 
                 </div>
             </header>
-            <nav>
-                <?php echo formularioBusquedaProducto();
-                echo navigation();
-                ?>
-            </nav>
             <main>
-                <aside>
-                    <h2 id="categoria_actual">
-                        <div id="cookie">  
-                        </div>
-                    </h2>
-                <?php echo menuCategorias(); ?>
-                </aside>
-
                 <article><!--AQUI IRA TODO EL MAIN -->
-                   <?php echo formularioLogin(); ?>
+                    <?php echo formularioLogin(); ?>
                     &iquest;No est&aacute;s registrado? ¡Reg&iacute;strate aqu&iacute;!<br/>
                     <button type="submit" onclick="location.href = 'registro_cliente.php'">Registro como cliente</button>
                     <button type="submit" onclick="location.href = 'registro_empresa.php'">Registro como empresa</button>
-                
+
                 </article><!--AQUI IRA TODO EL MAIN -->
             </main>
 
