@@ -1,0 +1,60 @@
+body{
+    font-family: 'Slabo 27px', sans-serif;
+    margin: 0;
+}
+
+header{
+    height:250px;
+    background-image: url('../img/banner.jpg');
+}
+
+header #logo{
+    margin-top: 70px;
+    margin-left: 30px;
+    border: 5px;
+    border-style: solid;
+    border-color: white;
+    float: left;
+}
+
+header #titulo{
+    height: 100%;
+    text-shadow: 3px 3px black;
+    margin-left: 30px;
+    float: left;
+    font-size: 100px;
+}
+
+header #titulo a{
+    text-decoration: none;
+    color: white;
+}
+
+header #titulo h1{
+    margin: 0;
+}
+
+footer{
+    clear: both;
+    background-color: orange;
+    margin: 0px;
+    margin-left: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 1px 1px white;
+}
+
+#map-canvas{
+    height: 500px;
+    width: 500px;
+}
+
+li{
+    display: inline-block;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+}
+#map-canvas{
+                height: 500px;
+                width: 500px;
+            }
