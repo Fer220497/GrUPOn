@@ -25,22 +25,32 @@ require_once '../back-end/funciones.php';
                     <a href="index.php">
                         <h1>GrUPOn</h1>
                     </a>
-                    
+
                 </div>
             </header>
             <nav>
                 <?php echo navigation(); ?>
             </nav>
-        <?php
-        require_once '../back-end/lectura_carrito.php';
-        require_once '../back-end/lectura_producto.php';
-        require_once '../back-end/proceso_compra_terminar.php';
-        if($_COOKIE['carrito'] == ''){
-            ?><h2>No ha a&ntilde;adido nada al carrito</h2><?php
-        }else{
-            echo mostrarCarrito();
-            echo opcionesCompra();
-        }
-        ?>
+            <main>
+                <aside>
+                    <h2 id="categoria_actual">
+                        <div id="cookie">  
+                        </div>
+                    </h2>
+                    <?php echo menuCategorias(); ?>
+                </aside>
+                <article>
+                    <?php
+                    require_once '../back-end/lectura_carrito.php';
+                    require_once '../back-end/lectura_producto.php';
+                    require_once '../back-end/proceso_compra_terminar.php';
+                    if ($_COOKIE['carrito'] == '') {
+                        ?><h2>No ha a&ntilde;adido nada al carrito</h2><?php
+                    } else {
+                        echo mostrarCarrito();
+                        echo opcionesCompra();
+                    }
+                    ?></article>
+            </main>
     </body>
 </html>
