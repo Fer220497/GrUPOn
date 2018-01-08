@@ -29,12 +29,6 @@ inicializarDB();
                 <div id="logo">
                     <a href="index.php"><img alt="GrUPOn" src="..\img\logo.png" height="90"/></a>
                 </div>
-                <div id="titulo">
-                    <a href="index.php">
-                        <h1>GrUPOn</h1>
-                    </a>
-                    
-                </div>
             </header>
             <nav id="h_nav">
                 <?php echo "<div id='busqueda'" . formularioBusquedaProducto() . '</div>'; echo navigation(); ?>
