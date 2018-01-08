@@ -8,7 +8,6 @@ require_once '../back-end/funciones.php';
 
 if (isset($_POST['modificarProducto'])) {
     if (!isset($_POST['nombre'])) {
-        echo "error1";
         $errores[] = 'Debes introducir nombre.';
     }
     if (!isset($_POST['precio'])) {
@@ -16,26 +15,21 @@ if (isset($_POST['modificarProducto'])) {
         $errores[] = 'Debes introducir precio.';
     }
     if (!isset($_POST['descripcion'])) {
-        echo "error3";
         $errores[] = 'Debes introducir descripci&oacute;n.';
     }
     if (!isset($_POST['localizacion'])) {
-        echo "error4";
         $errores[] = 'Debes introducir localizaci&oacute;n.';
     }
     if (!isset($_POST['porcentaje_descuento'])) {
-        echo "error5";
         $errores[] = 'Debes introducir porcentaje de descuento.';
     }
     if ($_FILES['imagen']['name'] != '') {
         echo $_FILES["imagen"]["name"];
         if (!esImagen($_FILES['imagen'])) {
-            echo "error6";
             print_r($_FILES["imagen"]);
             $errores[] = "NO ES UNA IMAGEN";
         }
         if (!limiteTamanyo($_FILES["imagen"], 1000 * 5120)) {
-            echo "error7";
             $errores[] = "TAMAÑO MAXIMO";
         }
     }
@@ -67,13 +61,11 @@ if (isset($_POST['modificarProducto'])) {
         }
         //$arch = $_FILES['imagen']['name'];
         if ($_FILES['imagen']['name'] != '') {
-            echo "pene";
             $fichero = explode('.', $_FILES['imagen']['name']);
             //print_r($fichero);
             $extension = '.' . $fichero[count($fichero) - 1];
             $nombreFichero = microtime() . $extension;
         } else {
-            echo "pene2";
             $nombreFichero = $producto["ruta_imagen"];
         }
 

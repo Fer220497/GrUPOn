@@ -46,6 +46,5 @@ and open the template in the editor.
                 //<button type="submit" onclick="location.href = 'mostrar_carrito.php'">Mostrar Carrito</button>
             }
         ?>
-        
     </body>
 </html>
