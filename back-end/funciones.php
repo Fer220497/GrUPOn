@@ -276,7 +276,7 @@ function desplegarPaginaPrincipal() {
     //BÚSQUEDA NACIONAL
     if (!isset($_SESSION['cuenta'])) {
         //BÚSQUEDA CON CATEGORIA
-        if ($_COOKIE['categoria'] != 'general') {
+        if (isset($_COOKIE['categoria']) && ($_COOKIE['categoria'] != 'general')) {
             $sql = 'SELECT * FROM PRODUCTO WHERE nombre_categoria LIKE "' . $_COOKIE['categoria'] . '" AND cantidad_disponible > 0';
             $result = realizarQuery($esquema, $sql);
             $str .= '<table border=1>';

@@ -27,7 +27,7 @@ inicializarDB();
         <header>
             <header>
                 <div id="logo">
-                    <a href="index.php"><img alt="GrUPOn" src="..\img\logo.png" height="100"/></a>
+                    <a href="index.php"><img alt="GrUPOn" src="..\img\logo.png" height="90"/></a>
                 </div>
                 <div id="titulo">
                     <a href="index.php">
@@ -36,11 +36,11 @@ inicializarDB();
                     
                 </div>
             </header>
-            <nav>
-                <?php echo formularioBusquedaProducto(); echo navigation(); ?>
+            <nav id="h_nav">
+                <?php echo "<div id='busqueda'" . formularioBusquedaProducto() . '</div>'; echo navigation(); ?>
             </nav>
             <main>
-                <aside>
+                <aside id="sidenav">
                     <h2 id="categoria_actual">
                         <div id="cookie">  
                         </div>
@@ -49,6 +49,7 @@ inicializarDB();
                 </aside>
 
                 <article>
+                    Holi
                     <?php echo desplegarPaginaPrincipal(); ?>
                 </article>
             </main>
