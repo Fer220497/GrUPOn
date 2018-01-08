@@ -18,7 +18,7 @@ and open the template in the editor.
     <body>
 <?php
 function navigation() {
-    $nav = '<div id="horizontalNav"><ul>';
+    $nav = '<div id="icon_tray"><ul>';
     if (isset($_SESSION["cuenta"])) {
         if ($_SESSION["tipo"] == "cliente") {// LOGEADO COMO CLIENTE
             $nav .= '<li><a id="carrito" href="mostrar_carrito.php">Carrito</a></li>';

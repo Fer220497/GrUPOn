@@ -16,7 +16,7 @@ inicializarDB();
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
         <script>
             $(document).ready(function () {
-                if(getCookie('categoria') == ''){
+                if (getCookie('categoria') == '') {
                     setCookie('categoria', 'general', 1);
                 }
                 $("#cookie").append(document.createTextNode(categorias[getCookie("categoria")]));
@@ -25,31 +25,31 @@ inicializarDB();
     </head>
     <body>
         <header>
-            <header>
-                <div id="logo">
-                    <a href="index.php"><img alt="GrUPOn" src="..\img\logo.png" height="90"/></a>
-                </div>
-            </header>
-            <nav id="h_nav">
-                <?php echo "<div id='busqueda'" . formularioBusquedaProducto() . '</div>'; echo navigation(); ?>
-            </nav>
-            <main>
-                <aside id="sidenav">
-                    <h2 id="categoria_actual">
-                        <div id="cookie">  
-                        </div>
-                    </h2>
-                    <?php echo menuCategorias(); ?>
-                </aside>
+            <div id="logo">
+                <a href="index.php"><img alt="GrUPOn" src="..\img\logo.png" height="90"/></a>
+            </div>
+        </header>
+        <nav id="h_nav">
+            <?php echo "<div id='busqueda'" . formularioBusquedaProducto() . '</div>';
+            echo navigation(); ?>
+        </nav>
+        <main>
+            <aside id="sidenav">
+                <h2 id="categoria_actual">
+                    <div id="cookie">  
+                    </div>
+                </h2>
+<?php echo menuCategorias(); ?>
+            </aside>
 
-                <article>
-                    Holi
-                    <?php echo desplegarPaginaPrincipal(); ?>
-                </article>
-            </main>
+            <article>
+                Holi
+<?php echo desplegarPaginaPrincipal(); ?>
+            </article>
+        </main>
 
-            <footer>
-                Grupo &num;2 - GrUPOn&copy;, el fruto dado por el odio hacia nosotros mismos
-            </footer>
+        <footer>
+            Grupo &num;2 - GrUPOn&copy;, el fruto dado por el odio hacia nosotros mismos
+        </footer>
     </body>
 </html>
