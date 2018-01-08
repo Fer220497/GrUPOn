@@ -80,7 +80,10 @@ if (isset($_POST['registroEmpresa'])) {
         if ($response == null && !$response->success) {
             $error[] = 'BOT DETECTADO.';
         }
+    }else{
+        $error[] = 'No has checkeado el reCaptcha';
     }
+    
     //Checkeo de entradas correctas
     $filtros = array(
         "correo"=>FILTER_VALIDATE_EMAIL,

@@ -26,6 +26,8 @@ if (isset($_POST['login'])) {
         if ($response == null && !$response->success) {
             $error[] = 'BOT DETECTADO.';
         }
+    }else{
+        $error[] = 'No has checkeado el reCaptcha';
     }
     if (!isset($error)) {
         $correo = sanitarString($_POST['correo']);
