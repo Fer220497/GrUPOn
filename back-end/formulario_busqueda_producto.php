@@ -5,9 +5,9 @@ require_once '../back-end/funciones.php';
 
 if (isset($_GET['busqueda'])) {
     if (isset($_SESSION['cuenta'])) {
-        $correo = $_SESSION["cuenta"];
+        $correo = $_SESSION['cuenta'];
     }
-    if (!isset($_GET["nombre"])) {
+    if (!isset($_GET['nombre'])) {
         $error[] = "Nombre no introducido";
     }
     if (!isset($error)) {
@@ -20,7 +20,7 @@ if (isset($_GET['busqueda'])) {
                 $sql = 'SELECT * FROM PRODUCTO WHERE nombre_categoria LIKE "' . $_COOKIE['categoria'] . '" AND (nombre LIKE "%' . $nombre . '%" OR descripcion LIKE "%' . $nombre . '%") AND cantidad_disponible > 0';
                 $result = realizarQuery($esquema, $sql);
                 while ($fila = mysqli_fetch_row($result)) {
-                    $cookie_name = "productoVisitado";
+                    $cookie_name = 'productoVisitado';
                     echo '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila[0] . '\',1)">' . $fila[4] . '</td></a><td>' . $fila[6] . '</tr>';
                 }
                 echo '</table>';

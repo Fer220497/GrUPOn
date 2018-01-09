@@ -1,4 +1,5 @@
-<?php session_start();
+<?php
+session_start();
 require_once '../back-end/funciones.php';
 ?>
 <html>
@@ -34,18 +35,20 @@ require_once '../back-end/funciones.php';
                 </div>
             </header>
             <nav>
-<?php echo formularioBusquedaProducto();
-echo navigation(); ?>
+                <?php echo formularioBusquedaProducto();
+                echo navigation();
+                ?>
             </nav>
-            <aside>
-                <h2 id="categoria_actual">
-                    <div id="cookie">  
-                    </div>
-                </h2>
+            <main>
+                <aside>
+                    <h2 id="categoria_actual">
+                        <div id="cookie">  
+                        </div>
+                    </h2>
 <?php echo menuCategorias(); ?>
-            </aside>
-            <article>
-                <main>
+                </aside>
+                <article>
+
                     <?php
                     require_once '../back-end/formulario_borrar_producto.php';
                     require_once '../back-end/lectura_producto.php';
@@ -53,14 +56,19 @@ echo navigation(); ?>
                      * COMO OBTENEMOS ID PRODUCTO ACTUAL?
                      */
                     //$_SESSION['id_producto_borrar'] = $id;
-                    echo muestraProducto($_COOKIE["productoVisitado"]);
-                    if($_SESSION['tipo'] == 'empresa'){
-                        if(esVendedor($_COOKIE['productoVisitado'], $_SESSION['cuenta'])){
-                            echo muestraFormularioBorrar($_COOKIE["productoVisitado"]);
-                        }
+                    echo muestraProducto($_COOKIE['productoVisitado']);
+                    if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'empresa' && esVendedor($_COOKIE['productoVisitado'], $_SESSION['cuenta'])) {
+                        echo muestraFormularioBorrar($_COOKIE['productoVisitado']);
                     }
-                    echo mostrarBotonAnadir($_COOKIE["productoVisitado"]);
+                    echo mostrarBotonAnadir($_COOKIE['productoVisitado']);
+
+                    if (isset($_SESSION['cuenta']) && $_SESSION['tipo'] == 'cliente' &&
+                            puedeComentar($_SESSION['cuenta'], $_COOKIE['productoVisitado'])) {
+                        require_once '../back-end/formulario_comentario.php';
+                        echo mostrarCajaComentario();
+                    }
+                    echo mostrarComentarios($_COOKIE['productoVisitado']);
                     ?></article>
-        </main>
-</body>
+            </main>
+    </body>
 </html>

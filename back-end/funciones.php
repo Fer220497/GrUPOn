@@ -2,6 +2,58 @@
 
 require_once '../back-end/conexion_db.php';
 
+/**
+ * Un cliente solo puede comentar si:
+ * Está loggeado, ha comprado el produto y NO ha comentado.
+ * @global type $esquema
+ * @param type $correo
+ * @return string
+ */
+function puedeComentar($correo, $producto){
+    global $esquema;
+    $query = "SELECT * FROM COMPRA WHERE CORREO='$correo' AND ID_PRODUCTO='$producto'";
+    $result = realizarQuery($esquema, $query);
+    if(mysqli_num_rows($result) > 0){   //Ha comprado
+        $query = "SELECT * FROM COMENTARIOS WHERE CORREO='$correo' AND ID_PRODUCTO='$producto'";
+        $result = realizarQuery($esquema, $query);
+        if(mysqli_num_rows($result) > 0){   //Ha comentado
+            return false;
+        }else{
+            return true;    //No ha comentado
+        }
+    }else{
+        return false;
+    }
+}
+
+function mostrarCajaComentario(){
+    $form = '<form method="post" action="">'
+            . '<textarea name="comentario" placeholder="Comenta algo!" maxlength="5000"></textarea>'
+            . '<input type="number" name="valoracion" min="0" max="5" value="3"/>'
+            . '<input type="submit" name="enviado" value="Enviar comentario"/></form>';
+    return $form;
+}
+
+function mostrarComentarios($producto){
+    global $esquema;
+    $query = "SELECT * FROM COMENTARIOS,CLIENTE WHERE COMENTARIOS.CORREO=CLIENTE.CORREO AND ID_PRODUCTO='$producto'";
+    $result = realizarQuery($esquema, $query);
+    if(mysqli_num_rows($result) > 0){
+        $sumaPuntuaciones = 0;
+        $str = '<div id="comentarios">';
+        while($fila = mysqli_fetch_array($result)){
+            $str .= '<h4>'.$fila['nombre_cliente'].', '.$fila['valoracion'].'</h4>'
+                    . '<p>'.$fila['comentario'].'</p>';
+            $sumaPuntuaciones += $fila['valoracion'];
+        }
+        return '<div id="puntuacion_total"><h3>Valoraci&oacute;n media: '.$sumaPuntuaciones/mysqli_num_rows($result).
+                '/5</h3></div>'.$str.'</div>';
+        
+    }else{
+        return '<div id="comentarios">No hay comentarios</div>';
+    }
+}
+
 function mostrarProductosVendedor($correo) {
     $cookie_name = 'productoVisitado';
     global $esquema;
@@ -373,7 +425,7 @@ function busquedaCatalogo() {
 
 function formularioBusquedaProducto() {
     $form = '<form action="busqueda.php" method="get"><div id="busqueda">' .
-            '<input id="cuadro_busqueda" type="text" name="nombre"/>';
+            '<input id="cuadro_busqueda" type="text" name="nombre" placeholder="Busca algo!"/>';
     if (isset($_SESSION["cuenta"])) {
         $form .= ' Nacional <input type="checkbox" name="nacional" value="nacional"><br>';
     }

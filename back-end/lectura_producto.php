@@ -41,6 +41,6 @@ function muestraProducto($id) {
 
 function mostrarBotonAnadir($id){
      $cookieCarrito=$_COOKIE["carrito"];
-    echo '<button onclick="addCarrito(\''.$id.'\','.$cookieCarrito.')"/>A&ntilde;adir a Carrito';
+    echo '<button onclick="addCarrito(\''.$id.'\','.$cookieCarrito.')">A&ntilde;adir a Carrito</button>';
 }
 ?>
