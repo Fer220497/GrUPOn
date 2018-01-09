@@ -23,6 +23,8 @@ header{
 
 nav{
     background-color:#FDA231;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
     overflow: hidden;
     height:70px;
     width:100%;
@@ -75,6 +77,11 @@ main{
 aside{
     overflow: hidden;
     background-color: #FDA231;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+    border-right-style: solid;
+    border-right-width: thin;
+    border-color: black;
     color: white;
     float: left;
     padding-bottom: 2%;
