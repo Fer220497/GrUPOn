@@ -338,7 +338,7 @@ function desplegarPaginaPrincipal() {
 }
 
 function navigation() {
-    $nav = '<div id="horizontalNav"><ul>';
+    $nav = '<div id="icon_tray"><ul>';
     if (isset($_SESSION["cuenta"])) {
         if ($_SESSION["tipo"] == "cliente") {// LOGEADO COMO CLIENTE
             $nav .= '<li><a id="carrito" href="mostrar_carrito.php">Carrito</a></li>' .
@@ -372,14 +372,14 @@ function busquedaCatalogo() {
 }
 
 function formularioBusquedaProducto() {
-    $form = '<form action="busqueda.php" method="get">' .
-            '<input type="text" name="nombre"/>';
+    $form = '<form action="busqueda.php" method="get"><div id="busqueda">' .
+            '<input id="cuadro_busqueda" type="text" name="nombre"/>';
     if (isset($_SESSION["cuenta"])) {
         $form .= ' Nacional <input type="checkbox" name="nacional" value="nacional"><br>';
     }
 
-    $form .= '<input type="submit" value="Buscar" name="busqueda"/>' .
-            '</form>';
+    $form .= '<input id="boton_busqueda" type="submit" value="Buscar" name="busqueda"/>' .
+            '</div></form>';
 
     return $form;
 }

@@ -1,12 +1,79 @@
-article{
+*{
+    box-sizing: border-box;
+    font-family: 'Slabo 27px', sans-serif;
+    margin: 0;
+}
+
+.error{
+    width:100%;
+    overflow:hidden;
+    margin:1%;
+    border: 1px;
+    padding: 10px;
+    border-style: dashed;
+    border-color: red;
+    color: red;
+}
+
+header{
+    background-image: url('../img/banner.jpg');
+    height: 100px;
+    width: 100%;
+}
+
+nav{
+    background-color:#FDA231;
+    overflow: hidden;
+    height:70px;
+    width:100%;
+}
+
+nav ul{
+    text-align: center;
+}
+nav ul li{
+    display: inline;
+    height: 100%;
+}
+
+nav ul li a{
+    /*padding: 0.2em 1em;*/
+    padding:1%;
+}
+
+#busqueda{
+    margin-top:20px;
+    margin-left:auto;
     float: left;
-    margin-left: 2%;
-    margin-top: 2%;
-    overflow: auto;
-    width: 66%;
+    margin-left: 33%;
+    width: 33%;
+}
+
+#cuadro_busqueda{
+    width:80%;
+    margin-left:10%;
+    margin-top:auto;
+    margin-bottom:auto;
+}
+#boton_busqueda{
+    width:10%;
+    margin:auto;
+}
+
+#icon_tray{
+    margin-top:20px;
+    float: left;
+    width: 33%;
+}
+
+main{
+    overflow: hidden;
+    float: left;
+    width: 100%;
 }
 
 aside{
+    overflow: hidden;
     background-color: #FDA231;
     color: white;
     float: left;
@@ -16,16 +83,12 @@ aside{
     width: 20%;
 }
 
-body{
-    font-family: 'Slabo 27px', sans-serif;
-    margin: 0;
-}
-
-#busqueda{
+article{
     float: left;
-    margin-left: auto;
-    margin-right: 2.5%;
-    width: 30%;
+    margin-left: 2%;
+    margin-top: 2%;
+    overflow: auto;
+    width: 66%;
 }
 
 footer{
@@ -41,64 +104,23 @@ footer{
     width: 100%;
 }
 
-#h_nav{
-    align-items: center;
-    background-color: #FDA231;
-    display: flex;
-    height: 70px;
-    width: 100%;
-}
-
-header{
-    background-image: url('../img/banner.jpg');
-    height: 100px;
-    width: 100%;
-}
-
-header #logo{
-    float: left;
-    margin-left: 30px;
-}
-
-header #titulo{
-    float: left;
-    font-size: 50px;
-    height: 100%;
-    margin-left: 30px;
-    text-shadow: 3px 3px black;
-}
-
-header #titulo a{
-    color: white;
-    text-decoration: none;
-}
-
-header #titulo h1{
-    margin: 0px;
-}
-
-#icon_tray{
-    float: right;
-    margin-left: 2.5%;
-    margin-right: 0%;
-    width: 30%;
-}
-
-main{
-    float: left;
-    width: 100%;
-}
-
 #map-canvas{
     height: 500px;
     width: 500px;
 }
 
-nav ul li{
-    display: inline;
-    height: 100%;
+header #logo{
+    float: left;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
-
-nav ul li a{
-    padding: 0.2em 1em;
+/*No mover de abajo del todo, por alguna razón
+si lo mueves arriba NO funciona*/
+@media screen and (max-width:800px) {
+  aside, article, #busqueda, #icon_tray{
+    margin: auto;
+    width:100%;
+    text-align: center;
+  }
 }
