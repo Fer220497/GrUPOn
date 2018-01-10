@@ -427,7 +427,7 @@ function formularioBusquedaProducto() {
             '<input id="cuadro_busqueda" type="text" name="nombre" placeholder="Busca algo!"/>';
     $form .= '<input id="boton_busqueda" type="submit" value="Buscar" name="busqueda"/>';
     if (isset($_SESSION["cuenta"])) {
-        $form .= '<br/><div id="checknacional">Nacional <input type="checkbox" name="nacional" value="nacional"/></div>';
+        $form .= '<div id="checknacional"> Nacional <input type="checkbox" name="nacional" value="nacional"/></div>';
     }
     $form .= '</div></form>';
 

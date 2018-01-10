@@ -73,25 +73,25 @@ if (!isset($_SESSION['cuenta']) || $_SESSION["tipo"] != "cliente") {
 } else {
     ?>
     #busqueda{
-    margin-top:20px;
+    margin-top: 20px;
     float: left;
     margin-left: 33%;
     width: 33%;
     }
 
     #cuadro_busqueda{
-    width:68%;
-    margin-top:auto;
-    margin-bottom:auto;
+    width: 68%;
+    margin-top: auto;
+    margin-bottom: auto;
     }
 
     #boton_busqueda{
-    width:12%;
+    min-width: 12%;
     }
     
     #checknacional{
-    width: 20%;
-    margin-left: 52%;
+    float: right;
+    min-width: 20%;
     }
     <?php
 }
