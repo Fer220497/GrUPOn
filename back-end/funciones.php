@@ -9,24 +9,24 @@ require_once '../back-end/conexion_db.php';
  * @param type $correo
  * @return string
  */
-function puedeComentar($correo, $producto){
+function puedeComentar($correo, $producto) {
     global $esquema;
     $query = "SELECT * FROM COMPRA WHERE CORREO='$correo' AND ID_PRODUCTO='$producto'";
     $result = realizarQuery($esquema, $query);
-    if(mysqli_num_rows($result) > 0){   //Ha comprado
+    if (mysqli_num_rows($result) > 0) {   //Ha comprado
         $query = "SELECT * FROM COMENTARIOS WHERE CORREO='$correo' AND ID_PRODUCTO='$producto'";
         $result = realizarQuery($esquema, $query);
-        if(mysqli_num_rows($result) > 0){   //Ha comentado
+        if (mysqli_num_rows($result) > 0) {   //Ha comentado
             return false;
-        }else{
+        } else {
             return true;    //No ha comentado
         }
-    }else{
+    } else {
         return false;
     }
 }
 
-function mostrarCajaComentario(){
+function mostrarCajaComentario() {
     $form = '<form method="post" action="">'
             . '<textarea name="comentario" placeholder="Comenta algo!" maxlength="5000"></textarea>'
             . '<input type="number" name="valoracion" min="0" max="5" value="3"/>'
@@ -34,22 +34,21 @@ function mostrarCajaComentario(){
     return $form;
 }
 
-function mostrarComentarios($producto){
+function mostrarComentarios($producto) {
     global $esquema;
     $query = "SELECT * FROM COMENTARIOS,CLIENTE WHERE COMENTARIOS.CORREO=CLIENTE.CORREO AND ID_PRODUCTO='$producto'";
     $result = realizarQuery($esquema, $query);
-    if(mysqli_num_rows($result) > 0){
+    if (mysqli_num_rows($result) > 0) {
         $sumaPuntuaciones = 0;
         $str = '<div id="comentarios">';
-        while($fila = mysqli_fetch_array($result)){
-            $str .= '<h4>'.$fila['nombre_cliente'].', '.$fila['valoracion'].'</h4>'
-                    . '<p>'.$fila['comentario'].'</p>';
+        while ($fila = mysqli_fetch_array($result)) {
+            $str .= '<h4>' . $fila['nombre_cliente'] . ', ' . $fila['valoracion'] . '</h4>'
+                    . '<p>' . $fila['comentario'] . '</p>';
             $sumaPuntuaciones += $fila['valoracion'];
         }
-        return '<div id="puntuacion_total"><h3>Valoraci&oacute;n media: '.$sumaPuntuaciones/mysqli_num_rows($result).
-                '/5</h3></div>'.$str.'</div>';
-        
-    }else{
+        return '<div id="puntuacion_total"><h3>Valoraci&oacute;n media: ' . $sumaPuntuaciones / mysqli_num_rows($result) .
+                '/5</h3></div>' . $str . '</div>';
+    } else {
         return '<div id="comentarios">No hay comentarios</div>';
     }
 }
@@ -63,7 +62,7 @@ function mostrarProductosVendedor($correo) {
         return '<p>No tiene productos en venta</p>';
     } else {
         $str = '';
-        while($fila = mysqli_fetch_array($result)){
+        while ($fila = mysqli_fetch_array($result)) {
             $str .= '<tr><a href="modificar_producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila["id_producto"] . '\',1)" ><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/></a></tr>' .
                     '<tr><td><a href="modificar_producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila["id_producto"] . '\',1)" >' . $fila["nombre"] . '</td></tr>' .
                     '</td></a><td> Precio: ' . $fila["precio"] . '</td><td> Descuento: ' . $fila["porcentaje_descuento"] . '</td></tr>';
@@ -426,12 +425,11 @@ function busquedaCatalogo() {
 function formularioBusquedaProducto() {
     $form = '<form action="busqueda.php" method="get"><div id="busqueda">' .
             '<input id="cuadro_busqueda" type="text" name="nombre" placeholder="Busca algo!"/>';
+    $form .= '<input id="boton_busqueda" type="submit" value="Buscar" name="busqueda"/>';
     if (isset($_SESSION["cuenta"])) {
-        $form .= ' Nacional <input type="checkbox" name="nacional" value="nacional"><br>';
+        $form .= '<br/><div id="checknacional">Nacional <input type="checkbox" name="nacional" value="nacional"/></div>';
     }
-
-    $form .= '<input id="boton_busqueda" type="submit" value="Buscar" name="busqueda"/>' .
-            '</div></form>';
+    $form .= '</div></form>';
 
     return $form;
 }

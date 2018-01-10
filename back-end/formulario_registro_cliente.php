@@ -84,8 +84,6 @@ if (isset($_POST['registroCliente'])) {
     $result = filter_input_array(INPUT_POST, $filtros);
     if(!$result['correo']){
         $error[] = 'El correo no tiene el formato adecuado';
-    }else{
-        $error[] = 'No has checkeado el reCaptcha';
     }
 
     if (!isset($error)) {

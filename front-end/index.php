@@ -10,7 +10,7 @@ inicializarDB();
         <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta charset="UTF-8"/>
-        <link href='estilo.css' rel="stylesheet"/>
+        <link href='estilo.php' rel="stylesheet" type="text/css"/>
         <link rel="icon" href="../img/logo.png"/>
         <script src="../back-end/funciones.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
