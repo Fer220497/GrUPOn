@@ -9,6 +9,13 @@ inicializarDB();
         <title>GrUPOn</title>
         <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
         <link href='estilo.css' rel="stylesheet"/>
+        <?php
+        if (isset($SESSION['tipo']) && $SESSION['tipo'] == 'cliente') {
+            ?>
+            <link href='estilo_login.css' rel="stylesheet"/>
+            <?php
+        }
+        ?>
         <link rel="icon" href="../img/logo.png"/>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -28,7 +35,8 @@ inicializarDB();
                 </div>
             </header>
             <nav>
-                <?php echo formularioBusquedaProducto(); echo navigation(); ?>
+                <?php echo formularioBusquedaProducto();
+                echo navigation(); ?>
             </nav>
             <main>
                 <aside>
@@ -36,11 +44,11 @@ inicializarDB();
                         <div id="cookie">  
                         </div>
                     </h2>
-                    <?php echo menuCategorias(); ?>
+<?php echo menuCategorias(); ?>
                 </aside>
 
                 <article>
-                    <?php require_once '../back-end/formulario_busqueda_producto.php'; ?>
+<?php require_once '../back-end/formulario_busqueda_producto.php'; ?>
                 </article>
             </main>
 

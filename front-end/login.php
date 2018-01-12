@@ -8,6 +8,13 @@ require_once '..\back-end\funciones.php';
         <title>Login</title>
         <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
         <link href='estilo.css' rel="stylesheet"/>
+        <?php
+        if (isset($SESSION['tipo']) && $SESSION['tipo'] == 'cliente') {
+            ?>
+            <link href='estilo_login.css' rel="stylesheet"/>
+            <?php
+        }
+        ?>
         <link rel="icon" href="img/logo.png"/>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
