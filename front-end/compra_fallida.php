@@ -32,7 +32,7 @@ require_once '..\back-end\funciones.php';
         <header>
             <header>
                 <div id="logo">
-                    <a href="index.php"><img alt="GrUPOn" src="..\img\logo.png" height="100"/></a>
+                    <a href="index.php?categoria=general"><img alt="GrUPOn" src="..\img\logo.png" height="100"/></a>
                 </div>
             </header>
             <nav>

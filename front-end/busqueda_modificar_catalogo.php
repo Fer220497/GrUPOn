@@ -30,7 +30,7 @@ require_once '..\back-end\funciones.php';
         <header>
             <header>
                 <div id="logo">
-                    <a href="index.php"><img alt="GrUPOn" src="..\img\logo.png" height="100"/></a>
+                    <a href="index.php?categoria=general"><img alt="GrUPOn" src="..\img\logo.png" height="100"/></a>
                 </div>
             </header>
             <nav>
@@ -38,10 +38,6 @@ require_once '..\back-end\funciones.php';
             </nav>
             <main>
                 <aside>
-                    <h2 id="categoria_actual">
-                        <div id="cookie">  
-                        </div>
-                    </h2>
                     <?php echo menuCategorias(); ?>
                 </aside>
 

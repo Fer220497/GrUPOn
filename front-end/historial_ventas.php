@@ -1,6 +1,11 @@
 <?php
 session_start();
 require_once '..\back-end\funciones.php';
+
+if(!isset($_SESSION['cuenta']) || $_SESSION['tipo'] != 'empresa'){
+    header('Location: index.php');
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,10 +37,10 @@ require_once '..\back-end\funciones.php';
         <header>
             <header>
                 <div id="logo">
-                    <a href="index.php"><img alt="GrUPOn" src="..\img\logo.png" height="100"/></a>
+                    <a href="index.php?categoria=general"><img alt="GrUPOn" src="..\img\logo.png" height="100"/></a>
                 </div>
                 <div id="titulo">
-                    <a href="index.php">
+                    <a href="index.php?categoria=general">
                         <h1>GrUPOn</h1>
                     </a>
 
@@ -49,11 +54,7 @@ require_once '..\back-end\funciones.php';
             </nav>
             <main>
                 <aside>
-                    <h2 id="categoria_actual">
-                        <div id="cookie">  
-                        </div>
-                    </h2>
-                    <?php echo menuCategorias(); ?>
+                <?php echo menuCategorias(); ?>
                 </aside>
                 <!--AQUI IRA TODO EL MAIN -->
                 <article>

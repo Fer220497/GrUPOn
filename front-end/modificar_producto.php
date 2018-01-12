@@ -2,6 +2,10 @@
 session_start();
 require_once '..\back-end\funciones.php';
 
+if(!isset($_SESSION['cuenta']) || $_SESSION['tipo'] != 'empresa'){
+    header('Location: index.php');
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,18 +26,13 @@ require_once '..\back-end\funciones.php';
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <script src="../back-end/funciones.js"></script>
         <script src='https://www.google.com/recaptcha/api.js'></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
-        <script>
-            $(document).ready(function () {
-                $("#cookie").append(document.createTextNode(categorias[getCookie("categoria")]));
-            });
-        </script>   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
     </head>
     <body>
         <header>
             <header>
                 <div id="logo">
-                    <a href="index.php"><img alt="GrUPOn" src="..\img\logo.png" height="100"/></a>
+                    <a href="index.php?categoria=general"><img alt="GrUPOn" src="..\img\logo.png" height="100"/></a>
                 </div>
             </header>
             <nav>
@@ -43,10 +42,6 @@ require_once '..\back-end\funciones.php';
             </nav>
             <main>
                 <aside>
-                    <h2 id="categoria_actual">
-                        <div id="cookie">  
-                        </div>
-                    </h2>
                 <?php echo menuCategorias(); ?>
                 </aside>
         <!--AQUI IRA TODO EL MAIN -->

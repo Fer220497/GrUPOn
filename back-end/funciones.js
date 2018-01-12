@@ -98,3 +98,14 @@ categorias = {viajes: "Viajes",
                 deporte: "Deporte",
                 general: "General",
             };
+            
+categoriasLogged = {viajes: "Viajes",
+                entretenimiento: "Entretenimiento",
+                gastronomia: "Gastronomía",
+                electronica: "Electrónica",
+                ropa: "Ropa",
+                salud_y_belleza: "Salud y belleza",
+                deporte: "Deporte",
+                general: "General",
+                tus_gustos: "Tus Gustos"
+            };

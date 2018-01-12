@@ -2,6 +2,9 @@
 session_start();
 require_once '..\back-end\funciones.php';
 inicializarDB();
+if(!isset($_GET['categoria'])){
+    $_GET['categoria'] = 'general';
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,19 +24,11 @@ inicializarDB();
         <link rel="icon" href="../img/logo.png"/>
         <script src="../back-end/funciones.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
-        <script>
-            $(document).ready(function () {
-                if (getCookie('categoria') == '') {
-                    setCookie('categoria', 'general', 1);
-                }
-                $("#cookie").append(document.createTextNode(categorias[getCookie("categoria")]));
-            });
-        </script>   
     </head>
     <body>
         <header>
             <div id="logo">
-                <a href="index.php"><img alt="GrUPOn" src="..\img\logo.png" height="90"/></a>
+                <a href="index.php?categoria=general"><img alt="GrUPOn" src="..\img\logo.png" height="90"/></a>
             </div>
         </header>
         <nav>
@@ -45,8 +40,11 @@ inicializarDB();
         <main>
             <aside id="sidenav">
                 <h2 id="categoria_actual">
-                    <div id="cookie">  
-                    </div>
+                    <?php if(isset($_SESSION['tipo']) && ($_SESSION['tipo'] == 'cliente')){
+                        echo $arrayCategoriasLogged[$_GET['categoria']];
+                    }else{
+                        echo $arrayCategorias[$_GET['categoria']];
+                    }?>
                 </h2>
 <?php echo menuCategorias(); ?>
             </aside>

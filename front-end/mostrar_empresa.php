@@ -37,7 +37,7 @@ require_once '..\back-end\funciones.php';
         <header>
             <header>
                 <div id="logo">
-                    <a href="index.php"><img alt="GrUPOn" src="..\img\logo.png" height="100"/></a>
+                    <a href="index.php?categoria=general"><img alt="GrUPOn" src="..\img\logo.png" height="100"/></a>
                 </div>
             </header>
             <nav>
@@ -57,7 +57,7 @@ require_once '..\back-end\funciones.php';
                 <article>
             <?php
         require_once '../back-end/lectura_cuenta.php';
-        echo muestraDatosEmpresaMapa($_COOKIE['empresaVisitada']);
+        echo muestraDatosEmpresaMapa($_GET['correo']);
         ?>
                 </article>
         <!--AQUI IRA TODO EL MAIN -->
