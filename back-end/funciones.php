@@ -340,6 +340,22 @@ function tipoCuenta($correo) {
     return $cuenta;
 }
 
+/**
+ * Genera la preview del producto.
+ * @param type $result
+ * @return string
+ */
+function previewProducto($result){
+    $str = '<table border=1>';
+            while ($fila = mysqli_fetch_array($result)) {
+                $str .= '<tr><a href="producto.php?id='.$fila["id_producto"].'")" ><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/></a></tr>' .
+                        '<tr><td><a href="producto.php?id='.$fila["id_producto"].'")" >' . $fila["nombre"] . '</a></td></tr>' .
+                        '</td><td> Precio: ' . $fila["precio"] . '</td><td> Descuento: ' . $fila["porcentaje_descuento"] . '</td></tr>';
+            }
+    $str .= '</table>';
+    return $str;
+}
+
 function desplegarPaginaPrincipal($categoria) {
     global $esquema;
     $str = '';
@@ -378,13 +394,16 @@ function desplegarPaginaPrincipal($categoria) {
             $sql = 'SELECT * FROM producto WHERE nombre_ca LIKE "' . $ca . '" AND cantidad_disponible > 0';
             $result = realizarQuery("grupon", $sql);
         }
+        
+        $str .= previewProducto($result);
+        /*
         $str .= '<table border=1>';
             while ($fila = mysqli_fetch_array($result)) {
                 $str .= '<tr><a href="producto.php?id='.$fila["id_producto"].'")" ><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/></a></tr>' .
                         '<tr><td><a href="producto.php?id='.$fila["id_producto"].'")" >' . $fila["nombre"] . '</a></td></tr>' .
                         '</td><td> Precio: ' . $fila["precio"] . '</td><td> Descuento: ' . $fila["porcentaje_descuento"] . '</td></tr>';
             }
-        $str .= '</table>';
+        $str .= '</table>';*/
     }
     return $str;
 }

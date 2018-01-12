@@ -41,7 +41,6 @@ if(!isset($_GET['categoria'])){
             </aside>
 
             <article>
-                Holi
 <?php //echo print_r($_GET); 
 echo desplegarPaginaPrincipal($_GET['categoria']); ?>
             </article>

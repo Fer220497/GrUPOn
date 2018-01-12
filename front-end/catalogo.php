@@ -1,6 +1,9 @@
 <?php
 session_start();
 require_once '..\back-end\funciones.php';
+if(!isset($_GET['id'])){
+    header('Location:index.php');
+}
 
 ?>
 <!DOCTYPE html>
@@ -15,12 +18,7 @@ require_once '..\back-end\funciones.php';
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <script src="../back-end/funciones.js"></script>
         <script src='https://www.google.com/recaptcha/api.js'></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
-        <script>
-            $(document).ready(function () {
-                $("#cookie").append(document.createTextNode(categorias[getCookie("categoria")]));
-            });
-        </script>   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
     </head>
     <body>
         <header>
@@ -37,8 +35,11 @@ require_once '..\back-end\funciones.php';
             <main>
                 <aside>
                     <h2 id="categoria_actual">
-                        <div id="cookie">  
-                        </div>
+                        <?php if(isset($_SESSION['tipo']) && ($_SESSION['tipo'] == 'cliente')){
+                        echo $arrayCategoriasLogged[$_GET['categoria']];
+                    }else{
+                        echo $arrayCategorias[$_GET['categoria']];
+                    }?>
                     </h2>
                 <?php echo menuCategorias(); ?>
                 </aside>
@@ -51,7 +52,7 @@ require_once '..\back-end\funciones.php';
              * COMO OBTENEMOS ID CATALOGO ACTUAL?
              */
             //$_SESSION['id_catalogo_borrar'] = $id;
-            echo mostrarCatalogo();
+            echo mostrarCatalogo($_GET['id']);
             
         ?>
                 </article>

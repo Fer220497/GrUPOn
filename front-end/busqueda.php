@@ -2,6 +2,9 @@
 session_start();
 require_once '..\back-end\funciones.php';
 inicializarDB();
+if(!isset($_GET['categoria'])){
+    $_GET['categoria'] = 'general';
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,11 +17,6 @@ inicializarDB();
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <script src="../back-end/funciones.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
-        <script>
-            $(document).ready(function () {
-                $("#cookie").append(document.createTextNode(categorias[getCookie("categoria")]));
-            });
-        </script>   
     </head>
     <body>
         <header>
@@ -33,8 +31,11 @@ inicializarDB();
             <main>
                 <aside>
                     <h2 id="categoria_actual">
-                        <div id="cookie">  
-                        </div>
+                        <?php if(isset($_SESSION['tipo']) && ($_SESSION['tipo'] == 'cliente')){
+                        echo $arrayCategoriasLogged[$_GET['categoria']];
+                    }else{
+                        echo $arrayCategorias[$_GET['categoria']];
+                    }?>
                     </h2>
                     <?php echo menuCategorias(); ?>
                 </aside>
