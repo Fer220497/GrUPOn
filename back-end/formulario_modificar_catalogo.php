@@ -36,8 +36,8 @@ if (isset($error)) {
     //echo muestraErrores($error);
     print_r($error);
 }
-echo formularioModificacionCatalogo();
- echo muestraFormularioBorrar();
+echo formularioModificacionCatalogo($_GET['id']);
+echo muestraFormularioBorrar();
 /* BUSQUEDA DE CATALOGOS
   if (isset($_POST['seleccionarCatalogo'])) {
   if (!isset($_POST['nombre_catalogo'])) {
@@ -79,18 +79,15 @@ echo formularioModificacionCatalogo();
   }
  */
 
-function formularioModificacionCatalogo() {
+function formularioModificacionCatalogo($catalogoVisitado) {
     global $esquema;
-    $cookie_catalogoVisitado=$_COOKIE["catalogo_visitado"];
     $correo = $_SESSION['cuenta'];
-    $sql = "SELECT * FROM CATALOGO WHERE CORREO='$correo' AND id_catalogo='$cookie_catalogoVisitado'";
+    $sql = "SELECT * FROM CATALOGO WHERE CORREO='$correo' AND id_catalogo='$catalogoVisitado'";
     $result = realizarQuery($esquema, $sql);
     $datosCatalogo = mysqli_fetch_array($result);
-    print_r($datosCatalogo);
+    //print_r($datosCatalogo);
     $ca = $datosCatalogo["nombre_categoria"];
     $nombre = $datosCatalogo["nombre"];
-    $id=$datosCatalogo["id_catalogo"];
-    setcookie("id_catalogo", $id);
 
     $form = ' <form action="" method="post">' .
             'Nombre: <input type="text" name="nombre" value="' . $nombre . '"> ' .

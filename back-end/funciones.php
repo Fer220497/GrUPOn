@@ -61,11 +61,11 @@ function mostrarProductosVendedor($correo) {
     if (mysqli_num_rows($result) == 0) {
         return '<p>No tiene productos en venta</p>';
     } else {
-        $str = '';
+        $str = '<table>';
         while ($fila = mysqli_fetch_array($result)) {
-            $str .= '<tr><a href="modificar_producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila["id_producto"] . '\',1)" ><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/></a></tr>' .
-                    '<tr><td><a href="modificar_producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila["id_producto"] . '\',1)" >' . $fila["nombre"] . '</td></tr>' .
-                    '</td></a><td> Precio: ' . $fila["precio"] . '</td><td> Descuento: ' . $fila["porcentaje_descuento"] . '</td></tr>';
+            $str .= '<tr><a href="modificar_producto.php?id='. $fila["id_producto"] .'"><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/></a></tr>' .
+                    '<tr><td><a href="modificar_producto.php?id='. $fila["id_producto"] . '" >' . $fila["nombre"] . '</td></tr>' .
+                    '</td></a><td> Precio: ' . $fila["precio"] . '&euro;</td><td> Descuento: ' . $fila["porcentaje_descuento"] . '%</td></tr>';
         }
         return $str .= '</table>';
     }
@@ -89,7 +89,7 @@ function historialCliente($correo) {
     $html = '<table border="1"><tr>'
             . '<th>Nombre Producto</th><th>Fecha Compra</th><th>Cantidad</th><th>Precio</th></tr>';
     while ($fila = mysqli_fetch_array($result)) {
-        $html .= '<tr><td><a href="producto.php" onclick="setCookie(' . $fila['id_producto'] . ',1)">' . $fila['nombre'] . '</a></td><td>' . $fila['fecha'] . '</td><td>' . $fila['cantidad'] . '</td><td>' . $fila['cantidad'] * $fila['precio'] . '</td></tr>';
+        $html .= '<tr><td><a href="producto.php?id='.$fila['id_producto'] .'">' . $fila['nombre'] . '</a></td><td>' . $fila['fecha'] . '</td><td>' . $fila['cantidad'] . '</td><td>' . $fila['cantidad'] * $fila['precio'] . '</td></tr>';
     }
     $html .= '</table>';
     return $html;
@@ -370,6 +370,8 @@ function desplegarPaginaPrincipal($categoria) {
         else {
             $sql = 'SELECT * FROM producto WHERE cantidad_disponible > 0';
             $result = realizarQuery($esquema, $sql);
+            //echo 'hola';
+            //echo previewProducto($result);
         }
     }
     //BÚSQUEDA LOCAL
@@ -395,7 +397,7 @@ function desplegarPaginaPrincipal($categoria) {
             $result = realizarQuery("grupon", $sql);
         }
         
-        $str .= previewProducto($result);
+        
         /*
         $str .= '<table border=1>';
             while ($fila = mysqli_fetch_array($result)) {
@@ -405,6 +407,7 @@ function desplegarPaginaPrincipal($categoria) {
             }
         $str .= '</table>';*/
     }
+    $str .= previewProducto($result);
     return $str;
 }
 
@@ -437,7 +440,7 @@ function busquedaCatalogo() {
     $result = realizarQuery($esquema, $sql);
     $cookie_name = "catalogo_visitado";
     while ($listaCatalogos = mysqli_fetch_array($result)) {
-        $form .= '<a href="../front-end/modificar_catalogo.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $listaCatalogos["id_catalogo"] . '\',1)">' . $listaCatalogos["nombre"] . '</a>';
+        $form .= '<a href="../front-end/modificar_catalogo.php?id='.$listaCatalogos["id_catalogo"].'">' . $listaCatalogos["nombre"] . '</a>';
     }
     return $form;
 }

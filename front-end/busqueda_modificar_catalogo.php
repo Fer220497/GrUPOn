@@ -32,10 +32,6 @@ require_once '..\back-end\funciones.php';
             </nav>
             <main>
                 <aside>
-                    <h2 id="categoria_actual">
-                        <div id="cookie">  
-                        </div>
-                    </h2>
                     <?php echo menuCategorias(); ?>
                 </aside>
 

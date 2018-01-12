@@ -19,12 +19,7 @@ if(!isset($_SESSION['cuenta']) || $_SESSION['tipo'] != 'empresa'){
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <script src="../back-end/funciones.js"></script>
         <script src='https://www.google.com/recaptcha/api.js'></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
-        <script>
-            $(document).ready(function () {
-                $("#cookie").append(document.createTextNode(categorias[getCookie("categoria")]));
-            });
-        </script>   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
     </head>
     <body>
         <header>
@@ -40,10 +35,6 @@ if(!isset($_SESSION['cuenta']) || $_SESSION['tipo'] != 'empresa'){
             </nav>
             <main>
                 <aside>
-                    <h2 id="categoria_actual">
-                        <div id="cookie">  
-                        </div>
-                    </h2>
                 <?php echo menuCategorias(); ?>
                 </aside>
         <!--AQUI IRA TODO EL MAIN -->

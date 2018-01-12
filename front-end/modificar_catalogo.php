@@ -39,10 +39,6 @@ if(!isset($_SESSION['cuenta']) || $_SESSION['tipo'] != 'empresa'){
             </nav>
             <main>
                 <aside>
-                    <h2 id="categoria_actual">
-                        <div id="cookie">  
-                        </div>
-                    </h2>
                 <?php echo menuCategorias(); ?>
                 </aside>
         <!--AQUI IRA TODO EL MAIN -->
