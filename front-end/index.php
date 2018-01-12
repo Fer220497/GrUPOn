@@ -50,7 +50,7 @@ if(!isset($_GET['categoria'])){
             </aside>
 
             <article>
-<?php echo desplegarPaginaPrincipal(); ?>
+<?php echo desplegarPaginaPrincipal($_GET['categoria']); ?>
             </article>
         </main>
 
