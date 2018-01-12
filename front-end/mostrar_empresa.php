@@ -50,7 +50,7 @@ require_once '..\back-end\funciones.php';
                 <article>
             <?php
         require_once '../back-end/lectura_cuenta.php';
-        echo muestraDatosEmpresaMapa($_COOKIE['empresaVisitada']);
+        echo muestraDatosEmpresaMapa($_GET['correo']);
         ?>
                 </article>
         <!--AQUI IRA TODO EL MAIN -->

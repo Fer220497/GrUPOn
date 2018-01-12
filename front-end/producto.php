@@ -50,18 +50,18 @@ require_once '../back-end/funciones.php';
                      * COMO OBTENEMOS ID PRODUCTO ACTUAL?
                      */
                     //$_SESSION['id_producto_borrar'] = $id;
-                    echo muestraProducto($_COOKIE['productoVisitado']);
-                    if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'empresa' && esVendedor($_COOKIE['productoVisitado'], $_SESSION['cuenta'])) {
-                        echo muestraFormularioBorrar($_COOKIE['productoVisitado']);
+                    echo muestraProducto($_GET['id']);
+                    if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'empresa' && esVendedor($_GET['id'], $_SESSION['cuenta'])) {
+                        echo muestraFormularioBorrar($_GET['id']);
                     }
-                    echo mostrarBotonAnadir($_COOKIE['productoVisitado']);
+                    echo mostrarBotonAnadir($_GET['id']);
 
                     if (isset($_SESSION['cuenta']) && $_SESSION['tipo'] == 'cliente' &&
-                            puedeComentar($_SESSION['cuenta'], $_COOKIE['productoVisitado'])) {
+                            puedeComentar($_SESSION['cuenta'], $_GET['id'])) {
                         require_once '../back-end/formulario_comentario.php';
                         echo mostrarCajaComentario();
                     }
-                    echo mostrarComentarios($_COOKIE['productoVisitado']);
+                    echo mostrarComentarios($_GET['id']);
                     ?></article>
             </main>
     </body>
