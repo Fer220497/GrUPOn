@@ -50,7 +50,7 @@ if (isset($_POST['login'])) {
                 $fila = mysqli_fetch_array($resultadoCliente);
                 $_SESSION['nombre'] = $fila['nombre_cliente'];
             }
-            header('Location: index.php');
+            header('Location: ../front-end/index.php');
         } else {
             $error[] = "Credenciales incorrectas.";
         }

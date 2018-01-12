@@ -156,6 +156,18 @@ $arrayComunidades = array(
 );
 
 $arrayCategorias = array(
+    "general" => "General",
+    "viajes" => "Viajes",
+    "entretenimiento" => "Entretenimiento",
+    "gastronomia" => "Gastronom&iacute;a",
+    "electronica" => "Electr&oacute;nica",
+    "ropa" => "Ropa",
+    "salud_y_belleza" => "Salud y belleza",
+    "deporte" => "Deporte",
+);
+$arrayCategoriasLogged = array(
+    "general" => "General",
+    "tus_gustos" => "Tus Gustos",
     "viajes" => "Viajes",
     "entretenimiento" => "Entretenimiento",
     "gastronomia" => "Gastronom&iacute;a",
@@ -167,14 +179,21 @@ $arrayCategorias = array(
 
 function menuCategorias() {
     global $arrayCategorias;
-    $cookie_name = "categoria";
+    global $arrayCategoriasLogged;
+    //$form = '<div><a href="index.php?categoria=general"';
+    $form = '';
+    if(!isset($_SESSION['tipo']) || $_SESSION['tipo'] == 'empresa'){
+    
+        foreach ($arrayCategorias as $key => $val) {
 
-    $form = '<div><a href="" onclick="setCookie(\'' . $cookie_name . '\',\'general\',1)">General</a></div>';
-    foreach ($arrayCategorias as $key => $val) {
+            $form .= '<div><a href="index.php?categoria='.$key.'">' . $val . '</a></div>';
+        }
+    }else{
+        foreach ($arrayCategoriasLogged as $key => $val) {
 
-        $form .= '<div><a href="" onclick="setCookie(\'' . $cookie_name . '\',\'' . $key . '\', 1)">' . $val . '</a></div>';
+            $form .= '<div><a href="index.php?categoria='.$key.'">' . $val . '</a></div>';
+        }
     }
-
     return $form;
 }
 
@@ -312,7 +331,7 @@ function tipoCuenta($correo) {
     //True cliente, false empresa
     global $esquema;
     $cuenta = TRUE;
-    $query = "SELECT * FROM CLIENTE WHERE correo = '$correo'";
+    $query = "SELECT * FROM cliente WHERE correo = '$correo'";
     $result = realizarQuery($esquema, $query);
 
     if (mysqli_num_rows($result) == 0) {
@@ -321,69 +340,51 @@ function tipoCuenta($correo) {
     return $cuenta;
 }
 
-function desplegarPaginaPrincipal() {
+function desplegarPaginaPrincipal($categoria) {
     global $esquema;
     $str = '';
     //BÚSQUEDA NACIONAL
     if (!isset($_SESSION['cuenta'])) {
         //BÚSQUEDA CON CATEGORIA
-        if (isset($_COOKIE['categoria']) && ($_COOKIE['categoria'] != 'general')) {
-            $sql = 'SELECT * FROM PRODUCTO WHERE nombre_categoria LIKE "' . $_COOKIE['categoria'] . '" AND cantidad_disponible > 0';
+        if (isset($categoria) && ($categoria != 'general')) {
+            $sql = 'SELECT * FROM producto WHERE nombre_categoria LIKE "' . $categoria . '" AND cantidad_disponible > 0';
             $result = realizarQuery($esquema, $sql);
-            $str .= '<table border=1>';
-            while ($fila = mysqli_fetch_array($result)) {
-                $cookie_name = "productoVisitado";
-                $str .= '<tr><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/> </tr>' .
-                        '<tr><td><a href="producto.phphref="producto.php?id='.$fila["id_producto"].'">' . $fila["nombre"] . '</td></tr>' .
-                        '</td></a><td> Precio: ' . $fila["precio"] . '</td><td> Descuento: ' . $fila["porcentaje_descuento"] . '</td></tr>';
-            }
-            $str .= '</table>';
         }
         //BÚSQUEDA SIN CATEGORIA
         else {
-            $sql = 'SELECT * FROM PRODUCTO WHERE cantidad_disponible > 0';
+            $sql = 'SELECT * FROM producto WHERE cantidad_disponible > 0';
             $result = realizarQuery($esquema, $sql);
-            $str .= '<table border=1>';
-            while ($fila = mysqli_fetch_array($result)) {
-                $cookie_name = "productoVisitado";
-                $str .= '<tr><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/> </tr>' .
-                        '<tr><td><a href="producto.php?id='.$fila["id_producto"].'" >' . $fila["nombre"] . '</td></tr>' .
-                        '</td></a><td> Precio: ' . $fila["precio"] . '</td><td> Descuento: ' . $fila["porcentaje_descuento"] . '</td></tr>';
-            }
-            $str .= '</table>';
         }
     }
     //BÚSQUEDA LOCAL
     else {
-        $sql = "SELECT * FROM CUENTA WHERE correo ='" . $_SESSION['cuenta'] . "'";
+        $sql = "SELECT * FROM cuenta WHERE correo ='" . $_SESSION['cuenta'] . "'";
         $result = realizarQuery($esquema, $sql);
         $ca = mysqli_fetch_row($result)[1];
         //BÚSQUEDA CON CATEGORIA
-        if ($_COOKIE['categoria'] != 'general') {
-            $sql = 'SELECT * FROM PRODUCTO WHERE nombre_categoria LIKE "' . $_COOKIE['categoria'] . '" AND nombre_ca LIKE "' . $ca . '" AND cantidad_disponible > 0';
+        if ($categoria != 'general' && $categoria != 'tus_gustos') {
+            $sql = 'SELECT * FROM producto WHERE nombre_categoria LIKE "' . $categoria . '" AND nombre_ca LIKE "' . $ca . '" AND cantidad_disponible > 0';
             $result = realizarQuery($esquema, $sql);
-            $str .= '<table border=1>';
-            while ($fila = mysqli_fetch_array($result)) {
-                $cookie_name = "productoVisitado";
-                $str .= '<tr><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/></tr>' .
-                        '<tr><td><a href="producto.php?id='.$fila["id_producto"].'">' . $fila["nombre"] .
-                        '</td></a><td> Precio: ' . $fila["precio"] . '</td><td> Descuento: ' . $fila["porcentaje_descuento"] . '</tr>';
-            }
-            $str .= '</table>';
+        }
+        //BUSQUEDA DE LOS GUSTOS DE UN USUARIO CLIENTE
+        else if($_SESSION['tipo'] == 'cliente' && $categoria == 'tus_gustos'){
+            $correo = $_SESSION['cuenta'];
+            $sql = 'SELECT * FROM producto WHERE nombre_categoria IN'
+                    . "(SELECT DISTINCT nombre_categoria FROM cuenta,afinidades WHERE cuenta.correo='$correo' AND afinidades.correo='$correo') AND cantidad_disponible > 0";
+            $result = realizarQuery("grupon", $sql);   
         }
         //BÚSQUEDA SIN CATEGORIA
         else {
-            $sql = 'SELECT * FROM PRODUCTO WHERE nombre_ca LIKE "' . $ca . '" AND cantidad_disponible > 0';
+            $sql = 'SELECT * FROM producto WHERE nombre_ca LIKE "' . $ca . '" AND cantidad_disponible > 0';
             $result = realizarQuery("grupon", $sql);
-            $str .= '<table border=1>';
-            while ($fila = mysqli_fetch_array($result)) {
-                $cookie_name = "productoVisitado";
-                $str .= '<tr><a href="producto.php?id='.$fila["id_producto"].'")" ><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/> </tr>' .
-                        '<tr><td>' . $fila["nombre"] . '</td></tr>' .
-                        '</td></a><td> Precio: ' . $fila["precio"] . '</td><td> Descuento: ' . $fila["porcentaje_descuento"] . '</td></tr>';
-            }
-            $str .= '</table>';
         }
+        $str .= '<table border=1>';
+            while ($fila = mysqli_fetch_array($result)) {
+                $str .= '<tr><a href="producto.php?id='.$fila["id_producto"].'")" ><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/></a></tr>' .
+                        '<tr><td><a href="producto.php?id='.$fila["id_producto"].'")" >' . $fila["nombre"] . '</a></td></tr>' .
+                        '</td><td> Precio: ' . $fila["precio"] . '</td><td> Descuento: ' . $fila["porcentaje_descuento"] . '</td></tr>';
+            }
+        $str .= '</table>';
     }
     return $str;
 }
