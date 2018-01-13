@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '..\back-end\funciones.php';
+require_once '../back-end/funciones.php';
 if(!isset($_GET['id'])){
     header('Location:index.php');
 }

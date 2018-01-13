@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '..\back-end\funciones.php';
+require_once '../back-end/funciones.php';
 require_once '../back-end/formulario_login.php';
 ?>
 <!DOCTYPE html>
