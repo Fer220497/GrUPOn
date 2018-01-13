@@ -31,6 +31,7 @@ if (isset($_POST['login'])) {
     }
     if (!isset($error)) {
         $correo = sanitarString($_POST['correo']);
+        $correo = strtolower($correo);
         $pwd = $_POST['pwd'];
         $query = "SELECT * FROM cuenta WHERE correo='$correo'";
         $result = realizarQuery($esquema, $query);

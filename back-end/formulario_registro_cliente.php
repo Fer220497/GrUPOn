@@ -88,6 +88,8 @@ if (isset($_POST['registroCliente'])) {
 
     if (!isset($error)) {
         $correo = sanitarString($_POST["correo"]);
+        $correo = strtolower($correo);
+
         $pwd = sanitarString($_POST["pwd"]);
         $nombre_cliente = sanitarString($_POST["nombre_cliente"]);
         $apellidos_cliente = sanitarString($_POST["apellidos_cliente"]);

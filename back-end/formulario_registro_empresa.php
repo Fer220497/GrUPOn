@@ -122,6 +122,7 @@ if (isset($_POST['registroEmpresa'])) {
     if (!isset($error)) {
         //Depuracion de entradas (sanitize)
         $correo = sanitarString($_POST['correo']);
+        $correo = strtolower($correo);
         $pwd = sanitarString($_POST['pwd']);
         $nombre_empresa = sanitarString($_POST['nombre_empresa']);
         $nif_empresa = sanitarString($_POST['nif_empresa']);

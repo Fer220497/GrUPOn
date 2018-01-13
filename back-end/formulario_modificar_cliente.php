@@ -50,6 +50,7 @@ if (isset($_POST['cambiarDatos'])) {
     //Depuracion de entradas (sanitize)
     if (!isset($error)) {
         $correoNuevo = sanitarString($_POST['correo']);
+        $correoNuevo = strtolower($correoNuevo);
         $nombre = sanitarString($_POST['nombre_cliente']);
         $apellidos = sanitarString($_POST['apellidos_cliente']);
         $nombre_ca = $_POST['comunidad_autonoma'];

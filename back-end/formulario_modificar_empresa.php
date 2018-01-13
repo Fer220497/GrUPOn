@@ -108,7 +108,7 @@ if (isset($_POST['modificarEmpresa'])) {
     if (!isset($error)) {
 
         $correonuevo = sanitarString($_POST['correo']);
-
+        $correoNuevo = strtolower($correoNuevo);
         $nombre_empresa = sanitarString($_POST['nombre_empresa']);
         $nif_empresa = sanitarString($_POST['nif_empresa']);
         $web_empresa = sanitarString($_POST['web_empresa']);
