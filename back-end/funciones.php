@@ -61,11 +61,11 @@ function mostrarProductosVendedor($correo) {
     if (mysqli_num_rows($result) == 0) {
         return '<p>No tiene productos en venta</p>';
     } else {
-        $str = '<table>';
+        $str = '<div class="producto">';
         while ($fila = mysqli_fetch_array($result)) {
-            $str .= '<tr><a href="modificar_producto.php?id='. $fila["id_producto"] .'"><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/></a></tr>' .
-                    '<tr><td><a href="modificar_producto.php?id='. $fila["id_producto"] . '" >' . $fila["nombre"] . '</td></tr>' .
-                    '</td></a><td> Precio: ' . $fila["precio"] . '&euro;</td><td> Descuento: ' . $fila["porcentaje_descuento"] . '%</td></tr>';
+            $str .= '<div><a href="modificar_producto.php?id=' . $fila["id_producto"] . '"><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/></a></div>' .
+                    '<div><a href="modificar_producto.php?id=' . $fila["id_producto"] . '" >' . $fila["nombre"] . '</a>' .
+                    'Precio: ' . $fila["precio"] . '&euro; Descuento: ' . $fila["porcentaje_descuento"] . '%</div>';
         }
         return $str .= '</table>';
     }
@@ -89,7 +89,7 @@ function historialCliente($correo) {
     $html = '<table border="1"><tr>'
             . '<th>Nombre Producto</th><th>Fecha Compra</th><th>Cantidad</th><th>Precio</th></tr>';
     while ($fila = mysqli_fetch_array($result)) {
-        $html .= '<tr><td><a href="producto.php?id='.$fila['id_producto'] .'">' . $fila['nombre'] . '</a></td><td>' . $fila['fecha'] . '</td><td>' . $fila['cantidad'] . '</td><td>' . $fila['cantidad'] * $fila['precio'] . '</td></tr>';
+        $html .= '<tr><td><a href="producto.php?id=' . $fila['id_producto'] . '">' . $fila['nombre'] . '</a></td><td>' . $fila['fecha'] . '</td><td>' . $fila['cantidad'] . '</td><td>' . $fila['cantidad'] * $fila['precio'] . '</td></tr>';
     }
     $html .= '</table>';
     return $html;
@@ -182,16 +182,16 @@ function menuCategorias() {
     global $arrayCategoriasLogged;
     //$form = '<div><a href="index.php?categoria=general"';
     $form = '';
-    if(!isset($_SESSION['tipo']) || $_SESSION['tipo'] == 'empresa'){
-    
+    if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] == 'empresa') {
+
         foreach ($arrayCategorias as $key => $val) {
 
-            $form .= '<div><a href="index.php?categoria='.$key.'">' . $val . '</a></div>';
+            $form .= '<div><a href="index.php?categoria=' . $key . '">' . $val . '</a></div>';
         }
-    }else{
+    } else {
         foreach ($arrayCategoriasLogged as $key => $val) {
 
-            $form .= '<div><a href="index.php?categoria='.$key.'">' . $val . '</a></div>';
+            $form .= '<div><a href="index.php?categoria=' . $key . '">' . $val . '</a></div>';
         }
     }
     return $form;
@@ -345,14 +345,15 @@ function tipoCuenta($correo) {
  * @param type $result
  * @return string
  */
-function previewProducto($result){
-    $str = '<table border=1>';
-            while ($fila = mysqli_fetch_array($result)) {
-                $str .= '<tr><a href="producto.php?id='.$fila["id_producto"].'")" ><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/></a></tr>' .
-                        '<tr><td><a href="producto.php?id='.$fila["id_producto"].'")" >' . $fila["nombre"] . '</a></td></tr>' .
-                        '</td><td> Precio: ' . $fila["precio"] . '</td><td> Descuento: ' . $fila["porcentaje_descuento"] . '</td></tr>';
-            }
-    $str .= '</table>';
+function previewProducto($result) {
+    $str = '<div class="producto">';
+    while ($fila = mysqli_fetch_array($result)) {
+        $p_desc = (100 - $fila["porcentaje_descuento"]) * $fila["precio"] / 100;
+        $str .= '<div class="img_prod"><a href="producto.php?id=' . $fila["id_producto"] . '")" ><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="' . $fila["nombre"] .'" height="200"/></div>' .
+                '<div class="desc_prod"><a href="producto.php?id=' . $fila["id_producto"] . '")" >' . $fila["nombre"] . '</a>' .
+                '<br/>Precio: <div class="descontado">' . $fila["precio"] . '€</div> ' . $p_desc . '€</div>';
+    }
+    $str .= '</div>';
     return $str;
 }
 
@@ -385,27 +386,27 @@ function desplegarPaginaPrincipal($categoria) {
             $result = realizarQuery($esquema, $sql);
         }
         //BUSQUEDA DE LOS GUSTOS DE UN USUARIO CLIENTE
-        else if($_SESSION['tipo'] == 'cliente' && $categoria == 'tus_gustos'){
+        else if ($_SESSION['tipo'] == 'cliente' && $categoria == 'tus_gustos') {
             $correo = $_SESSION['cuenta'];
             $sql = 'SELECT * FROM producto WHERE nombre_categoria IN'
                     . "(SELECT DISTINCT nombre_categoria FROM cuenta,afinidades WHERE cuenta.correo='$correo' AND afinidades.correo='$correo') AND cantidad_disponible > 0";
-            $result = realizarQuery("grupon", $sql);   
+            $result = realizarQuery("grupon", $sql);
         }
         //BÚSQUEDA SIN CATEGORIA
         else {
             $sql = 'SELECT * FROM producto WHERE nombre_ca LIKE "' . $ca . '" AND cantidad_disponible > 0';
             $result = realizarQuery("grupon", $sql);
         }
-        
-        
+
+
         /*
-        $str .= '<table border=1>';
-            while ($fila = mysqli_fetch_array($result)) {
-                $str .= '<tr><a href="producto.php?id='.$fila["id_producto"].'")" ><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/></a></tr>' .
-                        '<tr><td><a href="producto.php?id='.$fila["id_producto"].'")" >' . $fila["nombre"] . '</a></td></tr>' .
-                        '</td><td> Precio: ' . $fila["precio"] . '</td><td> Descuento: ' . $fila["porcentaje_descuento"] . '</td></tr>';
-            }
-        $str .= '</table>';*/
+          $str .= '<table border=1>';
+          while ($fila = mysqli_fetch_array($result)) {
+          $str .= '<tr><a href="producto.php?id='.$fila["id_producto"].'")" ><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/></a></tr>' .
+          '<tr><td><a href="producto.php?id='.$fila["id_producto"].'")" >' . $fila["nombre"] . '</a></td></tr>' .
+          '</td><td> Precio: ' . $fila["precio"] . '</td><td> Descuento: ' . $fila["porcentaje_descuento"] . '</td></tr>';
+          }
+          $str .= '</table>'; */
     }
     $str .= previewProducto($result);
     return $str;
@@ -440,7 +441,7 @@ function busquedaCatalogo() {
     $result = realizarQuery($esquema, $sql);
     $cookie_name = "catalogo_visitado";
     while ($listaCatalogos = mysqli_fetch_array($result)) {
-        $form .= '<a href="../front-end/modificar_catalogo.php?id='.$listaCatalogos["id_catalogo"].'">' . $listaCatalogos["nombre"] . '</a>';
+        $form .= '<a href="../front-end/modificar_catalogo.php?id=' . $listaCatalogos["id_catalogo"] . '">' . $listaCatalogos["nombre"] . '</a>';
     }
     return $form;
 }

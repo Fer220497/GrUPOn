@@ -99,6 +99,23 @@ article{
     width: 66%;
 }
 
+.producto{
+    background-color: lightgray;
+}
+
+.img_prod{
+    float: left;
+}
+
+.desc_prod{
+    float: left;
+}
+
+.descontado{
+    float: left;
+    text-decoration: line-through;
+}
+
 footer{
     position: absolute;
     background-color: #FDA231;
