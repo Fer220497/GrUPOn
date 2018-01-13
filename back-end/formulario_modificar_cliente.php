@@ -53,15 +53,15 @@ if (isset($_POST['cambiarDatos'])) {
         $nombre = sanitarString($_POST['nombre_cliente']);
         $apellidos = sanitarString($_POST['apellidos_cliente']);
         $nombre_ca = $_POST['comunidad_autonoma'];
-        $sql = "UPDATE CUENTA SET CORREO='$correoNuevo', NOMBRE_CA='$nombre_ca' WHERE CORREO='$correo'";
+        $sql = "UPDATE cuenta SET correo='$correoNuevo', nombre_ca='$nombre_ca' WHERE correo='$correo'";
         realizarQuery($esquema, $sql);
-        $sql = "UPDATE CLIENTE SET NOMBRE_CLIENTE='$nombre', APELLIDOS_CLIENTE='$apellidos' WHERE CORREO='$correoNuevo'";
+        $sql = "UPDATE cliente SET nombre_cliente='$nombre', apellidos_cliente='$apellidos' WHERE correo='$correoNuevo'";
         realizarQuery($esquema, $sql);
-        $sql = "DELETE FROM AFINIDADES WHERE CORREO='$correoNuevo'";
+        $sql = "DELETE FROM afinidades WHERE correo='$correoNuevo'";
         realizarQuery($esquema, $sql);
         foreach ($arrayCategorias as $categoria => $val) {
             if (isset($_POST[$categoria])) {
-                $sql = "INSERT INTO AFINIDADES VALUES('$correoNuevo','$categoria')";
+                $sql = "INSERT INTO afinidades VALUES('$correoNuevo','$categoria')";
                 realizarQuery($esquema, $sql);
             }
         }
@@ -81,7 +81,7 @@ if (isset($_POST['cambiarPwd'])) {
         $error[] = 'No has introducido la confirmaci&oacute;n de la contrase&ntilde;a';
     }
     //RESTRICCIÓN 1: la contraseña actual debe ser correcta.
-    $sql = "SELECT * FROM CUENTA WHERE CORREO='$correo'";
+    $sql = "SELECT * FROM cuenta WHERE correo='$correo'";
     $resultado = realizarQuery($esquema, $sql);
     $fila = mysqli_fetch_array($resultado);
     if (!password_verify($_POST['pwd_old'], $fila['pwd'])) {
@@ -102,7 +102,7 @@ if (isset($_POST['cambiarPwd'])) {
     if (!isset($error)) {
         $pwdNew = sanitarString($_POST['pwd_new']);
         $hash = $hash = password_hash($pwdNew, PASSWORD_BCRYPT);
-        $sql = "UPDATE CUENTA SET PWD='$hash' WHERE CORREO='$correo'";
+        $sql = "UPDATE cuenta SET pwd='$hash' WHERE correo='$correo'";
         realizarQuery($esquema, $sql);
     }
 }
@@ -118,7 +118,7 @@ function muestraFormularioDatos() {
     global $esquema;
     global $correo;
     //Primero traemos los datos del cliente de la DB
-    $sql = "SELECT * FROM CUENTA,CLIENTE WHERE CUENTA.CORREO='$correo' AND CLIENTE.CORREO='$correo'";
+    $sql = "SELECT * FROM cuenta,cliente WHERE cuenta.correo='$correo' AND cliente.correo='$correo'";
 
     $resultado = realizarQuery($esquema, $sql);
     $fila = mysqli_fetch_array($resultado);
@@ -128,7 +128,7 @@ function muestraFormularioDatos() {
     $ca = $fila['nombre_ca'];
 
 //Después obtengo los datos de sus afinidades.
-    $sql = "SELECT * FROM AFINIDADES WHERE CORREO='$correo'";
+    $sql = "SELECT * FROM afinidades WHERE correo='$correo'";
     $resultado = realizarQuery($esquema, $sql);
     while ($fila = mysqli_fetch_array($resultado)) {
         $afinidades[] = $fila['nombre_categoria'];

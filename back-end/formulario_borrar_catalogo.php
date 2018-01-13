@@ -7,9 +7,9 @@ if (isset($_POST['borrar']) && isset($_POST['check'])) {
     $id = $_COOKIE['catalogoVisitado'];
     
 
-    $sql = "UPDATE PRODUCTO SET id_catalogo=NULL WHERE id_catalogo='$id'";
+    $sql = "UPDATE producto SET id_catalogo=NULL WHERE id_catalogo='$id'";
     realizarQuery($esquema, $sql); 
-    $sql = "DELETE FROM CATALOGO WHERE id_catalogo=$id";
+    $sql = "DELETE FROM catalogo WHERE id_catalogo=$id";
     realizarQuery($esquema, $sql);  //OP DELETE SOBRE
     //header('Location: ../back-end/logout.php'); LLEVALRO AL MENU PRINCIPAL?
 }

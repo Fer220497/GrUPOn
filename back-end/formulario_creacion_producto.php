@@ -21,7 +21,7 @@ if (isset($_POST['crearProducto'])) {
     }
     $id_catalogo = $_POST["id_catalogo"];
     if ($_POST["id_catalogo"] != "") {
-        $sql = "SELECT id_catalogo FROM CATALOGO WHERE correo='$correo ' AND id_catalogo='$id_catalogo'";
+        $sql = "SELECT id_catalogo FROM catalogo WHERE correo='$correo ' AND id_catalogo='$id_catalogo'";
         $result = realizarQuery($esquema, $sql);
         if (mysqli_num_rows($result) == 0) {
             $error[] = "No existe ese catalogo";
@@ -59,7 +59,7 @@ if (isset($_POST['crearProducto'])) {
         $error[] = "TAMAÑO MAXIMO";
     }
     $nombre = sanitarString($_POST["nombre"]);
-    $sql = "SELECT nombre FROM PRODUCTO WHERE nombre='$nombre'";
+    $sql = "SELECT nombre FROM producto WHERE nombre='$nombre'";
     $result = realizarQuery("grupon", $sql);
     if (mysqli_num_rows($result) > 0) {
         $error[] = "Nombre ya existente";
@@ -85,21 +85,21 @@ if (isset($_POST['crearProducto'])) {
         $nombreFichero = microtime() . $extension;
         if ($_POST["id_catalogo"] == "") {
             $id_catalogo = "NULL";
-            $sql = "INSERT INTO PRODUCTO (nombre_categoria, nombre_ca, id_catalogo, nombre, precio, descripcion, localizacion, porcentaje_descuento, cantidad_vendida, cantidad_total, cantidad_disponible, ruta_imagen  )"
+            $sql = "INSERT INTO producto (nombre_categoria, nombre_ca, id_catalogo, nombre, precio, descripcion, localizacion, porcentaje_descuento, cantidad_vendida, cantidad_total, cantidad_disponible, ruta_imagen  )"
                     . " VALUES('" . $_POST['nombre_categoria'] . "','" . $_POST['nombre_ca'] . "'," . $id_catalogo . ",'" . $nombre .
                     "','" . $precio . "','" . $descripcion . "','" . $localizacion . "','" . $porcentaje_descuento . "','0','" . $cantidad_disponible . "','" . $cantidad_disponible . "','" .$nombreFichero . "')";
         } else {
-            $sql = "INSERT INTO PRODUCTO (nombre_categoria, nombre_ca, id_catalogo, nombre, precio, descripcion, localizacion, porcentaje_descuento, cantidad_vendida, cantidad_total, cantidad_disponible, ruta_imagen )"
+            $sql = "INSERT INTO producto (nombre_categoria, nombre_ca, id_catalogo, nombre, precio, descripcion, localizacion, porcentaje_descuento, cantidad_vendida, cantidad_total, cantidad_disponible, ruta_imagen )"
                     . " VALUES('" . $_POST['nombre_categoria'] . "','" . $_POST['nombre_ca'] . "','" . $_POST['id_catalogo'] . "','" . $nombre .
                     "','" . $precio . "','" . $descripcion . "','" . $localizacion . "','" . $porcentaje_descuento . "','0','" . $cantidad_disponible . "','" . $cantidad_disponible . "','" . $nombreFichero . "')";
         }
         realizarQuery("grupon", $sql);
-        $sql = "SELECT id_producto FROM PRODUCTO WHERE nombre='" . $nombre . "'";
+        $sql = "SELECT id_producto FROM producto WHERE nombre='" . $nombre . "'";
         $result = realizarQuery("grupon", $sql);
         $datospro = mysqli_fetch_array($result);
         $idproducto = $datospro['id_producto'];
 
-        $sql = 'INSERT INTO LANZAMIENTOS(correo, id_producto, fecha_ini, fecha_fin, num_ventas ) VALUES("' . $correo . '",' . $idproducto . ',curdate(),curdate() ,0)';
+        $sql = 'INSERT INTO lanzamientos(correo, id_producto, fecha_ini, fecha_fin, num_ventas ) VALUES("' . $correo . '",' . $idproducto . ',curdate(),curdate() ,0)';
         realizarQuery("grupon", $sql);
         $uploadroot="/docs";
         $arch=$_FILES['imagen']['name'];
@@ -136,7 +136,7 @@ function formularioCrearProducto() {
             '</select><br>' .
             'Cat&aacute;logo <select name="id_catalogo">' .
             '<option value=""></option>'; ///////////POR AÑADIR
-    $sql = "SELECT id_catalogo, nombre FROM CATALOGO WHERE correo='$correo'";
+    $sql = "SELECT id_catalogo, nombre FROM catalogo WHERE correo='$correo'";
     $result = realizarQuery($esquema, $sql);
     while ($fila = mysqli_fetch_row($result)) {
         $form .= '<option value="' . $fila[0] . '">' . $fila[1] . '</option>';

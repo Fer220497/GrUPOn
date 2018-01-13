@@ -11,10 +11,10 @@ require_once '../back-end/conexion_db.php';
  */
 function puedeComentar($correo, $producto) {
     global $esquema;
-    $query = "SELECT * FROM COMPRA WHERE CORREO='$correo' AND ID_PRODUCTO='$producto'";
+    $query = "SELECT * FROM compra WHERE correo='$correo' AND id_producto='$producto'";
     $result = realizarQuery($esquema, $query);
     if (mysqli_num_rows($result) > 0) {   //Ha comprado
-        $query = "SELECT * FROM COMENTARIOS WHERE CORREO='$correo' AND ID_PRODUCTO='$producto'";
+        $query = "SELECT * FROM comentarios WHERE correo='$correo' AND id_producto='$producto'";
         $result = realizarQuery($esquema, $query);
         if (mysqli_num_rows($result) > 0) {   //Ha comentado
             return false;
@@ -36,7 +36,7 @@ function mostrarCajaComentario() {
 
 function mostrarComentarios($producto) {
     global $esquema;
-    $query = "SELECT * FROM COMENTARIOS,CLIENTE WHERE COMENTARIOS.CORREO=CLIENTE.CORREO AND ID_PRODUCTO='$producto'";
+    $query = "SELECT * FROM comentarios,cliente WHERE comentarios.correo=cliente.correo AND id_producto='$producto'";
     $result = realizarQuery($esquema, $query);
     if (mysqli_num_rows($result) > 0) {
         $sumaPuntuaciones = 0;
@@ -56,7 +56,7 @@ function mostrarComentarios($producto) {
 function mostrarProductosVendedor($correo) {
     $cookie_name = 'productoVisitado';
     global $esquema;
-    $query = "SELECT * FROM LANZAMIENTOS,PRODUCTO WHERE PRODUCTO.ID_PRODUCTO = LANZAMIENTOS.ID_PRODUCTO AND LANZAMIENTOS.CORREO = '$correo'";
+    $query = "SELECT * FROM lanzamientos,producto WHERE producto.id_producto = lanzamientos.id_producto AND lanzamientos.correo = '$correo'";
     $result = realizarQuery($esquema, $query);
     if (mysqli_num_rows($result) == 0) {
         return '<p>No tiene productos en venta</p>';
@@ -73,7 +73,7 @@ function mostrarProductosVendedor($correo) {
 
 function esVendedor($id_prod, $correo) {
     global $esquema;
-    $query = "SELECT * FROM LANZAMIENTOS WHERE CORREO='$correo' AND ID_PRODUCTO='$id_prod'";
+    $query = "SELECT * FROM lanzamientos WHERE correo='$correo' AND id_producto='$id_prod'";
     $result = realizarQuery($esquema, $query);
     if (mysqli_num_rows($result) == 0) {
         return false;
@@ -84,7 +84,7 @@ function esVendedor($id_prod, $correo) {
 
 function historialCliente($correo) {
     global $esquema;
-    $sql = "SELECT * FROM COMPRA,PRODUCTO WHERE COMPRA.CORREO='$correo' AND COMPRA.ID_PRODUCTO = PRODUCTO.ID_PRODUCTO";
+    $sql = "SELECT * FROM compra,producto WHERE compra.correo='$correo' AND compra.id_producto = producto.id_producto";
     $result = realizarQuery($esquema, $sql);
     $html = '<table border="1"><tr>'
             . '<th>Nombre Producto</th><th>Fecha Compra</th><th>Cantidad</th><th>Precio</th></tr>';
@@ -98,7 +98,7 @@ function historialCliente($correo) {
 function historialVentas($correo) {
     $correo = $_SESSION["cuenta"];
     global $esquema;
-    $sql = "SELECT * FROM LANZAMIENTOS,PRODUCTO WHERE LANZAMIENTOS.CORREO='$correo' AND LANZAMIENTOS.ID_PRODUCTO=PRODUCTO.ID_PRODUCTO";
+    $sql = "SELECT * FROM lanzamientos,producto WHERE lanzamientos.correo='$correo' AND lanzamientos.id_producto=producto.id_producto";
     $result = realizarQuery($esquema, $sql);
     $html = '<table border="1">'
             . '<th>Nombre Producto</th><th>Fecha Venta</th><th>N&uacute;mero Ventas</th><th>Beneficio Obtenido</th>';
@@ -115,7 +115,7 @@ function historialVentas($correo) {
  */
 function existeCorreo($correo) {
     global $esquema;
-    $sql = "SELECT * FROM CUENTA WHERE CORREO='" . $correo . "'";
+    $sql = "SELECT * FROM cuenta WHERE correo='" . $correo . "'";
     $result = realizarQuery($esquema, $sql);
     if (mysqli_num_rows($result) > 0) {
         return true;
@@ -310,18 +310,18 @@ function inicializarDB() {
     global $arrayComunidades;
     global $esquema;
     foreach ($arrayComunidades as $key => $val) {
-        $sql = 'SELECT * FROM COMUNIDAD_AUTONOMA';
+        $sql = 'SELECT * FROM comunidad_autonoma';
         $result = realizarQuery($esquema, $sql);
         if (mysqli_num_rows($result) != count($arrayComunidades)) {
-            $sql = "INSERT INTO COMUNIDAD_AUTONOMA VALUES ('$key')";
+            $sql = "INSERT INTO comunidad_autonoma VALUES ('$key')";
             realizarQuery($esquema, $sql);
         }
     }
     foreach ($arrayCategorias as $key => $val) {
-        $sql = 'SELECT * FROM CATEGORIA';
+        $sql = 'SELECT * FROM categoria';
         $result = realizarQuery($esquema, $sql);
         if (mysqli_num_rows($result) != count($arrayCategorias)) {
-            $sql = "INSERT INTO CATEGORIA VALUES ('$key')";
+            $sql = "INSERT INTO categoria VALUES ('$key')";
             realizarQuery($esquema, $sql);
         }
     }
@@ -436,7 +436,7 @@ function busquedaCatalogo() {
     global $esquema;
     $form = "";
     $correo = $_SESSION["cuenta"];
-    $sql = "SELECT * FROM CATALOGO WHERE CORREO='$correo'";
+    $sql = "SELECT * FROM catalogo WHERE correo='$correo'";
     $result = realizarQuery($esquema, $sql);
     $cookie_name = "catalogo_visitado";
     while ($listaCatalogos = mysqli_fetch_array($result)) {

@@ -15,29 +15,29 @@ function pagoConExito() {
     print_r($cookiecarrito);
     echo "<br/>";
     foreach ($cookiecarrito as $producto) {
-        $sql = "SELECT * FROM PRODUCTO WHERE id_producto='$producto'";
+        $sql = "SELECT * FROM producto WHERE id_producto='$producto'";
         $result = realizarQuery($esquema, $sql);
         $datos_producto = mysqli_fetch_array($result);
         $cantidad_vendida = $datos_producto["cantidad_vendida"] + 1;
         echo "Productos vendidos actualizados:".$cantidad_vendida." |Para producto:".$producto."<br/>";
         $cantidad_disponible = $datos_producto["cantidad_disponible"] - 1;
         echo "Productos disponibles actualizados: ".$cantidad_disponible." |Para producto:".$producto."<br/>";
-        $sql = "UPDATE PRODUCTO SET cantidad_vendida='$cantidad_vendida', cantidad_disponible='$cantidad_disponible' WHERE id_producto=$producto";
+        $sql = "UPDATE producto SET cantidad_vendida='$cantidad_vendida', cantidad_disponible='$cantidad_disponible' WHERE id_producto=$producto";
         realizarQuery($esquema, $sql);
-        $sql = "SELECT * FROM LANZAMIENTOS WHERE id_producto='$producto'";
+        $sql = "SELECT * FROM lanzamientos WHERE id_producto='$producto'";
         $result = realizarQuery($esquema, $sql);
         $datos_lanzamiento = mysqli_fetch_array($result);
         $num_ventas = $datos_lanzamiento["num_ventas"] + 1;
         if ($cantidad_disponible == 0) {
-            $sql = "UPDATE LANZAMIENTOS SET num_ventas='$num_ventas', fecha_fin=curdate() WHERE id_producto=$producto";
+            $sql = "UPDATE lanzamientos SET num_ventas='$num_ventas', fecha_fin=curdate() WHERE id_producto=$producto";
             realizarQuery($esquema, $sql);
         } else {
-            $sql = "UPDATE LANZAMIENTOS SET num_ventas='$num_ventas' WHERE id_producto=$producto";
+            $sql = "UPDATE lanzamientos SET num_ventas='$num_ventas' WHERE id_producto=$producto";
             realizarQuery($esquema, $sql);
         }
         
         
-        $sql = 'INSERT INTO COMPRA (correo, id_producto, fecha, cantidad) VALUES(\''.$_SESSION['cuenta'].'\',\''.$producto.'\',curdate(),\'1\')';
+        $sql = 'INSERT INTO compra (correo, id_producto, fecha, cantidad) VALUES(\''.$_SESSION['cuenta'].'\',\''.$producto.'\',curdate(),\'1\')';
         realizarQuery($esquema, $sql);
     }
     echo "PAGO REALIZADO CON EXITO";

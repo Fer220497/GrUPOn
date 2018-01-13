@@ -42,7 +42,7 @@ if (isset($_POST['modificarProducto'])) {
             $foto = $_FILES['imagen']['name'];
         }
 
-        $sql = 'SELECT * FROM PRODUCTO WHERE id_producto = "' . $_COOKIE['productoVisitado'] . '"';
+        $sql = 'SELECT * FROM producto WHERE id_producto = "' . $_COOKIE['productoVisitado'] . '"';
         $result = realizarQuery($esquema, $sql);
         $producto = mysqli_fetch_array($result);
         $cantidadVendida = $producto["cantidad_vendida"];
@@ -71,7 +71,7 @@ if (isset($_POST['modificarProducto'])) {
 
         //  echo $nombreFichero;
         $total = $cantidadVendida + $cantidad;
-        $sql = "UPDATE PRODUCTO SET nombre_categoria = '" . $categoria . "', nombre_ca = '" . $comunidad . "', nombre = '" . $nombre . "'"
+        $sql = "UPDATE producto SET nombre_categoria = '" . $categoria . "', nombre_ca = '" . $comunidad . "', nombre = '" . $nombre . "'"
                 . ", precio = '" . $precio . "', descripcion = '" . $descripcion . "', localizacion = '" . $localizacion . "'"
                 . ", cantidad_disponible = '" . $cantidad . "', cantidad_total ='" . $total . "', "
                 . "porcentaje_descuento = '" . $porcentaje_descuento . "', ruta_imagen ='" . $nombreFichero . "', id_catalogo = " . $id_catalogo . " WHERE id_producto ='" . $_COOKIE['productoVisitado'] . "'";
@@ -94,7 +94,7 @@ if (!isset($_POST['modificarProducto']) || isset($errores)) {
 
 function formularioModificarProducto($id) {
     global $esquema;
-    $sql = 'SELECT * FROM PRODUCTO WHERE id_producto = "' . $id . '"';
+    $sql = 'SELECT * FROM producto WHERE id_producto = "' . $id . '"';
     $result = realizarQuery($esquema, $sql);
     $producto = mysqli_fetch_array($result);
     $form = '<form action="" method="post" enctype="multipart/form-data">' .

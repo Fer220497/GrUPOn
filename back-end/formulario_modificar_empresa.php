@@ -120,10 +120,10 @@ if (isset($_POST['modificarEmpresa'])) {
 
 
 
-        $sql = "UPDATE CUENTA SET CORREO='$correonuevo', NOMBRE_CA='$comunidad_autonoma' WHERE CORREO='$correo'";
+        $sql = "UPDATE cuenta SET correo='$correonuevo', nombre_ca='$comunidad_autonoma' WHERE correo='$correo'";
 
         realizarQuery($esquema, $sql);
-        $sql = "UPDATE EMPRESA SET nombre_empresa='$nombre_empresa', direccion_empresa='$direccion_empresa', "
+        $sql = "UPDATE empresa SET nombre_empresa='$nombre_empresa', direccion_empresa='$direccion_empresa', "
                 . "nif_empresa='$nif_empresa', web_empresa='$web_empresa', cuenta_bancaria='$cuenta_bancaria', "
                 . "telefono_empresa='$telefono_empresa', email_empresa='$mail_empresa' WHERE correo='$correonuevo'";
         realizarQuery($esquema, $sql);
@@ -146,7 +146,7 @@ if (isset($_POST['cambioContrasenya'])) {
         $error[] = 'Debes introducir la confirmacion de la contrase&ntilde;a';
     }
     //RESTRICCION: Contraseña antigua debe ser correcta
-    $sql = "SELECT * FROM CUENTA WHERE CORREO='$correo'";
+    $sql = "SELECT * FROM cuenta WHERE correo='$correo'";
     $result = realizarQuery("grupon", $sql);
     $datopwd = mysqli_fetch_array($result);
     $contra = $datopwd["pwd"];
@@ -165,7 +165,7 @@ if (isset($_POST['cambioContrasenya'])) {
     if (!isset($error)) {
         $pwd = $_POST['pwd'];
         $hash = password_hash($pwd, PASSWORD_BCRYPT); //60 chars wide.
-        $sql = "UPDATE CUENTA SET PWD='$hash' WHERE CORREO='$correo'";
+        $sql = "UPDATE cuenta SET PWD='$hash' WHERE correo='$correo'";
         realizarQuery($esquema, $sql);
     }
 }
@@ -178,7 +178,7 @@ echo formularioModEmpresa();
 function formularioModEmpresa() {
     global $esquema;
     $correo = $_SESSION["cuenta"];
-    $sql = "SELECT * FROM EMPRESA,CUENTA WHERE EMPRESA.CORREO='$correo' AND CUENTA.CORREO='$correo'";
+    $sql = "SELECT * FROM empresa,cuenta WHERE empresa.correo='$correo' AND cuenta.correo='$correo'";
     $result = realizarQuery("grupon", $sql);
     $datosempresa = mysqli_fetch_array($result);
     $nombre_empresa = $datosempresa["nombre_empresa"];

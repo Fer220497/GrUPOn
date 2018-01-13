@@ -22,7 +22,7 @@ if(isset($_POST['enviado'])){
         if(!isset($error)){
             $comment = sanitarString($comment);
             $number = sanitarString($number);
-            $query = "INSERT INTO COMENTARIOS VALUES ('".$_COOKIE['productoVisitado']
+            $query = "INSERT INTO comentarios VALUES ('".$_COOKIE['productoVisitado']
                     ."','".$_SESSION['cuenta']."','".$comment."','".$number."')";
             realizarQuery($esquema, $query);
             header('Location:producto.php');

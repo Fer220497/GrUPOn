@@ -11,12 +11,12 @@ require_once '../back-end/funciones.php';
         global $esquema;
         
         if($_SESSION['tipo'] === 'cliente'){
-            $sql = "SELECT * FROM CUENTA,CLIENTE WHERE CUENTA.CORREO='$correo' AND CLIENTE.CORREO='$correo'";
+            $sql = "SELECT * FROM cuenta,cliente WHERE cuenta.correo='$correo' AND cliente.correo='$correo'";
             $result = realizarQuery($esquema, $sql);
             $fila = mysqli_fetch_array($result);    //OP READ SOBRE CLIENTE
             $string = muestraDatosCliente($fila);
         }else{
-            $sql = "SELECT * FROM CUENTA,EMPRESA WHERE EMPRESA.CORREO='$correo' AND CUENTA.CORREO='$correo'";
+            $sql = "SELECT * FROM cuenta,empresa WHERE empresa.correo='$correo' AND cuenta.correo='$correo'";
             $result = realizarQuery($esquema, $sql);
             $fila = mysqli_fetch_array($result);    //OP READ SOBRE EMPRESA
             $string = muestraDatosEmpresa($fila);
@@ -63,7 +63,7 @@ require_once '../back-end/funciones.php';
     function muestraDatosEmpresaMapa($correo){
         global $esquema;
         global $arrayComunidades;
-        $sql = "SELECT * FROM EMPRESA,CUENTA WHERE CUENTA.CORREO='$correo' AND EMPRESA.CORREO='$correo'";
+        $sql = "SELECT * FROM empresa,cuenta WHERE cuenta.correo='$correo' AND empresa.correo='$correo'";
         $result = realizarQuery($esquema, $sql);
         $fila = mysqli_fetch_array($result);
         return '<input type=hidden id="localizacion" value="'.$fila['direccion_empresa'].'"/>'

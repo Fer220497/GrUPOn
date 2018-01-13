@@ -32,13 +32,13 @@ if (isset($_POST['login'])) {
     if (!isset($error)) {
         $correo = sanitarString($_POST['correo']);
         $pwd = $_POST['pwd'];
-        $query = "SELECT * FROM CUENTA WHERE CORREO='$correo'";
+        $query = "SELECT * FROM cuenta WHERE correo='$correo'";
         $result = realizarQuery($esquema, $query);
         $fila = mysqli_fetch_array($result);
         if (mysqli_num_rows($result) > 0 && password_verify($pwd, $fila['pwd'])) {
             $_SESSION['cuenta'] = $fila['correo'];
-            $queryEmpresa = "SELECT * FROM CUENTA,EMPRESA WHERE CUENTA.CORREO='$correo' AND EMPRESA.CORREO='$correo'";
-            $queryCliente = "SELECT * FROM CUENTA,CLIENTE WHERE CUENTA.CORREO='$correo' AND CLIENTE.CORREO='$correo'";
+            $queryEmpresa = "SELECT * FROM cuenta,empresa WHERE cuenta.correo='$correo' AND empresa.correo='$correo'";
+            $queryCliente = "SELECT * FROM cuenta,cliente WHERE cuenta.correo='$correo' AND cliente.correo='$correo'";
             $resultadoEmpresa = realizarQuery($esquema, $queryEmpresa);
             $resultadoCliente = realizarQuery($esquema, $queryCliente);
             if(mysqli_num_rows($resultadoEmpresa) > 0){

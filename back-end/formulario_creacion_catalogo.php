@@ -3,10 +3,10 @@ require_once '../back-end/conexion_db.php';
 require_once '../back-end/funciones.php';
 
 foreach ($arrayCategorias as $categoria=>$val) {
-    $sql = 'SELECT * FROM CATEGORIA';
+    $sql = 'SELECT * FROM categoria';
     $result = realizarQuery($esquema, $sql);
     if (mysqli_num_rows($result) != count($arrayCategorias)) {
-        $sql = "INSERT INTO CATEGORIA VALUES ('$categoria')";
+        $sql = "INSERT INTO categoria VALUES ('$categoria')";
         realizarQuery($esquema, $sql);
     }
 }
@@ -22,7 +22,7 @@ if (isset($_POST['nuevo_cat'])) {
         $correo = $_SESSION['cuenta'];
         $nombre = sanitarString($_POST['nombre']);
         $categoria = $_POST['categoria'];
-        $query = "INSERT INTO CATALOGO (correo, nombre_categoria, nombre) VALUES ('". $correo ."', '". $categoria ."','". $nombre ."')";
+        $query = "INSERT INTO catalogo (correo, nombre_categoria, nombre) VALUES ('". $correo ."', '". $categoria ."','". $nombre ."')";
         if(realizarQuery($esquema, $query)){
             echo 'placeholder bueno';
         } else {

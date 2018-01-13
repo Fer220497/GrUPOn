@@ -27,7 +27,7 @@ if (isset($_POST['modificarCatalogo'])) {
        $nombre= sanitarString($_POST['nombre']);
        $nombre_categoria=sanitarString($_POST['categoria']);
        $id_catalogo=$_COOKIE['id_catalogo'];
-       $sql="UPDATE CATALOGO SET nombre='$nombre', nombre_categoria='$nombre_categoria' WHERE id_catalogo='$id_catalogo'";
+       $sql="UPDATE catalogo SET nombre='$nombre', nombre_categoria='$nombre_categoria' WHERE id_catalogo='$id_catalogo'";
        realizarQuery($esquema, $sql);
        //header('Location: modificar_catalogo.php');
    }
@@ -82,7 +82,7 @@ echo muestraFormularioBorrar();
 function formularioModificacionCatalogo($catalogoVisitado) {
     global $esquema;
     $correo = $_SESSION['cuenta'];
-    $sql = "SELECT * FROM CATALOGO WHERE CORREO='$correo' AND id_catalogo='$catalogoVisitado'";
+    $sql = "SELECT * FROM catalogo WHERE correo='$correo' AND id_catalogo='$catalogoVisitado'";
     $result = realizarQuery($esquema, $sql);
     $datosCatalogo = mysqli_fetch_array($result);
     //print_r($datosCatalogo);

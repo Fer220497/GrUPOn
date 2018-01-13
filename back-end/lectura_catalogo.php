@@ -7,12 +7,12 @@ require_once '../back-end/funciones.php';
         global $esquema;
         global $arrayCategorias;
         $html="";
-        $sql = "SELECT * FROM CATALOGO WHERE ID_CATALOGO='$id'";
+        $sql = "SELECT * FROM catalogo WHERE id_catalogo='$id'";
         $result = realizarQuery($esquema, $sql);
         $fila = mysqli_fetch_array($result);
         $html .= '<table border="1"><tr><td>Nombre: '.$fila['nombre'].'</td><td>Categor&iacute;a: '.$arrayCategorias[$fila['nombre_categoria']].'</td></tr></table>';
         
-        $sql="SELECT * FROM PRODUCTO WHERE id_catalogo='$id'";
+        $sql="SELECT * FROM producto WHERE id_catalogo='$id'";
         $result = realizarQuery($esquema, $sql);
         /**
         $html.='<table border="1">';

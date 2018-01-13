@@ -23,7 +23,7 @@ function mostrarCarrito() {
         $precio=0;
         $productos = explode(",", $_COOKIE["carrito"]);
         foreach ($productos as $id_producto) {
-            $query = "SELECT * FROM PRODUCTO WHERE ID_PRODUCTO='$id_producto'";
+            $query = "SELECT * FROM producto WHERE id_producto='$id_producto'";
             $result = realizarQuery($esquema, $query);
             $fila = mysqli_fetch_array($result);
             $precio += $fila['precio'] - ($fila['precio'] * ($fila['porcentaje_descuento'] / 100));
@@ -43,7 +43,7 @@ function opcionesCompra() {
         $string_productos="";
         $productos = explode(",", $_COOKIE["carrito"]);
         foreach ($productos as $id_producto) {
-            $query = "SELECT * FROM PRODUCTO WHERE ID_PRODUCTO='$id_producto'";
+            $query = "SELECT * FROM producto WHERE id_producto='$id_producto'";
             $result = realizarQuery($esquema, $query);
             $fila = mysqli_fetch_array($result);
             $precio += $fila['precio'] - ($fila['precio'] * ($fila['porcentaje_descuento'] / 100));

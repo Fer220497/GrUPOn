@@ -11,12 +11,12 @@ function muestraProducto($id) {
     global $arrayComunidades;
     global $arrayCategorias;
     global $esquema;
-    $query = "SELECT * FROM PRODUCTO WHERE ID_PRODUCTO='$id'";
+    $query = "SELECT * FROM producto WHERE id_producto='$id'";
     $result = realizarQuery($esquema, $query);
     $fila = mysqli_fetch_array($result);
     $precio=$fila['precio']-($fila['precio']*($fila['porcentaje_descuento']/100));
     //$dirpath = realpath(dirname(getcwd()));
-    $sql="SELECT * FROM LANZAMIENTOS WHERE ID_PRODUCTO='$id'";
+    $sql="SELECT * FROM lanzamientos WHERE id_producto='$id'";
     $result = realizarQuery($esquema, $sql);
     $datosEmpresa= mysqli_fetch_array($result);
     //echo $sql;
