@@ -29,32 +29,25 @@ require_once '../back-end/funciones.php';
     </head>
     <body>
         <header>
-            <header>
-                <div id="logo">
-                    <a href="index.php?categoria=general"><img alt="GrUPOn" src="..\img\logo.png" height="100"/></a>
-                </div>
-            </header>
-            <nav>
-                <?php
-                echo formularioBusquedaProducto();
-                echo navigation();
-                ?>
-            </nav>
-            <main>
-                <article><!--AQUI IRA TODO EL MAIN -->
-                    <?php
-                    require_once '../back-end/formulario_login.php';
-                    echo formularioLogin();
-                    ?>
-                    &iquest;No est&aacute;s registrado? ¡Reg&iacute;strate aqu&iacute;!<br/>
-                    <button type="submit" onclick="location.href = 'registro_cliente.php'">Registro como cliente</button>
-                    <button type="submit" onclick="location.href = 'registro_empresa.php'">Registro como empresa</button>
+            <div id="logo">
+                <a href="index.php?categoria=general"><img alt="GrUPOn" src="..\img\logo.png" height="90"/></a>
+            </div>
+        </header>
+        <nav>
+            <?php
+            echo formularioBusquedaProducto();
+            echo navigation();
+            ?>
+        </nav>
+        <main>
+            <?php
+            require_once '../back-end/formulario_login.php';
+            echo '<div class="formulario">' . formularioLogin() . '</div>';
+            ?>
+        </main>
 
-                </article><!--AQUI IRA TODO EL MAIN -->
-            </main>
-
-            <footer>
-                Grupo &num;2 - GrUPOn&copy;, el fruto dado por el odio hacia nosotros mismos
-            </footer>
+        <footer>
+            Grupo &num;2 - GrUPOn&copy;, el fruto dado por el odio hacia nosotros mismos
+        </footer>
     </body>
 </html>

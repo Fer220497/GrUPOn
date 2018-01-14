@@ -39,7 +39,7 @@ if(!isset($_GET['categoria'])){
         </nav>
         <main>
             <aside id="sidenav">
-                <h2 id="categoria_actual">
+                <h2 id="categoria_actual">Categor&iacute;a: 
                     <?php if(isset($_SESSION['tipo']) && ($_SESSION['tipo'] == 'cliente')){
                         echo $arrayCategoriasLogged[$_GET['categoria']];
                     }else{

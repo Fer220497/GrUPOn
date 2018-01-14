@@ -26,7 +26,7 @@ if (isset($_POST['login'])) {
         if ($response == null && !$response->success) {
             $error[] = 'BOT DETECTADO.';
         }
-    }else{
+    } else {
         $error[] = 'No has checkeado el reCaptcha';
     }
     if (!isset($error)) {
@@ -42,11 +42,11 @@ if (isset($_POST['login'])) {
             $queryCliente = "SELECT * FROM cuenta,cliente WHERE cuenta.correo='$correo' AND cliente.correo='$correo'";
             $resultadoEmpresa = realizarQuery($esquema, $queryEmpresa);
             $resultadoCliente = realizarQuery($esquema, $queryCliente);
-            if(mysqli_num_rows($resultadoEmpresa) > 0){
+            if (mysqli_num_rows($resultadoEmpresa) > 0) {
                 $_SESSION['tipo'] = 'empresa';
                 $fila = mysqli_fetch_array($resultadoEmpresa);
                 $_SESSION['nombre'] = $fila['nombre_empresa'];
-            }else{
+            } else {
                 $_SESSION['tipo'] = 'cliente';
                 $fila = mysqli_fetch_array($resultadoCliente);
                 $_SESSION['nombre'] = $fila['nombre_cliente'];
@@ -60,7 +60,6 @@ if (isset($_POST['login'])) {
     if (isset($error)) {
         echo muestraErrores($error);
     }
-   
 }
 
 /**
@@ -72,13 +71,13 @@ function formularioLogin() {
     global $recaptcha;
 
     $form = ' <form action="" method="post">' .
-            ' Correo: <input type="text" name="correo" /><br/>' .
-            ' Contrase&ntilde;a: <input type="password" name="pwd" /><br/>' .
-            $recaptcha .
+            '<input type="text" name="correo" placeholder="Correo*"/><br/>' .
+            '<input type="password" name="pwd" placeholder="Contrase&ntilde;a*"/><br/>' .
+            '<div class="captcha"></div>' . $recaptcha .
             ' <input type="submit"  onclick="iniciarCarrito()" name="login" value="Enviar"/>' .
-            ' </form>';
+            ' <br/>&iquest;No est&aacute;s registrado? ¡Reg&iacute;strate aqu&iacute;!<br/>' .
+            '<button type="submit" onclick="location.href = \'registro_cliente.php\'">Registro como cliente</button><button type="submit" onclick="location.href = \'registro_empresa.php\'">Registro como empresa</button></form>';
     return $form;
 }
 
- 
 ?>

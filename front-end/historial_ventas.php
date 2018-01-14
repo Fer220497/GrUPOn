@@ -37,7 +37,7 @@ if(!isset($_SESSION['cuenta']) || $_SESSION['tipo'] != 'empresa'){
         <header>
             <header>
                 <div id="logo">
-                    <a href="index.php?categoria=general"><img alt="GrUPOn" src="..\img\logo.png" height="100"/></a>
+                    <a href="index.php?categoria=general"><img alt="GrUPOn" src="..\img\logo.png" height="90"/></a>
                 </div>
                 <div id="titulo">
                     <a href="index.php?categoria=general">
