@@ -11,6 +11,14 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title>B&uacute;squeda</title>
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"/>
+        <link href='estilo.css' rel="stylesheet"/>
+        <?php
+        if (isset($SESSION['tipo']) && $SESSION['tipo'] == 'cliente') {
+            ?>
+            <link href='estilo_login.css' rel="stylesheet"/>
+            <?php
+        }
+        ?>
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="../back-end/funciones.js"></script>
     </head>

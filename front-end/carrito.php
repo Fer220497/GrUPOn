@@ -4,6 +4,14 @@
         <meta charset="UTF-8">
         <title></title>
         <script></script>
+        <link href='estilo.css' rel="stylesheet"/>
+        <?php
+        if (isset($SESSION['tipo']) && $SESSION['tipo'] == 'cliente') {
+            ?>
+            <link href='estilo_login.css' rel="stylesheet"/>
+            <?php
+        }
+        ?>
         <script src="../back-end/funciones.js"></script>
     </head>
     <body>

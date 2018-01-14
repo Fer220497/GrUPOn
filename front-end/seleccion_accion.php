@@ -13,7 +13,14 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title></title>
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-
+        <link href='estilo.css' rel="stylesheet"/>
+        <?php
+        if (isset($SESSION['tipo']) && $SESSION['tipo'] == 'cliente') {
+            ?>
+            <link href='estilo_login.css' rel="stylesheet"/>
+            <?php
+        }
+        ?>
         <script type="text/javascript"></script>
         <script src="../back-end/funciones.js"></script>
     </head>
@@ -30,7 +37,7 @@ and open the template in the editor.
         Crear:<br/>
         <button type="submit" onclick="location.href = 'creacion_producto.php'">Crear Producto</button> 
         <button type="submit" onclick="location.href = 'creacion_catalogo.php'">Crear Cat&aacute;logo</button> 
-       
+
         <br/>Modificar:<br/>
         <button type="submit" onclick="location.href = 'modificar_catalogo.php'">Modificar Cat&aacute;logo</button> 
         <button type="submit" onclick="location.href = 'modificar_producto.php'">Modificar Producto</button>
@@ -41,10 +48,10 @@ and open the template in the editor.
         <br/>Buscar:<br/>
         <button type="submit" onclick="location.href = 'buscar_producto.php'">Buscar Producto</button>
         <?php
-            if(tipoCuenta($_SESSION["cuenta"]) || !isset($_SESSION["cuenta"])){
-                echo '<button type="submit" onclick="location.href = \'mostrar_carrito.php\'">Mostrar Carrito </button>';
-                //<button type="submit" onclick="location.href = 'mostrar_carrito.php'">Mostrar Carrito</button>
-            }
+        if (tipoCuenta($_SESSION["cuenta"]) || !isset($_SESSION["cuenta"])) {
+            echo '<button type="submit" onclick="location.href = \'mostrar_carrito.php\'">Mostrar Carrito </button>';
+            //<button type="submit" onclick="location.href = 'mostrar_carrito.php'">Mostrar Carrito</button>
+        }
         ?>
     </body>
 </html>
