@@ -346,14 +346,15 @@ function tipoCuenta($correo) {
  * @return string
  */
 function previewProducto($result) {
-    $str = '<div class="producto">';
+    $str = '';
     while ($fila = mysqli_fetch_array($result)) {
+        $str .= '<div class="producto">';
         $p_desc = (100 - $fila["porcentaje_descuento"]) * $fila["precio"] / 100;
-        $str .= '<div class="img_prod"><a href="producto.php?id=' . $fila["id_producto"] . '")" ><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="' . $fila["nombre"] .'" height="200"/></div>' .
-                '<div class="desc_prod"><a href="producto.php?id=' . $fila["id_producto"] . '")" >' . $fila["nombre"] . '</a>' .
-                '<br/>Precio: <div class="descontado">' . $fila["precio"] . '€</div> ' . $p_desc . '€</div>';
+        $str .= '<div class="img_prod"><a href="producto.php?id=' . $fila["id_producto"] . '")" ><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="' . $fila["nombre"] . '" height="200"/></div>' .
+                '<div class="desc_prod"><div class="nom_prod"><a href="producto.php?id=' . $fila["id_producto"] . '")" >' . $fila["nombre"] . '</a></div>' .
+                '<div class="precio_prod"><span class="descontado">' . $fila["precio"] . '€</span> ' . $p_desc . '€</div></div>';
+        $str .= '</div>';
     }
-    $str .= '</div>';
     return $str;
 }
 
