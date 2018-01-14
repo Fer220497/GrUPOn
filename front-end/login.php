@@ -34,9 +34,18 @@ require_once '../back-end/funciones.php';
                     <a href="index.php?categoria=general"><img alt="GrUPOn" src="..\img\logo.png" height="100"/></a>
                 </div>
             </header>
+            <nav>
+                <?php
+                echo formularioBusquedaProducto();
+                echo navigation();
+                ?>
+            </nav>
             <main>
                 <article><!--AQUI IRA TODO EL MAIN -->
-                    <?php require_once '../back-end/formulario_login.php'; echo formularioLogin(); ?>
+                    <?php
+                    require_once '../back-end/formulario_login.php';
+                    echo formularioLogin();
+                    ?>
                     &iquest;No est&aacute;s registrado? ¡Reg&iacute;strate aqu&iacute;!<br/>
                     <button type="submit" onclick="location.href = 'registro_cliente.php'">Registro como cliente</button>
                     <button type="submit" onclick="location.href = 'registro_empresa.php'">Registro como empresa</button>

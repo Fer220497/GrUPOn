@@ -15,7 +15,7 @@ require_once '../back-end/funciones.php';
             <?php
         }
         ?>
-        <link rel="icon" href="../imagenesSubidas/logo.png"/>
+        <link rel="icon" href="../img/logo.png"/>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <script src="../back-end/funciones.js"></script>

@@ -16,7 +16,7 @@
 }
 
 header{
-    background-image: url('../imagenesSubidas/banner.jpg');
+    background-image: url('../img/banner.jpg');
     height: 100px;
     width: 100%;
 }
@@ -77,7 +77,7 @@ main{
     width: 100%;
     position: absolute;
     top: 170px;
-    bottom: -5%;
+    bottom: 5%;
 }
 
 aside{
@@ -95,7 +95,7 @@ aside{
     width: 20%;
     position: absolute;
     top: 0;
-    bottom: -5%;
+    bottom: 0;
     line-height: 250%;
 }
 
@@ -135,6 +135,10 @@ article{
 .descontado{
     text-decoration: line-through;
     color: red;
+}
+
+form{
+    background-color: lightgray;
 }
 
 footer{

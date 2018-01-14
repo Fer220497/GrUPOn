@@ -21,7 +21,7 @@ if(!isset($_GET['categoria'])){
             <?php
         }
         ?>
-        <link rel="icon" href="../imagenesSubidas/logo.png"/>
+        <link rel="icon" href="../img/logo.png"/>
         <script src="../back-end/funciones.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
     </head>
