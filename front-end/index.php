@@ -37,7 +37,7 @@ if (!isset($_GET['categoria'])) {
             <div class="w3-container w3-center w3-third w3-cell w3-cell-middle">
                 <?php echo formularioBusquedaProducto(); ?>
             </div>
-            <div class="w3-container w3-third w3-button">
+            <div class="w3-container w3-third">
                 <?php echo navigation(); ?></div>
         </nav>
         <main>
