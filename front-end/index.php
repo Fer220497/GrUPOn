@@ -2,7 +2,7 @@
 session_start();
 require_once '../back-end/funciones.php';
 inicializarDB();
-if(!isset($_GET['categoria'])){
+if (!isset($_GET['categoria'])) {
     $_GET['categoria'] = 'general';
 }
 ?>
@@ -14,6 +14,7 @@ if(!isset($_GET['categoria'])){
         <meta charset="UTF-8"/>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
         <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <?php
         if (isset($SESSION['tipo']) && $SESSION['tipo'] == 'cliente') {
             ?>
@@ -33,20 +34,22 @@ if(!isset($_GET['categoria'])){
         </header>
         <nav class="w3-container w3-flat-wet-asphalt">
             <div class="w3-container w3-third"></div>
-            <div class="w3-container w3-third">
-            <?php echo formularioBusquedaProducto(); ?></div>
-            <i class="fa fa-search"></i>
-            <div class="w3-container w3-third">
-            <?php echo navigation(); ?></div>
+            <div class="w3-container w3-center w3-third w3-cell w3-cell-middle">
+                <?php echo formularioBusquedaProducto(); ?>
+            </div>
+            <div class="w3-container w3-third w3-button">
+                <?php echo navigation(); ?></div>
         </nav>
         <main>
             <aside id="sidenav">
                 <h2 id="categoria_actual">Categor&iacute;a: 
-                    <?php if(isset($_SESSION['tipo']) && ($_SESSION['tipo'] == 'cliente')){
+                    <?php
+                    if (isset($_SESSION['tipo']) && ($_SESSION['tipo'] == 'cliente')) {
                         echo $arrayCategoriasLogged[$_GET['categoria']];
-                    }else{
+                    } else {
                         echo $arrayCategorias[$_GET['categoria']];
-                    }?>
+                    }
+                    ?>
                 </h2>
 <?php echo menuCategorias(); ?>
             </aside>

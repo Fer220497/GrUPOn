@@ -414,23 +414,23 @@ function desplegarPaginaPrincipal($categoria) {
 }
 
 function navigation() {
-    $nav = '<div id="icon_tray"><ul>';
+    $nav = '<div id="icon_tray">';
     if (isset($_SESSION["cuenta"])) {
         if ($_SESSION["tipo"] == "cliente") {// LOGEADO COMO CLIENTE
-            $nav .= '<li><a id="carrito" href="mostrar_carrito.php">Carrito</a></li>' .
-                    '<li><a id="perfil" href="../front-end/cuenta.php">Perfil</a></li>' .
-                    '<li><a id="logout" href="../back-end/logout.php">Desconectar</a></li>';
+            $nav .= '<a id="carrito" href="mostrar_carrito.php">Carrito</a>' .
+                    '<a id="perfil" href="../front-end/cuenta.php">Perfil</a>' .
+                    '<a id="logout" href="../back-end/logout.php">Desconectar</a>';
         } else {// LOGEADO COMO EMPRESA
-            $nav .= '<li><a id="crear_produto" href="creacion_producto.php">Crear Producto</a></li>' .
-                    '<li><a id="crear_catalogo" href="creacion_catalogo.php">Crear Cat&aacute;logo</a></li>' .
-                    '<li><a id="perfil" href="../front-end/cuenta.php">Perfil</a></li>' .
-                    '<li><a id="logout" href="../back-end/logout.php">Desconectar</a></li>';
+            $nav .= '<a id="crear_produto" href="creacion_producto.php">Crear Producto</a>' .
+                    '<a id="crear_catalogo" href="creacion_catalogo.php">Crear Cat&aacute;logo</a>' .
+                    '<a id="perfil" href="../front-end/cuenta.php">Perfil</a>' .
+                    '<a id="logout" href="../back-end/logout.php">Desconectar</a>';
         }
     } else {//NO LOGEADO
-        $nav .= '<li><a id="boton_login" href="login.php">Login y Registro</a></li>' .
-                '<li><a id="carrito" href="mostrar_carrito.php">Carrito</a></li>';
+        $nav .= '<a id="boton_login" href="login.php">Login y Registro</a>' .
+                '<a id="carrito" href="mostrar_carrito.php">Carrito</a>';
     }
-    $nav .= " </ul></div>";
+    $nav .= "</div>";
     return $nav;
 }
 
