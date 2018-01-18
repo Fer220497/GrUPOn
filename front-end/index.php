@@ -10,10 +10,10 @@ if(!isset($_GET['categoria'])){
 <html>
     <head>
         <title>GrUPOn</title>
-        <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta charset="UTF-8"/>
-        <link href='estilo.css' rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
         <?php
         if (isset($SESSION['tipo']) && $SESSION['tipo'] == 'cliente') {
             ?>
@@ -26,16 +26,18 @@ if(!isset($_GET['categoria'])){
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
     </head>
     <body>
-        <header>
+        <header class="w3-container w3-flat-midnight-blue">
             <div id="logo">
                 <a href="index.php?categoria=general"><img alt="GrUPOn" src="..\img\logo.png" height="90"/></a>
             </div>
         </header>
-        <nav>
-            <?php
-            echo formularioBusquedaProducto();
-            echo navigation();
-            ?>
+        <nav class="w3-container w3-flat-wet-asphalt">
+            <div class="w3-container w3-third"></div>
+            <div class="w3-container w3-third">
+            <?php echo formularioBusquedaProducto(); ?></div>
+            <i class="fa fa-search"></i>
+            <div class="w3-container w3-third">
+            <?php echo navigation(); ?></div>
         </nav>
         <main>
             <aside id="sidenav">
