@@ -2,10 +2,9 @@
 session_start();
 require_once '../back-end/funciones.php';
 
-if(!isset($_SESSION['cuenta']) || $_SESSION['tipo'] != 'empresa'){
+if (!isset($_SESSION['cuenta']) || $_SESSION['tipo'] != 'empresa') {
     header('Location: index.php');
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,6 +13,7 @@ if(!isset($_SESSION['cuenta']) || $_SESSION['tipo'] != 'empresa'){
         <!--NECESARIOS-->  <!--NO NECESARIOS-->
         <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
         <link href='estilo.css' rel="stylesheet"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <?php
         if (isset($SESSION['tipo']) && $SESSION['tipo'] == 'cliente') {
             ?>
@@ -54,7 +54,7 @@ if(!isset($_SESSION['cuenta']) || $_SESSION['tipo'] != 'empresa'){
             </nav>
             <main>
                 <aside>
-                <?php echo menuCategorias(); ?>
+                    <?php echo menuCategorias(); ?>
                 </aside>
                 <!--AQUI IRA TODO EL MAIN -->
                 <article>

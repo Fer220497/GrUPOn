@@ -2,7 +2,7 @@
 session_start();
 require_once '../back-end/funciones.php';
 
-if(isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'empresa'){
+if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'empresa') {
     header('Location: index.php');
 }
 ?>
@@ -12,6 +12,7 @@ if(isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'empresa'){
         <meta charset="UTF-8">
         <title>Carrito</title>
         <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link href='estilo.css' rel="stylesheet"/>
         <?php
         if (isset($SESSION['tipo']) && $SESSION['tipo'] == 'cliente') {

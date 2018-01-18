@@ -5,6 +5,7 @@
         <title></title>
         <script></script>
         <link href='estilo.css' rel="stylesheet"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <?php
         if (isset($SESSION['tipo']) && $SESSION['tipo'] == 'cliente') {
             ?>
@@ -18,10 +19,10 @@
         <?php
         require_once '../back-end/lectura_producto.php';
         require_once '../back-end/formulario_carrito.php';
-        $carrito = explode(',',$_COOKIE['carrito']);
+        $carrito = explode(',', $_COOKIE['carrito']);
         //echo $_COOKIE['carrito'];
         //echo print_r($carrito);
-        foreach($carrito as $id_prod){
+        foreach ($carrito as $id_prod) {
             echo muestraProducto($id_prod);
             echo borrarProductoCarrito($id_prod);
         }

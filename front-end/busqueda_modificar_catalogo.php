@@ -1,14 +1,15 @@
 <?php
 session_start();
 require_once '../back-end/funciones.php';
-
 ?>
 <!DOCTYPE html>
 <html>
     <head>
         <title>GrUPOn</title>
         <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
-        <link href='estilo.css' rel="stylesheet"/><?php
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <link href='estilo.css' rel="stylesheet"/>
+        <?php
         if (isset($SESSION['tipo']) && $SESSION['tipo'] == 'cliente') {
             ?>
             <link href='estilo_login.css' rel="stylesheet"/>
@@ -34,7 +35,8 @@ require_once '../back-end/funciones.php';
                 </div>
             </header>
             <nav>
-                <?php echo formularioBusquedaProducto(); echo navigation(); ?>
+                <?php echo formularioBusquedaProducto();
+                echo navigation(); ?>
             </nav>
             <main>
                 <aside>
@@ -42,8 +44,8 @@ require_once '../back-end/funciones.php';
                 </aside>
 
                 <article>
-                    <?php echo busquedaCatalogo(); 
-                   ?>
+                    <?php echo busquedaCatalogo();
+                    ?>
                 </article>
             </main>
 

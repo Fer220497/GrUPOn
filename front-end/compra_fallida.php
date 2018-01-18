@@ -1,15 +1,16 @@
 <?php
 session_start();
 require_once '../back-end/funciones.php';
-
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-       <title>Registro e</title>
-       <!--NECESARIOS-->  <!--NO NECESARIOS-->
+        <title>Registro e</title>
+        <!--NECESARIOS-->  <!--NO NECESARIOS-->
         <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
-        <link href='estilo.css' rel="stylesheet"/><?php
+        <link href='estilo.css' rel="stylesheet"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <?php
         if (isset($SESSION['tipo']) && $SESSION['tipo'] == 'cliente') {
             ?>
             <link href='estilo_login.css' rel="stylesheet"/>
@@ -36,7 +37,8 @@ require_once '../back-end/funciones.php';
                 </div>
             </header>
             <nav>
-                <?php echo formularioBusquedaProducto();
+                <?php
+                echo formularioBusquedaProducto();
                 echo navigation();
                 ?>
             </nav>
@@ -46,21 +48,21 @@ require_once '../back-end/funciones.php';
                         <div id="cookie">  
                         </div>
                     </h2>
-                <?php echo menuCategorias(); ?>
+                    <?php echo menuCategorias(); ?>
                 </aside>
-        <!--AQUI IRA TODO EL MAIN -->
+                <!--AQUI IRA TODO EL MAIN -->
                 <article>
-           <?php
-        require_once '../back-end/lectura_carrito.php';
-        require_once '../back-end/lectura_producto.php';
-        require_once '../back-end/proceso_compra_fallida.php';
+                    <?php
+                    require_once '../back-end/lectura_carrito.php';
+                    require_once '../back-end/lectura_producto.php';
+                    require_once '../back-end/proceso_compra_fallida.php';
 
-        echo pagoFallido();
-        ?>
+                    echo pagoFallido();
+                    ?>
                 </article>
-        <!--AQUI IRA TODO EL MAIN -->
+                <!--AQUI IRA TODO EL MAIN -->
             </main>
-       
+
             <footer>
                 Grupo &num;2 - GrUPOn&copy;, el fruto dado por el odio hacia nosotros mismos
             </footer>

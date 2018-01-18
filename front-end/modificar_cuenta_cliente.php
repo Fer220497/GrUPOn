@@ -2,18 +2,18 @@
 session_start();
 require_once '../back-end/funciones.php';
 
-if(!isset($_SESSION['cuenta']) || $_SESSION['tipo'] != 'cliente'){
+if (!isset($_SESSION['cuenta']) || $_SESSION['tipo'] != 'cliente') {
     header('Location: index.php');
 }
-
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-       <title>Registro e</title>
-       <!--NECESARIOS-->  <!--NO NECESARIOS-->
+        <title>Registro e</title>
+        <!--NECESARIOS-->  <!--NO NECESARIOS-->
         <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
         <link href='estilo.css' rel="stylesheet"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <?php
         if (isset($SESSION['tipo']) && $SESSION['tipo'] == 'cliente') {
             ?>
@@ -41,7 +41,8 @@ if(!isset($_SESSION['cuenta']) || $_SESSION['tipo'] != 'cliente'){
                 </div>
             </header>
             <nav>
-                <?php echo formularioBusquedaProducto();
+                <?php
+                echo formularioBusquedaProducto();
                 echo navigation();
                 ?>
             </nav>
@@ -51,19 +52,19 @@ if(!isset($_SESSION['cuenta']) || $_SESSION['tipo'] != 'cliente'){
                         <div id="cookie">  
                         </div>
                     </h2>
-                <?php echo menuCategorias(); ?>
+                    <?php echo menuCategorias(); ?>
                 </aside>
-        <!--AQUI IRA TODO EL MAIN -->
+                <!--AQUI IRA TODO EL MAIN -->
                 <article>
                     <?php
-         echo "<h2>Modificaci&oacute;n Cliente</h2>";
-         require_once '../back-end/formulario_modificar_cliente.php'; 
-         ?>
-      
+                    echo "<h2>Modificaci&oacute;n Cliente</h2>";
+                    require_once '../back-end/formulario_modificar_cliente.php';
+                    ?>
+
                 </article>
-        <!--AQUI IRA TODO EL MAIN -->
+                <!--AQUI IRA TODO EL MAIN -->
             </main>
-       
+
             <footer>
                 Grupo &num;2 - GrUPOn&copy;, el fruto dado por el odio hacia nosotros mismos
             </footer>

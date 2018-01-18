@@ -44,14 +44,6 @@ nav ul li a{
     padding:1%;
 }
 
-#busqueda{
-    margin-top:20px;
-    margin-left:auto;
-    float: left;
-    margin-left: 33%;
-    width: 33%;
-}
-
 #cuadro_busqueda{
     width:78%;
     margin-left:10%;
@@ -212,6 +204,23 @@ header #logo{
     width: 30%;
     float: left;
     height: 300px;
+}
+
+.jumbotron{
+    padding: 0;
+    margin-top: 18px;
+    margin-bottom: 18px;
+    margin-left: 33%;
+    background-color: #FDA231;
+    width: 33%;
+    float: left;
+}
+
+.nav{
+    padding: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 5%;
 }
 
 /*No mover de abajo del todo, por alguna razón

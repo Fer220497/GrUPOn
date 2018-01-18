@@ -13,7 +13,8 @@ if(!isset($_GET['categoria'])){
         <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta charset="UTF-8"/>
-        <link href='estilo.css' rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <link href='estilo.css' rel="stylesheet"/>
         <?php
         if (isset($SESSION['tipo']) && $SESSION['tipo'] == 'cliente') {
             ?>

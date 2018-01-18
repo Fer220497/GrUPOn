@@ -414,23 +414,23 @@ function desplegarPaginaPrincipal($categoria) {
 }
 
 function navigation() {
-    $nav = '<div id="icon_tray"><ul>';
+    $nav = '<ul class="nav navbar-nav navbar-right">';
     if (isset($_SESSION["cuenta"])) {
         if ($_SESSION["tipo"] == "cliente") {// LOGEADO COMO CLIENTE
-            $nav .= '<li><a id="carrito" href="mostrar_carrito.php">Carrito</a></li>' .
-                    '<li><a id="perfil" href="../front-end/cuenta.php">Perfil</a></li>' .
-                    '<li><a id="logout" href="../back-end/logout.php">Desconectar</a></li>';
+            $nav .= '<li><a id="carrito" href="mostrar_carrito.php"><span class="glyphicon"></span>Carrito</a></li>' .
+                    '<li><a id="perfil" href="../front-end/cuenta.php"><span class="glyphicon"></span>Perfil</a></li>' .
+                    '<li><a id="logout" href="../back-end/logout.php"><span class="glyphicon"></span>Desconectar</a></li>';
         } else {// LOGEADO COMO EMPRESA
-            $nav .= '<li><a id="crear_produto" href="creacion_producto.php">Crear Producto</a></li>' .
-                    '<li><a id="crear_catalogo" href="creacion_catalogo.php">Crear Cat&aacute;logo</a></li>' .
-                    '<li><a id="perfil" href="../front-end/cuenta.php">Perfil</a></li>' .
-                    '<li><a id="logout" href="../back-end/logout.php">Desconectar</a></li>';
+            $nav .= '<li><a id="crear_produto" href="creacion_producto.php"><span class="glyphicon"></span>Crear Producto</a></li>' .
+                    '<li><a id="crear_catalogo" href="creacion_catalogo.php"><span class="glyphicon"></span>Crear Cat&aacute;logo</a></li>' .
+                    '<li><a id="perfil" href="../front-end/cuenta.php"><span class="glyphicon"></span>Perfil</a></li>' .
+                    '<li><a id="logout" href="../back-end/logout.php"><span class="glyphicon"></span>Desconectar</a></li>';
         }
     } else {//NO LOGEADO
-        $nav .= '<li><a id="boton_login" href="login.php">Login y Registro</a></li>' .
-                '<li><a id="carrito" href="mostrar_carrito.php">Carrito</a></li>';
+        $nav .= '<li><a id="boton_login" href="login.php"><span class="glyphicon"></span>Login y Registro</a></li>' .
+                '<li><a id="carrito" href="mostrar_carrito.php"><span class="glyphicon"></span>Carrito</a></li>';
     }
-    $nav .= " </ul></div>";
+    $nav .= " </ul>";
     return $nav;
 }
 
@@ -448,9 +448,15 @@ function busquedaCatalogo() {
 }
 
 function formularioBusquedaProducto() {
-    $form = '<form action="busqueda.php" method="get"><div id="busqueda">' .
-            '<input id="cuadro_busqueda" type="text" name="nombre" placeholder="Busca algo!"/>';
-    $form .= '<input id="boton_busqueda" type="submit" value="Buscar" name="busqueda"/>';
+    $form = '<div class="jumbotron"><form class="form-inline">
+    <div class="input-group">
+      <input type="email" class="form-control" size="50" placeholder="Busca un producto!" required>
+      <div class="input-group-btn">
+        <button type="button" class="btn">Buscar</button>
+      </div>
+    </div>
+  </form>
+</div>';
     if (isset($_SESSION["cuenta"])) {
         $form .= '<div id="checknacional"> Nacional <input type="checkbox" name="nacional" value="nacional"/></div>';
     }

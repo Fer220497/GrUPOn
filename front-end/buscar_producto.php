@@ -11,6 +11,8 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title>B&uacute;squeda</title>
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"/>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link href='estilo.css' rel="stylesheet"/>
         <?php
         if (isset($SESSION['tipo']) && $SESSION['tipo'] == 'cliente') {
@@ -23,7 +25,8 @@ and open the template in the editor.
         <script src="../back-end/funciones.js"></script>
     </head>
     <body>
-        <?php require_once '../back-end/formulario_busqueda_producto.php'; echo menuCategorias();?>
+        <?php require_once '../back-end/formulario_busqueda_producto.php';
+        echo menuCategorias(); ?>
 
     </body>
 </html>

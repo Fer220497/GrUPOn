@@ -1,14 +1,14 @@
 <?php
 session_start();
 require_once '../back-end/funciones.php';
-
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-       <title>Registro e</title>
-       <!--NECESARIOS-->  <!--NO NECESARIOS-->
+        <title>Registro e</title>
+        <!--NECESARIOS-->  <!--NO NECESARIOS-->
         <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link href='estilo.css' rel="stylesheet"/>
         <?php
         if (isset($SESSION['tipo']) && $SESSION['tipo'] == 'cliente') {
@@ -23,8 +23,8 @@ require_once '../back-end/funciones.php';
         <script src="../back-end/funciones.js"></script>
         <script src='https://www.google.com/recaptcha/api.js'></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
-        
-       
+
+
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyCGIDi9rfr_YQw-4Mrj5yBIVrfmr__Fb10"></script>
         <script src="../back-end/libs/map.js"></script>
         <script>
@@ -41,7 +41,8 @@ require_once '../back-end/funciones.php';
                 </div>
             </header>
             <nav>
-                <?php echo formularioBusquedaProducto();
+                <?php
+                echo formularioBusquedaProducto();
                 echo navigation();
                 ?>
             </nav>
@@ -51,18 +52,18 @@ require_once '../back-end/funciones.php';
                         <div id="cookie">  
                         </div>
                     </h2>
-                <?php echo menuCategorias(); ?>
+                    <?php echo menuCategorias(); ?>
                 </aside>
-        <!--AQUI IRA TODO EL MAIN -->
+                <!--AQUI IRA TODO EL MAIN -->
                 <article>
-            <?php
-        require_once '../back-end/lectura_cuenta.php';
-        echo muestraDatosEmpresaMapa($_GET['correo']);
-        ?>
+                    <?php
+                    require_once '../back-end/lectura_cuenta.php';
+                    echo muestraDatosEmpresaMapa($_GET['correo']);
+                    ?>
                 </article>
-        <!--AQUI IRA TODO EL MAIN -->
+                <!--AQUI IRA TODO EL MAIN -->
             </main>
-       
+
             <footer>
                 Grupo &num;2 - GrUPOn&copy;, el fruto dado por el odio hacia nosotros mismos
             </footer>
