@@ -414,21 +414,21 @@ function desplegarPaginaPrincipal($categoria) {
 }
 
 function navigation() {
-    $nav = '<div id="icon_tray">';
+    $nav = '<div class="w3-container w3-center">';
     if (isset($_SESSION["cuenta"])) {
         if ($_SESSION["tipo"] == "cliente") {// LOGEADO COMO CLIENTE
-            $nav .= '<a id="carrito" href="mostrar_carrito.php">Carrito</a>' .
-                    '<a id="perfil" href="../front-end/cuenta.php">Perfil</a>' .
-                    '<a id="logout" href="../back-end/logout.php">Desconectar</a>';
+            $nav .= '<a class="w3-bar-item w3-button w3-mobile w3-hover-purple" href="mostrar_carrito.php">Carrito</a>' .
+                    '<a class="w3-bar-item w3-button w3-mobile w3-hover-purple" href="../front-end/cuenta.php">Perfil</a>' .
+                    '<a class="w3-bar-item w3-button w3-mobile w3-hover-purple" href="../back-end/logout.php">Desconectar</a>';
         } else {// LOGEADO COMO EMPRESA
-            $nav .= '<a id="crear_produto" href="creacion_producto.php">Crear Producto</a>' .
-                    '<a id="crear_catalogo" href="creacion_catalogo.php">Crear Cat&aacute;logo</a>' .
-                    '<a id="perfil" href="../front-end/cuenta.php">Perfil</a>' .
-                    '<a id="logout" href="../back-end/logout.php">Desconectar</a>';
+            $nav .= '<a class="w3-bar-item w3-button w3-mobile w3-hover-purple" href="creacion_producto.php">Crear Producto</a>' .
+                    '<a class="w3-bar-item w3-button w3-mobile w3-hover-purple" href="creacion_catalogo.php">Crear Cat&aacute;logo</a>' .
+                    '<a class="w3-bar-item w3-button w3-mobile w3-hover-purple" href="../front-end/cuenta.php">Perfil</a>' .
+                    '<a class="w3-bar-item w3-button w3-mobile w3-hover-purple" href="../back-end/logout.php">Desconectar</a>';
         }
     } else {//NO LOGEADO
-        $nav .= '<a id="boton_login" href="login.php">Login y Registro</a>' .
-                '<a id="carrito" href="mostrar_carrito.php">Carrito</a>';
+        $nav .= '<a class="w3-bar-item w3-button w3-mobile w3-hover-purple" id="boton_login" href="login.php">Login y Registro</a>' .
+                '<a class="w3-bar-item w3-button w3-mobile w3-hover-purple" href="mostrar_carrito.php">Carrito</a>';
     }
     $nav .= "</div>";
     return $nav;
@@ -451,12 +451,12 @@ function formularioBusquedaProducto() {
     if (isset($_SESSION["cuenta"])) {
         $form = '<form class="w3-row" action="busqueda.php" method="get">' .
                 '<input class="w3-input w3-col m8 w3-bar-item w3-input w3-white w3-hide-small" type="text" name="nombre" placeholder="Busca algo!"/>' .
-                '<input class="w3-col m2 w3-btn w3-flat-clouds w3-center" type="submit" value="🔍" name="busqueda"/>' .
+                '<input class="w3-input w3-col m2 w3-btn w3-flat-clouds w3-center" type="submit" value="🔍" name="busqueda"/>' .
                 '<div class="w3-col m2">Nacional <input type="checkbox" name="nacional" value="nacional"/></form>';
     } else {
         $form = '<form class="w3-row" action="busqueda.php" method="get">' .
                 '<input class="w3-col m8 w3-input w3-bar-item w3-input w3-white w3-hide-small" type="text" name="nombre" placeholder="Busca algo!"/>' .
-                '<input class="w3-col m4 w3-btn w3-flat-clouds w3-cell" type="submit" value="🔍" name="busqueda"/></form>';   
+                '<input class="w3-input w3-col m4 w3-btn w3-flat-clouds w3-cell" type="submit" value="🔍" name="busqueda"/></form>';   
     }
 
     return $form;
