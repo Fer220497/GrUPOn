@@ -295,7 +295,9 @@ $secret = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe';
  * @return string
  */
 function muestraErrores($error) {
-    $bloqueHTML = '<div class="error"><h1>Se han producido los siguientes errores:</h1><ul>';
+    $bloqueHTML = '<div class="w3-panel w3-red w3-display-container">
+  <span onclick="this.parentElement.style.display=\'none\'"
+  class="w3-button w3-red w3-large w3-display-topright">&times;</span><h1>Se han producido los siguientes errores:</h1><ul>';
     foreach ($error as $err) {
         $bloqueHTML .= "<li>$err</li>";
     }
