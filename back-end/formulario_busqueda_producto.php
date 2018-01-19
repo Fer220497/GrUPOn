@@ -10,18 +10,17 @@ if (isset($_GET['busqueda'])) {
         $error[] = "Nombre no introducido";
     }
     if (!isset($error)) {
+        $nombre = sanitarString($_GET['nombre']);
         echo '<h3>Productos</h3><table border="1">';
         //BÚSQUEDA NACIONAL
         if (!isset($_SESSION['cuenta']) || isset($_GET['nacional'])) {
             //BÚSQUEDA CON CATEGORIA
             if ($_GET['categoria'] != 'general') {
-                $nombre = $_GET['nombre'];
                 $sql = 'SELECT * FROM producto WHERE nombre_categoria LIKE "' . $_GET['categoria'] . '" AND (nombre LIKE "%' . $nombre . '%" OR descripcion LIKE "%' . $nombre . '%") AND cantidad_disponible > 0';
                 $result = realizarQuery($esquema, $sql);
             }
             //BÚSQUEDA SIN CATEGORIA
             else {
-                $nombre = $_GET['nombre'];
                 $sql = 'SELECT * FROM producto WHERE (nombre LIKE "%' . $nombre . '%" OR descripcion LIKE "%' . $nombre . '%") AND cantidad_disponible > 0';
                 $result = realizarQuery($esquema, $sql);
             }
@@ -33,13 +32,11 @@ if (isset($_GET['busqueda'])) {
             $ca = mysqli_fetch_row($result)[1];
             //BÚSQUEDA CON CATEGORIA
             if ($_GET['categoria'] != 'general') {
-                $nombre = $_GET['nombre'];
                 $sql = 'SELECT * FROM producto WHERE nombre_categoria LIKE "' . $_GET['categoria'] . '" AND (nombre LIKE "%' . $nombre . '%" OR descripcion LIKE "%' . $nombre . '%") AND nombre_ca LIKE "' . $ca . '" AND cantidad_disponible > 0';
                 $result = realizarQuery($esquema, $sql);
             }
             //BÚSQUEDA SIN CATEGORIA
             else {
-                $nombre = $_GET['nombre'];
                 $sql = 'SELECT * FROM producto WHERE (nombre LIKE "%' . $nombre . '%" OR descripcion LIKE "%' . $nombre . '%") AND nombre_ca LIKE "' . $ca . '" AND cantidad_disponible > 0';
                 $result = realizarQuery($esquema, $sql);
             }
@@ -55,7 +52,7 @@ if (isset($_GET['busqueda'])) {
         */
         $str = previewProducto($result);
         $str .= '<h3>Cat&aacute;logos</h3><table border = 1>';
-        $nombre = $_GET['nombre'];
+        //$nombre = $_GET['nombre'];
         if ($_GET['categoria'] != 'general') {
             $sql = 'SELECT * FROM catalogo WHERE nombre LIKE "%' . $nombre . '%" AND nombre_categoria = "' . $_GET['categoria'] . '"';
         } else {

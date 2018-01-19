@@ -17,8 +17,14 @@ if (!isset($_GET['categoria'])) {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="estilow3.css">
         <link rel="icon" href="../img/icono.png"/>
-        <script src="../back-end/funciones.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+        <script src="../back-end/funciones.js"></script>
+        <script src="../back-end/libs/jquery.zoom.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('.zoom').zoom();
+            });
+        </script>
     </head>
     <body>
         <header class="w3-container w3-flat-midnight-blue">
