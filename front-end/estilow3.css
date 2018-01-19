@@ -5,4 +5,9 @@ main.w3-container{
 aside.w3-container{
     background-color: #647687;
     padding: 0;
+    padding-bottom: 10px;
+}
+
+aside.w3-container div.w3-container a{
+    text-decoration: none;
 }
