@@ -15,13 +15,7 @@ if (!isset($_GET['categoria'])) {
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
         <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <?php
-        if (isset($SESSION['tipo']) && $SESSION['tipo'] == 'cliente') {
-            ?>
-            <link href='estilo_login.css' rel="stylesheet"/>
-            <?php
-        }
-        ?>
+        <link rel="stylesheet" href="estilow3.css">
         <link rel="icon" href="../img/logo.png"/>
         <script src="../back-end/funciones.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
@@ -40,9 +34,9 @@ if (!isset($_GET['categoria'])) {
             <div class="w3-container w3-third">
                 <?php echo navigation(); ?></div>
         </nav>
-        <main>
-            <aside id="sidenav">
-                <h2 id="categoria_actual">Categor&iacute;a: 
+        <main class="w3-container">
+            <aside class="w3-container w3-quarter w3-flat-belize-hole">
+                <h2 class="w3-container w3-flat-wet-asphalt w3-block w3-center">
                     <?php
                     if (isset($_SESSION['tipo']) && ($_SESSION['tipo'] == 'cliente')) {
                         echo $arrayCategoriasLogged[$_GET['categoria']];
@@ -50,12 +44,15 @@ if (!isset($_GET['categoria'])) {
                         echo $arrayCategorias[$_GET['categoria']];
                     }
                     ?>
+
                 </h2>
-<?php echo menuCategorias(); ?>
+                <div class="w3-container">
+                    <?php echo menuCategorias(); ?>
+                </div>
             </aside>
 
-            <article>
-<?php echo desplegarPaginaPrincipal($_GET['categoria']); ?>
+            <article class="w3-container w3-threequarter">
+                <?php echo desplegarPaginaPrincipal($_GET['categoria']); ?>
             </article>
         </main>
 
