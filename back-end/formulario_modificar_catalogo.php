@@ -21,6 +21,7 @@ if (isset($_POST['modificarCatalogo'])) {
    if(!array_key_exists($_POST['categoria'], $arrayCategorias)){
        $error="La categoria no existe";
    }
+   $_POST['nombre'] = filter_var($_POST['nombre'], FILTER_SANITIZE_STRING);
    if(!isset($error)){
        
        

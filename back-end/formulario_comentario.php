@@ -13,11 +13,10 @@ if(isset($_POST['enviado'])){
         if(strlen($_POST['comentario']) > 5000){
             $error[] = 'Comentario demasiado largo';
         }
-        if($_POST['valoracion'] < 0 || $_POST['valoracion'] > 5){
+        if($_POST['valoracion'] < 0 || $_POST['valoracion'] > 5 || !filter_var($_POST['valoracion'], FILTER_VALIDATE_INT)){
             $error[] = 'La puntuacion no es valida';
         }
         $comment = filter_var($_POST['comentario'],FILTER_SANITIZE_STRING);
-        $number = filter_var($_POST['valoracion'], FILTER_VALIDATE_INT);
         $number = filter_var($_POST['valoracion'], FILTER_SANITIZE_NUMBER_INT);
         if(!isset($error)){
             $comment = sanitarString($comment);

@@ -64,6 +64,38 @@ if (isset($_POST['crearProducto'])) {
     if (mysqli_num_rows($result) > 0) {
         $error[] = "Nombre ya existente";
     }
+    
+    /**
+     * AHORA PROCEDEMOS A LA VALIDACION/SANEAMIENTO DE ENTRADAS
+     */
+    
+    //Nombre: SANITAR STRING
+    $_POST['nombre'] = filter_var($_POST['nombre'], FILTER_SANITIZE_STRING);
+    //Precio: VALIDAR FLOAT, COMPROBAR LIMITES Y SANEAR
+    if(!filter_var($_POST['precio'], FILTER_VALIDATE_FLOAT) || $_POST['precio'] <= 0){
+        $error[] = 'Precio incorrecto';
+    }else{
+        $_POST['precio'] = filter_var($_POST['precio'], FILTER_SANITIZE_NUMBER_FLOAT);
+    }
+    //Descripción: SANITAR STRING
+    $_POST['descripcion'] = filter_var($_POST['descripcion'], FILTER_SANITIZE_STRING);
+    //Localización: SANITAR STRING
+    $_POST['localizacion'] = filter_var($_POST['localizacion'], FILTER_SANITIZE_STRING);
+    //Descuento: VALIDAR INT, COMPROBAR LIMITES Y SANEAR
+    if(!filter_var($_POST['porcentaje_descuento'], FILTER_VALIDATE_INT) ||
+            $_POST['porcentaje_descuento'] < 1 || $_POST['porcentaje_descuento'] > 99){
+        $error[] = 'Porcentaje de descuento incorrecto';
+    }else{
+        $_POST['porcentaje_descuento'] = filter_var($_POST['porcentaje_descuento'], FILTER_SANITIZE_NUMBER_INT);
+    }
+    //Cantidad: VALIDAR INT, COMPROBAR LIMITES Y SANEAR
+    if(!filter_var($_POST['cantidad_disponible'], FILTER_VALIDATE_INT) ||
+            $_POST['cantidad_disponible'] <= 0){
+        $error[] = 'Cantidad disponible incorrecta';
+    }else{
+        $_POST['cantidad_disponible'] = filter_var($_POST['cantidad_disponible'],FILTER_SANITIZE_NUMBER_INT);
+    }
+    
     if (!isset($error)) {
         $nombre = sanitarString($_POST["nombre"]);
         $precio = sanitarString($_POST["precio"]);

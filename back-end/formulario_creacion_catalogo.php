@@ -18,6 +18,10 @@ if (isset($_POST['nuevo_cat'])) {
     if (!isset($_POST['categoria'])) {
         $error[] = "Debes introducir categor&iacutea.";
     }
+    if (!array_key_exists($_POST["nombre_categoria"], $arrayCategorias)) {
+        $error[] = "No existe la categoria";
+    }
+    $_POST['nombre'] = filter_var($_POST['nombre'], FILTER_SANITIZE_STRING);
     if (!isset($error)) {
         $correo = $_SESSION['cuenta'];
         $nombre = sanitarString($_POST['nombre']);
