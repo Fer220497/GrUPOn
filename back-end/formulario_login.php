@@ -70,14 +70,13 @@ function formularioLogin() {
 
     global $recaptcha;
 
-    $form = ' <form action="" method="post">' .
-            '<input type="text" name="correo" placeholder="Correo*"/><br/>' .
-            '<input type="password" name="pwd" placeholder="Contrase&ntilde;a*"/><br/>' .
+    $form = ' <form class="w3-container" action="" method="post">' .
+            '<input class="w3-input" type="text" name="correo" placeholder="Correo*"/><br/>' .
+            '<input class="w3-input" type="password" name="pwd" placeholder="Contrase&ntilde;a*"/><br/>' .
             '<div class="captcha"></div>' . $recaptcha .
             ' <input type="submit"  onclick="iniciarCarrito()" name="login" value="Enviar"/>' .
             ' <br/>&iquest;No est&aacute;s registrado? ¡Reg&iacute;strate aqu&iacute;!<br/>' .
             '<button type="submit" onclick="location.href = \'front-end\registro_cliente.php\'">Registro como cliente</button><button type="submit" onclick="location.href = \'front-end\registro_empresa.php\'">Registro como empresa</button></form>';
     return $form;
 }
-
 ?>
