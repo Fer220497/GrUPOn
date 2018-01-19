@@ -59,7 +59,9 @@ if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'empresa') {
                     ?><h2>No ha a&ntilde;adido nada al carrito</h2><?php
                 } else {
                     echo mostrarCarrito();
-                    echo opcionesCompra();
+                    if(isset($_SESSION['cuenta'])){
+                        echo opcionesCompra();
+                    }
                 }
                 ?></article>
         </main>

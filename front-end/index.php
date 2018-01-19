@@ -23,7 +23,9 @@ if (!isset($_GET['categoria'])) {
         <script>
             $(document).ready(function () {
                 $('.zoom').zoom();
+                iniciarCarrito();
             });
+           
         </script>
     </head>
     <body>

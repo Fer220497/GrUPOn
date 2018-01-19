@@ -8,10 +8,9 @@
 
 function iniciarCarrito() {
     //añadir // en caso de querer reiniciar con el login
-    //if (getCookie("carrito")=="") {
+    if (getCookie("carrito")=="") {
         setCookie("carrito", "", 1);
-    //}
-    setCookie("categoria", "general", 1);
+    }
 }
 function addCarrito(id, carritoActual) {
     var var_string = id;
