@@ -34,7 +34,7 @@ if (!isset($_GET['categoria'])) {
             <div class="w3-container w3-third">
                 <?php echo navigation(); ?></div>
         </nav>
-        <main class="w3-container">
+        <main class="w3-container w3-flat-clouds">
             <aside class="w3-container w3-quarter w3-flat-belize-hole">
                 <h2 class="w3-container w3-flat-wet-asphalt w3-block w3-center">
                     <?php
