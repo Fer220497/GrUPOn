@@ -39,7 +39,7 @@ require_once '../back-end/funciones.php';
             echo '<div class="w3-container w3-third"></div><div class="w3-container w3-center w3-third w3-margin-top w3-margin-bottom">' . formularioLogin() . '</div>';
             ?>
         </main>
-        <footer>
+        <footer class="w3-container w3-flat-midnight-blue">
             Grupo &num;2 - GrUPOn&copy;, el fruto dado por el odio hacia nosotros mismos
         </footer>
     </body>
