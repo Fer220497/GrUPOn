@@ -70,13 +70,13 @@ function formularioLogin() {
 
     global $recaptcha;
 
-    $form = ' <form class="w3-container" action="" method="post">' .
+    $form = ' <form class="w3-container w3-row" action="" method="post">' .
             '<input class="w3-input" type="text" name="correo" placeholder="Correo*"/><br/>' .
             '<input class="w3-input" type="password" name="pwd" placeholder="Contrase&ntilde;a*"/><br/>' .
             '<div class="captcha">' . $recaptcha . '</div>' .
-            '<input type="submit" onclick="iniciarCarrito()" name="login" value="Enviar"/>' .
-            '<br/>&iquest;No est&aacute;s registrado? ¡Reg&iacute;strate aqu&iacute;!<br/>' .
-            '<button type="submit" onclick="location.href = \'front-end\registro_cliente.php\'">Registro como cliente</button><button type="submit" onclick="location.href = \'front-end\registro_empresa.php\'">Registro como empresa</button></form>';
+            '<input class="w3-button w3-light-grey w3-round w3-col m6" type="submit" onclick="iniciarCarrito()" name="login" value="Enviar"/>' .
+            '<br/><br/>&iquest;No est&aacute;s registrado? ¡Reg&iacute;strate aqu&iacute;!<br/>' .
+            '<a class="w3-button w3-light-grey w3-round w3-col m6" href="../front-end/registro_cliente.php">Registro como cliente</a><a class="w3-button w3-light-grey w3-round w3-col m6" href="../front-end/registro_cliente.php">Registro como empresa</a></form>';
     return $form;
 }
 ?>

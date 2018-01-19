@@ -36,7 +36,7 @@ require_once '../back-end/funciones.php';
         <main class="w3-container w3-flat-clouds">
             <?php
             require_once '../back-end/formulario_login.php';
-            echo '<div class="w3-container w3-third"></div><div class="w3-container w3-center w3-third w3-margin-top w3-margin-bottom">' . formularioLogin() . '</div>';
+            echo '<div class="w3-container w3-third"></div><div class="w3-container w3-white w3-border w3-round w3-section w3-third w3-margin-top w3-margin-bottom">' . formularioLogin() . '</div>';
             ?>
         </main>
         <footer class="w3-container w3-flat-midnight-blue">

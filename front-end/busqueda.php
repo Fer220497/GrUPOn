@@ -60,7 +60,7 @@ if (!isset($_GET['categoria'])) {
             </article>
         </main>
 
-        <footer>
+        <footer class="w3-container w3-flat-midnight-blue">
             Grupo &num;2 - GrUPOn&copy;, el fruto dado por el odio hacia nosotros mismos
         </footer>
     </body>

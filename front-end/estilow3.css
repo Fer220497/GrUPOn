@@ -21,3 +21,8 @@ div.w3-container a{
 img.w3-image{
     height: 200px;
 }
+
+body main div.w3-container.w3-white.w3-border.w3-round.w3-section.w3-third.w3-margin-top.w3-margin-bottom{
+    padding-bottom: 10px;
+}
+
