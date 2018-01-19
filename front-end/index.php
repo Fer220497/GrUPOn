@@ -26,7 +26,7 @@ if (!isset($_GET['categoria'])) {
                 <a href="index.php?categoria=general"><img alt="GrUPOn" src="..\img\logo.png" height="90"/></a>
             </div>
         </header>
-        <nav class="w3-container w3-flat-wet-asphalt">
+        <nav class="w3-container w3-card w3-flat-wet-asphalt">
             <div class="w3-container w3-third">
                 
             </div>
@@ -39,7 +39,7 @@ if (!isset($_GET['categoria'])) {
         </nav>
         <main class="w3-container w3-flat-clouds">
             <aside class="w3-container w3-quarter w3-flat-belize-hole w3-card">
-                <h2 class="w3-container w3-flat-wet-asphalt w3-block w3-center">
+                <h2 class="w3-container w3-card w3-flat-wet-asphalt w3-block w3-center">
                     <?php
                     if (isset($_SESSION['tipo']) && ($_SESSION['tipo'] == 'cliente')) {
                         echo $arrayCategoriasLogged[$_GET['categoria']];
@@ -47,7 +47,6 @@ if (!isset($_GET['categoria'])) {
                         echo $arrayCategorias[$_GET['categoria']];
                     }
                     ?>
-
                 </h2>
                 <div class="w3-container">
                     <?php echo menuCategorias(); ?>
