@@ -5,11 +5,6 @@
  * 
  
   
- <script src="modformularios.js"></script>
-        <script>
-            $(document).ready(function () {
-               $("input").plugin();
-            }); 
  * 
  */
 
@@ -19,7 +14,7 @@
             $(this).change(function () {
             ///EMPRESA
                     //CORREO
-                   
+                 //  alert("Hols");
                     if ($(this).attr("name") == 'correo' || $(this).attr("name") == 'mail_empresa' ) {
                        
                         var patron = /^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/;
@@ -34,7 +29,7 @@
                         }
                     }
                     //NIF_EMPRESA                   
-                    if ($(this).attr("name") == 'nif_empresa') {
+                    if ($(this).attr("name") == 'nif_empresa'|| $(this).attr("name") == 'nif_empresa2') {
                        
                         var patron = /^([A-HJUV]\d{8})|([NP-SW]\d{7}[A-Z])$/;
                         

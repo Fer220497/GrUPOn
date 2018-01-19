@@ -165,6 +165,16 @@ $arrayCategorias = array(
     "salud_y_belleza" => "Salud y belleza",
     "deporte" => "Deporte",
 );
+$arrayCategoriasRegistro = array(
+    "viajes" => "Viajes",
+    "entretenimiento" => "Entretenimiento",
+    "gastronomia" => "Gastronom&iacute;a",
+    "electronica" => "Electr&oacute;nica",
+    "ropa" => "Ropa",
+    "salud_y_belleza" => "Salud y belleza",
+    "deporte" => "Deporte",
+);
+
 $arrayCategoriasLogged = array(
     "general" => "General",
     "tus_gustos" => "Tus Gustos",
@@ -239,18 +249,18 @@ function opcionesCatSeleccionada($catsel) {
 }
 
 function checkboxesCategorias() {
-    global $arrayCategorias;
+    global $arrayCategoriasRegistro;
     $form = '';
-    foreach ($arrayCategorias as $key => $val) {
+    foreach ($arrayCategoriasRegistro as $key => $val) {
         $form .= '<span class="w3-half">' . $val . '</span><input class="w3-check w3-quarter" type="checkbox" name="' . $key . '" value="' . $key . '"/><br/>';
     }
     return $form;
 }
 
 function checkboxesCategoriasSeleccionadas($afinidades) {
-    global $arrayCategorias;
+    global $arrayCategoriasRegistro;
     $form = '';
-    foreach ($arrayCategorias as $key => $val) {
+    foreach ($arrayCategoriasRegistro as $key => $val) {
         if (in_array($key, $afinidades)) {
             $form .= $val . ': <input type="checkbox" name="' . $key . '" value="' . $key . '" checked/><br/>';
         } else {
@@ -306,7 +316,7 @@ function muestraErrores($error) {
 }
 
 function inicializarDB() {
-    global $arrayCategorias;
+    global $arrayCategoriasRegistro;
     global $arrayComunidades;
     global $esquema;
     foreach ($arrayComunidades as $key => $val) {
@@ -317,10 +327,10 @@ function inicializarDB() {
             realizarQuery($esquema, $sql);
         }
     }
-    foreach ($arrayCategorias as $key => $val) {
+    foreach ($arrayCategoriasRegistro as $key => $val) {
         $sql = 'SELECT * FROM categoria';
         $result = realizarQuery($esquema, $sql);
-        if (mysqli_num_rows($result) != count($arrayCategorias)) {
+        if (mysqli_num_rows($result) != count($arrayCategoriasRegistro)) {
             $sql = "INSERT INTO categoria VALUES ('$key')";
             realizarQuery($esquema, $sql);
         }

@@ -169,9 +169,9 @@ function formularioRegistroEmpresa() {
     global $recaptcha;
     global $selectComunidadesAutonomas;
     $form = '<form action="../front-end/registro_empresa.php" method="post">' .
-            '<input class="w3-input" type="email" name="correo" placeholder="Nombre" required/><br/>' .
+            '<input class="w3-input" type="email" name="correo" placeholder="Correo de la cuenta" required/><br/>' .
             '<input class="w3-input" type="password" name="pwd" placeholder="Contrase&ntilde;a" required/><br/>' .
-            '<input class="w3-input" type="password" name="pwd_confirmar" placeholder="Confirmar Contrase&ntilde;a" required/ ><br/>' .
+            '<input class="w3-input" type="password" name="pwd_confirmar" placeholder="Confirmar Contrase&ntilde;a" required/><br/>' .
             '<input class="w3-input" type="text" name="nombre_empresa" placeholder="Nombre Empresa" required/><br/>' .
             '<input class="w3-input" type="text" name="nif_empresa" placeholder="NIF" required/><br/>' .
             '<input class="w3-input" type="text" name="web_empresa" placeholder="Web Empresa" required/> <br/>' .
