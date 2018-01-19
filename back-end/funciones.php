@@ -346,11 +346,11 @@ function tipoCuenta($correo) {
 function previewProducto($result) {
     $str = '';
     while ($fila = mysqli_fetch_array($result)) {
-        $str .= '<div class="w3-container w3-section w3-border w3-border-white w3-hover-border-blue w3-third"><a href="producto.php?id=' . $fila["id_producto"] . '")" >';
+        $str .= '<div class="w3-container w3-center w3-section w3-border w3-border-white w3-hover-border-blue w3-third"><a href="producto.php?id=' . $fila["id_producto"] . '")" >';
         $p_desc = (100 - $fila["porcentaje_descuento"]) * $fila["precio"] / 100;
-        $str .= '<div class="w3-container"><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="' . $fila["nombre"] . '" height="200"/></div>' .
-                '<div class="w3-container"><div class="w3-container">' . $fila["nombre"] . '</div>' .
-                '<div class="w3-container">' . $fila["precio"] . '€ ' . $p_desc . '€</div></div>';
+        $str .= '<div class="w3-container"><img class="w3-image" src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="' . $fila["nombre"] . '"/></div>' .
+                '<div class="w3-container"><div class="w3-container"><span style="font-weight: bold">' . $fila["nombre"] . ' </span><span class="w3-tag w3-small w3-padding w3-red" style="transform:rotate(-5deg)">-' . $fila["porcentaje_descuento"] . '%</span></div>' .
+                '<div class="w3-container"><span style="text-decoration: line-through">' . $fila["precio"] . '&euro;</span><span style="font-weight: bold"> ' . $p_desc . '&euro;</div></div>';
         $str .= '</a></div>';
     }
     return $str;
@@ -358,7 +358,7 @@ function previewProducto($result) {
 
 function desplegarPaginaPrincipal($categoria) {
     global $esquema;
-    $str = '<div class="w3-container w3-col w3-white w3-border w3-round w3-section" style="width: 95%">';
+    $str = '<div class="w3-container w3-white w3-border w3-round w3-section">';
     //BÚSQUEDA NACIONAL
     if (!isset($_SESSION['cuenta'])) {
         //BÚSQUEDA CON CATEGORIA

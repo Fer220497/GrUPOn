@@ -17,3 +17,7 @@ aside.w3-container{
 div.w3-container a{
     text-decoration: none;
 }
+
+img.w3-image{
+    height: 200px;
+}
