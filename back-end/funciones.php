@@ -455,7 +455,6 @@ function formularioBusquedaProducto() {
                 '<input class="w3-col m8 w3-input w3-white" type="text" name="nombre" placeholder="Busca algo!"/>' .
                 '<input class="w3-input w3-col m4 w3-btn w3-flat-clouds w3-cell" type="submit" value="🔍" name="busqueda"/></form>';   
     }
-
     return $form;
 }
 

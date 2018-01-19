@@ -38,7 +38,7 @@ if (!isset($_GET['categoria'])) {
             </div>
         </nav>
         <main class="w3-container w3-flat-clouds">
-            <aside class="w3-container w3-quarter w3-flat-belize-hole">
+            <aside class="w3-container w3-quarter w3-flat-belize-hole w3-card">
                 <h2 class="w3-container w3-flat-wet-asphalt w3-block w3-center">
                     <?php
                     if (isset($_SESSION['tipo']) && ($_SESSION['tipo'] == 'cliente')) {
@@ -59,7 +59,7 @@ if (!isset($_GET['categoria'])) {
             </article>
         </main>
 
-        <footer>
+        <footer class="w3-container w3-flat-midnight-blue">
             Grupo &num;2 - GrUPOn&copy;, el fruto dado por el odio hacia nosotros mismos
         </footer>
     </body>
