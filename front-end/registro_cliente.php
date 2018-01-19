@@ -39,7 +39,7 @@ require_once '../back-end/formulario_login.php';
         <main class="w3-container w3-flat-clouds">
             <div class="w3-container w3-third"></div>
             <div class="w3-container w3-white w3-border w3-round w3-section w3-third w3-margin-top w3-margin-bottom">
-            <h2>Registro cliente</h2>
+            <h2>Registro Cliente</h2>
                 <?php require_once '../back-end/formulario_registro_cliente.php'; ?>
             </div>
         </main>
