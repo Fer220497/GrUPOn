@@ -7,7 +7,6 @@ require_once '../back-end/formulario_login.php';
 <html>
     <head>
         <title>Registro Cliente</title>
-        <!--NECESARIOS-->  <!--NO NECESARIOS-->
         <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
         <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">

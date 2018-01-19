@@ -169,19 +169,19 @@ function formularioRegistroEmpresa() {
     global $recaptcha;
     global $selectComunidadesAutonomas;
     $form = '<form action="../front-end/registro_empresa.php" method="post">' .
-            'Correo: <input type="email" name="correo" required/><br/>' .
-            'Contrase&ntilde;a: <input type="password" name="pwd" required/><br/>' .
-            'Confirmar Contrase&ntilde;a: <input type="password" name="pwd_confirmar" required/ ><br/>' .
-            'Nombre Empresa: <input type="text" name="nombre_empresa" required/><br/>' .
-            'NIF: <input type="text" name="nif_empresa" required/><br/>' .
-            'Web Empresa: <input type="text" name="web_empresa" required/> <br/>' .
-            'Cuenta Bancaria: <input type="number" name="cuenta_bancaria" required/ ><br/>' .
-            'Tel&eacute;fono: <input type="number" name="telefono_empresa" required/><br/>' .
-            'Correo Electr&oacute;nico: <input type="email" name="mail_empresa" required/> <br/>' .
-            'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma">'.opcionesComunidades().'</select><br>' .
-            'Direcci&oacute;n Empresa: <input type="text" name="direccion_empresa" required />'.
+            '<input class="w3-input" type="email" name="correo" placeholder="Nombre" required/><br/>' .
+            '<input class="w3-input" type="password" name="pwd" placeholder="Contrase&ntilde;a" required/><br/>' .
+            '<input class="w3-input" type="password" name="pwd_confirmar" placeholder="Confirmar Contrase&ntilde;a" required/ ><br/>' .
+            '<input class="w3-input" type="text" name="nombre_empresa" placeholder="Nombre Empresa" required/><br/>' .
+            '<input class="w3-input" type="text" name="nif_empresa" placeholder="NIF" required/><br/>' .
+            '<input class="w3-input" type="text" name="web_empresa" placeholder="Web Empresa" required/> <br/>' .
+            '<input class="w3-input" type="number" name="cuenta_bancaria" placeholder="Cuenta Bancaria" required/ ><br/>' .
+            '<input class="w3-input" type="number" name="telefono_empresa" placeholder="Tel&eacute;fono" required/><br/>' .
+            '<input class="w3-input" type="email" name="mail_empresa" placeholder="Correo Electr&oacute;nico" required/> <br/>' .
+            '<input class="w3-input" type="text" name="direccion_empresa" placeholder="Direcci&oacute;n Empresa" required /><br/>'.
+            'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma" required>'.opcionesComunidades().'</select><br>' .
             $recaptcha .
-            '<input type="submit" name="registroEmpresa" value="Enviar"/>' .
+            '<input class="w3-button w3-light-grey w3-round w3-col m6" type="submit" name="registroEmpresa" value="Enviar"/>' .
             '</form>';
     return $form;
 }

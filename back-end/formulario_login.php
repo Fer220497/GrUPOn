@@ -76,7 +76,7 @@ function formularioLogin() {
             '<div class="captcha">' . $recaptcha . '</div>' .
             '<input class="w3-button w3-light-grey w3-round w3-col m6" type="submit" onclick="iniciarCarrito()" name="login" value="Enviar"/>' .
             '<br/><br/>&iquest;No est&aacute;s registrado? ¡Reg&iacute;strate aqu&iacute;!<br/>' .
-            '<a class="w3-button w3-light-grey w3-round w3-col m6" href="../front-end/registro_cliente.php">Registro como cliente</a><a class="w3-button w3-light-grey w3-round w3-col m6" href="../front-end/registro_cliente.php">Registro como empresa</a></form>';
+            '<a class="w3-button w3-light-grey w3-round w3-col m6" href="../front-end/registro_cliente.php">Registro como cliente</a><a class="w3-button w3-light-grey w3-round w3-col m6" href="../front-end/registro_empresa.php">Registro como empresa</a></form>';
     return $form;
 }
 ?>
