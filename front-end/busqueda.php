@@ -2,7 +2,7 @@
 session_start();
 require_once '../back-end/funciones.php';
 inicializarDB();
-if(!isset($_GET['categoria'])){
+if (!isset($_GET['categoria'])) {
     $_GET['categoria'] = 'general';
 }
 ?>
@@ -26,35 +26,42 @@ if(!isset($_GET['categoria'])){
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
     </head>
     <body>
-        <header>
-            <header>
-                <div id="logo">
-                    <a href="index.php?categoria=general"><img alt="GrUPOn" src="..\img\logo.png" height="90"/></a>
-                </div>
-            </header>
-            <nav>
-                <?php echo formularioBusquedaProducto();
-                echo navigation(); ?>
-            </nav>
-            <main>
-                <aside>
-                    <h2 id="categoria_actual">
-                        <?php if(isset($_SESSION['tipo']) && ($_SESSION['tipo'] == 'cliente')){
+        <header class="w3-container w3-flat-midnight-blue">
+            <div id="logo">
+                <a href="index.php?categoria=general"><img alt="GrUPOn" src="..\img\logo.png" height="90"/></a>
+            </div>
+        </header>
+        <nav class="w3-container w3-card w3-flat-wet-asphalt">
+            <div class="w3-container w3-third">
+            </div>
+            <div class="w3-container w3-center w3-third w3-cell w3-cell-middle">
+                <?php echo formularioBusquedaProducto(); ?>
+            </div>
+            <div class="w3-container w3-third w3-row w3-center">
+                <?php echo navigation(); ?>
+            </div>
+        </nav>
+        <main>
+            <aside>
+                <h2 id="categoria_actual">
+                    <?php
+                    if (isset($_SESSION['tipo']) && ($_SESSION['tipo'] == 'cliente')) {
                         echo $arrayCategoriasLogged[$_GET['categoria']];
-                    }else{
+                    } else {
                         echo $arrayCategorias[$_GET['categoria']];
-                    }?>
-                    </h2>
+                    }
+                    ?>
+                </h2>
 <?php echo menuCategorias(); ?>
-                </aside>
+            </aside>
 
-                <article>
+            <article>
 <?php require_once '../back-end/formulario_busqueda_producto.php'; ?>
-                </article>
-            </main>
+            </article>
+        </main>
 
-            <footer>
-                Grupo &num;2 - GrUPOn&copy;, el fruto dado por el odio hacia nosotros mismos
-            </footer>
+        <footer>
+            Grupo &num;2 - GrUPOn&copy;, el fruto dado por el odio hacia nosotros mismos
+        </footer>
     </body>
 </html>

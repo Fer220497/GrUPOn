@@ -29,47 +29,51 @@ require_once '../back-end/funciones.php';
         </script>  
     </head>
     <body>
-        <header>
-            <header>
-                <div id="logo">
-                    <a href="index.php?categoria=general"><img alt="GrUPOn" src="..\img\logo.png" height="90"/></a>
-                </div>
-            </header>
-            <nav>
-                <?php echo formularioBusquedaProducto();
-                echo navigation();
-                ?>
-            </nav>
-            <main>
-                <aside>
-                    <h2 id="categoria_actual">
-                        <div id="cookie">  
-                        </div>
-                    </h2>
-<?php echo menuCategorias(); ?>
-                </aside>
-                <article>
+        <header class="w3-container w3-flat-midnight-blue">
+            <div id="logo">
+                <a href="index.php?categoria=general"><img alt="GrUPOn" src="..\img\logo.png" height="90"/></a>
+            </div>
+        </header>
+        <nav class="w3-container w3-card w3-flat-wet-asphalt">
+            <div class="w3-container w3-third">
+            </div>
+            <div class="w3-container w3-center w3-third w3-cell w3-cell-middle">
+                <?php echo formularioBusquedaProducto(); ?>
+            </div>
+            <div class="w3-container w3-third w3-row w3-center">
+                <?php echo navigation(); ?>
+            </div>
+        </nav>
+        <main>
+            <aside>
+                <h2 id="categoria_actual">
+                    <div id="cookie">  
+                    </div>
+                </h2>
+                <?php echo menuCategorias(); ?>
+            </aside>
+            <article>
 
-                    <?php
-                    require_once '../back-end/formulario_borrar_producto.php';
-                    require_once '../back-end/lectura_producto.php';
-                    /**
-                     * COMO OBTENEMOS ID PRODUCTO ACTUAL?
-                     */
-                    //$_SESSION['id_producto_borrar'] = $id;
-                    echo muestraProducto($_GET['id']);
-                    if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'empresa' && esVendedor($_GET['id'], $_SESSION['cuenta'])) {
-                        echo muestraFormularioBorrar($_GET['id']);
-                    }
-                    echo mostrarBotonAnadir($_GET['id']);
+                <?php
+                require_once '../back-end/formulario_borrar_producto.php';
+                require_once '../back-end/lectura_producto.php';
+                /**
+                 * COMO OBTENEMOS ID PRODUCTO ACTUAL?
+                 */
+                //$_SESSION['id_producto_borrar'] = $id;
+                echo muestraProducto($_GET['id']);
+                if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'empresa' && esVendedor($_GET['id'], $_SESSION['cuenta'])) {
+                    echo muestraFormularioBorrar($_GET['id']);
+                }
+                echo mostrarBotonAnadir($_GET['id']);
 
-                    if (isset($_SESSION['cuenta']) && $_SESSION['tipo'] == 'cliente' &&
-                            puedeComentar($_SESSION['cuenta'], $_GET['id'])) {
-                        require_once '../back-end/formulario_comentario.php';
-                        echo mostrarCajaComentario();
-                    }
-                    echo mostrarComentarios($_GET['id']);
-                    ?></article>
-            </main>
+                if (isset($_SESSION['cuenta']) && $_SESSION['tipo'] == 'cliente' &&
+                        puedeComentar($_SESSION['cuenta'], $_GET['id'])) {
+                    require_once '../back-end/formulario_comentario.php';
+                    echo mostrarCajaComentario();
+                }
+                echo mostrarComentarios($_GET['id']);
+                ?></article>
+        </main>
     </body>
 </html>
