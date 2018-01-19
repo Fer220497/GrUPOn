@@ -58,7 +58,6 @@ if (!isset($_GET['categoria'])) {
                 </div>
             </aside>
             <article class="w3-container w3-threequarter">
-
                 <?php
                 require_once '../back-end/formulario_borrar_producto.php';
                 require_once '../back-end/lectura_producto.php';
