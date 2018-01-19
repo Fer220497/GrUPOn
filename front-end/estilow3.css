@@ -26,3 +26,6 @@ body main div.w3-container.w3-white.w3-border.w3-round.w3-section.w3-third.w3-ma
     padding-bottom: 10px;
 }
 
+#map-canvas{
+    width: 50%;
+}

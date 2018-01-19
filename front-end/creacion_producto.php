@@ -49,8 +49,8 @@ if (!isset($_SESSION['cuenta']) || $_SESSION['tipo'] != 'empresa') {
                     <?php echo navigation(); ?>
                 </div>
             </nav>
-            <main>
-                <aside>
+            <main class="w3-container w3-flat-clouds">
+                <aside class="w3-container w3-quarter w3-flat-belize-hole w3-card">
                     <h2 id="categoria_actual">
                         <div id="cookie">  
                         </div>
