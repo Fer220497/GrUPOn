@@ -9,20 +9,12 @@ require_once '../back-end/formulario_login.php';
         <title>Registro Cliente</title>
         <!--NECESARIOS-->  <!--NO NECESARIOS-->
         <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
-        <link href='estilo.css' rel="stylesheet"/>
-        <?php
-        if (isset($SESSION['tipo']) && $SESSION['tipo'] == 'cliente') {
-            ?>
-            <link href='estilo_login.css' rel="stylesheet"/>
-            <?php
-        }
-        ?>
-        <link rel="icon" href="img/logo.png"/>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <script src="../back-end/funciones.js"></script>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="estilow3.css">
         <script src='https://www.google.com/recaptcha/api.js'></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script>
             $(document).ready(function () {
                 $("#cookie").append(document.createTextNode(categorias[getCookie("categoria")]));
@@ -45,20 +37,12 @@ require_once '../back-end/formulario_login.php';
                 <?php echo navigation(); ?>
             </div>
         </nav>
-        <main>
-            <aside>
-                <h2 id="categoria_actual">
-                    <div id="cookie">  
-                    </div>
-                </h2>
-                <?php echo menuCategorias(); ?>
-            </aside>
-            <!--AQUI IRA TODO EL MAIN -->
-            <article>
-                <h2>Registro Cliente</h2>
+        <main class="w3-container w3-flat-clouds">
+            <div class="w3-container w3-third"></div>
+            <div class="w3-container w3-white w3-border w3-round w3-section w3-third w3-margin-top w3-margin-bottom">
+            <h2>Registro cliente</h2>
                 <?php require_once '../back-end/formulario_registro_cliente.php'; ?>
-            </article>
-            <!--AQUI IRA TODO EL MAIN -->
+            </div>
         </main>
         <footer class="w3-container w3-flat-midnight-blue">
             Grupo &num;2 - GrUPOn&copy;, el fruto dado por el odio hacia nosotros mismos

@@ -131,15 +131,15 @@ function formularioRegistroCliente() {
     global $recaptcha;
     global $selectComunidadAutonoma;
     $form = '<form action="" method="post">' .
-            'Correo: <input type="text" name="correo" /><br/>' .
-            'Contrase&ntilde;a: <input type="password" name="pwd"/><br/>' .
-            'Confirmar Contraseña: <input type="password" name="pwd_confirmar" /><br/>' .
-            'Nombre: <input type="text" name="nombre_cliente"/><br/>' .
-            'Apellidos: <input type="text" name="apellidos_cliente"/> <br/>' .
+            '<input class="w3-input" type="text" name="correo" placeholder="Correo"/><br/>' .
+            '<input class="w3-input" type="password" name="pwd" placeholder="Contrase&ntilde;a"/><br/>' .
+            '<input class="w3-input" type="password" name="pwd_confirmar" placeholder="Confirmar contrase&ntilde;a"/><br/>' .
+            '<input class="w3-input" type="text" name="nombre_cliente" placeholder="Nombre"/><br/>' .
+            '<input class="w3-input" type="text" name="apellidos_cliente" placeholder="Apellidos"/> <br/>' .
             'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma">' . opcionesComunidades() . '</select><br>' .
-            'Afinidades:<br/>' . checkboxesCategorias() . '<br/>' .
+            '<h3>Afinidades</h3><br/>' . checkboxesCategorias() . '<br/>' .
             $recaptcha .
-            '<input type="submit" name="registroCliente" value="Enviar"/>' .
+            '<input class="w3-button w3-light-grey w3-round w3-col m6" type="submit" name="registroCliente" value="Enviar"/>' .
             '</form>';
     return $form;
 }

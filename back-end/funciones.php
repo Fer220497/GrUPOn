@@ -242,7 +242,7 @@ function checkboxesCategorias() {
     global $arrayCategorias;
     $form = '';
     foreach ($arrayCategorias as $key => $val) {
-        $form .= $val . ': <input type="checkbox" name="' . $key . '" value="' . $key . '"/><br/>';
+        $form .= '<span class="w3-half">' . $val . '</span><input class="w3-check w3-quarter" type="checkbox" name="' . $key . '" value="' . $key . '"/><br/>';
     }
     return $form;
 }
