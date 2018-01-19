@@ -27,12 +27,15 @@ if (!isset($_GET['categoria'])) {
             </div>
         </header>
         <nav class="w3-container w3-flat-wet-asphalt">
-            <div class="w3-container w3-third"></div>
+            <div class="w3-container w3-third">
+                
+            </div>
             <div class="w3-container w3-center w3-third w3-cell w3-cell-middle">
                 <?php echo formularioBusquedaProducto(); ?>
             </div>
-            <div class="w3-container w3-third">
-                <?php echo navigation(); ?></div>
+            <div class="w3-container w3-third w3-row w3-center">
+                <?php echo navigation(); ?>
+            </div>
         </nav>
         <main class="w3-container w3-flat-clouds">
             <aside class="w3-container w3-quarter w3-flat-belize-hole">

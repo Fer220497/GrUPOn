@@ -412,23 +412,22 @@ function desplegarPaginaPrincipal($categoria) {
 }
 
 function navigation() {
-    $nav = '<div class="w3-container w3-center">';
+    $nav = '';
     if (isset($_SESSION["cuenta"])) {
         if ($_SESSION["tipo"] == "cliente") {// LOGEADO COMO CLIENTE
-            $nav .= '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="mostrar_carrito.php">Carrito</a>' .
-                    '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="../front-end/cuenta.php">Perfil</a>' .
-                    '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="../back-end/logout.php">Desconectar</a>';
+            $nav .= '<a class="w3-col m2 w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="mostrar_carrito.php">Carrito</a>' .
+                    '<a class="w3-col m2 w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="../front-end/cuenta.php">Perfil</a>' .
+                    '<a class="w3-col m2 w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="../back-end/logout.php">Desconectar</a>';
         } else {// LOGEADO COMO EMPRESA
-            $nav .= '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="creacion_producto.php">Crear Producto</a>' .
-                    '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="creacion_catalogo.php">Crear Cat&aacute;logo</a>' .
-                    '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="../front-end/cuenta.php">Perfil</a>' .
-                    '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="../back-end/logout.php">Desconectar</a>';
+            $nav .= '<a class="w3-col m2 w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="creacion_producto.php">Crear Producto</a>' .
+                    '<a class="w3-col m2 w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="creacion_catalogo.php">Crear Cat&aacute;logo</a>' .
+                    '<a class="w3-col m2 w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="../front-end/cuenta.php">Perfil</a>' .
+                    '<a class="w3-col m2 w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="../back-end/logout.php">Desconectar</a>';
         }
     } else {//NO LOGEADO
-        $nav .= '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" id="boton_login" href="login.php">Login y Registro</a>' .
-                '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="mostrar_carrito.php">Carrito</a>';
+        $nav .= '<a class="w3-col m2 w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" id="boton_login" href="login.php">Login y Registro</a>' .
+                '<a class="w3-col m2 w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="mostrar_carrito.php">Carrito</a>';
     }
-    $nav .= "</div>";
     return $nav;
 }
 
@@ -450,7 +449,7 @@ function formularioBusquedaProducto() {
         $form = '<form class="w3-row" action="busqueda.php" method="get">' .
                 '<input class="w3-input w3-col m8 w3-white" type="text" name="nombre" placeholder="Busca algo!"/>' .
                 '<input class="w3-input w3-col m2 w3-btn w3-flat-clouds w3-center" type="submit" value="🔍" name="busqueda"/>' .
-                '<div class="w3-col m2">Nacional <input type="checkbox" name="nacional" value="nacional"/></form>';
+                '<div class="w3-col m2">Nacional <input type="checkbox" name="nacional" value="nacional"/></div></form>';
     } else {
         $form = '<form class="w3-row" action="busqueda.php" method="get">' .
                 '<input class="w3-col m8 w3-input w3-white" type="text" name="nombre" placeholder="Busca algo!"/>' .
