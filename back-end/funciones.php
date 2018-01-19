@@ -185,13 +185,11 @@ function menuCategorias() {
     if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] == 'empresa') {
 
         foreach ($arrayCategorias as $key => $val) {
-
-            $form .= '<div><a href="index.php?categoria=' . $key . '">' . $val . '</a></div>';
+            $form .= '<div class="w3-btn w3-block w3-hover-pale-green"><a href="index.php?categoria=' . $key . '">' . $val . '</a></div>';
         }
     } else {
         foreach ($arrayCategoriasLogged as $key => $val) {
-
-            $form .= '<div><a href="index.php?categoria=' . $key . '">' . $val . '</a></div>';
+            $form .= '<div class="w3-btn w3-block w3-hover-pale-green"><a href="index.php?categoria=' . $key . '">' . $val . '</a></div>';
         }
     }
     return $form;
@@ -417,18 +415,18 @@ function navigation() {
     $nav = '<div class="w3-container w3-center">';
     if (isset($_SESSION["cuenta"])) {
         if ($_SESSION["tipo"] == "cliente") {// LOGEADO COMO CLIENTE
-            $nav .= '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-green" href="mostrar_carrito.php">Carrito</a>' .
-                    '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-green" href="../front-end/cuenta.php">Perfil</a>' .
-                    '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-green" href="../back-end/logout.php">Desconectar</a>';
+            $nav .= '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="mostrar_carrito.php">Carrito</a>' .
+                    '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="../front-end/cuenta.php">Perfil</a>' .
+                    '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="../back-end/logout.php">Desconectar</a>';
         } else {// LOGEADO COMO EMPRESA
-            $nav .= '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-green" href="creacion_producto.php">Crear Producto</a>' .
-                    '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-green" href="creacion_catalogo.php">Crear Cat&aacute;logo</a>' .
-                    '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-green" href="../front-end/cuenta.php">Perfil</a>' .
-                    '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-green" href="../back-end/logout.php">Desconectar</a>';
+            $nav .= '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="creacion_producto.php">Crear Producto</a>' .
+                    '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="creacion_catalogo.php">Crear Cat&aacute;logo</a>' .
+                    '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="../front-end/cuenta.php">Perfil</a>' .
+                    '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="../back-end/logout.php">Desconectar</a>';
         }
     } else {//NO LOGEADO
-        $nav .= '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-green" id="boton_login" href="login.php">Login y Registro</a>' .
-                '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-green" href="mostrar_carrito.php">Carrito</a>';
+        $nav .= '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" id="boton_login" href="login.php">Login y Registro</a>' .
+                '<a class="w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="mostrar_carrito.php">Carrito</a>';
     }
     $nav .= "</div>";
     return $nav;
