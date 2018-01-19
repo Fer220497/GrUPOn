@@ -26,9 +26,12 @@ if (!isset($_SESSION['cuenta']) || $_SESSION['tipo'] != 'empresa') {
         <script src="../back-end/funciones.js"></script>
         <script src='https://www.google.com/recaptcha/api.js'></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+                <script src="../back-end/libs/modformularios.js"></script>
+
         <script>
             $(document).ready(function () {
                 $("#cookie").append(document.createTextNode(categorias[getCookie("categoria")]));
+                $("input").plugin();
             });
         </script>   
     </head>
