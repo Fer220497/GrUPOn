@@ -346,19 +346,19 @@ function tipoCuenta($correo) {
 function previewProducto($result) {
     $str = '';
     while ($fila = mysqli_fetch_array($result)) {
-        $str .= '<div class="producto">';
+        $str .= '<div class="w3-container w3-section w3-border w3-border-white w3-hover-border-blue w3-third"><a href="producto.php?id=' . $fila["id_producto"] . '")" >';
         $p_desc = (100 - $fila["porcentaje_descuento"]) * $fila["precio"] / 100;
-        $str .= '<div class="img_prod"><a href="producto.php?id=' . $fila["id_producto"] . '")" ><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="' . $fila["nombre"] . '" height="200"/></div>' .
-                '<div class="desc_prod"><div class="nom_prod"><a href="producto.php?id=' . $fila["id_producto"] . '")" >' . $fila["nombre"] . '</a></div>' .
-                '<div class="precio_prod"><span class="descontado">' . $fila["precio"] . '€</span> ' . $p_desc . '€</div></div>';
-        $str .= '</div>';
+        $str .= '<div class="w3-container"><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="' . $fila["nombre"] . '" height="200"/></div>' .
+                '<div class="w3-container"><div class="w3-container">' . $fila["nombre"] . '</div>' .
+                '<div class="w3-container">' . $fila["precio"] . '€ ' . $p_desc . '€</div></div>';
+        $str .= '</a></div>';
     }
     return $str;
 }
 
 function desplegarPaginaPrincipal($categoria) {
     global $esquema;
-    $str = '';
+    $str = '<div class="w3-container w3-col w3-white w3-border w3-round w3-section" style="width: 95%">';
     //BÚSQUEDA NACIONAL
     if (!isset($_SESSION['cuenta'])) {
         //BÚSQUEDA CON CATEGORIA
@@ -407,7 +407,7 @@ function desplegarPaginaPrincipal($categoria) {
           }
           $str .= '</table>'; */
     }
-    $str .= previewProducto($result);
+    $str .= previewProducto($result) . '</div>';
     return $str;
 }
 

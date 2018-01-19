@@ -76,7 +76,7 @@ function formularioLogin() {
             '<div class="captcha"></div>' . $recaptcha .
             ' <input type="submit"  onclick="iniciarCarrito()" name="login" value="Enviar"/>' .
             ' <br/>&iquest;No est&aacute;s registrado? ¡Reg&iacute;strate aqu&iacute;!<br/>' .
-            '<button type="submit" onclick="location.href = \'registro_cliente.php\'">Registro como cliente</button><button type="submit" onclick="location.href = \'registro_empresa.php\'">Registro como empresa</button></form>';
+            '<button type="submit" onclick="location.href = \'front-end\registro_cliente.php\'">Registro como cliente</button><button type="submit" onclick="location.href = \'front-end\registro_empresa.php\'">Registro como empresa</button></form>';
     return $form;
 }
 
