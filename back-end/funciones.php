@@ -415,18 +415,18 @@ function navigation() {
     $nav = '';
     if (isset($_SESSION["cuenta"])) {
         if ($_SESSION["tipo"] == "cliente") {// LOGEADO COMO CLIENTE
-            $nav .= '<a class="w3-col m2 w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="mostrar_carrito.php">Carrito</a>' .
-                    '<a class="w3-col m2 w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="../front-end/cuenta.php">Perfil</a>' .
-                    '<a class="w3-col m2 w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="../back-end/logout.php">Desconectar</a>';
+            $nav .= '<a class="w3-col m4 w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="mostrar_carrito.php">Carrito</a>' .
+                    '<a class="w3-col m4 w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="../front-end/cuenta.php">Perfil</a>' .
+                    '<a class="w3-col m4 w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="../back-end/logout.php">Desconectar</a>';
         } else {// LOGEADO COMO EMPRESA
-            $nav .= '<a class="w3-col m2 w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="creacion_producto.php">Crear Producto</a>' .
-                    '<a class="w3-col m2 w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="creacion_catalogo.php">Crear Cat&aacute;logo</a>' .
-                    '<a class="w3-col m2 w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="../front-end/cuenta.php">Perfil</a>' .
-                    '<a class="w3-col m2 w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="../back-end/logout.php">Desconectar</a>';
+            $nav .= '<a class="w3-col w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" style="width: 30%" href="creacion_producto.php">Crear Producto</a>' .
+                    '<a class="w3-col w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" style="width: 30%" href="creacion_catalogo.php">Crear Cat&aacute;logo</a>' .
+                    '<a class="w3-col w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" style="width: 15%" href="../front-end/cuenta.php">Perfil</a>' .
+                    '<a class="w3-col w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" style="width: 25%" href="../back-end/logout.php">Desconectar</a>';
         }
     } else {//NO LOGEADO
-        $nav .= '<a class="w3-col m2 w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" id="boton_login" href="login.php">Login y Registro</a>' .
-                '<a class="w3-col m2 w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="mostrar_carrito.php">Carrito</a>';
+        $nav .= '<a class="w3-col m6 w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" id="boton_login" href="login.php">Login y Registro</a>' .
+                '<a class="w3-col m6 w3-bar-item w3-btn w3-mobile w3-hover-pale-yellow" href="mostrar_carrito.php">Carrito</a>';
     }
     return $nav;
 }
@@ -453,7 +453,7 @@ function formularioBusquedaProducto() {
     } else {
         $form = '<form class="w3-row" action="busqueda.php" method="get">' .
                 '<input class="w3-col m8 w3-input w3-white" type="text" name="nombre" placeholder="Busca algo!"/>' .
-                '<input class="w3-input w3-col m4 w3-btn w3-flat-clouds w3-cell" type="submit" value="🔍" name="busqueda"/></form>';   
+                '<input class="w3-input w3-col m4 w3-btn w3-flat-clouds w3-cell" type="submit" value="🔍" name="busqueda"/></form>';
     }
     return $form;
 }
