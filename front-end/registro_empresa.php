@@ -19,12 +19,12 @@ if (!isset($_GET['categoria'])) {
         <link rel="stylesheet" href="estilow3.css">
         <script>
             $(document).ready(function () {
-              $("input").plugin();
-                
+                $("input").plugin();
+
             });
         </script>  
     </head>
-    <body>
+    <body class="w3-display-container">
         <header class="w3-container w3-flat-midnight-blue">
             <div id="logo">
                 <a href="index.php?categoria=general"><img alt="GrUPOn" src="..\img\logo.png" height="90"/></a>
@@ -43,12 +43,12 @@ if (!isset($_GET['categoria'])) {
         <main class="w3-container w3-flat-clouds">
             <div class="w3-container w3-third"></div>
             <div class="w3-container w3-white w3-border w3-round w3-section w3-third w3-margin-top w3-margin-bottom">
-            <h2>Registro Empresa</h2>
+                <h2>Registro Empresa</h2>
                 <?php require_once '../back-end/formulario_registro_empresa.php'; ?>
             </div>
         </main>
-        <footer class="w3-container w3-flat-midnight-blue">
-            Grupo &num;2 - GrUPOn&copy;, el fruto dado por el odio hacia nosotros mismos
-        </footer>
     </body>
+    <footer class="w3-container w3-display-bottom w3-flat-midnight-blue">
+        Grupo &num;2 - GrUPOn&copy;, el fruto dado por el odio hacia nosotros mismos
+    </footer>
 </html>

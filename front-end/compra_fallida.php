@@ -46,7 +46,7 @@ if (!isset($_GET['categoria'])) {
             });
         </script>
     </head>
-    <body>
+    <body class="w3-display-container">
         <header class="w3-container w3-flat-midnight-blue">
             <div id="logo">
                 <a href="index.php?categoria=general"><img alt="GrUPOn" src="..\img\logo.png" height="90"/></a>
@@ -88,7 +88,7 @@ if (!isset($_GET['categoria'])) {
             </article>
 
         </main>
-        <footer class="w3-container w3-flat-midnight-blue">
+        <footer class="w3-container w3-bottom w3-flat-midnight-blue">
             Grupo &num;2 - GrUPOn&copy;, el fruto dado por el odio hacia nosotros mismos
         </footer>
     </body>

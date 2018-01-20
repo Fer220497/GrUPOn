@@ -63,6 +63,10 @@ textarea {
     color: purple;
 }
 
+main{
+    height: 100vh;
+}
+
 @media screen and (max-width:800px) {
     .g-recaptcha{
         transform:scale(0.58);-webkit-transform:scale(0.58);

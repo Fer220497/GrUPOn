@@ -24,7 +24,7 @@ and open the template in the editor.
         <script type="text/javascript"></script>
         <script src="../back-end/funciones.js"></script>
     </head>
-    <body>
+    <body class="w3-display-container">
         <h2>Acciones: TESTING PURPOSES ONLY.</h2>
         <div id="cookie">La Categoria es:</div>
         <script>

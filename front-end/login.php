@@ -21,7 +21,7 @@ if (!isset($_GET['categoria'])) {
         <script src='https://www.google.com/recaptcha/api.js'></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
-    <body>
+    <body class="w3-display-container">
         <header class="w3-container w3-flat-midnight-blue">
             <div id="logo">
                 <a href="index.php?categoria=general"><img alt="GrUPOn" src="..\img\logo.png" height="90"/></a>
@@ -42,9 +42,9 @@ if (!isset($_GET['categoria'])) {
             require_once '../back-end/formulario_login.php';
             echo '<div class="w3-container w3-third"></div><div class="w3-container w3-white w3-border w3-round w3-section w3-third w3-margin-top w3-margin-bottom">' . formularioLogin() . '</div>';
             ?>
+            <footer class="w3-container w3-bottom w3-flat-midnight-blue">
+                Grupo &num;2 - GrUPOn&copy;, el fruto dado por el odio hacia nosotros mismos
+            </footer>
         </main>
-        <footer class="w3-container w3-flat-midnight-blue">
-            Grupo &num;2 - GrUPOn&copy;, el fruto dado por el odio hacia nosotros mismos
-        </footer>
     </body>
 </html>
