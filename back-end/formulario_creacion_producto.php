@@ -163,14 +163,14 @@ function formularioCrearProducto() {
 
     $form = '<div class="w3-container w3-white w3-border w3-round w3-section ">' .
             '<form action="" method="post" enctype="multipart/form-data">' .
-            'Nombre: <input class="w3-input" type="text" name="nombre" /><br/>' .
+            '<br/>Nombre: <input class="w3-input" type="text" name="nombre" /><br/>' .
             'Precio: <input class="w3-input"  type="number" name="precio" /><br/>' .
             'Descripci&oacute;n: <textarea name="descripcion" rows="4" cols="10"></textarea><br/>' .
-            'Categor&iacute;a: <select name="nombre_categoria">' . optionCategorias() .
+            'Categor&iacute;a: <select class="w3-input" name="nombre_categoria">' . optionCategorias() .
             '</select><br>' .
-            'Comunidad Aut&oacute;noma: <select name="nombre_ca">' . opcionesComunidades() .
+            'Comunidad Aut&oacute;noma: <select class="w3-input" name="nombre_ca">' . opcionesComunidades() .
             '</select><br>' .
-            'Cat&aacute;logo <select name="id_catalogo">' .
+            'Cat&aacute;logo <select class="w3-input" name="id_catalogo">' .
             '<option value=""></option>'; ///////////POR AÑADIR
     $sql = "SELECT id_catalogo, nombre FROM catalogo WHERE correo='$correo'";
     $result = realizarQuery($esquema, $sql);
@@ -182,7 +182,7 @@ function formularioCrearProducto() {
             'Porcentaje Descuento: <input  class="w3-input" type="number" name="porcentaje_descuento" /><br/>' .
             'Cantidad Disponible: <input class="w3-input"  type="number" name="cantidad_disponible" /><br/>' .
             'Imagen:<input type="file" name="imagen"/></br>' .
-            '<input class="w3-button w3-light-grey w3-round w3-col m6" type="submit" name="crearProducto" value="Enviar"/>' .
+            '<input class="w3-button w3-light-grey w3-round w3-col m6 w3-margin w3-block w3-hover-pale-green" type="submit" name="crearProducto" value="Enviar"/>' .
             '</form></div>';
     return $form;
 }

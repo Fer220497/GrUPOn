@@ -109,10 +109,11 @@
                         if ($(this).val().length == 0) {
                               $(this).css("background-color", "red");
                         } else {
-                            if ($(this).val().match(patron) && parseInt(this.val) > 0)
+                        if ($(this).val().match(patron) && parseInt(this.val) > 0){
                                 $(this).css("background-color", "blue");
-                            else
+                            }else{
                                 $(this).css("background-color", "red");
+                            }
                         }
                     }
                     
@@ -124,10 +125,11 @@
                         if ($(this).val().length == 0) {
                               $(this).css("background-color", "red");
                         } else {
-                            if ($(this).val().match(patron) && parseInt(this.val) > 0 && parseInt(this.val) < 100)
+                            if ($(this).val().match(patron) && parseInt(this.val) > 0 && parseInt(this.val) < 100){
                                 $(this).css("background-color", "blue");
-                            else
+                            }else{
                                 $(this).css("background-color", "red");
+                            }
                         }
                     }
                     
