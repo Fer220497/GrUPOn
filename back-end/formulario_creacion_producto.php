@@ -138,6 +138,7 @@ if (isset($_POST['crearProducto'])) {
         $tmp=$_FILES['imagen']['tmp_name'];
         //echo $dirpath;
         move_uploaded_file($tmp,"../imagenesSubidas/$nombreFichero");
+        header('Location:index.php');
     }
 }
 
