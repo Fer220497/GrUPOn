@@ -65,7 +65,7 @@ if (!isset($_GET['categoria'])) {
                 <?php
                 require_once '../back-end/formulario_borrar_producto.php';
                 require_once '../back-end/lectura_producto.php';
-                if (isset($_SESSION['cuenta']) && $_SESSION['tipo'] == 'cliente') {
+                if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] != 'empresa') {
                     echo mostrarBotonAnadir($_GET['id']);
                 }
                 echo muestraProducto($_GET['id']);
