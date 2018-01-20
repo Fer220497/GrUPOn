@@ -62,3 +62,10 @@ textarea {
     text-decoration: underline;
     color: purple;
 }
+
+@media screen and (max-width:800px) {
+    .g-recaptcha{
+        transform:scale(0.58);-webkit-transform:scale(0.58);
+        transform-origin:0 0;-webkit-transform-origin:0 0;
+    }
+}

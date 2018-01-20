@@ -29,11 +29,6 @@ if (isset($_POST['nuevo_cat'])) {
         $nombre = sanitarString($_POST['nombre']);
         $categoria = $_POST['nombre_categoria'];
         $query = "INSERT INTO catalogo (correo, nombre_categoria, nombre) VALUES ('". $correo ."', '". $categoria ."','". $nombre ."')";
-        if(realizarQuery($esquema, $query)){
-            echo 'placeholder bueno';
-        } else {
-            echo 'placeholder malo';
-        }
     }
 }if (!isset($_POST['login']) || isset($error)) {
     if (isset($error)) {
@@ -48,10 +43,10 @@ if (isset($_POST['nuevo_cat'])) {
  */
 function formularioCreacionCatalogo() {
     $form = ' <form action="" method="post">' .
-            ' Nombre: <input type="text" name="nombre" /><br/>' .
-            ' Categor&iacute;a: <select name="nombre_categoria">' . optionCategorias() .
+            ' Nombre: <input class="w3-input" type="text" name="nombre" /><br/>' .
+            ' Categor&iacute;a: <select class="w3-input" name="nombre_categoria">' . optionCategorias() .
             '</select>' .
-            ' <input type="submit" name="nuevo_cat" value="Enviar"/>' .
+            ' <input class="w3-button w3-light-grey w3-round w3-col m6" type="submit" name="nuevo_cat" value="Enviar"/>' .
             ' </form>';
     return $form;
 }
