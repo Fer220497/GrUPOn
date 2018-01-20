@@ -2,11 +2,11 @@
 
 require_once '../back-end/conexion_db.php';
 require_once '../back-end/funciones.php';
-
+/*
 echo $_SESSION['cuenta'];
 if (!isset($_SESSION)) {
     echo 'desdefinida';
-}
+}*/
 $correo = $_SESSION['cuenta'];
 
 if (isset($_POST['modificarEmpresa'])) {
@@ -128,7 +128,7 @@ if (isset($_POST['modificarEmpresa'])) {
                 . "telefono_empresa='$telefono_empresa', email_empresa='$mail_empresa' WHERE correo='$correonuevo'";
         realizarQuery($esquema, $sql);
 
-        echo $sql;
+        //echo $sql;
         $_SESSION['cuenta'] = $correonuevo;
         $_SESSION['nombre'] = $nombre_empresa;
         //  header('Location: modificar_cuenta_empresa.php');
@@ -150,8 +150,8 @@ if (isset($_POST['cambioContrasenya'])) {
     $result = realizarQuery("grupon", $sql);
     $datopwd = mysqli_fetch_array($result);
     $contra = $datopwd["pwd"];
-    echo $contra;
-    echo $_POST['pwd_antigua'];
+    //echo $contra;
+    //echo $_POST['pwd_antigua'];
     if (!password_verify($_POST['pwd_antigua'], $contra)) {
         $error[] = "La contraseña antigua es incorrecta";
     }
@@ -191,7 +191,7 @@ function formularioModEmpresa() {
     $ca = $datosempresa["nombre_ca"];
 
     $form = '<div class="w3-container w3-white w3-border w3-round w3-section ">' .
-            $form .= '<form action="" method="post">' .
+            '<form action="" method="post">' .
             'Correo: <input class="w3-input" type="text" name="correo" value="' . $correo . '"/><br/>' .
             'Nombre Empresa: <input class="w3-input" type="text" name="nombre_empresa" value="' . $nombre_empresa . '"/><br/>' .
             'NIF : <input class="w3-input"  type="text" name="nif_empresa" value="' . $nif_empresa . '"/><br/>' .
@@ -199,16 +199,16 @@ function formularioModEmpresa() {
             'Cuenta Bancaria: <input class="w3-input"  type="number" name="cuenta_bancaria" value="' . $cuenta_bancaria . '" /><br/>' .
             'Tel&eacute;fono: <input class="w3-input"  type="number" name="telefono_empresa" value="' . $telefono_empresa . '"/><br/>' .
             'Correo Electr&oacute;nico: <input  class="w3-input" type="email" name="mail_empresa" value="' . $email_empresa . '"/> <br/>' .
-            'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma">' . opcionesComunidadSeleccionada($ca) . '</select><br>' .
+            'Comunidad Aut&oacute;noma: <select class="w3-input" name="comunidad_autonoma">' . opcionesComunidadSeleccionada($ca) . '</select><br>' .
             'Direcci&oacute;n Empresa: <input  class="w3-input" type="text" name="direccion_empresa" value="' . $direccion_empresa . '" />' .
-            '<input type="submit" class="w3-button w3-light-grey w3-round w3-col m6" name="modificarEmpresa" value="Enviar"/>' .
+            '<input type="submit" class="w3-block w3-border w3-hover-pale-green w3-button w3-light-grey w3-round w3-margin" name="modificarEmpresa" value="Enviar"/>' .
             '</form></div>'
             . '<div class="w3-container w3-white w3-border w3-round w3-section "  >' .
             '<form action="" method="post">' .
             'Contrase&ntilde;a Antigua: <input  class="w3-input" type="password" name="pwd_antigua" /><br/>' .
             'Contrase&ntilde;a Nueva: <input class="w3-input"  type="password" name="pwd" /><br/>' .
             'Confirmar Contrase&ntilde;a Nueva: <input  class="w3-input" type="password" name="pwd_confirmar" /><br/>' .
-            '<input class="w3-button w3-light-grey w3-round w3-col m6" type="submit" name="cambioContrasenya" value="Enviar"/>' .
+            '<input class="w3-block w3-border w3-hover-pale-green w3-button w3-light-grey w3-round w3-margin" type="submit" name="cambioContrasenya" value="Enviar"/>' .
             '</form></div>';
 
     return $form;
