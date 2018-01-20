@@ -11,7 +11,7 @@ if (isset($_GET['busqueda'])) {
     }
     if (!isset($error)) {
         $nombre = sanitarString($_GET['nombre']);
-        echo '<h3>Productos</h3><table border="1">';
+        echo '<h3>Productos</h3>'/*<table border="1">'*/;
         //BÚSQUEDA NACIONAL
         if (!isset($_SESSION['cuenta']) || isset($_GET['nacional'])) {
             //BÚSQUEDA CON CATEGORIA
@@ -59,11 +59,14 @@ if (isset($_GET['busqueda'])) {
             $sql = 'SELECT * FROM catalogo WHERE nombre LIKE "%' . $nombre . '%"';
         }
         $result = realizarQuery($esquema, $sql);
+        $str .= '<div class="w3-container w3-white w3-border w3-round w3-section ">';
         while ($fila = mysqli_fetch_row($result)) {
             $cookie_name = "catalogoVisitado";
-            $str .= '<tr><td><a href="catalogo.php?id='.$fila[0].'&categoria='.$_GET['categoria'].'">' . $fila[3] . '</td></a><td>' . $fila[2] . '</td></tr>';
+            
+             
+            $str .= '<a href="catalogo.php?id='.$fila[0].'&categoria='.$_GET['categoria'].'"><div class="w3-third" >' . $fila[3] . '</div><div class="w3-third">  Categoria ' . $fila[2] . '</div><div class="w3-third">Empresa ' . $fila[1] . '</div></a>';
         }
-        echo $str . '</table>';
+        echo $str . '</div>';
     }
 }
 
