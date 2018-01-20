@@ -477,14 +477,15 @@ function navigation() {
 
 function busquedaCatalogo() {
     global $esquema;
-    $form = "";
+    $form = '<div class="w3-container w3-white w3-border w3-round w3-section ">';
     $correo = $_SESSION["cuenta"];
     $sql = "SELECT * FROM catalogo WHERE correo='$correo'";
     $result = realizarQuery($esquema, $sql);
     $cookie_name = "catalogo_visitado";
     while ($listaCatalogos = mysqli_fetch_array($result)) {
-        $form .= '<a href="../front-end/modificar_catalogo.php?id=' . $listaCatalogos["id_catalogo"] . '">' . $listaCatalogos["nombre"] . '</a>';
+        $form .= '<div class=""><a href="../front-end/modificar_catalogo.php?id=' . $listaCatalogos["id_catalogo"] . '">' . $listaCatalogos["nombre"] . '</a></div>';
     }
+    $form .= '</div>';
     return $form;
 }
 

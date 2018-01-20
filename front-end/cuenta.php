@@ -44,9 +44,9 @@ if (!isset($_GET['categoria'])) {
                 <h2 class="w3-container w3-card w3-flat-wet-asphalt w3-block w3-center">
                     <?php
                     if (isset($_SESSION['tipo']) && ($_SESSION['tipo'] == 'cliente')) {
-                        echo $arrayCategoriasLogged[$_GET['categoria']];
+                        echo $arrayCategoriasNoLogged[$_GET['categoria']];
                     } else {
-                        echo $arrayCategorias[$_GET['categoria']];
+                        echo $arrayCategoriasLogged[$_GET['categoria']];
                     }
                     ?>
                 </h2>
