@@ -18,7 +18,7 @@
                 //  pale-#FFDDDD: #FFDDDD
                 if ($(this).attr("name") == 'correo' || $(this).attr("name") == 'mail_empresa') {
 
-                    var patron = /^[_a-Z0-9-]+(.[_a-Z0-9-]+)@[a-z0-9-]+(.[a-z0-9-]+)(.[a-z]{2,4})$/;
+                    var patron = /^[_a-zA-Z0-9-]+(.[_a-zA-Z0-9-]+)@[a-z0-9-]+(.[a-z0-9-]+)(.[a-z]{2,4})$/;
 
                     if ($(this).val().length == 0) {
                         $(this).css("background-color", "#FFDDDD");
