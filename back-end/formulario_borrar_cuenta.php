@@ -6,6 +6,11 @@
     if(isset($_POST['borrar']) && isset($_POST['check'])){
             $sql = "DELETE FROM cuenta WHERE correo='$correo'";
             realizarQuery($esquema, $sql);  //OP DELETE SOBRE CUENTA, CLIENTE Y EMPRESA
+            if($_SESSION['tipo'] == 'empresa'){
+                $sql = "UPDATE FROM producto, lanzamientos SET producto.cantidad_disponible=0 "
+                        . "WHERE lanzamientos.correo='$correo' AND lanzamientos.id_producto=producto.id_producto";
+                realizarQuery($esquema, $sql);
+            }
             header('Location: ../back-end/logout.php');
         }
     
