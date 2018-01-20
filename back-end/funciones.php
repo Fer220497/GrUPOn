@@ -122,7 +122,7 @@ function historialCliente($correo) {
     $result = realizarQuery($esquema, $sql);
     $html = '<div class="w3-container w3-white w3-border w3-round w3-section ">';
     while ($fila = mysqli_fetch_array($result)) {
-        $html .= '<a href="producto.php?id=' . $fila['id_producto'] . '" onclick="setCookie(' . $fila['id_producto'] . ',1)"><div class="w3-container w3-quarter">' . $fila['nombre'] . '</div><div class="w3-container w3-quarter">' . $fila['fecha'] . '</div><div class="w3-container w3-quarter">Cantidad: ' . $fila['cantidad'] . '</div><div class="w3-container w3-quarter">Precio: ' . $fila['precio'] . '&euro;</div></a>';
+        $html .= '<div class="w3-btn w3-block w3-flat-silver w3-round w3-margin><a href="producto.php?id=' . $fila['id_producto'] . '" onclick="setCookie(' . $fila['id_producto'] . ',1)"><div class="w3-container w3-quarter">' . $fila['nombre'] . '</div><div class="w3-container w3-quarter">' . $fila['fecha'] . '</div><div class="w3-container w3-quarter">Cantidad: ' . $fila['cantidad'] . '</div><div class="w3-container w3-quarter">Precio: ' . $fila['precio'] . '&euro;</div></a></div>';
     }
     $html .= '</div>'; //$html .= '<div class="w3-container w3-white w3-border w3-round w3-section">';
     return $html;
@@ -135,7 +135,7 @@ function historialVentas($correo) {
     $result = realizarQuery($esquema, $sql);
     $html = '<div class="w3-container w3-white w3-border w3-round w3-section">';
     while ($fila = mysqli_fetch_array($result)) {
-        $html .= '<a href="producto.php?id=' . $fila['id_producto'] . '" onclick="setCookie(' . $fila['id_producto'] . ',1)"><div class="w3-container w3-quarter">' . $fila['nombre'] . '</div><div class="w3-container w3-quarter">' . $fila['fecha_ini'] . '</div><div class="w3-container w3-quarter">N&uacute;mero de ventas: ' . $fila['num_ventas'] . '</div><div class="w3-container w3-quarter">Beneficio obtenido: ' . $fila['num_ventas'] * $fila['precio'] . '</div></a>';
+        $html .= '<div class="w3-btn w3-block w3-flat-silver w3-round w3-margin><a href="producto.php?id=' . $fila['id_producto'] . '" onclick="setCookie(' . $fila['id_producto'] . ',1)"><div class="w3-container w3-quarter">' . $fila['nombre'] . '</div><div class="w3-container w3-quarter">' . $fila['fecha_ini'] . '</div><div class="w3-container w3-quarter">N&uacute;mero de ventas: ' . $fila['num_ventas'] . '</div><div class="w3-container w3-quarter">Beneficio obtenido: ' . $fila['num_ventas'] * $fila['precio'] . '</div></a></div>';
     }
     $html .= '</div>';
     return $html;
