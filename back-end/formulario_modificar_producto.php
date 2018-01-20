@@ -128,20 +128,21 @@ function formularioModificarProducto($id) {
     $sql = 'SELECT * FROM producto WHERE id_producto = "' . $id . '"';
     $result = realizarQuery($esquema, $sql);
     $producto = mysqli_fetch_array($result);
-    $form = '<form action="" method="post" enctype="multipart/form-data">' .
-            'Nombre: <input type="text" name="nombre" value="' . $producto["nombre"] . '"/><br/>' .
-            'Precio: <input type="number" name="precio" value="' . $producto["precio"] . '"/><br/>' .
-            'ID_Catalogo:<input type="number" name="id_catalogo" value="' . $producto["id_catalogo"] . '"/><br/>' .
+    $form = '<div class="w3-container w3-white w3-border w3-round w3-section ">' .
+            '<form action="" method="post" enctype="multipart/form-data">' .
+            'Nombre: <input  class="w3-input" type="text" name="nombre" value="' . $producto["nombre"] . '"/><br/>' .
+            'Precio: <input class="w3-input"  type="number" name="precio" value="' . $producto["precio"] . '"/><br/>' .
+            'ID_Catalogo:<input class="w3-input"  type="number" name="id_catalogo" value="' . $producto["id_catalogo"] . '"/><br/>' .
             'Descripci&oacute;n: <textarea name="descripcion" rows="4" cols="10">' . $producto["descripcion"] . '</textarea><br/>' .
             'Categor&iacute;a: <select name="categoria">' . optionCategoriasSeleccionadas($producto["nombre_categoria"]) . '</select><br/>' .
             'Comunidad aut&oacute;noma: <select name="comunidad">' . opcionesComunidadSeleccionada($producto["nombre_ca"]) . '</select><br/>' .
-            'Localizaci&oacute;n: <input type="text" name="localizacion" value="' . $producto["localizacion"] . '" /><br/>' .
-            'Porcentaje descuento: <input type="number" name="porcentaje_descuento" value="' . $producto["porcentaje_descuento"] . '" /><br/>' .
-            'Cantidad disponible: <input type="number" name="cantidad" value="' . $producto["cantidad_disponible"] . '" /><br/>' .
+            'Localizaci&oacute;n: <input  class="w3-input"  type="text" name="localizacion" value="' . $producto["localizacion"] . '" /><br/>' .
+            'Porcentaje descuento: <input  class="w3-input"  type="number" name="porcentaje_descuento" value="' . $producto["porcentaje_descuento"] . '" /><br/>' .
+            'Cantidad disponible: <input class="w3-input"  type="number" name="cantidad" value="' . $producto["cantidad_disponible"] . '" /><br/>' .
             'Imagen: <div><img alt="' . $producto["nombre"] . '" src="../imagenesSubidas/' . $producto['ruta_imagen'] . '" height = "200"></div>' .
             '<input type="file" name="imagen"/><br/>' .
-            '<input type="submit" name="modificarProducto" value="Enviar"/>' .
-            '</form>';
+            '<input class="w3-button w3-light-grey w3-round w3-col m6" type="submit" name="modificarProducto" value="Enviar"/>' .
+            '</form></div>';
 
    
     return $form;

@@ -54,57 +54,57 @@ if (isset($_POST['modificarEmpresa'])) {
         }
     }
     //RESTRICCION: QUE NO HAYA COSAS VACIAS:
-    if(trim($_POST['nombre_empresa']) == '' || strlen($_POST['nombre_empresa']) > $tamNombreEmpresa){
+    if (trim($_POST['nombre_empresa']) == '' || strlen($_POST['nombre_empresa']) > $tamNombreEmpresa) {
         $error[] = 'Nombre empresa no cumple criterios de tama&ntilde;o';
     }
-    if (trim($_POST['correo']) == ''|| strlen($_POST['correo']) > $tamCorreo) {
+    if (trim($_POST['correo']) == '' || strlen($_POST['correo']) > $tamCorreo) {
         $error[] = 'Correo de cuenta no cumple criterios de tama&ntilde;o';
     }
-    
+
     if (trim($_POST['web_empresa']) == '' || strlen($_POST['web_empresa']) > $tamWeb) {
         $error[] = 'Web de la empresa no cumple criterios de tama&ntilde;o';
     }
     if (trim($_POST['mail_empresa']) == '' || strlen($_POST['mail_empresa']) > $tamCorreo) {
         $error[] = 'Mail de contacto de la empresa no cumple criterios de tama&ntilde;o';
     }
-    if(trim($_POST['direccion_empresa']) == '' || strlen($_POST['direccion_empresa']) > $tamDireccion){
+    if (trim($_POST['direccion_empresa']) == '' || strlen($_POST['direccion_empresa']) > $tamDireccion) {
         $error[] = 'Direcci&oacute;n de la empresa no cumple criterios de tama&ntilde;o';
     }
     //Checkeo de entradas correctas
     $filtros = array(
-        "correo"=>FILTER_VALIDATE_EMAIL,
-        "nif_empresa"=>array(
-            "filter"=>FILTER_VALIDATE_REGEXP,
-            "options"=>array("regexp"=>"/^([A-HJUV]\d{8})|([NP-SW]\d{7}[A-Z])$/")
-            ),
-        "web_empresa"=>FILTER_VALIDATE_URL,
-        "telefono_empresa"=>array(
-            "filter"=>FILTER_VALIDATE_REGEXP,
-            "options"=>array("regexp"=>"/^\d{9}$/")
-            ),
-        "cuenta_bancaria"=>array(
-            "filter"=>FILTER_VALIDATE_REGEXP,
-            "options"=>array("regexp"=>"/^\d{20}$/")
-            ),
-        "mail_empresa"=>FILTER_VALIDATE_EMAIL
-        );
+        "correo" => FILTER_VALIDATE_EMAIL,
+        "nif_empresa" => array(
+            "filter" => FILTER_VALIDATE_REGEXP,
+            "options" => array("regexp" => "/^([A-HJUV]\d{8})|([NP-SW]\d{7}[A-Z])$/")
+        ),
+        "web_empresa" => FILTER_VALIDATE_URL,
+        "telefono_empresa" => array(
+            "filter" => FILTER_VALIDATE_REGEXP,
+            "options" => array("regexp" => "/^\d{9}$/")
+        ),
+        "cuenta_bancaria" => array(
+            "filter" => FILTER_VALIDATE_REGEXP,
+            "options" => array("regexp" => "/^\d{20}$/")
+        ),
+        "mail_empresa" => FILTER_VALIDATE_EMAIL
+    );
     $result = filter_input_array(INPUT_POST, $filtros);
-    if(!$result['correo'] || !$result['mail_empresa']){
+    if (!$result['correo'] || !$result['mail_empresa']) {
         $error[] = 'El correo no tiene el formato adecuado';
     }
-    if(!$result['nif_empresa']){
+    if (!$result['nif_empresa']) {
         $error[] = 'El NIF no tiene el formato adecuado';
     }
-    if(!$result['web_empresa']){
+    if (!$result['web_empresa']) {
         $error[] = 'La web no tiene el formato adecuado';
     }
-    if(!$result['cuenta_bancaria']){
+    if (!$result['cuenta_bancaria']) {
         $error[] = 'La cuenta bancaria no tiene el formato adecuado';
     }
-    if(!$result['telefono_empresa']){
+    if (!$result['telefono_empresa']) {
         $error[] = 'El telefono no tiene el formato adecuado';
     }
-    
+
     if (!isset($error)) {
 
         $correonuevo = sanitarString($_POST['correo']);
@@ -127,11 +127,11 @@ if (isset($_POST['modificarEmpresa'])) {
                 . "nif_empresa='$nif_empresa', web_empresa='$web_empresa', cuenta_bancaria='$cuenta_bancaria', "
                 . "telefono_empresa='$telefono_empresa', email_empresa='$mail_empresa' WHERE correo='$correonuevo'";
         realizarQuery($esquema, $sql);
-        
+
         echo $sql;
         $_SESSION['cuenta'] = $correonuevo;
         $_SESSION['nombre'] = $nombre_empresa;
-      //  header('Location: modificar_cuenta_empresa.php');
+        //  header('Location: modificar_cuenta_empresa.php');
     }
 }
 
@@ -190,25 +190,26 @@ function formularioModEmpresa() {
     $email_empresa = $datosempresa["email_empresa"];
     $ca = $datosempresa["nombre_ca"];
 
-
-    $form = '<form action="" method="post">' .
-            'Correo: <input type="text" name="correo" value="' . $correo . '"/><br/>' .
-            'Nombre Empresa: <input type="text" name="nombre_empresa" value="' . $nombre_empresa . '"/><br/>' .
-            'NIF : <input type="text" name="nif_empresa" value="' . $nif_empresa . '"/><br/>' .
-            'Web Empresa: <input type="text" name="web_empresa" value="' . $web_empresa . '" /> <br/>' .
-            'Cuenta Bancaria: <input type="number" name="cuenta_bancaria" value="' . $cuenta_bancaria . '" /><br/>' .
-            'Tel&eacute;fono: <input type="number" name="telefono_empresa" value="' . $telefono_empresa . '"/><br/>' .
-            'Correo Electr&oacute;nico: <input type="email" name="mail_empresa" value="' . $email_empresa . '"/> <br/>' .
-            'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma">'.opcionesComunidadSeleccionada($ca).'</select><br>' .
-            'Direcci&oacute;n Empresa: <input type="text" name="direccion_empresa" value="' . $direccion_empresa . '" />' .
-            '<input type="submit" name="modificarEmpresa" value="Enviar"/>' .
-            '</form>' .
+    $form = '<div class="w3-container w3-white w3-border w3-round w3-section ">' .
+            $form .= '<form action="" method="post">' .
+            'Correo: <input class="w3-input" type="text" name="correo" value="' . $correo . '"/><br/>' .
+            'Nombre Empresa: <input class="w3-input" type="text" name="nombre_empresa" value="' . $nombre_empresa . '"/><br/>' .
+            'NIF : <input class="w3-input"  type="text" name="nif_empresa" value="' . $nif_empresa . '"/><br/>' .
+            'Web Empresa: <input  class="w3-input" type="text" name="web_empresa" value="' . $web_empresa . '" /> <br/>' .
+            'Cuenta Bancaria: <input class="w3-input"  type="number" name="cuenta_bancaria" value="' . $cuenta_bancaria . '" /><br/>' .
+            'Tel&eacute;fono: <input class="w3-input"  type="number" name="telefono_empresa" value="' . $telefono_empresa . '"/><br/>' .
+            'Correo Electr&oacute;nico: <input  class="w3-input" type="email" name="mail_empresa" value="' . $email_empresa . '"/> <br/>' .
+            'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma">' . opcionesComunidadSeleccionada($ca) . '</select><br>' .
+            'Direcci&oacute;n Empresa: <input  class="w3-input" type="text" name="direccion_empresa" value="' . $direccion_empresa . '" />' .
+            '<input type="submit" class="w3-button w3-light-grey w3-round w3-col m6" name="modificarEmpresa" value="Enviar"/>' .
+            '</form></div>'
+            . '<div class="w3-container w3-white w3-border w3-round w3-section "  >' .
             '<form action="" method="post">' .
-            'Contrase&ntilde;a Antigua: <input type="password" name="pwd_antigua" /><br/>' .
-            'Contrase&ntilde;a Nueva: <input type="password" name="pwd" /><br/>' .
-            'Confirmar Contrase&ntilde;a Nueva: <input type="password" name="pwd_confirmar" /><br/>' .
-            '<input type="submit" name="cambioContrasenya" value="Enviar"/>' .
-            '</form>';
+            'Contrase&ntilde;a Antigua: <input  class="w3-input" type="password" name="pwd_antigua" /><br/>' .
+            'Contrase&ntilde;a Nueva: <input class="w3-input"  type="password" name="pwd" /><br/>' .
+            'Confirmar Contrase&ntilde;a Nueva: <input  class="w3-input" type="password" name="pwd_confirmar" /><br/>' .
+            '<input class="w3-button w3-light-grey w3-round w3-col m6" type="submit" name="cambioContrasenya" value="Enviar"/>' .
+            '</form></div>';
 
     return $form;
 }

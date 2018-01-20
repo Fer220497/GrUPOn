@@ -31,3 +31,15 @@ body main div.w3-container.w3-white.w3-border.w3-round.w3-section.w3-third.w3-ma
     height: 50%;
     margin-bottom: 3%;
 }
+
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+}

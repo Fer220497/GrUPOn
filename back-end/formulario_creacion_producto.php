@@ -161,7 +161,8 @@ function formularioCrearProducto() {
     $correo = $_SESSION["cuenta"];
 
 
-    $form = '<form action="" method="post" enctype="multipart/form-data">' .
+    $form = '<div class="w3-container w3-white w3-border w3-round w3-section ">' .
+            '<form action="" method="post" enctype="multipart/form-data">' .
             'Categor&iacute;a: <select name="nombre_categoria">' . optionCategorias() .
             '</select><br>' .
             'Comunidad Aut&oacute;noma: <select name="nombre_ca">' . opcionesComunidades() .
@@ -174,15 +175,15 @@ function formularioCrearProducto() {
         $form .= '<option value="' . $fila[0] . '">' . $fila[1] . '</option>';
     }
     $form .= '</select><br>' .
-            'Nombre: <input type="text" name="nombre" /><br/>' .
-            'Precio: <input type="number" name="precio" /><br/>' .
+            'Nombre: <input class="w3-input" type="text" name="nombre" /><br/>' .
+            'Precio: <input class="w3-input"  type="number" name="precio" /><br/>' .
             'Descripci&oacute;n: <textarea name="descripcion" rows="4" cols="10"></textarea><br/>' .
-            'Localizaci&oacute;n: <input type="text" name="localizacion" /><br/>' .
-            'Porcentaje Descuento: <input type="number" name="porcentaje_descuento" /><br/>' .
-            'Cantidad Disponible: <input type="number" name="cantidad_disponible" /><br/>' .
-            'Imagen:<input type="file" name="imagen"/>' .
-            '<input type="submit" name="crearProducto" value="Enviar"/>' .
-            '</form>';
+            'Localizaci&oacute;n: <input  class="w3-input" type="text" name="localizacion" /><br/>' .
+            'Porcentaje Descuento: <input  class="w3-input" type="number" name="porcentaje_descuento" /><br/>' .
+            'Cantidad Disponible: <input class="w3-input"  type="number" name="cantidad_disponible" /><br/>' .
+            'Imagen:<input type="file" name="imagen"/></br>' .
+            '<input class="w3-button w3-light-grey w3-round w3-col m6" type="submit" name="crearProducto" value="Enviar"/>' .
+            '</form></div>';
     return $form;
 }
 

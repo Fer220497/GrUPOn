@@ -88,7 +88,7 @@ if (!isset($_GET['categoria'])) {
                 </div>
             </aside>
             <article class="w3-container w3-threequarter">
-               <?php require_once '../back-end/formulario_busqueda_producto.php'; ?>
+              <?php echo mostrarProductosVendedor($_SESSION['cuenta']); ?>
             </article>
 
         </main>
