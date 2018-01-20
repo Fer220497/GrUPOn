@@ -46,7 +46,7 @@
                 //WEB_EMPRESA
                 if ($(this).attr("name") == 'web_empresa') {
 
-                    var patron = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+                    var patron = /^(http[s]?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
 
                     if ($(this).val().length == 0) {
                         $(this).css("background-color", "#FFDDDD");
