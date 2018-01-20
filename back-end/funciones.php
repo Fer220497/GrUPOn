@@ -537,12 +537,14 @@ function busquedaCatalogo() {
 
 function formularioBusquedaProducto() {
     if (isset($_SESSION["cuenta"])) {
-        $form = '<form class="w3-row" action="busqueda.php" method="get">' .
+        $form = '<form class="w3-row" action="busqueda.php" method="get">'
+                . '<input type="hidden" name="categoria" value="' . $_GET['categoria'] .'">' .
                 '<input class="w3-input w3-col m8 w3-white" type="text" name="nombre" placeholder="Busca algo!"/>' .
                 '<input class="w3-input w3-col m2 w3-button w3-flat-clouds w3-center" type="submit" value="🔍" name="busqueda"/>' .
                 '<div class="w3-col m2">Nacional <input type="checkbox" name="nacional" value="nacional"/></div></form>';
     } else {
-        $form = '<form class="w3-row" action="busqueda.php" method="get">' .
+        $form = '<form class="w3-row" action="busqueda.php" method="get">'
+            . '<input type="hidden" name="categoria" value="' . $_GET['categoria'] .'">' .
                 '<input class="w3-col m8 w3-input w3-white" type="text" name="nombre" placeholder="Busca algo!"/>' .
                 '<input class="w3-input w3-col m4 w3-button w3-flat-clouds w3-cell" type="submit" value="🔍" name="busqueda"/></form>';
     }
