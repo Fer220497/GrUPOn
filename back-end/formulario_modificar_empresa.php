@@ -192,15 +192,15 @@ function formularioModEmpresa() {
 
     $form = '<div class="w3-container w3-white w3-border w3-round w3-section ">' .
             '<form action="" method="post">' .
-            'Correo: <input class="w3-input" type="text" name="correo" value="' . $correo . '"/><br/>' .
-            'Nombre Empresa: <input class="w3-input" type="text" name="nombre_empresa" value="' . $nombre_empresa . '"/><br/>' .
-            'NIF : <input class="w3-input"  type="text" name="nif_empresa" value="' . $nif_empresa . '"/><br/>' .
-            'Web Empresa: <input  class="w3-input" type="text" name="web_empresa" value="' . $web_empresa . '" /> <br/>' .
-            'Cuenta Bancaria: <input class="w3-input"  type="number" name="cuenta_bancaria" value="' . $cuenta_bancaria . '" /><br/>' .
-            'Tel&eacute;fono: <input class="w3-input"  type="number" name="telefono_empresa" value="' . $telefono_empresa . '"/><br/>' .
-            'Correo Electr&oacute;nico: <input  class="w3-input" type="email" name="mail_empresa" value="' . $email_empresa . '"/> <br/>' .
+            'Correo: <input class="w3-input" type="text" name="correo" value="' . $correo . '" required/><br/>' .
+            'Nombre Empresa: <input class="w3-input" type="text" name="nombre_empresa" value="' . $nombre_empresa . '" required/><br/>' .
+            'NIF : <input class="w3-input"  type="text" name="nif_empresa" value="' . $nif_empresa . '" required/><br/>' .
+            'Web Empresa: <input  class="w3-input" type="text" name="web_empresa" value="' . $web_empresa . '" required/> <br/>' .
+            'Cuenta Bancaria: <input class="w3-input"  type="number" name="cuenta_bancaria" value="' . $cuenta_bancaria . '" required/><br/>' .
+            'Tel&eacute;fono: <input class="w3-input"  type="number" name="telefono_empresa" value="' . $telefono_empresa . '" required/><br/>' .
+            'Correo Electr&oacute;nico: <input  class="w3-input" type="email" name="mail_empresa" value="' . $email_empresa . '" required/> <br/>' .
             'Comunidad Aut&oacute;noma: <select class="w3-input" name="comunidad_autonoma">' . opcionesComunidadSeleccionada($ca) . '</select><br>' .
-            'Direcci&oacute;n Empresa: <input  class="w3-input" type="text" name="direccion_empresa" value="' . $direccion_empresa . '" />' .
+            'Direcci&oacute;n Empresa: <input  class="w3-input" type="text" name="direccion_empresa" value="' . $direccion_empresa . '" required/>' .
             '<input type="submit" class="w3-block w3-border w3-hover-pale-green w3-button w3-light-grey w3-round w3-margin" name="modificarEmpresa" value="Enviar"/>' .
             '</form></div>'
             . '<div class="w3-container w3-white w3-border w3-round w3-section "  >' .

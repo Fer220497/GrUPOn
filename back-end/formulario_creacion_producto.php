@@ -138,6 +138,7 @@ if (isset($_POST['crearProducto'])) {
         $tmp=$_FILES['imagen']['tmp_name'];
         //echo $dirpath;
         move_uploaded_file($tmp,"../imagenesSubidas/$nombreFichero");
+        header('Location:index.php');
     }
 }
 
@@ -163,9 +164,9 @@ function formularioCrearProducto() {
 
     $form = '<div class="w3-container w3-white w3-border w3-round w3-section ">' .
             '<form action="" method="post" enctype="multipart/form-data">' .
-            '<br/>Nombre: <input class="w3-input" type="text" name="nombre" /><br/>' .
-            'Precio: <input class="w3-input"  type="number" name="precio" /><br/>' .
-            'Descripci&oacute;n: <textarea name="descripcion" rows="4" cols="10"></textarea><br/>' .
+            '<br/>Nombre: <input class="w3-input" type="text" name="nombre" required/><br/>' .
+            'Precio: <input class="w3-input"  type="number" name="precio" step="0.01" required/><br/>' .
+            'Descripci&oacute;n: <textarea name="descripcion" rows="4" cols="10" required></textarea><br/>' .
             'Categor&iacute;a: <select class="w3-input" name="nombre_categoria">' . optionCategorias() .
             '</select><br>' .
             'Comunidad Aut&oacute;noma: <select class="w3-input" name="nombre_ca">' . opcionesComunidades() .
@@ -178,10 +179,10 @@ function formularioCrearProducto() {
         $form .= '<option value="' . $fila[0] . '">' . $fila[1] . '</option>';
     }
     $form .= '</select><br>' .
-            'Localizaci&oacute;n: <input  class="w3-input" type="text" name="localizacion" /><br/>' .
-            'Porcentaje Descuento: <input  class="w3-input" type="number" name="porcentaje_descuento" /><br/>' .
-            'Cantidad Disponible: <input class="w3-input"  type="number" name="cantidad_disponible" /><br/>' .
-            'Imagen:<input type="file" name="imagen"/></br>' .
+            'Localizaci&oacute;n: <input  class="w3-input" type="text" name="localizacion" required/><br/>' .
+            'Porcentaje Descuento: <input  class="w3-input" type="number" name="porcentaje_descuento" step="0.01"/><br/>' .
+            'Cantidad Disponible: <input class="w3-input"  type="number" name="cantidad_disponible" required/><br/>' .
+            'Imagen:<input type="file" name="imagen" required/></br>' .
             '<input class="w3-btn w3-light-grey w3-round w3-margin w3-block w3-hover-pale-green w3-border" type="submit" name="crearProducto" value="Enviar"/>' .
             '</form></div>';
     return $form;
