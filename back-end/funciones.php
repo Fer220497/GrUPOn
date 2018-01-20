@@ -121,18 +121,10 @@ function historialCliente($correo) {
     $sql = "SELECT * FROM compra,producto WHERE compra.correo='$correo' AND compra.id_producto = producto.id_producto";
     $result = realizarQuery($esquema, $sql);
     $html = '<div class="w3-container w3-white w3-border w3-round w3-section ">';
-    $html .= '<table border="1"><tr>'
-            . '<th>Nombre Producto</th><th>Fecha Compra</th><th>Cantidad</th><th>Precio</th></tr>';
-
     while ($fila = mysqli_fetch_array($result)) {
-
-        $html .= '<tr><td><a href="producto.php?id=' . $fila['id_producto'] . '">' . $fila['nombre'] . '</a></td><td>' . $fila['fecha'] . '</td><td>' . $fila['cantidad'] . '</td><td>' . $fila['precio'] . '</td></tr>';
+        $html .= '<a href="producto.php" onclick="setCookie(' . $fila['id_producto'] . ',1)"><div class="w3-container w3-quarter">' . $fila['nombre'] . '</div><div class="w3-container w3-quarter">' . $fila['fecha'] . '</div><div class="w3-container w3-quarter">Cantidad: ' . $fila['cantidad'] . '</div><div class="w3-container w3-quarter">Precio: ' . $fila['precio'] . '&euro;</div></a>';
     }
-    $html .= '</table>'; //$html .= '<div class="w3-container w3-white w3-border w3-round w3-section">';
-    while ($fila = mysqli_fetch_array($result)) {
-        $html .= '<a href="producto.php" onclick="setCookie(' . $fila['id_producto'] . ',1)"><div class="w3-container w3-quarter">' . $fila['nombre'] . '</div><div class="w3-container w3-quarter">' . $fila['fecha_ini'] . '</div><div class="w3-container w3-quarter">N&uacute;mero de ventas: ' . $fila['num_ventas'] . '</div><div class="w3-container w3-quarter">Beneficio obtenido: ' . $fila['num_ventas'] * $fila['precio'] . '</div></a>';
-    }
-    $html .= '</div>';
+    $html .= '</div>'; //$html .= '<div class="w3-container w3-white w3-border w3-round w3-section">';
     return $html;
 }
 

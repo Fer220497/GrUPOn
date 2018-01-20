@@ -88,6 +88,7 @@ if (!isset($_GET['categoria'])) {
                 </div>
             </aside>
             <article class="w3-container w3-threequarter">
+                <h2>Historial de Compras</h2>
                <?php
                 echo historialCliente($_SESSION['cuenta']);
                 require_once '../back-end/funciones.php'
