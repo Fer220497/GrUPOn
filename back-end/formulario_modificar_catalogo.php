@@ -91,10 +91,10 @@ function formularioModificacionCatalogo($catalogoVisitado) {
     $nombre = $datosCatalogo["nombre"];
 
     $form = '<div class="w3-container w3-white w3-border w3-round w3-section ">' .
-            ' <form action="" method="post">' .
-            'Nombre: <input class="w3-input" type="text" name="nombre" value="' . $nombre . '"> ' .
-            'Categoria: <select name="categoria">' . opcionesCatSeleccionada($ca) . '</select><br>' .
-            ' <input class="w3-button w3-light-grey" type="submit" name="modificarCatalogo" value="Enviar"/>' .
+            '<form action="" method="post">' .
+            '<br/>Nombre: <input class="w3-input" type="text" name="nombre" value="' . $nombre . '"> ' .
+            'Categoria: <select class="w3-input" name="categoria">' . opcionesCatSeleccionada($ca) . '</select><br>' .
+            ' <input class="w3-btn w3-light-grey w3-block w3-round w3-hover-pale-green w3-margin" type="submit" name="modificarCatalogo" value="Enviar"/>' .
             ' </form></div>';
     return $form;
 }
