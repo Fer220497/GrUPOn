@@ -399,26 +399,25 @@ function tipoCuenta($correo) {
  */
 function previewProducto($result) {
     if (mysqli_num_rows($result) > 0) {
-        $productos = 1;
+        $productos = 0;
         $numpaginas = 1;
         $str = '<div class="w3-container w3-white w3-border w3-round w3-section tab-content current" id="tab-' . $numpaginas . '"  >';
         while ($fila = mysqli_fetch_array($result)) {
             $productos++;
-            $numpaginas = 1;
-            if ($productos == 11) {
-                $productos = 0;
-                $numpaginas++;
-                $str .= '</div>';
-                $str .= '<div class="w3-container w3-white w3-border w3-round w3-section tab-content" id="tab-' . $numpaginas . '" >';
-            }//productos
             $str .= '<div class="w3-container w3-center w3-section w3-border w3-border-white w3-hover-border-blue w3-third"><a href="producto.php?id=' . $fila["id_producto"] . '&categoria='.$_GET['categoria'].'")" >';
             $p_desc = (100 - $fila["porcentaje_descuento"]) * $fila["precio"] / 100;
             $str .= '<div class="w3-container"><div class="zoom"><img class="w3-image" src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="' . $fila["nombre"] . '"/></div></div>' .
                     '<div class="w3-container"><div class="w3-container"><span style="font-weight: bold">' . $fila["nombre"] . ' </span></div><span class="w3-tag w3-small w3-padding w3-red" style="transform:rotate(-5deg)">-' . $fila["porcentaje_descuento"] . '%</span>' .
                     '<div class="w3-container"><span style="text-decoration: line-through">' . $fila["precio"] . '&euro;</span><span style="font-weight: bold"> ' . $p_desc . '&euro;</div></div>';
             $str .= '</a></div>';
+			if ($productos == 9) {
+                $productos = 0;
+                $numpaginas++;
+                $str .= '</div>';
+                $str .= '<div class="w3-container w3-white w3-border w3-round w3-section tab-content" id="tab-' . $numpaginas . '" >';
+            }//productos
         }
-        $str .= '</div>';
+		$str .= '</div>';
         $i = 1;
         $str .= '<ul class="tabs w3-bar">';
         $str .= '<li class="tab-link current w3-button w3-border" data-tab="tab-' . $i . '">' . $i . '</li>';
