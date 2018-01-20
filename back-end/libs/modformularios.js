@@ -102,14 +102,29 @@
                     
                     //////PRODUCTO    
                     //PRECIO Y PORCENTAJE
-                    if ($(this).attr("name") == 'precio' ||$(this).attr("name") == 'porcentaje_descuento' ) {
+                    if ($(this).attr("name") == 'precio') {
                        
                         var patron = /^([0-9])*$/;
                         
                         if ($(this).val().length == 0) {
                               $(this).css("background-color", "red");
                         } else {
-                            if ($(this).val().match(patron))
+                            if ($(this).val().match(patron) && parseInt(this.val) > 0)
+                                $(this).css("background-color", "blue");
+                            else
+                                $(this).css("background-color", "red");
+                        }
+                    }
+                    
+                    
+                       if ($(this).attr("name") == 'porcentaje_descuento' ) {
+                       
+                        var patron = /^([0-9])*$/;
+                        
+                        if ($(this).val().length == 0) {
+                              $(this).css("background-color", "red");
+                        } else {
+                            if ($(this).val().match(patron) && parseInt(this.val) > 0 && parseInt(this.val) < 100)
                                 $(this).css("background-color", "blue");
                             else
                                 $(this).css("background-color", "red");
