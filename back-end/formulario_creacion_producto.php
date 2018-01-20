@@ -182,7 +182,7 @@ function formularioCrearProducto() {
             'Porcentaje Descuento: <input  class="w3-input" type="number" name="porcentaje_descuento" /><br/>' .
             'Cantidad Disponible: <input class="w3-input"  type="number" name="cantidad_disponible" /><br/>' .
             'Imagen:<input type="file" name="imagen"/></br>' .
-            '<input class="w3-button w3-light-grey w3-round w3-col m6 w3-margin w3-block w3-hover-pale-green" type="submit" name="crearProducto" value="Enviar"/>' .
+            '<input class="w3-btn w3-light-grey w3-round w3-margin w3-block w3-hover-pale-green w3-border" type="submit" name="crearProducto" value="Enviar"/>' .
             '</form></div>';
     return $form;
 }

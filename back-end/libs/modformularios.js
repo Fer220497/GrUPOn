@@ -31,7 +31,7 @@
                     //NIF_EMPRESA                   
                     if ($(this).attr("name") == 'nif_empresa'|| $(this).attr("name") == 'nif_empresa2') {
                        
-                        var patron = /^([A-HJUV]\d{8})|([NP-SW]\d{7}[A-Z])$/;
+                        var patron = /^([A-HJUV]\d{8})$|([NP-SW]\d{7}[A-Z]{1})$/;
                         
                         if ($(this).val().length == 0) {
                               $(this).css("background-color", "red");
@@ -109,7 +109,7 @@
                         if ($(this).val().length == 0) {
                               $(this).css("background-color", "red");
                         } else {
-                        if ($(this).val().match(patron) && parseInt(this.val) > 0){
+                        if ($(this).val().match(patron) && $(this).val() > 0){
                                 $(this).css("background-color", "blue");
                             }else{
                                 $(this).css("background-color", "red");
@@ -125,10 +125,13 @@
                         if ($(this).val().length == 0) {
                               $(this).css("background-color", "red");
                         } else {
-                            if ($(this).val().match(patron) && parseInt(this.val) > 0 && parseInt(this.val) < 100){
-                                $(this).css("background-color", "blue");
+                            alert(parseInt($(this).val()));
+                            if (!$(this).val().match(patron) || $(this).val() < 0 || $(this).val() > 100){
+                                alert("holar");
+                                 $(this).css("background-color", "red");
                             }else{
-                                $(this).css("background-color", "red");
+                               alert("holaa");
+                                $(this).css("background-color", "blue");
                             }
                         }
                     }
