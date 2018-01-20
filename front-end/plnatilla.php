@@ -88,7 +88,8 @@ if (!isset($_GET['categoria'])) {
                 </div>
             </aside>
             <article class="w3-container w3-threequarter">
-               <?php echo busquedaCatalogo(); ?>
+            
+              <?php require_once '../back-end/formulario_creacion_catalogo.php'; ?>
             </article>
 
         </main>

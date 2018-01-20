@@ -1,35 +1,60 @@
 <?php
 session_start();
 require_once '../back-end/funciones.php';
-
-if (!isset($_SESSION['cuenta']) || $_SESSION['tipo'] != 'empresa') {
-    header('Location: index.php');
+inicializarDB();
+if (!isset($_GET['categoria'])) {
+    $_GET['categoria'] = 'general';
 }
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Registro e</title>
-        <!--NECESARIOS-->  <!--NO NECESARIOS-->
-        <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
-        <link href='estilo.css' rel="stylesheet"/><?php
-        if (isset($SESSION['tipo']) && $SESSION['tipo'] == 'cliente') {
-            ?>
-            <link href='estilo_login.css' rel="stylesheet"/>
-            <?php
-        }
-        ?>
-        <link rel="icon" href="img/logo.png"/>
-        <meta charset="UTF-8"/>
+        <title>GrUPOn</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <script src="../back-end/funciones.js"></script>
-        <script src='https://www.google.com/recaptcha/api.js'></script>
+        <meta charset="UTF-8"/>
+        <style>
+            .tab-content {
+                display: none;
+               
+            }
+
+            .tab-content.current {
+                display: inherit;
+            }
+        </style>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="estilow3.css">
+        <link rel="icon" href="../img/icono.png"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+        <script src="../back-end/funciones.js"></script>
+        <script src="../back-end/libs/jquery.zoom.min.js"></script>
+        <script src="../back-end/libs/pagina.js"></script>
         <script>
             $(document).ready(function () {
-                $("#cookie").append(document.createTextNode(categorias[getCookie("categoria")]));
+                var $paginas = $('div.pagina').hide();
+
+                $paginas.eq(0).show();
+
+                $('ul.tabs li').click(function () {
+                    var $tab_id = $(this).attr('data-tab');
+                   
+                    $('ul.tabs li').removeClass('current');
+                    $('.tab-content').removeClass('current');
+
+                    $(this).addClass("current");
+                    $("#" + $tab_id).addClass("current");
+                });
+
+
+
+
+                // $('button.paginacion').pagina();
+                $('.zoom').zoom();
+
             });
-        </script>   
+        </script>
     </head>
     <body>
         <header class="w3-container w3-flat-midnight-blue">
@@ -49,21 +74,25 @@ if (!isset($_SESSION['cuenta']) || $_SESSION['tipo'] != 'empresa') {
         </nav>
         <main class="w3-container w3-flat-clouds">
             <aside class="w3-container w3-quarter w3-flat-belize-hole w3-card">
-                <h2 id="categoria_actual">
-                    <div id="cookie">  
-                    </div>
+                <h2 class="w3-container w3-card w3-flat-wet-asphalt w3-block w3-center">
+                    <?php
+                    if (isset($_SESSION['tipo']) && ($_SESSION['tipo'] == 'cliente')) {
+                        echo $arrayCategoriasLogged[$_GET['categoria']];
+                    } else {
+                        echo $arrayCategoriasLogged[$_GET['categoria']];
+                    }
+                    ?>
                 </h2>
-                <?php echo menuCategorias(); ?>
+                <div class="w3-container">
+                    <?php echo menuCategorias(); ?>
+                </div>
             </aside>
-            <!--AQUI IRA TODO EL MAIN -->
             <article class="w3-container w3-threequarter">
-                <h2>Creaci&oacute;n Catalogo</h2>
-                <?php require_once '../back-end/formulario_creacion_catalogo.php'; ?>
-
+            
+              <?php require_once '../back-end/formulario_creacion_catalogo.php'; ?>
             </article>
-            <!--AQUI IRA TODO EL MAIN -->
-        </main>
 
+        </main>
         <footer class="w3-container w3-flat-midnight-blue">
             Grupo &num;2 - GrUPOn&copy;, el fruto dado por el odio hacia nosotros mismos
         </footer>

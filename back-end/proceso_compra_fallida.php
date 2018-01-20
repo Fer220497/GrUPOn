@@ -12,7 +12,7 @@ function pagoFallido() {
 
 
     echo "PAGO REALIZADO SIN EXITO";
-    echo '<a href="../front-end/seleccion_accion.php"> Pulse para terminar proceso</a>';
+    echo '<a href="../front-end/index.php"> Pulse para terminar proceso</a>';
 }
 
 /*

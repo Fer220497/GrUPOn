@@ -41,7 +41,7 @@ function pagoConExito() {
         realizarQuery($esquema, $sql);
     }
     echo "PAGO REALIZADO CON EXITO";
-    echo '<a href="../front-end/seleccion_accion.php" onclick="setCookie(\'carrito\', \'\', 1)"> Pulse para terminar proceso</a>';
+    echo '<a href="../front-end/index.php" onclick="setCookie(\'carrito\', \'\', 1)"> Pulse para terminar proceso</a>';
 }
 
 /*

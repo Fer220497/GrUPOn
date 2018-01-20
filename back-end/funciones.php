@@ -53,21 +53,46 @@ function mostrarComentarios($producto) {
     }
 }
 
+
 function mostrarProductosVendedor($correo) {
     $cookie_name = 'productoVisitado';
+    $productos = 1;
+    $numpaginas=1;
     global $esquema;
     $query = "SELECT * FROM lanzamientos,producto WHERE producto.id_producto = lanzamientos.id_producto AND lanzamientos.correo = '$correo'";
     $result = realizarQuery($esquema, $query);
     if (mysqli_num_rows($result) == 0) {
         return '<p>No tiene productos en venta</p>';
     } else {
-        $str = '<div class="producto">';
-        while ($fila = mysqli_fetch_array($result)) {
-            $str .= '<div><a href="modificar_producto.php?id=' . $fila["id_producto"] . '"><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/></a></div>' .
-                    '<div><a href="modificar_producto.php?id=' . $fila["id_producto"] . '" >' . $fila["nombre"] . '</a>' .
-                    'Precio: ' . $fila["precio"] . '&euro; Descuento: ' . $fila["porcentaje_descuento"] . '%</div>';
-        }
-        return $str .= '</table>';
+     $str = '<div class="w3-container w3-white w3-border w3-round w3-section tab-content current" id="tab-'.$numpaginas.'"  >';
+    while ($fila = mysqli_fetch_array($result)) {
+        $productos++;
+        $numpaginas=1;
+        if ($productos == 11) {
+            $productos = 0;
+            $numpaginas++;
+            $str .= '</div>';
+            $str .= '<div class="w3-container w3-white w3-border w3-round w3-section tab-content" id="tab-'.$numpaginas.'" >';
+        }//productos
+            $str .= '<div class="w3-container w3-center w3-section w3-border w3-border-white w3-hover-border-blue w3-third"><a href="modificar_producto.php?id=' . $fila["id_producto"]. '")" >';
+            $p_desc = (100 - $fila["porcentaje_descuento"]) * $fila["precio"] / 100;
+            $str .= '<div class="w3-container"><div class="zoom"><img class="w3-image" src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="' . $fila["nombre"] . '"/></div></div>' .
+                    '<div class="w3-container"><div class="w3-container"><span style="font-weight: bold">' . $fila["nombre"] . ' </span><span class="w3-tag w3-small w3-padding w3-red" style="transform:rotate(-5deg)">-' . $fila["porcentaje_descuento"] . '%</span></div>' .
+                    '<div class="w3-container"><span style="text-decoration: line-through">' . $fila["precio"] . '&euro;</span><span style="font-weight: bold"> ' . $p_desc . '&euro;</div></div>';
+            $str .= '</a></div>';
+        
+    }
+    $str .= '</div>';
+    $i=1;   
+    $str .= '<ul class="tabs w3-bar">';
+    $str .= '<li class="tab-link current w3-button w3-border" data-tab="tab-'.$i.'">'.$i.'</li>';
+    $i=2;
+    while($i<=$numpaginas){
+            $str .= '<li class="tab-link w3-button w3-border" data-tab="tab-'.$i.'">'.$i.'</li>';
+         $i++;
+    }
+    $str .='</ul>';
+    return $str;
     }
 }
 
@@ -86,12 +111,15 @@ function historialCliente($correo) {
     global $esquema;
     $sql = "SELECT * FROM compra,producto WHERE compra.correo='$correo' AND compra.id_producto = producto.id_producto";
     $result = realizarQuery($esquema, $sql);
-    $html = '<table border="1"><tr>'
+    $html ='<div class="w3-container w3-white w3-border w3-round w3-section ">';
+    $html .= '<table border="1"><tr>'
             . '<th>Nombre Producto</th><th>Fecha Compra</th><th>Cantidad</th><th>Precio</th></tr>';
+    
     while ($fila = mysqli_fetch_array($result)) {
+       
         $html .= '<tr><td><a href="producto.php?id=' . $fila['id_producto'] . '">' . $fila['nombre'] . '</a></td><td>' . $fila['fecha'] . '</td><td>' . $fila['cantidad'] . '</td><td>' . $fila['precio'] . '</td></tr>';
     }
-    $html .= '</table>';$html = '<div class="w3-container w3-white w3-border w3-round w3-section">';
+    $html .= '</table>';//$html .= '<div class="w3-container w3-white w3-border w3-round w3-section">';
     while ($fila = mysqli_fetch_array($result)) {
         $html .= '<a href="producto.php" onclick="setCookie(' . $fila['id_producto'] . ',1)"><div class="w3-container w3-quarter">' . $fila['nombre'] . '</div><div class="w3-container w3-quarter">' . $fila['fecha_ini'] . '</div><div class="w3-container w3-quarter">N&uacute;mero de ventas: ' . $fila['num_ventas'] . '</div><div class="w3-container w3-quarter">Beneficio obtenido: ' . $fila['num_ventas'] * $fila['precio'] . '</div></a>';
     }
