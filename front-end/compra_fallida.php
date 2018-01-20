@@ -12,16 +12,6 @@ if (!isset($_GET['categoria'])) {
         <title>GrUPOn</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta charset="UTF-8"/>
-        <style>
-            .tab-content {
-                display: none;
-               
-            }
-
-            .tab-content.current {
-                display: inherit;
-            }
-        </style>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
         <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

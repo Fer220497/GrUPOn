@@ -11,17 +11,17 @@ require_once '../back-end/lectura_producto.php';
 function pagoConExito() {
     global $esquema;
     $cookiecarrito = explode(",", $_COOKIE["carrito"]);
-    echo "<br/> Vas a comprar:<br/>";
-    print_r($cookiecarrito);
-    echo "<br/>";
+    //echo "<br/> Vas a comprar:<br/>";
+    //print_r($cookiecarrito);
+    //echo "<br/>";
     foreach ($cookiecarrito as $producto) {
         $sql = "SELECT * FROM producto WHERE id_producto='$producto'";
         $result = realizarQuery($esquema, $sql);
         $datos_producto = mysqli_fetch_array($result);
         $cantidad_vendida = $datos_producto["cantidad_vendida"] + 1;
-        echo "Productos vendidos actualizados:".$cantidad_vendida." |Para producto:".$producto."<br/>";
+        //echo "Productos vendidos actualizados:".$cantidad_vendida." |Para producto:".$producto."<br/>";
         $cantidad_disponible = $datos_producto["cantidad_disponible"] - 1;
-        echo "Productos disponibles actualizados: ".$cantidad_disponible." |Para producto:".$producto."<br/>";
+        //echo "Productos disponibles actualizados: ".$cantidad_disponible." |Para producto:".$producto."<br/>";
         $sql = "UPDATE producto SET cantidad_vendida='$cantidad_vendida', cantidad_disponible='$cantidad_disponible' WHERE id_producto=$producto";
         realizarQuery($esquema, $sql);
         $sql = "SELECT * FROM lanzamientos WHERE id_producto='$producto'";
@@ -40,8 +40,12 @@ function pagoConExito() {
         $sql = 'INSERT INTO compra (correo, id_producto, fecha, cantidad) VALUES(\''.$_SESSION['cuenta'].'\',\''.$producto.'\',curdate(),\'1\')';
         realizarQuery($esquema, $sql);
     }
-    echo "PAGO REALIZADO CON EXITO";
-    echo '<a href="../front-end/index.php" onclick="setCookie(\'carrito\', \'\', 1)"> Pulse para terminar proceso</a>';
+    $str = '<div class="w3-jumbo w3-center w3-panel w3-pale-green w3-border-green w3-border w3-leftbar w3-rightbar">&Eacute;xito</div>';
+    $str .= '<a class="w3-block w3-flat-orange w3-btn w3-hover-pale-blue w3-border w3-round" '
+            . 'href="../front-end/index.php" '
+            . 'onclick="setCookie(\'carrito\', \'\', 1)"'
+            . 'style="height:500px;font-size:300px;">👌</a>';
+    return $str;
 }
 
 /*
