@@ -163,6 +163,9 @@ function formularioCrearProducto() {
 
     $form = '<div class="w3-container w3-white w3-border w3-round w3-section ">' .
             '<form action="" method="post" enctype="multipart/form-data">' .
+            'Nombre: <input class="w3-input" type="text" name="nombre" /><br/>' .
+            'Precio: <input class="w3-input"  type="number" name="precio" /><br/>' .
+            'Descripci&oacute;n: <textarea name="descripcion" rows="4" cols="10"></textarea><br/>' .
             'Categor&iacute;a: <select name="nombre_categoria">' . optionCategorias() .
             '</select><br>' .
             'Comunidad Aut&oacute;noma: <select name="nombre_ca">' . opcionesComunidades() .
@@ -175,9 +178,6 @@ function formularioCrearProducto() {
         $form .= '<option value="' . $fila[0] . '">' . $fila[1] . '</option>';
     }
     $form .= '</select><br>' .
-            'Nombre: <input class="w3-input" type="text" name="nombre" /><br/>' .
-            'Precio: <input class="w3-input"  type="number" name="precio" /><br/>' .
-            'Descripci&oacute;n: <textarea name="descripcion" rows="4" cols="10"></textarea><br/>' .
             'Localizaci&oacute;n: <input  class="w3-input" type="text" name="localizacion" /><br/>' .
             'Porcentaje Descuento: <input  class="w3-input" type="number" name="porcentaje_descuento" /><br/>' .
             'Cantidad Disponible: <input class="w3-input"  type="number" name="cantidad_disponible" /><br/>' .
