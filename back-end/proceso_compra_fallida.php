@@ -9,10 +9,9 @@ require_once '../back-end/lectura_producto.php';
  */
 
 function pagoFallido() {
-
-
-    echo "PAGO REALIZADO SIN EXITO";
-    echo '<a href="../front-end/index.php"> Pulse para terminar proceso</a>';
+   return ' <div class="w3-jumbo w3-panel w3-pale-red w3-leftbar w3-border-red">
+  <p>Lo sentimos, el pago no se ha realizado con &eacute;xito :(</p>
+</div> ';
 }
 
 /*
