@@ -18,7 +18,6 @@
         return '<form action="" method="post">
                     <input type="submit" name="borrar" value="Borrar Cuenta"/> Marcar si est&aacute;s seguro de que quieres borrar la cuenta <input type="checkbox" name="check" value="Borrar"/>
                 </form>';
-        
     }
 
 ?>

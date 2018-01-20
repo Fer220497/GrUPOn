@@ -31,10 +31,10 @@ function muestraCuenta() {
  */
 function muestraDatosCliente($fila) {
     global $arrayComunidades;
-    return '<table border="1"><tr><td>Correo</td><td><span class="dato">' . $_SESSION['cuenta'] . '</span></td></tr>' .
-            '<tr><td>Comunidad Aut&oacute;noma</td><td>' . $arrayComunidades[$fila['nombre_ca']] . '</td></tr>' .
-            '<tr><td>Nombre</td><td><span class="dato">' . $_SESSION['nombre'] . '</span></td>' .
-            '<tr><td>Apellidos</td><td><span class="dato">' . $fila['apellidos_cliente'] . '</span></td></table>';
+    return '<div class="w3-container w3-half">' . $fila['nombre_cliente'] . '</div>' .
+            '<div class="w3-container w3-half">' . $fila['apellidos_cliente'] . '</div>' .
+            '<div class="w3-container w3-half">Correo Electr&oacute;nico: ' . $fila['correo'] . '</div>' .
+            '<div class="w3-container w3-half">' . $arrayComunidades[$fila['nombre_ca']] . '</div>';
 }
 
 /**
@@ -44,15 +44,14 @@ function muestraDatosCliente($fila) {
 function muestraDatosEmpresa($fila) {
     global $esquema;
     global $arrayComunidades;
-    return '<table border="1"><tr><td>Correo</td><td><span class="dato">' . $_SESSION['cuenta'] . '</span></td></tr>' .
-            '<tr><td>Comunidad Aut&oacute;noma</td><td>' . $arrayComunidades[$fila['nombre_ca']] . '</td></tr>' .
-            '<tr><td>Nombre</td><td><span class="dato">' . $_SESSION['nombre'] . '</span></td>' .
-            '<tr><td>Direcci&oacute;n</td><td><span class="dato">' . $fila['direccion_empresa'] . '</span></td>' .
-            '<tr><td>NIF</td><td><span class="dato">' . $fila['nif_empresa'] . '</span></td>' .
-            '<tr><td>Web</td><td><span class="dato">' . $fila['web_empresa'] . '</span></td>' .
-            '<tr><td>Cuenta Bancaria</td><td><span class="dato">' . $fila['cuenta_bancaria'] . '</span></td>' .
-            '<tr><td>Tel&eacute;fono</td><td><span class="dato">' . $fila['telefono_empresa'] . '</span></td>' .
-            '<tr><td>Email para Clientes</td><td><span class="dato">' . $fila['email_empresa'] . '</span></td></table>';
+    return '<div class="w3-container w3-half">' . $fila['nombre_empresa'] . '</div>' .
+            '<div class="w3-container w3-half">NIF: ' . $fila['nif_empresa'] . '</div>' .
+            '<div class="w3-container w3-half">Correo Electr&oacute;nico: ' . $fila['email_empresa'] . '</div>' .
+            '<div class="w3-container w3-half">Tel&eacute;fono: ' . $fila['telefono_empresa'] . '</div>' .
+            '<div class="w3-container w3-half">' . $fila['direccion_empresa'] . '</div>' .
+            '<div class="w3-container w3-half">' . $arrayComunidades[$fila['nombre_ca']] . '</div>' .
+            '<div class="w3-container">' . $fila['web_empresa'] . '</div>' .
+            '<div id="map-canvas"></div>';
 }
 
 /**
