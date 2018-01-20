@@ -4,7 +4,7 @@
  * and open the template in the editor.
  * 
  
-  
+ 
  * 
  */
 
@@ -12,131 +12,151 @@
     $.fn.plugin = function () {
         return $(this).each(function () {
             $(this).change(function () {
-            ///EMPRESA
-                    //CORREO
-                 //  pale-#A9E2E5: #A9E2E5
-                 //  pale-#FFDDDD: #FFDDDD
-                    if ($(this).attr("name") == 'correo' || $(this).attr("name") == 'mail_empresa' ) {
-                       
-                        var patron = /^[_a-Z0-9-]+(.[_a-Z0-9-]+)@[a-z0-9-]+(.[a-z0-9-]+)(.[a-z]{2,4})$/;
-                        
-                        if ($(this).val().length == 0) {
-                              $(this).css("background-color", "#FFDDDD");
-                        } else {
-                            if ($(this).val().match(patron))
-                                $(this).css("background-color", "#A9E2E5");
-                            else
-                                $(this).css("background-color", "#FFDDDD");
-                        }
+                ///EMPRESA
+                //CORREO
+                //  pale-#A9E2E5: #A9E2E5
+                //  pale-#FFDDDD: #FFDDDD
+                if ($(this).attr("name") == 'correo' || $(this).attr("name") == 'mail_empresa') {
+
+                    var patron = /^[_a-Z0-9-]+(.[_a-Z0-9-]+)@[a-z0-9-]+(.[a-z0-9-]+)(.[a-z]{2,4})$/;
+
+                    if ($(this).val().length == 0) {
+                        $(this).css("background-color", "#FFDDDD");
+                    } else {
+                        if ($(this).val().match(patron))
+                            $(this).css("background-color", "#A9E2E5");
+                        else
+                            $(this).css("background-color", "#FFDDDD");
                     }
-                    //NIF_EMPRESA                   
-                    if ($(this).attr("name") == 'nif_empresa'|| $(this).attr("name") == 'nif_empresa2') {
-                       
-                        var patron = /^([A-HJUV]\d{8})$|([NP-SW]\d{7}[A-Z]{1})$/;
-                        
-                        if ($(this).val().length == 0) {
-                              $(this).css("background-color", "#FFDDDD");
-                        } else {
-                            if ($(this).val().match(patron))
-                                $(this).css("background-color", "#A9E2E5");
-                            else
-                                $(this).css("background-color", "#FFDDDD");
-                        }
+                }
+                //NIF_EMPRESA                   
+                if ($(this).attr("name") == 'nif_empresa' || $(this).attr("name") == 'nif_empresa2') {
+
+                    var patron = /^([A-HJUV]\d{8})$|([NP-SW]\d{7}[A-Z]{1})$/;
+
+                    if ($(this).val().length == 0) {
+                        $(this).css("background-color", "#FFDDDD");
+                    } else {
+                        if ($(this).val().match(patron))
+                            $(this).css("background-color", "#A9E2E5");
+                        else
+                            $(this).css("background-color", "#FFDDDD");
                     }
-                    //WEB_EMPRESA
-                 if ($(this).attr("name") == 'web_empresa') {
-                       
-                        var patron = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
-                        
-                        if ($(this).val().length == 0) {
-                              $(this).css("background-color", "#FFDDDD");
-                        } else {
-                            if ($(this).val().match(patron))
-                                $(this).css("background-color", "#A9E2E5");
-                            else
-                                $(this).css("background-color", "#FFDDDD");
-                        }
+                }
+                //WEB_EMPRESA
+                if ($(this).attr("name") == 'web_empresa') {
+
+                    var patron = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+
+                    if ($(this).val().length == 0) {
+                        $(this).css("background-color", "#FFDDDD");
+                    } else {
+                        if ($(this).val().match(patron))
+                            $(this).css("background-color", "#A9E2E5");
+                        else
+                            $(this).css("background-color", "#FFDDDD");
                     }
-                    //TELEFONO_EMPRESA                   
-                    if ($(this).attr("name") == 'telefono_empresa') {
-                       
-                        var patron = /^\d{9}$/;
-                        
-                        if ($(this).val().length == 0) {
-                              $(this).css("background-color", "#FFDDDD");
-                        } else {
-                            if ($(this).val().match(patron))
-                                $(this).css("background-color", "#A9E2E5");
-                            else
-                                $(this).css("background-color", "#FFDDDD");
-                        }
+                }
+                //TELEFONO_EMPRESA                   
+                if ($(this).attr("name") == 'telefono_empresa') {
+
+                    var patron = /^\d{9}$/;
+
+                    if ($(this).val().length == 0) {
+                        $(this).css("background-color", "#FFDDDD");
+                    } else {
+                        if ($(this).val().match(patron))
+                            $(this).css("background-color", "#A9E2E5");
+                        else
+                            $(this).css("background-color", "#FFDDDD");
                     }
-                    //CUENTA_BANCARIA
-                    if ($(this).attr("name") == 'cuenta_bancaria') {
-                       
-                        var patron = /^\d{20}$/;
-                        
-                        if ($(this).val().length == 0) {
-                              $(this).css("background-color", "#FFDDDD");
-                        } else {
-                            if ($(this).val().match(patron))
-                                $(this).css("background-color", "#A9E2E5");
-                            else
-                                $(this).css("background-color", "#FFDDDD");
-                        }
+                }
+                //CUENTA_BANCARIA
+                if ($(this).attr("name") == 'cuenta_bancaria') {
+
+                    var patron = /^\d{20}$/;
+
+                    if ($(this).val().length == 0) {
+                        $(this).css("background-color", "#FFDDDD");
+                    } else {
+                        if ($(this).val().match(patron))
+                            $(this).css("background-color", "#A9E2E5");
+                        else
+                            $(this).css("background-color", "#FFDDDD");
                     }
+                }
                 //////CLIENTE    
-                    //CUENTA_BANCARIA
-                    if ($(this).attr("name") == 'cuenta_bancaria') {
-                       
-                        var patron = /^\d{20}$/;
-                        
-                        if ($(this).val().length == 0) {
-                              $(this).css("background-color", "#FFDDDD");
+                //CUENTA_BANCARIA
+                if ($(this).attr("name") == 'cuenta_bancaria') {
+
+                    var patron = /^\d{20}$/;
+
+                    if ($(this).val().length == 0) {
+                        $(this).css("background-color", "#FFDDDD");
+                    } else {
+                        if ($(this).val().match(patron))
+                            $(this).css("background-color", "#A9E2E5");
+                        else
+                            $(this).css("background-color", "#FFDDDD");
+                    }
+                }
+
+                //////PRODUCTO    
+                //PRECIO Y PORCENTAJE
+                if ($(this).attr("name") == 'precio') {
+
+                    var patron = /^([0-9])*$/;
+
+                    if ($(this).val().length == 0) {
+                        $(this).css("background-color", "#FFDDDD");
+                    } else {
+                        if ($(this).val().match(patron) && $(this).val() > 0) {
+                            $(this).css("background-color", "#A9E2E5");
                         } else {
-                            if ($(this).val().match(patron))
-                                $(this).css("background-color", "#A9E2E5");
-                            else
-                                $(this).css("background-color", "#FFDDDD");
+                            $(this).css("background-color", "#FFDDDD");
                         }
                     }
-                    
-                    //////PRODUCTO    
-                    //PRECIO Y PORCENTAJE
-                    if ($(this).attr("name") == 'precio') {
-                       
-                        var patron = /^([0-9])*$/;
-                        
-                        if ($(this).val().length == 0) {
-                              $(this).css("background-color", "#FFDDDD");
+                }
+
+
+                if ($(this).attr("name") == 'porcentaje_descuento') {
+
+                    var patron = /^([0-9])*$/;
+
+                    if ($(this).val().length == 0) {
+                        $(this).css("background-color", "#FFDDDD");
+                    } else {
+
+                        if (!$(this).val().match(patron) || $(this).val() < 0 || $(this).val() > 100) {
+
+                            $(this).css("background-color", "#FFDDDD");
                         } else {
-                        if ($(this).val().match(patron) && $(this).val() > 0){
-                                $(this).css("background-color", "#A9E2E5");
-                            }else{
-                                $(this).css("background-color", "#FFDDDD");
-                            }
+
+                            $(this).css("background-color", "#A9E2E5");
                         }
                     }
-                    
-                    
-                       if ($(this).attr("name") == 'porcentaje_descuento' ) {
-                       
-                        var patron = /^([0-9])*$/;
-                        
-                        if ($(this).val().length == 0) {
-                              $(this).css("background-color", "#FFDDDD");
+                }
+                
+                if ($(this).attr("name") == 'cantidad_disponible') {
+
+                    var patron = /^([0-9])*$/;
+
+                    if ($(this).val().length == 0) {
+                        $(this).css("background-color", "#FFDDDD");
+                    } else {
+
+                        if (!$(this).val().match(patron) || $(this).val() < 0) {
+
+                            $(this).css("background-color", "#FFDDDD");
                         } else {
-                          
-                            if (!$(this).val().match(patron) || $(this).val() < 0 || $(this).val() > 100){
-                             
-                                 $(this).css("background-color", "#FFDDDD");
-                            }else{
-                              
-                                $(this).css("background-color", "#A9E2E5");
-                            }
+
+                            $(this).css("background-color", "#A9E2E5");
                         }
                     }
-                    
+                }
+                
+                
+
             });
 
         });
