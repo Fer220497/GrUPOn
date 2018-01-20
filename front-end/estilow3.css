@@ -67,6 +67,10 @@ textarea {
     color: purple;
 }
 
+main{
+    margin-bottom:50px;
+}
+
 footer{
     position: absolute;
     bottom: 0;
