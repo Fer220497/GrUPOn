@@ -134,8 +134,8 @@ function formularioModificarProducto($id) {
             'Precio: <input class="w3-input"  type="number" name="precio" value="' . $producto["precio"] . '"/><br/>' .
             'ID_Catalogo:<input class="w3-input"  type="number" name="id_catalogo" value="' . $producto["id_catalogo"] . '"/><br/>' .
             'Descripci&oacute;n: <textarea name="descripcion" rows="4" cols="10">' . $producto["descripcion"] . '</textarea><br/>' .
-            'Categor&iacute;a: <select name="categoria">' . optionCategoriasSeleccionadas($producto["nombre_categoria"]) . '</select><br/>' .
-            'Comunidad aut&oacute;noma: <select name="comunidad">' . opcionesComunidadSeleccionada($producto["nombre_ca"]) . '</select><br/>' .
+            'Categor&iacute;a: <select class="w3-input" name="categoria">' . optionCategoriasSeleccionadas($producto["nombre_categoria"]) . '</select><br/>' .
+            'Comunidad aut&oacute;noma: <select class="w3-input" name="comunidad">' . opcionesComunidadSeleccionada($producto["nombre_ca"]) . '</select><br/>' .
             'Localizaci&oacute;n: <input  class="w3-input"  type="text" name="localizacion" value="' . $producto["localizacion"] . '" /><br/>' .
             'Porcentaje descuento: <input  class="w3-input"  type="number" name="porcentaje_descuento" value="' . $producto["porcentaje_descuento"] . '" /><br/>' .
             'Cantidad disponible: <input class="w3-input"  type="number" name="cantidad" value="' . $producto["cantidad_disponible"] . '" /><br/>' .
