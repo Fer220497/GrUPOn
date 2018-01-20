@@ -122,7 +122,7 @@ function historialCliente($correo) {
     $result = realizarQuery($esquema, $sql);
     $html = '<div class="w3-container w3-white w3-border w3-round w3-section ">';
     while ($fila = mysqli_fetch_array($result)) {
-        $html .= '<a href="producto.php" onclick="setCookie(' . $fila['id_producto'] . ',1)"><div class="w3-container w3-quarter">' . $fila['nombre'] . '</div><div class="w3-container w3-quarter">' . $fila['fecha'] . '</div><div class="w3-container w3-quarter">Cantidad: ' . $fila['cantidad'] . '</div><div class="w3-container w3-quarter">Precio: ' . $fila['precio'] . '&euro;</div></a>';
+        $html .= '<a href="producto.php?id=' . $fila['id_producto'] . '" onclick="setCookie(' . $fila['id_producto'] . ',1)"><div class="w3-container w3-quarter">' . $fila['nombre'] . '</div><div class="w3-container w3-quarter">' . $fila['fecha'] . '</div><div class="w3-container w3-quarter">Cantidad: ' . $fila['cantidad'] . '</div><div class="w3-container w3-quarter">Precio: ' . $fila['precio'] . '&euro;</div></a>';
     }
     $html .= '</div>'; //$html .= '<div class="w3-container w3-white w3-border w3-round w3-section">';
     return $html;
@@ -135,7 +135,7 @@ function historialVentas($correo) {
     $result = realizarQuery($esquema, $sql);
     $html = '<div class="w3-container w3-white w3-border w3-round w3-section">';
     while ($fila = mysqli_fetch_array($result)) {
-        $html .= '<a href="producto.php" onclick="setCookie(' . $fila['id_producto'] . ',1)"><div class="w3-container w3-quarter">' . $fila['nombre'] . '</div><div class="w3-container w3-quarter">' . $fila['fecha_ini'] . '</div><div class="w3-container w3-quarter">N&uacute;mero de ventas: ' . $fila['num_ventas'] . '</div><div class="w3-container w3-quarter">Beneficio obtenido: ' . $fila['num_ventas'] * $fila['precio'] . '</div></a>';
+        $html .= '<a href="producto.php?id=' . $fila['id_producto'] . '" onclick="setCookie(' . $fila['id_producto'] . ',1)"><div class="w3-container w3-quarter">' . $fila['nombre'] . '</div><div class="w3-container w3-quarter">' . $fila['fecha_ini'] . '</div><div class="w3-container w3-quarter">N&uacute;mero de ventas: ' . $fila['num_ventas'] . '</div><div class="w3-container w3-quarter">Beneficio obtenido: ' . $fila['num_ventas'] * $fila['precio'] . '</div></a>';
     }
     $html .= '</div>';
     return $html;
@@ -304,9 +304,9 @@ function checkboxesCategoriasSeleccionadas($afinidades) {
     $form = '';
     foreach ($arrayCategorias as $key => $val) {
         if (in_array($key, $afinidades)) {
-            $form .= '<span class="w3-half">' .$val . ':</span><input class="w3-check w3-quarter" type="checkbox" name="' . $key . '" value="' . $key . '" checked/><br/>';
+            $form .= '<span class="w3-half">' . $val . ':</span><input class="w3-check w3-quarter" type="checkbox" name="' . $key . '" value="' . $key . '" checked/><br/>';
         } else {
-            $form .= '<span class="w3-half">' .$val . ':</span><input class="w3-check w3-quarter" type="checkbox" name="' . $key . '" value="' . $key . '"/><br/>';
+            $form .= '<span class="w3-half">' . $val . ':</span><input class="w3-check w3-quarter" type="checkbox" name="' . $key . '" value="' . $key . '"/><br/>';
         }
     }
     return $form;
@@ -530,13 +530,13 @@ function busquedaCatalogo() {
 function formularioBusquedaProducto() {
     if (isset($_SESSION["cuenta"])) {
         $form = '<form class="w3-row" action="busqueda.php" method="get">'
-                . '<input type="hidden" name="categoria" value="' . $_GET['categoria'] .'">' .
+                . '<input type="hidden" name="categoria" value="' . $_GET['categoria'] . '">' .
                 '<input class="w3-input w3-col m8 w3-white" type="text" name="nombre" placeholder="Busca algo!"/>' .
                 '<input class="w3-input w3-col m2 w3-button w3-flat-clouds w3-center" type="submit" value="🔍" name="busqueda"/>' .
                 '<div class="w3-col m2">Nacional <input type="checkbox" name="nacional" value="nacional"/></div></form>';
     } else {
         $form = '<form class="w3-row" action="busqueda.php" method="get">'
-            . '<input type="hidden" name="categoria" value="' . $_GET['categoria'] .'">' .
+                . '<input type="hidden" name="categoria" value="' . $_GET['categoria'] . '">' .
                 '<input class="w3-col m8 w3-input w3-white" type="text" name="nombre" placeholder="Busca algo!"/>' .
                 '<input class="w3-input w3-col m4 w3-button w3-flat-clouds w3-cell" type="submit" value="🔍" name="busqueda"/></form>';
     }
