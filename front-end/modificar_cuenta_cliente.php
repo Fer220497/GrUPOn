@@ -49,25 +49,25 @@ if (!isset($_GET['categoria'])) {
             <main class="w3-container w3-flat-clouds">
                 <aside class="w3-container w3-quarter w3-flat-belize-hole w3-card">
                     <h2 class="w3-container w3-card w3-flat-wet-asphalt w3-block w3-center">
-                    <?php
-                    if (isset($_SESSION['tipo']) && ($_SESSION['tipo'] == 'cliente')) {
-                        echo $arrayCategoriasLogged[$_GET['categoria']];
-                    } else {
-                        echo $arrayCategorias[$_GET['categoria']];
-                    }
-                    ?>
-                </h2>
+                        <?php
+                        if (isset($_SESSION['tipo']) && ($_SESSION['tipo'] == 'cliente')) {
+                            echo $arrayCategoriasLogged[$_GET['categoria']];
+                        } else {
+                            echo $arrayCategorias[$_GET['categoria']];
+                        }
+                        ?>
+                    </h2>
                     <?php echo menuCategorias(); ?>
                 </aside>
-                <!--AQUI IRA TODO EL MAIN -->
                 <article class="w3-container w3-threequarter">
-                    <?php
-                    echo "<h2>Modificaci&oacute;n Cliente</h2>";
-                    require_once '../back-end/formulario_modificar_cliente.php';
-                    ?>
 
+                    <h2>Modificaci&oacute;n Cliente</h2>
+                    <div class="w3-container w3-white w3-border w3-round w3-section tab-content current">
+                        <?php
+                        require_once '../back-end/formulario_modificar_cliente.php';
+                        ?>
+                    </div>
                 </article>
-                <!--AQUI IRA TODO EL MAIN -->
             </main>
 
             <footer class="w3-container w3-flat-midnight-blue">

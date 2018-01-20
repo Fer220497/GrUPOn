@@ -140,7 +140,7 @@ function muestraFormularioDatos() {
             'Nombre: <input type="text" name="nombre_cliente" value="' . $nombre . '"/><br/>' .
             'Apellidos: <input type="text" name="apellidos_cliente" value="' . $apellidos . '"/> <br/>' .
             'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma">' . opcionesComunidadSeleccionada($ca) .
-            '</select><br>Afinidades:<br/>' . checkboxesCategoriasSeleccionadas($afinidades) . '<input type="submit" name="cambiarDatos" value="Guardar"/>' .
+            '</select><br>Afinidades:<br/>' . checkboxesCategoriasSeleccionadas($afinidades) . '<input class="w3-button" type="submit" name="cambiarDatos" value="Guardar"/>' .
             '</form>';
     return $form;
 }
@@ -150,7 +150,7 @@ function muestraFormularioPwd() {
             'Contrase&ntilde;a actual: <input type="password" name="pwd_old"/><br/>' .
             'Nueva contrase&ntilde;a: <input type="password" name="pwd_new" /><br/>' .
             'Confirmar nueva contrase&ntilde;a: <input type="password" name="pwd_new_confirm" /><br/>' .
-            '<input type="submit" name="cambiarPwd" value="Cambiar"/>' .
+            '<input class="w3-button" type="submit" name="cambiarPwd" value="Cambiar"/>' .
             '</form>';
     return $form;
 }
