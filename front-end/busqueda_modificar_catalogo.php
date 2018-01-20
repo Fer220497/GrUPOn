@@ -90,7 +90,6 @@ if (!isset($_GET['categoria'])) {
             <article class="w3-container w3-threequarter">
                <?php echo busquedaCatalogo(); ?>
             </article>
-
         </main>
         <footer class="w3-container w3-flat-midnight-blue">
             Grupo &num;2 - GrUPOn&copy;, el fruto dado por el odio hacia nosotros mismos

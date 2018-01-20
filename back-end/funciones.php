@@ -135,7 +135,7 @@ function historialVentas($correo) {
     $result = realizarQuery($esquema, $sql);
     $html = '<div class="w3-container w3-white w3-border w3-round w3-section">';
     while ($fila = mysqli_fetch_array($result)) {
-        $html .= '<div class="w3-btn w3-block w3-flat-silver w3-round w3-margin><a href="producto.php?id=' . $fila['id_producto'] . '" onclick="setCookie(' . $fila['id_producto'] . ',1)"><div class="w3-container w3-quarter">' . $fila['nombre'] . '</div><div class="w3-container w3-quarter">' . $fila['fecha_ini'] . '</div><div class="w3-container w3-quarter">N&uacute;mero de ventas: ' . $fila['num_ventas'] . '</div><div class="w3-container w3-quarter">Beneficio obtenido: ' . $fila['num_ventas'] * $fila['precio'] . '</div></a></div>';
+        $html .= '<div class="w3-btn w3-block w3-flat-silver w3-round w3-margin"><a href="producto.php?id=' . $fila['id_producto'] . '" onclick="setCookie(' . $fila['id_producto'] . ',1)"><div class="w3-container w3-quarter">' . $fila['nombre'] . '</div><div class="w3-container w3-quarter">' . $fila['fecha_ini'] . '</div><div class="w3-container w3-quarter">N&uacute;mero de ventas: ' . $fila['num_ventas'] . '</div><div class="w3-container w3-quarter">Beneficio obtenido: ' . $fila['num_ventas'] * $fila['precio'] . '</div></a></div>';
     }
     $html .= '</div>';
     return $html;
@@ -521,7 +521,7 @@ function busquedaCatalogo() {
     $result = realizarQuery($esquema, $sql);
     $cookie_name = "catalogo_visitado";
     while ($listaCatalogos = mysqli_fetch_array($result)) {
-        $form .= '<div class="w3-btn w3-block w3-flat-silver w3-round w3-margin"><a href="../front-end/modificar_catalogo.php?id=' . $listaCatalogos["id_catalogo"] . '">' . $listaCatalogos["nombre"] . '</a></div>';
+        $form .= '<a href="../front-end/modificar_catalogo.php?id=' . $listaCatalogos["id_catalogo"] . '"><div class="w3-btn w3-block w3-flat-silver w3-round w3-margin">' . $listaCatalogos["nombre"] . '</div></a>';
     }
     $form .= '</div>';
     return $form;
