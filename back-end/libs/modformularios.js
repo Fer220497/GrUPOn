@@ -126,13 +126,13 @@
                         if ($(this).val().length == 0) {
                               $(this).css("background-color", "#FFDDDD");
                         } else {
-                            alert(parseInt($(this).val()));
+                          
                             if (!$(this).val().match(patron) || $(this).val() < 0 || $(this).val() > 100){
-                                alert("holar");
-                                 $(this).css("background-color", "pale-#FFDDDD");
+                             
+                                 $(this).css("background-color", "#FFDDDD");
                             }else{
-                               alert("holaa");
-                                $(this).css("background-color", "pale-#A9E2E5");
+                              
+                                $(this).css("background-color", "#A9E2E5");
                             }
                         }
                     }
