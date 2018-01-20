@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once '../back-end/formulario_borrar_cuenta.php';
 require_once '../back-end/funciones.php';
 if (!isset($_SESSION['cuenta'])) {
     header('Location: index.php');
@@ -58,7 +59,7 @@ if (!isset($_GET['categoria'])) {
                 <div class="w3-panel w3-pale-blue w3-leftbar w3-rightbar w3-border-blue"><h2>Hola <?php echo $_SESSION['nombre'] ?>, aqu&iacute; est&aacute; la informaci&oacute;n de su cuenta</h2></div>
                 <!--Esto debería ser el submenú de datos, que muestra las opciones del empresario o cliente dependiendo de la cuenta-->
                 <?php
-                require_once '../back-end/formulario_borrar_cuenta.php';
+                
                 require_once '../back-end/lectura_cuenta.php';
 
                 if ($_SESSION['tipo'] === 'empresa') {

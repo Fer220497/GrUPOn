@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once '../back-end/formulario_comentario.php';
 require_once '../back-end/funciones.php';
 if (!isset($_GET['categoria'])) {
     $_GET['categoria'] = 'general';
@@ -76,7 +77,7 @@ if (!isset($_GET['categoria'])) {
 
                 if (isset($_SESSION['cuenta']) && $_SESSION['tipo'] == 'cliente' &&
                         puedeComentar($_SESSION['cuenta'], $_GET['id'])) {
-                    require_once '../back-end/formulario_comentario.php';
+                    
                     echo mostrarCajaComentario();
                 }
                 echo mostrarComentarios($_GET['id']);
