@@ -55,7 +55,7 @@ if (!isset($_GET['categoria'])) {
                 <?php echo menuCategorias(); ?>
             </aside>
             <article class="w3-container w3-threequarter">
-                <h2>Hola <?php echo $_SESSION['nombre'] ?>, aqu&iacute; est&aacute; la informaci&oacute;n de su cuenta</h2>
+                <div class="w3-panel w3-pale-blue w3-leftbar w3-rightbar w3-border-blue"><h2>Hola <?php echo $_SESSION['nombre'] ?>, aqu&iacute; est&aacute; la informaci&oacute;n de su cuenta</h2></div>
                 <!--Esto debería ser el submenú de datos, que muestra las opciones del empresario o cliente dependiendo de la cuenta-->
                 <?php
                 require_once '../back-end/formulario_borrar_cuenta.php';
