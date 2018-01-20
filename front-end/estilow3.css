@@ -18,6 +18,10 @@ a{
     text-decoration: none;
 }
 
+body{
+    background-color: #ECF0F1;
+}
+
 img.w3-image{
     height: 200px;
 }
@@ -63,8 +67,11 @@ textarea {
     color: purple;
 }
 
-main{
-    height: 100vh;
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    clear: both;
 }
 
 @media screen and (max-width:800px) {
