@@ -136,9 +136,9 @@ function muestraFormularioDatos() {
     }
 
     $form = '<form action="" method="post">' .
-            'Correo: <input class="w3-input" type="text" name="correo" value="' . $correo . '"/><br/>' .
-            'Nombre: <input class="w3-input" type="text" name="nombre_cliente" value="' . $nombre . '"/><br/>' .
-            'Apellidos: <input class="w3-input" type="text" name="apellidos_cliente" value="' . $apellidos . '"/> <br/>' .
+            'Correo: <input class="w3-input" type="text" name="correo" value="' . $correo . '" required/><br/>' .
+            'Nombre: <input class="w3-input" type="text" name="nombre_cliente" value="' . $nombre . '" required/><br/>' .
+            'Apellidos: <input class="w3-input" type="text" name="apellidos_cliente" value="' . $apellidos . '" required/> <br/>' .
             'Comunidad Aut&oacute;noma: <select class="w3-input" name="comunidad_autonoma">' . opcionesComunidadSeleccionada($ca) .
             '</select><br>Afinidades:<br/>' . checkboxesCategoriasSeleccionadas($afinidades) . 
             '<br/><input class="w3-button w3-block w3-large  w3-border w3-round w3-hover-pale-green" type="submit" name="cambiarDatos" value="Guardar"/><br/>' .
