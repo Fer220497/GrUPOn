@@ -31,10 +31,10 @@ function muestraCuenta() {
  */
 function muestraDatosCliente($fila) {
     global $arrayComunidades;
-    return '<div class="w3-container w3-half">' . $fila['nombre_cliente'] . '</div>' .
-            '<div class="w3-container w3-half">' . $fila['apellidos_cliente'] . '</div>' .
-            '<div class="w3-container w3-half">Correo Electr&oacute;nico: ' . $fila['correo'] . '</div>' .
-            '<div class="w3-container w3-half">' . $arrayComunidades[$fila['nombre_ca']] . '</div>';
+    return '<div class="w3-container w3-half">Nombre: ' . $fila['nombre_cliente'] . '</div>' .
+            '<div class="w3-container w3-half">Apellidos: ' . $fila['apellidos_cliente'] . '</div>' .
+            '<div class="w3-container w3-half">Mail: Correo Electr&oacute;nico: ' . $fila['correo'] . '</div>' .
+            '<div class="w3-container w3-half">Comunidad Aut&oacute;noma: ' . $arrayComunidades[$fila['nombre_ca']] . '</div>';
 }
 
 /**

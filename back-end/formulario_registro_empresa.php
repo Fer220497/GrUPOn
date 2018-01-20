@@ -179,7 +179,7 @@ function formularioRegistroEmpresa() {
             '<input class="w3-input" type="number" name="telefono_empresa" placeholder="Tel&eacute;fono" required/><br/>' .
             '<input class="w3-input" type="email" name="mail_empresa" placeholder="Correo Electr&oacute;nico" required/> <br/>' .
             '<input class="w3-input" type="text" name="direccion_empresa" placeholder="Direcci&oacute;n Empresa" required /><br/>'.
-            'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma" required>'.opcionesComunidades().'</select><br>' .
+            'Comunidad Aut&oacute;noma: <select class="w3-input" name="comunidad_autonoma" required>'.opcionesComunidades().'</select><br>' .
             $recaptcha .
             '<input class="w3-button w3-light-grey w3-round w3-col m6" type="submit" name="registroEmpresa" value="Enviar"/>' .
             '</form>';

@@ -14,7 +14,7 @@ function mostrarCarrito() {
   
     foreach ($productos as $key => $producto) {
         
-        echo muestraProducto($producto);
+        echo muestraProductoCarrito($producto);
           //print_r($productos);
         echo '<button class="w3-button w3-border" href="../front-end/mostrar_carrito.php" onclick="removeCarrito('.$key.')">Eliminar del carrito</button>';
         $contador++;

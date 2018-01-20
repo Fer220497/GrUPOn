@@ -21,6 +21,10 @@ if (!isset($_GET['categoria'])) {
         <script src="../back-end/libs/jquery.zoom.min.js"></script>
         <script src="../back-end/libs/map.js"></script>
         <script>
+            var valueofCarrito = getCookie("carrito");
+            if (valueofCarrito == "") {
+                setCookie("carrito",'', 1);
+            }
             $(document).ready(function () {
                 $('.zoom').zoom();
             });

@@ -60,18 +60,21 @@ if (!isset($_GET['categoria'])) {
                 require_once '../back-end/lectura_cuenta.php';
 
                 if ($_SESSION['tipo'] === 'empresa') {
-                    echo '<button type="submit" onclick="location.href = \'creacion_catalogo.php\'">Crear Cat&aacute;logo</button> 
-                    <button type="submit" onclick="location.href = \'creacion_producto.php\'">Crear Producto</button> 
-                    <button type="submit" onclick="location.href = \'../front-end/busqueda_modificar_catalogo.php\'">Modificar Cat&aacute;logo</button> 
-                    <button type="submit" onclick="location.href = \'listado_productos.php\'">Modificar Producto</button>
-                    <button type="submit" onclick="location.href = \'modificar_cuenta_empresa.php\'"> Modificar Cuenta</button>
-                    <button type="submit" onclick="location.href = \'historial_ventas.php\'"> Mostrar Historial Ventas</button>';
+                    echo '<button class="w3-btn w3-hover-pale-blue" type="submit" onclick="location.href = \'creacion_catalogo.php\'">Crear Cat&aacute;logo</button> 
+                    <button class="w3-btn w3-hover-pale-blue w3-border w3-round" type="submit" onclick="location.href = \'creacion_producto.php\'">Crear Producto</button> 
+                    <button class="w3-btn w3-hover-pale-blue w3-border w3-round" type="submit" onclick="location.href = \'../front-end/busqueda_modificar_catalogo.php\'">Modificar Cat&aacute;logo</button> 
+                    <button class="w3-btn w3-hover-pale-blue w3-border w3-round" type="submit" onclick="location.href = \'listado_productos.php\'">Modificar Producto</button>
+                    <button class="w3-btn w3-hover-pale-blue w3-border w3-round" type="submit" onclick="location.href = \'modificar_cuenta_empresa.php\'"> Modificar Cuenta</button>
+                    <button class="w3-btn w3-hover-pale-blue w3-border w3-round" type="submit" onclick="location.href = \'historial_ventas.php\'"> Mostrar Historial Ventas</button>';
                 } else {
-                    echo '<button type="submit" onclick="location.href = \'modificar_cuenta_cliente.php\'"> Modificar Cuenta</button>
-                <button type="submit" onclick="location.href = \'historial_cliente.php\'"> Mostrar Historial Compras</button>';
+                    echo '<button class="w3-btn w3-hover-pale-blue w3-border w3-round" type="submit" onclick="location.href = \'modificar_cuenta_cliente.php\'"> Modificar Cuenta</button>
+                <button class="w3-btn w3-hover-pale-blue w3-border w3-round" type="submit" onclick="location.href = \'historial_cliente.php\'"> Mostrar Historial Compras</button>';
                 }
+                
                 echo '<div class="w3-container w3-white w3-border w3-round w3-section">';
+                echo '<div class="w3-margin" style="width:100%; clear:both;"></div>';
                 echo muestraCuenta();
+                echo '<div style="width:100%; clear:both;"></div>';
                 echo muestraFormularioBorrar();
                 echo '</div>';
                 ?></article>

@@ -63,6 +63,7 @@ if (!isset($_GET['categoria'])) {
                     <h2>Modificaci&oacute;n Cliente</h2>
                     <div class="w3-container w3-white w3-border w3-round w3-section tab-content current">
                         <?php
+                        echo '<br/>';
                         require_once '../back-end/formulario_modificar_cliente.php';
                         ?>
                     </div>

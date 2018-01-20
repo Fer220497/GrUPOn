@@ -136,21 +136,22 @@ function muestraFormularioDatos() {
     }
 
     $form = '<form action="" method="post">' .
-            'Correo: <input type="text" name="correo" value="' . $correo . '"/><br/>' .
-            'Nombre: <input type="text" name="nombre_cliente" value="' . $nombre . '"/><br/>' .
-            'Apellidos: <input type="text" name="apellidos_cliente" value="' . $apellidos . '"/> <br/>' .
-            'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma">' . opcionesComunidadSeleccionada($ca) .
-            '</select><br>Afinidades:<br/>' . checkboxesCategoriasSeleccionadas($afinidades) . '<input class="w3-button" type="submit" name="cambiarDatos" value="Guardar"/>' .
-            '</form>';
+            'Correo: <input class="w3-input" type="text" name="correo" value="' . $correo . '"/><br/>' .
+            'Nombre: <input class="w3-input" type="text" name="nombre_cliente" value="' . $nombre . '"/><br/>' .
+            'Apellidos: <input class="w3-input" type="text" name="apellidos_cliente" value="' . $apellidos . '"/> <br/>' .
+            'Comunidad Aut&oacute;noma: <select class="w3-input" name="comunidad_autonoma">' . opcionesComunidadSeleccionada($ca) .
+            '</select><br>Afinidades:<br/>' . checkboxesCategoriasSeleccionadas($afinidades) . 
+            '<br/><input class="w3-button w3-block w3-large  w3-border w3-round w3-hover-pale-green" type="submit" name="cambiarDatos" value="Guardar"/><br/>' .
+            '</form></div>';
     return $form;
 }
 
 function muestraFormularioPwd() {
-    $form = '<form action="" method="post">' .
-            'Contrase&ntilde;a actual: <input type="password" name="pwd_old"/><br/>' .
-            'Nueva contrase&ntilde;a: <input type="password" name="pwd_new" /><br/>' .
-            'Confirmar nueva contrase&ntilde;a: <input type="password" name="pwd_new_confirm" /><br/>' .
-            '<input class="w3-button" type="submit" name="cambiarPwd" value="Cambiar"/>' .
+    $form = '<div class="w3-container w3-white w3-border w3-round w3-section tab-content current"><br/><form action="" method="post">' .
+            'Contrase&ntilde;a actual: <input class="w3-input" type="password" name="pwd_old"/><br/>' .
+            'Nueva contrase&ntilde;a: <input class="w3-input" type="password" name="pwd_new" /><br/>' .
+            'Confirmar nueva contrase&ntilde;a: <input class="w3-input" type="password" name="pwd_new_confirm" /><br/>' .
+            '<input class="w3-button w3-block w3-large w3-border w3-round w3-hover-pale-green" type="submit" name="cambiarPwd" value="Cambiar"/><br/>' .
             '</form>';
     return $form;
 }

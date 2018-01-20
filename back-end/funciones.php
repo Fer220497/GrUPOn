@@ -312,9 +312,9 @@ function checkboxesCategoriasSeleccionadas($afinidades) {
     $form = '';
     foreach ($arrayCategorias as $key => $val) {
         if (in_array($key, $afinidades)) {
-            $form .= $val . ': <input type="checkbox" name="' . $key . '" value="' . $key . '" checked/><br/>';
+            $form .= '<span class="w3-half">' .$val . ':</span><input class="w3-check w3-quarter" type="checkbox" name="' . $key . '" value="' . $key . '" checked/><br/>';
         } else {
-            $form .= $val . ': <input type="checkbox" name="' . $key . '" value="' . $key . '"/><br/>';
+            $form .= '<span class="w3-half">' .$val . ':</span><input class="w3-check w3-quarter" type="checkbox" name="' . $key . '" value="' . $key . '"/><br/>';
         }
     }
     return $form;

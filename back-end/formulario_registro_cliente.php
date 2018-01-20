@@ -136,7 +136,7 @@ function formularioRegistroCliente() {
             '<input class="w3-input" type="password" name="pwd_confirmar" placeholder="Confirmar contrase&ntilde;a" required/><br/>' .
             '<input class="w3-input" type="text" name="nombre_cliente" placeholder="Nombre" required/><br/>' .
             '<input class="w3-input" type="text" name="apellidos_cliente" placeholder="Apellidos" required/> <br/>' .
-            'Comunidad Aut&oacute;noma: <select name="comunidad_autonoma" required>' . opcionesComunidades() . '</select><br>' .
+            'Comunidad Aut&oacute;noma: <select class="w3-input" name="comunidad_autonoma" required>' . opcionesComunidades() . '</select><br>' .
             '<h3>Afinidades</h3><br/>' . checkboxesCategorias() . '<br/>' .
             $recaptcha .
             '<input class="w3-button w3-light-grey w3-round w3-col m6" type="submit" name="registroCliente" value="Enviar"/>' .

@@ -15,8 +15,8 @@
      * @return string
      */
     function muestraFormularioBorrar(){
-        return '<form action="" method="post">
-                    <input type="submit" name="borrar" value="Borrar Cuenta"/> Marcar si est&aacute;s seguro de que quieres borrar la cuenta <input type="checkbox" name="check" value="Borrar"/>
+        return '<form class="w3-panel w3-red w3-topbar w3-bottombar w3-border-red" action="" method="post">
+                    <input class="w3-btn w3-hover-pale-red w3-border w3-round"  type="submit" name="borrar" value="Borrar Cuenta"/><input class="w3-check" type="checkbox" name="check" value="Borrar"/> Marcar si est&aacute;s seguro de que quieres borrar la cuenta
                 </form>';
     }
 

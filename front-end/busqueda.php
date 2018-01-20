@@ -54,6 +54,10 @@ if (!isset($_GET['categoria'])) {
                 //$('.zoom').zoom();
 
             });
+            var valueofCarrito = getCookie("carrito");
+            if (valueofCarrito == "") {
+                setCookie("carrito",'', 1);
+            }
         </script>
     </head>
     <body>

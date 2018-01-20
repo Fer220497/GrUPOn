@@ -46,14 +46,14 @@ if (!isset($_GET['categoria'])) {
                     $(this).addClass("current");
                     $("#" + $tab_id).addClass("current");
                 });
-
-
-
-
                 // $('button.paginacion').pagina();
                 //$('.zoom').zoom();
 
             });
+            var valueofCarrito = getCookie("carrito");
+            if (valueofCarrito == "") {
+                setCookie("carrito",'', 1);
+            }
         </script>
     </head>
     <body>

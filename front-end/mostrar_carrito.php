@@ -23,6 +23,11 @@ if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'empresa') {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
         <script src="../back-end/funciones.js"></script>
         <script src="../back-end/libs/jquery.zoom.min.js"></script>
+        <script>
+            var valueofCarrito = getCookie("carrito");
+            if (valueofCarrito == "") {
+                setCookie("carrito",'', 1);
+            }</script>
     </head>
     <body>
         <header class="w3-container w3-flat-midnight-blue">
