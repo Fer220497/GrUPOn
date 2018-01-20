@@ -75,7 +75,7 @@ if (isset($_POST['modificarEmpresa'])) {
         "correo" => FILTER_VALIDATE_EMAIL,
         "nif_empresa" => array(
             "filter" => FILTER_VALIDATE_REGEXP,
-            "options" => array("regexp" => "/^([A-HJUV]\d{8})|([NP-SW]\d{7}[A-Z])$/")
+            "options" => array("regexp" => "/^([A-HJUV]\d{8})$|([NP-SW]\d{7}[A-Z]{1})$/")
         ),
         "web_empresa" => FILTER_VALIDATE_URL,
         "telefono_empresa" => array(
