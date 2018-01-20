@@ -1,6 +1,5 @@
 <?php
 session_start();
-require_once '../back-end/formulario_comentario.php';
 require_once '../back-end/funciones.php';
 if (!isset($_GET['categoria'])) {
     $_GET['categoria'] = 'general';
@@ -64,6 +63,7 @@ if (!isset($_GET['categoria'])) {
             </aside>
             <article class="w3-container w3-threequarter">
                 <?php
+                require_once '../back-end/formulario_comentario.php';
                 require_once '../back-end/formulario_borrar_producto.php';
                 require_once '../back-end/lectura_producto.php';
                 if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] != 'empresa') {
