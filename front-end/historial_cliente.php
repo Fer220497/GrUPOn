@@ -48,7 +48,7 @@ if (!isset($_SESSION['cuenta']) || $_SESSION['tipo'] != 'cliente') {
                 <?php echo menuCategorias(); ?>
             </aside>
             <!--AQUI IRA TODO EL MAIN -->
-            <article>
+            <article class="w3-container w3-threequarter">
                 <?php
                 echo historialCliente($_SESSION['cuenta']);
                 require_once '../back-end/funciones.php'

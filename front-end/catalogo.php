@@ -55,7 +55,7 @@ if (isset($SESSION['tipo']) && $SESSION['tipo'] == 'cliente') {
 <?php echo menuCategorias(); ?>
             </aside>
             <!--AQUI IRA TODO EL MAIN -->
-            <article>
+            <article class="w3-container w3-threequarter">
                 <?php
                 require_once '../back-end/formulario_borrar_catalogo.php';
                 require_once '../back-end/lectura_catalogo.php';

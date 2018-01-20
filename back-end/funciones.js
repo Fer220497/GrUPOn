@@ -14,9 +14,7 @@ function iniciarCarrito() {
 }
 function addCarrito(id, carritoActual) {
     var var_string = id;
-    alert("Valor del id producto" + var_string);
     var valueofCarrito = getCookie("carrito");
-    alert("Valor actual del carrito" + valueofCarrito);
     if (valueofCarrito == "") {
         setCookie("carrito", var_string, 1);
     } else {
@@ -38,7 +36,6 @@ function addCarrito(id, carritoActual) {
  * @return string
  */
 function removeCarrito(index) {
-    alert("Eliminar producto numero ".concat(index, " del array"));
     var carritoActual = getCookie("carrito");
     var array = carritoActual.split(",");
     array.splice(index, 1);

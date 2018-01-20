@@ -52,7 +52,7 @@ if (!isset($_SESSION['cuenta']) || $_SESSION['tipo'] != 'empresa') {
                 <?php echo menuCategorias(); ?>
             </aside>
             <!--AQUI IRA TODO EL MAIN -->
-            <article>
+            <article class="w3-container w3-threequarter">
                 <h2>Modificaci&oacute;n Catalogo</h2>
                 <?php require_once '../back-end/formulario_modificar_catalogo.php'; ?>
 

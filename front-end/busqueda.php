@@ -55,7 +55,7 @@ if (!isset($_GET['categoria'])) {
 <?php echo menuCategorias(); ?>
             </aside>
 
-            <article>
+            <article class="w3-container w3-threequarter">
 <?php require_once '../back-end/formulario_busqueda_producto.php'; ?>
             </article>
         </main>

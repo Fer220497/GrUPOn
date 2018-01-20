@@ -44,7 +44,7 @@ require_once '../back-end/funciones.php';
                 <?php echo menuCategorias(); ?>
             </aside>
             <!--AQUI IRA TODO EL MAIN -->
-            <article>
+            <article class="w3-container w3-threequarter">
                 <h2>Seleccione Producto</h2>
                 <?php echo mostrarProductosVendedor($_SESSION['cuenta']);
                 //require_once '../back-end/formulario_modificar_producto.php'; 

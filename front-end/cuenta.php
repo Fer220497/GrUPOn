@@ -52,7 +52,7 @@ if (isset($SESSION['tipo']) && $SESSION['tipo'] == 'cliente') {
                 </h2>
                 <?php echo menuCategorias(); ?>
             </aside>
-            <article>
+            <article class="w3-container w3-threequarter">
                 <h2>Hola <?php echo $_SESSION['nombre'] ?>, aqu&iacute; est&aacute; la informaci&oacute;n de su cuenta</h2>
                 <!--Esto debería ser el submenú de datos, que muestra las opciones del empresario o cliente dependiendo de la cuenta-->
                 <?php

@@ -52,7 +52,7 @@ require_once '../back-end/funciones.php';
                 <?php echo menuCategorias(); ?>
             </aside>
             <!--AQUI IRA TODO EL MAIN -->
-            <article>
+            <article class="w3-container w3-threequarter">
                 <?php
                 require_once '../back-end/lectura_carrito.php';
                 require_once '../back-end/lectura_producto.php';

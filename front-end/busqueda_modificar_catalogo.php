@@ -46,7 +46,7 @@ if (isset($SESSION['tipo']) && $SESSION['tipo'] == 'cliente') {
                 <?php echo menuCategorias(); ?>
             </aside>
 
-            <article>
+            <article class="w3-container w3-threequarter">
                 <?php echo busquedaCatalogo();
                 ?>
             </article>

@@ -58,7 +58,7 @@ if (!isset($_SESSION['cuenta']) || $_SESSION['tipo'] != 'cliente') {
                     <?php echo menuCategorias(); ?>
                 </aside>
                 <!--AQUI IRA TODO EL MAIN -->
-                <article>
+                <article class="w3-container w3-threequarter">
                     <?php
                     echo "<h2>Modificaci&oacute;n Cliente</h2>";
                     require_once '../back-end/formulario_modificar_cliente.php';
