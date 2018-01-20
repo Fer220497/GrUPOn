@@ -521,7 +521,7 @@ function busquedaCatalogo() {
     $result = realizarQuery($esquema, $sql);
     $cookie_name = "catalogo_visitado";
     while ($listaCatalogos = mysqli_fetch_array($result)) {
-        $form .= '<div class=""><a href="../front-end/modificar_catalogo.php?id=' . $listaCatalogos["id_catalogo"] . '">' . $listaCatalogos["nombre"] . '</a></div>';
+        $form .= '<div class="w3-btn w3-block w3-flat-silver w3-round w3-margin"><a href="../front-end/modificar_catalogo.php?id=' . $listaCatalogos["id_catalogo"] . '">' . $listaCatalogos["nombre"] . '</a></div>';
     }
     $form .= '</div>';
     return $form;

@@ -12,8 +12,8 @@ if (!isset($_GET['id'])) {
         <!--NECESARIOS-->  <!--NO NECESARIOS-->
         <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
         <link href='estilo.css' rel="stylesheet"/><?php
-if (isset($SESSION['tipo']) && $SESSION['tipo'] == 'cliente') {
-    ?>
+        if (isset($SESSION['tipo']) && $SESSION['tipo'] == 'cliente') {
+            ?>
             <link href='estilo_login.css' rel="stylesheet"/>
             <?php
         }
@@ -52,7 +52,7 @@ if (isset($SESSION['tipo']) && $SESSION['tipo'] == 'cliente') {
                     }
                     ?>
                 </h2>
-<?php echo menuCategorias(); ?>
+                <?php echo menuCategorias(); ?>
             </aside>
             <!--AQUI IRA TODO EL MAIN -->
             <article class="w3-container w3-threequarter">
