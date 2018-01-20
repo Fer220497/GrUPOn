@@ -46,7 +46,7 @@ function formularioCreacionCatalogo() {
             ' Nombre: <input class="w3-input" type="text" name="nombre" /><br/>' .
             ' Categor&iacute;a: <select class="w3-input" name="nombre_categoria">' . optionCategorias() .
             '</select>' .
-            ' <input class="w3-button w3-light-grey w3-round w3-col m6" type="submit" name="nuevo_cat" value="Enviar"/>' .
+            ' <input class="w3-button w3-block w3-light-grey w3-round w3-hover-pale-green" type="submit" name="nuevo_cat" value="Enviar"/>' .
             ' </form>';
     return $form;
 }
