@@ -58,11 +58,11 @@ if (isset($_POST['modificarProducto'])) {
         $_POST['porcentaje_descuento'] = filter_var($_POST['porcentaje_descuento'], FILTER_SANITIZE_NUMBER_INT);
     }
     //Cantidad: VALIDAR INT, COMPROBAR LIMITES Y SANEAR
-    if(!filter_var($_POST['cantidad_disponible'], FILTER_VALIDATE_INT) ||
-            $_POST['cantidad_disponible'] <= 0){
+    if(!filter_var($_POST['cantidad'], FILTER_VALIDATE_INT) ||
+            $_POST['cantidad'] <= 0){
         $error[] = 'Cantidad disponible incorrecta';
     }else{
-        $_POST['cantidad_disponible'] = filter_var($_POST['cantidad_disponible'],FILTER_SANITIZE_NUMBER_INT);
+        $_POST['cantidad'] = filter_var($_POST['cantidad'],FILTER_SANITIZE_NUMBER_INT);
     }
 
     if (!isset($errores)) {
@@ -73,7 +73,7 @@ if (isset($_POST['modificarProducto'])) {
             $foto = $_FILES['imagen']['name'];
         }
 
-        $sql = 'SELECT * FROM producto WHERE id_producto = "' . $_COOKIE['productoVisitado'] . '"';
+        $sql = 'SELECT * FROM producto WHERE id_producto = "' . $_GET['id'] . '"';
         $result = realizarQuery($esquema, $sql);
         $producto = mysqli_fetch_array($result);
         $cantidadVendida = $producto["cantidad_vendida"];
@@ -105,7 +105,7 @@ if (isset($_POST['modificarProducto'])) {
         $sql = "UPDATE producto SET nombre_categoria = '" . $categoria . "', nombre_ca = '" . $comunidad . "', nombre = '" . $nombre . "'"
                 . ", precio = '" . $precio . "', descripcion = '" . $descripcion . "', localizacion = '" . $localizacion . "'"
                 . ", cantidad_disponible = '" . $cantidad . "', cantidad_total ='" . $total . "', "
-                . "porcentaje_descuento = '" . $porcentaje_descuento . "', ruta_imagen ='" . $nombreFichero . "', id_catalogo = " . $id_catalogo . " WHERE id_producto ='" . $_COOKIE['productoVisitado'] . "'";
+                . "porcentaje_descuento = '" . $porcentaje_descuento . "', ruta_imagen ='" . $nombreFichero . "', id_catalogo = " . $id_catalogo . " WHERE id_producto ='" . $_GET['id'] . "'";
         echo $sql;
         realizarQuery($esquema, $sql);
         $tmp = $_FILES['imagen']['tmp_name'];
@@ -124,6 +124,7 @@ if (!isset($_POST['modificarProducto']) || isset($errores)) {
 }
 
 function formularioModificarProducto($id) {
+    $correo = $_SESSION['cuenta'];
     global $esquema;
     $sql = 'SELECT * FROM producto WHERE id_producto = "' . $id . '"';
     $result = realizarQuery($esquema, $sql);
@@ -132,10 +133,17 @@ function formularioModificarProducto($id) {
             '<form action="" method="post" enctype="multipart/form-data">' .
             'Nombre: <input  class="w3-input" type="text" name="nombre" value="' . $producto["nombre"] . '"/><br/>' .
             'Precio: <input class="w3-input"  type="number" name="precio" value="' . $producto["precio"] . '"/><br/>' .
-            'ID_Catalogo:<input class="w3-input"  type="number" name="id_catalogo" value="' . $producto["id_catalogo"] . '"/><br/>' .
             'Descripci&oacute;n: <textarea name="descripcion" rows="4" cols="10">' . $producto["descripcion"] . '</textarea><br/>' .
             'Categor&iacute;a: <select class="w3-input" name="categoria">' . optionCategoriasSeleccionadas($producto["nombre_categoria"]) . '</select><br/>' .
             'Comunidad aut&oacute;noma: <select class="w3-input" name="comunidad">' . opcionesComunidadSeleccionada($producto["nombre_ca"]) . '</select><br/>' .
+            'Cat&aacute;logo <select class="w3-input" name="id_catalogo">' .
+            '<option value=""></option>'; ///////////POR AÑADIR
+    $sql = "SELECT id_catalogo, nombre FROM catalogo WHERE correo='$correo'";
+    $result = realizarQuery($esquema, $sql);
+    while ($fila = mysqli_fetch_row($result)) {
+        $form .= '<option value="' . $fila[0] . '">' . $fila[1] . '</option>';
+    }
+    $form .= '</select><br>' .
             'Localizaci&oacute;n: <input  class="w3-input"  type="text" name="localizacion" value="' . $producto["localizacion"] . '" /><br/>' .
             'Porcentaje descuento: <input  class="w3-input"  type="number" name="porcentaje_descuento" value="' . $producto["porcentaje_descuento"] . '" /><br/>' .
             'Cantidad disponible: <input class="w3-input"  type="number" name="cantidad" value="' . $producto["cantidad_disponible"] . '" /><br/>' .

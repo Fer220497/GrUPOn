@@ -4,14 +4,14 @@ require_once '../back-end/conexion_db.php';
 require_once '../back-end/funciones.php';
 
 if (isset($_POST['borrar']) && isset($_POST['check'])) {
-    $id = $_COOKIE['catalogoVisitado'];
+    $id = $_GET['id'];
     
 
     $sql = "UPDATE producto SET id_catalogo=NULL WHERE id_catalogo='$id'";
     realizarQuery($esquema, $sql); 
     $sql = "DELETE FROM catalogo WHERE id_catalogo=$id";
     realizarQuery($esquema, $sql);  //OP DELETE SOBRE
-    //header('Location: ../back-end/logout.php'); LLEVALRO AL MENU PRINCIPAL?
+    header('Location: cuenta.php'); 
 }
 
 // $sql = "UPDATE CUENTA SET PWD='$hash' WHERE CORREO='$correo'";

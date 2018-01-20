@@ -29,6 +29,7 @@ if (isset($_POST['nuevo_cat'])) {
         $nombre = sanitarString($_POST['nombre']);
         $categoria = $_POST['nombre_categoria'];
         $query = "INSERT INTO catalogo (correo, nombre_categoria, nombre) VALUES ('". $correo ."', '". $categoria ."','". $nombre ."')";
+        realizarQuery($esquema, $query);
     }
 }if (!isset($_POST['login']) || isset($error)) {
     if (isset($error)) {
