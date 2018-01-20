@@ -51,7 +51,7 @@ if (!isset($_GET['categoria'])) {
 
 
                 // $('button.paginacion').pagina();
-                $('.zoom').zoom();
+                //$('.zoom').zoom();
 
             });
         </script>

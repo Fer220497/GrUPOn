@@ -61,11 +61,12 @@ if (!isset($_GET['categoria'])) {
                 <?php
                 require_once '../back-end/formulario_borrar_producto.php';
                 require_once '../back-end/lectura_producto.php';
-                echo muestraProducto($_GET['id']);
-                if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'empresa' && esVendedor($_GET['id'], $_SESSION['cuenta'])) {
-                    echo muestraFormularioBorrar($_GET['id']);
-                }
                 echo mostrarBotonAnadir($_GET['id']);
+                echo muestraProducto($_GET['id']);
+                /*if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'empresa' && esVendedor($_GET['id'], $_SESSION['cuenta'])) {
+                    echo muestraFormularioBorrar($_GET['id']);
+                }*/
+                
 
                 if (isset($_SESSION['cuenta']) && $_SESSION['tipo'] == 'cliente' &&
                         puedeComentar($_SESSION['cuenta'], $_GET['id'])) {

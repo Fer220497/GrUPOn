@@ -27,9 +27,8 @@ body main div.w3-container.w3-white.w3-border.w3-round.w3-section.w3-third.w3-ma
 }
 
 #map-canvas{
-    width: 50%;
-    height: 50%;
-    margin-bottom: 3%;
+    width: 100%;
+    height: 100%;
 }
 
 textarea {
@@ -42,4 +41,24 @@ textarea {
     background-color: #f8f8f8;
     font-size: 16px;
     resize: none;
+}
+
+.w3-row{
+    margin-bottom: 0px;
+}
+
+#relleno{
+    width:100%;
+    clear: both;
+    height:20px;
+}
+
+.linkEmpresa{
+    text-decoration: underline;
+    color: blue;
+}
+
+.linkEmpresa:visited{
+    text-decoration: underline;
+    color: purple;
 }

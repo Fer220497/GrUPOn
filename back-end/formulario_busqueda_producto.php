@@ -51,7 +51,7 @@ if (isset($_GET['busqueda'])) {
         $str .= '</table>';
         */
         $str = previewProducto($result);
-        $str .= '<h3>Cat&aacute;logos</h3><table border = 1>';
+        $str .= '<h3>Cat&aacute;logos</h3>';
         //$nombre = $_GET['nombre'];
         if ($_GET['categoria'] != 'general') {
             $sql = 'SELECT * FROM catalogo WHERE nombre LIKE "%' . $nombre . '%" AND nombre_categoria = "' . $_GET['categoria'] . '"';
@@ -59,14 +59,20 @@ if (isset($_GET['busqueda'])) {
             $sql = 'SELECT * FROM catalogo WHERE nombre LIKE "%' . $nombre . '%"';
         }
         $result = realizarQuery($esquema, $sql);
+        if(mysqli_num_rows($result) > 0){
         $str .= '<div class="w3-container w3-white w3-border w3-round w3-section ">';
         while ($fila = mysqli_fetch_row($result)) {
             $cookie_name = "catalogoVisitado";
             
              
-            $str .= '<a href="catalogo.php?id='.$fila[0].'&categoria='.$_GET['categoria'].'"><div class="w3-third" >' . $fila[3] . '</div><div class="w3-third">  Categoria ' . $fila[2] . '</div><div class="w3-third">Empresa ' . $fila[1] . '</div></a>';
+            $str .= '<a class="w3-btn w3-block w3-flat-silver w3-round w3-margin" href="catalogo.php?id='.$fila[0].'&categoria='.$_GET['categoria'].'"><div class="w3-third" >Nombre: ' . $fila[3] . '</div><div class="w3-third">  Categor&iacute;a: ' . $fila[2] . '</div><div class="w3-third">Empresa: ' . $fila[1] . '</div></a>';
         }
-        echo $str . '</div>';
+        $str .= '</div>';
+        }else{
+            $str .=  '<div class="w3-panel w3-pale-red w3-leftbar w3-border-red">
+            <p>No hay cat&aacute;logos.</p></div>';
+        }
+        echo $str;
     }
 }
 

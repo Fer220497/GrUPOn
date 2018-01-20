@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../back-end/funciones.php';
-inicializarDB();
+//inicializarDB();
 if (!isset($_GET['categoria'])) {
     $_GET['categoria'] = 'general';
 }

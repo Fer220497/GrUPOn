@@ -5,7 +5,6 @@ if (!isset($_GET['categoria'])) {
     $_GET['categoria'] = 'general';
 }
 ?>
-<!DOCTYPE html>
 <html>
     <head>
         <title>Mostrar Empresa</title>

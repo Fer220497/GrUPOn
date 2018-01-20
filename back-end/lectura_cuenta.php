@@ -77,14 +77,14 @@ function muestraDatosEmpresaMapa($correo) {
 //            '<tr><td><div id="map-canvas"></div></td></tr></table>';
 
     $str = '<input type=hidden id="localizacion" value="' . $fila['direccion_empresa'] . '"/>' .
-            '<div class="w3-container w3-half">' . $fila['nombre_empresa'] . '</div>' .
+            '<div class="w3-container w3-half"><h1>' . $fila['nombre_empresa'] . '</h1></div><div style="width:100%; clear:both;"></div>' .
             '<div class="w3-container w3-half">NIF: ' . $fila['nif_empresa'] . '</div>' .
             '<div class="w3-container w3-half">Correo Electr&oacute;nico: ' . $fila['email_empresa'] . '</div>' .
             '<div class="w3-container w3-half">Tel&eacute;fono: ' . $fila['telefono_empresa'] . '</div>' .
-            '<div class="w3-container w3-half">' . $fila['direccion_empresa'] . '</div>' .
-            '<div class="w3-container w3-half">' . $arrayComunidades[$fila['nombre_ca']] . '</div>' .
-            '<div class="w3-container">' . $fila['web_empresa'] . '</div>' .
-            '<div id="map-canvas"></div>';
+            '<div class="w3-container w3-half">Direcci&oacute;n: ' . $fila['direccion_empresa'] . '</div>' .
+            '<div class="w3-container w3-half">Comunidad Aut&oacute;noma: ' . $arrayComunidades[$fila['nombre_ca']] . '</div>' .
+            '<div class="w3-container">Web: <a class="linkEmpresa" href="'. $fila['web_empresa'] . '">' . $fila['web_empresa'] . '</a></div><div style="width:100%; clear:both;"></div>' .
+            '<br/><div class="w3-container w3-card" id="map-canvas"></div><div style="width:100%; clear:both;"></div></div>';
 
     return $str;
 }

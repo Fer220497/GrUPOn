@@ -37,10 +37,10 @@ function muestraProducto($id) {
 //            . '</td></tr></table>';
 
     $table = '<input type="hidden" id="localizacion" value="' . $fila['localizacion'] . '"/>' .
-            '<div class="w3-container w3-white w3-border w3-round w3-section"><div class="w3-container w3-third"><div class="zoom"><img class="w3-image" src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="' . $fila["nombre"] . '"/></div></div>' .
+            '<div class="w3-container w3-white w3-border w3-round w3-section" style="padding:3%"><div class="contenedorProducto"></div><div class="w3-container w3-third"><div class="zoom"><img class="w3-image w3-card" src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="' . $fila["nombre"] . '"/></div></div>' .
             '<div class="w3-container w3-twothird"><div class="w3-container w3-half"><h2>' . $fila['nombre'] . '</h2></div><div class="w3-container w3-half"><div class="w3-container w3-third"><span style="text-decoration: line-through">' . $fila["precio"] . '&euro;</span></div><div class="w3-container w3-third"><span class="w3-tag w3-padding w3-red" style="transform:rotate(-5deg)">-' . $fila['porcentaje_descuento'] . '%</span></div><div class="w3-container w3-third"><span style="font-weight: bold"> ' . $p_desc . '&euro;</span></div></div>' .
-            '<div class="w3-container">' . $fila['descripcion'] . '<br/>Unidades restantes: ' . $fila['cantidad_disponible'] . '<br/>Vendedor: <a href="../front-end/mostrar_empresa.php?correo=' . $datosEmpresa["correo"] . '">' . $datosEmpresa["correo"] . '</a><br/>Localizaci&oacute;n: ' . $fila['localizacion'] . '<br/></div></div><br/>' .
-            '<div class="w3-container" id="map-canvas"></div></div>';
+            '<div class="w3-container">' . $fila['descripcion'] . '<br/>Unidades restantes: ' . $fila['cantidad_disponible'] . '<br/>Vendedor: <a class="linkEmpresa" href="../front-end/mostrar_empresa.php?correo=' . $datosEmpresa["correo"] . '">' . $datosEmpresa["correo"] . '</a><br/>Localizaci&oacute;n: ' . $fila['localizacion'] . '<br/></div></div><br/>' .
+            '<div id="relleno"></div><div class="w3-container w3-card" id="map-canvas"></div></div>';
 
 
     return $table;
@@ -48,7 +48,7 @@ function muestraProducto($id) {
 
 function mostrarBotonAnadir($id) {
     $cookieCarrito = $_COOKIE["carrito"];
-    echo '<button onclick="addCarrito(\'' . $id . '\',' . $cookieCarrito . ')">A&ntilde;adir a Carrito</button>';
+    echo '<button class="w3-btn w3-block w3-flat-orange w3-large"onclick="addCarrito(\'' . $id . '\',' . $cookieCarrito . ')" style="margin-top: 1%">A&ntilde;adir a Carrito 🛒</button>';
 }
 
 ?>

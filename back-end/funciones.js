@@ -8,7 +8,7 @@
 
 function iniciarCarrito() {
     //añadir // en caso de querer reiniciar con el login
-    if (getCookie("carrito")=="") {
+    if (getCookie("carrito") == "") {
         setCookie("carrito", "", 1);
     }
 }
@@ -26,6 +26,12 @@ function addCarrito(id, carritoActual) {
         setCookie(cookie_name, string, 1);
 
     }
+
+    var bloqueHTML = '<div class="w3-panel w3-green w3-display-container">' +
+            '<span onclick="this.parentElement.style.display=\'none\'"' +
+            'class="w3-button w3-red w3-large w3-display-topright">&times;</span>' +
+            '<h1>&iexcl;Se ha a&ntilde;adido el producto correctamente!</h1></div>'
+    $('.contenedorProducto').append(bloqueHTML);
 
 }
 /**
@@ -82,26 +88,26 @@ function checkCookie() {
     } else {
 
     }
-    
+
 }
 
 categorias = {viajes: "Viajes",
-                entretenimiento: "Entretenimiento",
-                gastronomia: "Gastronomía",
-                electronica: "Electrónica",
-                ropa: "Ropa",
-                salud_y_belleza: "Salud y belleza",
-                deporte: "Deporte",
-                general: "General",
-            };
-            
+    entretenimiento: "Entretenimiento",
+    gastronomia: "Gastronomía",
+    electronica: "Electrónica",
+    ropa: "Ropa",
+    salud_y_belleza: "Salud y belleza",
+    deporte: "Deporte",
+    general: "General",
+};
+
 categoriasLogged = {viajes: "Viajes",
-                entretenimiento: "Entretenimiento",
-                gastronomia: "Gastronomía",
-                electronica: "Electrónica",
-                ropa: "Ropa",
-                salud_y_belleza: "Salud y belleza",
-                deporte: "Deporte",
-                general: "General",
-                tus_gustos: "Tus Gustos"
-            };
+    entretenimiento: "Entretenimiento",
+    gastronomia: "Gastronomía",
+    electronica: "Electrónica",
+    ropa: "Ropa",
+    salud_y_belleza: "Salud y belleza",
+    deporte: "Deporte",
+    general: "General",
+    tus_gustos: "Tus Gustos"
+};

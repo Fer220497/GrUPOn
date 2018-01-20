@@ -40,59 +40,68 @@ function mostrarComentarios($producto) {
     $result = realizarQuery($esquema, $query);
     if (mysqli_num_rows($result) > 0) {
         $sumaPuntuaciones = 0;
-        $str = '<div id="comentarios">';
+        $str = '<div class="w3-container w3-white w3-border w3-round w3-section"><h1>Comentarios</h1>';
         while ($fila = mysqli_fetch_array($result)) {
-            $str .= '<h4>' . $fila['nombre_cliente'] . ', ' . $fila['valoracion'] . '</h4>'
-                    . '<p>' . $fila['comentario'] . '</p>';
+            $str .= '<div class="w3-panel w3-light-grey"><span style="font-size:150px;line-height:0.6em;opacity:0.2">❝</span>'
+                    . ' <p class="w3-xlarge" style="margin-top:-40px"><i>' . $fila['comentario'] . '<i></p>'
+                    . $fila['nombre_cliente'] . ' ' . $fila['apellidos_cliente'] . ', valoraci&oacute;n: ' . $fila['valoracion'] . '/5</div>';
             $sumaPuntuaciones += $fila['valoracion'];
         }
-        return '<div id="puntuacion_total"><h3>Valoraci&oacute;n media: ' . $sumaPuntuaciones / mysqli_num_rows($result) .
-                '/5</h3></div>' . $str . '</div>';
+        $puntuacion = $sumaPuntuaciones / mysqli_num_rows($result);
+        if ($puntuacion < 1.6) {
+            $htmlPuntuacion = '<div class="w3-panel w3-pale-red w3-leftbar w3-rightbar w3-border-red"><h1>Valoraci&oacute;n media: ' . $puntuacion .
+                    '/5</h1></div>';
+        } else if ($puntuacion < 3.2) {
+            $htmlPuntuacion = '<div class="w3-panel w3-pale-yellow w3-leftbar w3-rightbar w3-border-yellow"><h1>Valoraci&oacute;n media: ' . $puntuacion .
+                    '/5</h1></div>';
+        } else {
+            $htmlPuntuacion = '<div class="w3-panel w3-pale-green w3-leftbar w3-rightbar w3-border-green"><h1>Valoraci&oacute;n media: ' . $puntuacion .
+                    '/5</h1></div>';
+        }
+        return $htmlPuntuacion . $str . '</div>';
     } else {
-        return '<div id="comentarios">No hay comentarios</div>';
+        return '<div class="w3-panel w3-pale-red w3-leftbar w3-border-red"><h1>No hay comentarios</h1></div>';
     }
 }
-
 
 function mostrarProductosVendedor($correo) {
     $cookie_name = 'productoVisitado';
     $productos = 1;
-    $numpaginas=1;
+    $numpaginas = 1;
     global $esquema;
     $query = "SELECT * FROM lanzamientos,producto WHERE producto.id_producto = lanzamientos.id_producto AND lanzamientos.correo = '$correo'";
     $result = realizarQuery($esquema, $query);
     if (mysqli_num_rows($result) == 0) {
         return '<p>No tiene productos en venta</p>';
     } else {
-     $str = '<div class="w3-container w3-white w3-border w3-round w3-section tab-content current" id="tab-'.$numpaginas.'"  >';
-    while ($fila = mysqli_fetch_array($result)) {
-        $productos++;
-        $numpaginas=1;
-        if ($productos == 11) {
-            $productos = 0;
-            $numpaginas++;
-            $str .= '</div>';
-            $str .= '<div class="w3-container w3-white w3-border w3-round w3-section tab-content" id="tab-'.$numpaginas.'" >';
-        }//productos
-            $str .= '<div class="w3-container w3-center w3-section w3-border w3-border-white w3-hover-border-blue w3-third"><a href="modificar_producto.php?id=' . $fila["id_producto"]. '")" >';
+        $str = '<div class="w3-container w3-white w3-border w3-round w3-section tab-content current" id="tab-' . $numpaginas . '"  >';
+        while ($fila = mysqli_fetch_array($result)) {
+            $productos++;
+            $numpaginas = 1;
+            if ($productos == 11) {
+                $productos = 0;
+                $numpaginas++;
+                $str .= '</div>';
+                $str .= '<div class="w3-container w3-white w3-border w3-round w3-section tab-content" id="tab-' . $numpaginas . '" >';
+            }//productos
+            $str .= '<div class="w3-container w3-center w3-section w3-border w3-border-white w3-hover-border-blue w3-third"><a href="modificar_producto.php?id=' . $fila["id_producto"] . '")" >';
             $p_desc = (100 - $fila["porcentaje_descuento"]) * $fila["precio"] / 100;
             $str .= '<div class="w3-container"><div class="zoom"><img class="w3-image" src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="' . $fila["nombre"] . '"/></div></div>' .
                     '<div class="w3-container"><div class="w3-container"><span style="font-weight: bold">' . $fila["nombre"] . ' </span><span class="w3-tag w3-small w3-padding w3-red" style="transform:rotate(-5deg)">-' . $fila["porcentaje_descuento"] . '%</span></div>' .
                     '<div class="w3-container"><span style="text-decoration: line-through">' . $fila["precio"] . '&euro;</span><span style="font-weight: bold"> ' . $p_desc . '&euro;</div></div>';
             $str .= '</a></div>';
-        
-    }
-    $str .= '</div>';
-    $i=1;   
-    $str .= '<ul class="tabs w3-bar">';
-    $str .= '<li class="tab-link current w3-button w3-border" data-tab="tab-'.$i.'">'.$i.'</li>';
-    $i=2;
-    while($i<=$numpaginas){
-            $str .= '<li class="tab-link w3-button w3-border" data-tab="tab-'.$i.'">'.$i.'</li>';
-         $i++;
-    }
-    $str .='</ul>';
-    return $str;
+        }
+        $str .= '</div>';
+        $i = 1;
+        $str .= '<ul class="tabs w3-bar">';
+        $str .= '<li class="tab-link current w3-button w3-border" data-tab="tab-' . $i . '">' . $i . '</li>';
+        $i = 2;
+        while ($i <= $numpaginas) {
+            $str .= '<li class="tab-link w3-button w3-border" data-tab="tab-' . $i . '">' . $i . '</li>';
+            $i++;
+        }
+        $str .= '</ul>';
+        return $str;
     }
 }
 
@@ -111,15 +120,15 @@ function historialCliente($correo) {
     global $esquema;
     $sql = "SELECT * FROM compra,producto WHERE compra.correo='$correo' AND compra.id_producto = producto.id_producto";
     $result = realizarQuery($esquema, $sql);
-    $html ='<div class="w3-container w3-white w3-border w3-round w3-section ">';
+    $html = '<div class="w3-container w3-white w3-border w3-round w3-section ">';
     $html .= '<table border="1"><tr>'
             . '<th>Nombre Producto</th><th>Fecha Compra</th><th>Cantidad</th><th>Precio</th></tr>';
-    
+
     while ($fila = mysqli_fetch_array($result)) {
-       
+
         $html .= '<tr><td><a href="producto.php?id=' . $fila['id_producto'] . '">' . $fila['nombre'] . '</a></td><td>' . $fila['fecha'] . '</td><td>' . $fila['cantidad'] . '</td><td>' . $fila['precio'] . '</td></tr>';
     }
-    $html .= '</table>';//$html .= '<div class="w3-container w3-white w3-border w3-round w3-section">';
+    $html .= '</table>'; //$html .= '<div class="w3-container w3-white w3-border w3-round w3-section">';
     while ($fila = mysqli_fetch_array($result)) {
         $html .= '<a href="producto.php" onclick="setCookie(' . $fila['id_producto'] . ',1)"><div class="w3-container w3-quarter">' . $fila['nombre'] . '</div><div class="w3-container w3-quarter">' . $fila['fecha_ini'] . '</div><div class="w3-container w3-quarter">N&uacute;mero de ventas: ' . $fila['num_ventas'] . '</div><div class="w3-container w3-quarter">Beneficio obtenido: ' . $fila['num_ventas'] * $fila['precio'] . '</div></a>';
     }
@@ -188,7 +197,6 @@ $arrayComunidades = array(
 );
 
 $arrayCategorias = array(
-    
     "viajes" => "Viajes",
     "entretenimiento" => "Entretenimiento",
     "gastronomia" => "Gastronom&iacute;a",
@@ -198,7 +206,7 @@ $arrayCategorias = array(
     "deporte" => "Deporte",
 );
 $arrayCategoriasNoLogged = array(
-    "general"=> "General",
+    "general" => "General",
     "viajes" => "Viajes",
     "entretenimiento" => "Entretenimiento",
     "gastronomia" => "Gastronom&iacute;a",
@@ -207,16 +215,16 @@ $arrayCategoriasNoLogged = array(
     "salud_y_belleza" => "Salud y belleza",
     "deporte" => "Deporte",
 );
-/*$arrayCategorias = array(
-    "viajes" => "Viajes",
-    "entretenimiento" => "Entretenimiento",
-    "gastronomia" => "Gastronom&iacute;a",
-    "electronica" => "Electr&oacute;nica",
-    "ropa" => "Ropa",
-    "salud_y_belleza" => "Salud y belleza",
-    "deporte" => "Deporte",
-);
-*/
+/* $arrayCategorias = array(
+  "viajes" => "Viajes",
+  "entretenimiento" => "Entretenimiento",
+  "gastronomia" => "Gastronom&iacute;a",
+  "electronica" => "Electr&oacute;nica",
+  "ropa" => "Ropa",
+  "salud_y_belleza" => "Salud y belleza",
+  "deporte" => "Deporte",
+  );
+ */
 $arrayCategoriasLogged = array(
     "general" => "General",
     "tus_gustos" => "Tus Gustos",
@@ -398,43 +406,49 @@ function tipoCuenta($correo) {
  * @return string
  */
 function previewProducto($result) {
-    $productos = 1;
-    $numpaginas=1;
-    $str = '<div class="w3-container w3-white w3-border w3-round w3-section tab-content current" id="tab-'.$numpaginas.'"  >';
-    while ($fila = mysqli_fetch_array($result)) {
-        $productos++;
-        $numpaginas=1;
-        if ($productos == 11) {
-            $productos = 0;
-            $numpaginas++;
-            $str .= '</div>';
-            $str .= '<div class="w3-container w3-white w3-border w3-round w3-section tab-content" id="tab-'.$numpaginas.'" >';
-        }//productos
+    if (mysqli_num_rows($result) > 0) {
+        $productos = 1;
+        $numpaginas = 1;
+        $str = '<div class="w3-container w3-white w3-border w3-round w3-section tab-content current" id="tab-' . $numpaginas . '"  >';
+        while ($fila = mysqli_fetch_array($result)) {
+            $productos++;
+            $numpaginas = 1;
+            if ($productos == 11) {
+                $productos = 0;
+                $numpaginas++;
+                $str .= '</div>';
+                $str .= '<div class="w3-container w3-white w3-border w3-round w3-section tab-content" id="tab-' . $numpaginas . '" >';
+            }//productos
             $str .= '<div class="w3-container w3-center w3-section w3-border w3-border-white w3-hover-border-blue w3-third"><a href="producto.php?id=' . $fila["id_producto"] . '")" >';
             $p_desc = (100 - $fila["porcentaje_descuento"]) * $fila["precio"] / 100;
             $str .= '<div class="w3-container"><div class="zoom"><img class="w3-image" src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="' . $fila["nombre"] . '"/></div></div>' .
                     '<div class="w3-container"><div class="w3-container"><span style="font-weight: bold">' . $fila["nombre"] . ' </span><span class="w3-tag w3-small w3-padding w3-red" style="transform:rotate(-5deg)">-' . $fila["porcentaje_descuento"] . '%</span></div>' .
                     '<div class="w3-container"><span style="text-decoration: line-through">' . $fila["precio"] . '&euro;</span><span style="font-weight: bold"> ' . $p_desc . '&euro;</div></div>';
             $str .= '</a></div>';
-        
+        }
+        $str .= '</div>';
+        $i = 1;
+        $str .= '<ul class="tabs w3-bar">';
+        $str .= '<li class="tab-link current w3-button w3-border" data-tab="tab-' . $i . '">' . $i . '</li>';
+        $i = 2;
+        while ($i <= $numpaginas) {
+            $str .= '<li class="tab-link w3-button w3-border" data-tab="tab-' . $i . '">' . $i . '</li>';
+            $i++;
+        }
+        $str .= '</ul>';
+    } else {
+        $str = ' <div class="w3-panel w3-pale-red w3-leftbar w3-border-red">
+                <p>No hay productos de esta categor&iacute;a para su comunidad
+                o bien no se han publicado productos en esta categor&iacute;a a&uacute;n.</p>
+                </div> ';
     }
-    $str .= '</div>';
-    $i=1;   
-    $str .= '<ul class="tabs w3-bar">';
-    $str .= '<li class="tab-link current w3-button w3-border" data-tab="tab-'.$i.'">'.$i.'</li>';
-    $i=2;
-    while($i<=$numpaginas){
-            $str .= '<li class="tab-link w3-button w3-border" data-tab="tab-'.$i.'">'.$i.'</li>';
-         $i++;
-    }
-    $str .='</ul>';
     return $str;
 }
 
 function desplegarPaginaPrincipal($categoria) {
     global $esquema;
     $str = '';
-   
+
     //BÚSQUEDA NACIONAL
     if (!isset($_SESSION['cuenta'])) {
         //BÚSQUEDA CON CATEGORIA
