@@ -64,7 +64,7 @@ if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'empresa') {
                 require_once '../back-end/lectura_producto.php';
                 require_once '../back-end/proceso_compra_terminar.php';
                 if ($_COOKIE['carrito'] == '') {
-                    ?><h2>No ha a&ntilde;adido nada al carrito</h2><?php
+                    ?><div class="w3-panel w3-pale-red w3-leftbar w3-border-red"><h2>No ha a&ntilde;adido nada al carrito</h2></div><?php
                 } else {
                     echo mostrarCarrito();
                     if (isset($_SESSION['cuenta'])) {

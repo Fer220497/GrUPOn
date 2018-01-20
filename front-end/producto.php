@@ -23,7 +23,7 @@ if (!isset($_GET['categoria'])) {
         <script>
             var valueofCarrito = getCookie("carrito");
             if (valueofCarrito == "") {
-                setCookie("carrito",'', 1);
+                setCookie("carrito", '', 1);
             }
             $(document).ready(function () {
                 $('.zoom').zoom();
@@ -65,12 +65,14 @@ if (!isset($_GET['categoria'])) {
                 <?php
                 require_once '../back-end/formulario_borrar_producto.php';
                 require_once '../back-end/lectura_producto.php';
-                echo mostrarBotonAnadir($_GET['id']);
+                if (isset($_SESSION['cuenta']) && $_SESSION['tipo'] == 'cliente') {
+                    echo mostrarBotonAnadir($_GET['id']);
+                }
                 echo muestraProducto($_GET['id']);
-                /*if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'empresa' && esVendedor($_GET['id'], $_SESSION['cuenta'])) {
-                    echo muestraFormularioBorrar($_GET['id']);
-                }*/
-                
+                /* if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'empresa' && esVendedor($_GET['id'], $_SESSION['cuenta'])) {
+                  echo muestraFormularioBorrar($_GET['id']);
+                  } */
+
 
                 if (isset($_SESSION['cuenta']) && $_SESSION['tipo'] == 'cliente' &&
                         puedeComentar($_SESSION['cuenta'], $_GET['id'])) {
