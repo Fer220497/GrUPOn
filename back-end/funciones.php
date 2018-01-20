@@ -165,6 +165,16 @@ $arrayCategorias = array(
     "salud_y_belleza" => "Salud y belleza",
     "deporte" => "Deporte",
 );
+$arrayCategoriasNoLogged = array(
+    "general"=> "General",
+    "viajes" => "Viajes",
+    "entretenimiento" => "Entretenimiento",
+    "gastronomia" => "Gastronom&iacute;a",
+    "electronica" => "Electr&oacute;nica",
+    "ropa" => "Ropa",
+    "salud_y_belleza" => "Salud y belleza",
+    "deporte" => "Deporte",
+);
 /*$arrayCategorias = array(
     "viajes" => "Viajes",
     "entretenimiento" => "Entretenimiento",
@@ -188,13 +198,13 @@ $arrayCategoriasLogged = array(
 );
 
 function menuCategorias() {
-    global $arrayCategorias;
+    global $arrayCategoriasNoLogged;
     global $arrayCategoriasLogged;
     //$form = '<div><a href="index.php?categoria=general"';
     $form = '';
     if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] == 'empresa') {
 
-        foreach ($arrayCategorias as $key => $val) {
+        foreach ($arrayCategoriasNoLogged as $key => $val) {
             $form .= '<div class="w3-btn w3-block w3-hover-pale-green"><a href="index.php?categoria=' . $key . '">' . $val . '</a></div>';
         }
     } else {
@@ -378,11 +388,11 @@ function previewProducto($result) {
     }
     $str .= '</div>';
     $i=1;   
-    $str .= '<ul class="tabs">';
-    $str .= '<li class="tab-link current" data-tab="tab-'.$i.'">'.$i.'</li>';
+    $str .= '<ul class="tabs w3-bar">';
+    $str .= '<li class="tab-link current w3-button w3-border" data-tab="tab-'.$i.'">'.$i.'</li>';
     $i=2;
     while($i<=$numpaginas){
-            $str .= '<li class="tab-link" data-tab="tab-'.$i.'">'.$i.'</li>';
+            $str .= '<li class="tab-link w3-button w3-border" data-tab="tab-'.$i.'">'.$i.'</li>';
          $i++;
     }
     $str .='</ul>';
