@@ -100,11 +100,11 @@ function historialVentas($correo) {
     global $esquema;
     $sql = "SELECT * FROM lanzamientos,producto WHERE lanzamientos.correo='$correo' AND lanzamientos.id_producto=producto.id_producto";
     $result = realizarQuery($esquema, $sql);
-    $html = '<table border="1">'
-            . '<th>Nombre Producto</th><th>Fecha Venta</th><th>N&uacute;mero Ventas</th><th>Beneficio Obtenido</th>';
+    $html = '<div class="w3-container w3-white w3-border w3-round w3-section">';
     while ($fila = mysqli_fetch_array($result)) {
-        $html .= '<tr><td><a href="producto.php" onclick="setCookie(' . $fila['id_producto'] . ',1)">' . $fila['nombre'] . '</a></td><td>' . $fila['fecha_ini'] . '</td><td>' . $fila['num_ventas'] . '</td><td>' . $fila['num_ventas'] * $fila['precio'] . '</td></tr>';
+        $html .= '<a href="producto.php" onclick="setCookie(' . $fila['id_producto'] . ',1)"><div class="w3-container w3-quarter">' . $fila['nombre'] . '</div><div class="w3-container w3-quarter">' . $fila['fecha_ini'] . '</div><div class="w3-container w3-quarter">N&uacute;mero de ventas: ' . $fila['num_ventas'] . '</div><div class="w3-container w3-quarter">Beneficio obtenido: ' . $fila['num_ventas'] * $fila['precio'] . '</div></a>';
     }
+    $html .= '</div>';
     return $html;
 }
 
