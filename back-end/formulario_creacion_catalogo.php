@@ -15,17 +15,19 @@ if (isset($_POST['nuevo_cat'])) {
     if (!isset($_POST['nombre'])) {
         $error[] = "Debes introducir nombre.";
     }
-    if (!isset($_POST['categoria'])) {
+    if (!isset($_POST['nombre_categoria'])) {
         $error[] = "Debes introducir categor&iacutea.";
     }
     if (!array_key_exists($_POST["nombre_categoria"], $arrayCategorias)) {
+        echo $_POST["nombre_categoria"];
+        print_r($arrayCategorias);
         $error[] = "No existe la categoria";
     }
     $_POST['nombre'] = filter_var($_POST['nombre'], FILTER_SANITIZE_STRING);
     if (!isset($error)) {
         $correo = $_SESSION['cuenta'];
         $nombre = sanitarString($_POST['nombre']);
-        $categoria = $_POST['categoria'];
+        $categoria = $_POST['nombre_categoria'];
         $query = "INSERT INTO catalogo (correo, nombre_categoria, nombre) VALUES ('". $correo ."', '". $categoria ."','". $nombre ."')";
         if(realizarQuery($esquema, $query)){
             echo 'placeholder bueno';
@@ -47,7 +49,7 @@ if (isset($_POST['nuevo_cat'])) {
 function formularioCreacionCatalogo() {
     $form = ' <form action="" method="post">' .
             ' Nombre: <input type="text" name="nombre" /><br/>' .
-            ' Categor&iacute;a: <select name="categoria">' . optionCategorias() .
+            ' Categor&iacute;a: <select name="nombre_categoria">' . optionCategorias() .
             '</select>' .
             ' <input type="submit" name="nuevo_cat" value="Enviar"/>' .
             ' </form>';

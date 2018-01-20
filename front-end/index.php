@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../back-end/funciones.php';
-//inicializarDB();
+inicializarDB();
 if (!isset($_GET['categoria'])) {
     $_GET['categoria'] = 'general';
 }
@@ -12,6 +12,16 @@ if (!isset($_GET['categoria'])) {
         <title>GrUPOn</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta charset="UTF-8"/>
+        <style>
+            .tab-content {
+                display: none;
+               
+            }
+
+            .tab-content.current {
+                display: inherit;
+            }
+        </style>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
         <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -20,12 +30,30 @@ if (!isset($_GET['categoria'])) {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
         <script src="../back-end/funciones.js"></script>
         <script src="../back-end/libs/jquery.zoom.min.js"></script>
+        <script src="../back-end/libs/pagina.js"></script>
         <script>
             $(document).ready(function () {
+                var $paginas = $('div.pagina').hide();
+
+                $paginas.eq(0).show();
+
+                $('ul.tabs li').click(function () {
+                    var $tab_id = $(this).attr('data-tab');
+                   
+                    $('ul.tabs li').removeClass('current');
+                    $('.tab-content').removeClass('current');
+
+                    $(this).addClass("current");
+                    $("#" + $tab_id).addClass("current");
+                });
+
+
+
+
+                // $('button.paginacion').pagina();
                 $('.zoom').zoom();
-                iniciarCarrito();
+
             });
-           
         </script>
     </head>
     <body>
@@ -51,7 +79,7 @@ if (!isset($_GET['categoria'])) {
                     if (isset($_SESSION['tipo']) && ($_SESSION['tipo'] == 'cliente')) {
                         echo $arrayCategoriasLogged[$_GET['categoria']];
                     } else {
-                        echo $arrayCategorias[$_GET['categoria']];
+                        echo $arrayCategoriasLogged[$_GET['categoria']];
                     }
                     ?>
                 </h2>
@@ -62,6 +90,7 @@ if (!isset($_GET['categoria'])) {
             <article class="w3-container w3-threequarter">
                 <?php echo desplegarPaginaPrincipal($_GET['categoria']); ?>
             </article>
+
         </main>
         <footer class="w3-container w3-flat-midnight-blue">
             Grupo &num;2 - GrUPOn&copy;, el fruto dado por el odio hacia nosotros mismos

@@ -156,7 +156,7 @@ $arrayComunidades = array(
 );
 
 $arrayCategorias = array(
-    "general" => "General",
+    
     "viajes" => "Viajes",
     "entretenimiento" => "Entretenimiento",
     "gastronomia" => "Gastronom&iacute;a",
@@ -165,7 +165,7 @@ $arrayCategorias = array(
     "salud_y_belleza" => "Salud y belleza",
     "deporte" => "Deporte",
 );
-$arrayCategoriasRegistro = array(
+/*$arrayCategorias = array(
     "viajes" => "Viajes",
     "entretenimiento" => "Entretenimiento",
     "gastronomia" => "Gastronom&iacute;a",
@@ -174,7 +174,7 @@ $arrayCategoriasRegistro = array(
     "salud_y_belleza" => "Salud y belleza",
     "deporte" => "Deporte",
 );
-
+*/
 $arrayCategoriasLogged = array(
     "general" => "General",
     "tus_gustos" => "Tus Gustos",
@@ -249,18 +249,18 @@ function opcionesCatSeleccionada($catsel) {
 }
 
 function checkboxesCategorias() {
-    global $arrayCategoriasRegistro;
+    global $arrayCategorias;
     $form = '';
-    foreach ($arrayCategoriasRegistro as $key => $val) {
+    foreach ($arrayCategorias as $key => $val) {
         $form .= '<span class="w3-half">' . $val . '</span><input class="w3-check w3-quarter" type="checkbox" name="' . $key . '" value="' . $key . '"/><br/>';
     }
     return $form;
 }
 
 function checkboxesCategoriasSeleccionadas($afinidades) {
-    global $arrayCategoriasRegistro;
+    global $arrayCategorias;
     $form = '';
-    foreach ($arrayCategoriasRegistro as $key => $val) {
+    foreach ($arrayCategorias as $key => $val) {
         if (in_array($key, $afinidades)) {
             $form .= $val . ': <input type="checkbox" name="' . $key . '" value="' . $key . '" checked/><br/>';
         } else {
@@ -316,7 +316,7 @@ function muestraErrores($error) {
 }
 
 function inicializarDB() {
-    global $arrayCategoriasRegistro;
+    global $arrayCategorias;
     global $arrayComunidades;
     global $esquema;
     foreach ($arrayComunidades as $key => $val) {
@@ -327,10 +327,10 @@ function inicializarDB() {
             realizarQuery($esquema, $sql);
         }
     }
-    foreach ($arrayCategoriasRegistro as $key => $val) {
+    foreach ($arrayCategorias as $key => $val) {
         $sql = 'SELECT * FROM categoria';
         $result = realizarQuery($esquema, $sql);
-        if (mysqli_num_rows($result) != count($arrayCategoriasRegistro)) {
+        if (mysqli_num_rows($result) != count($arrayCategorias)) {
             $sql = "INSERT INTO categoria VALUES ('$key')";
             realizarQuery($esquema, $sql);
         }
@@ -356,21 +356,43 @@ function tipoCuenta($correo) {
  * @return string
  */
 function previewProducto($result) {
-    $str = '';
+    $productos = 1;
+    $numpaginas=1;
+    $str = '<div class="w3-container w3-white w3-border w3-round w3-section tab-content current" id="tab-'.$numpaginas.'"  >';
     while ($fila = mysqli_fetch_array($result)) {
-        $str .= '<div class="w3-container w3-center w3-section w3-border w3-border-white w3-hover-border-blue w3-third"><a href="producto.php?id=' . $fila["id_producto"] . '")" >';
-        $p_desc = (100 - $fila["porcentaje_descuento"]) * $fila["precio"] / 100;
-        $str .= '<div class="w3-container"><div class="zoom"><img class="w3-image" src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="' . $fila["nombre"] . '"/></div></div>' .
-                '<div class="w3-container"><div class="w3-container"><span style="font-weight: bold">' . $fila["nombre"] . ' </span><span class="w3-tag w3-small w3-padding w3-red" style="transform:rotate(-5deg)">-' . $fila["porcentaje_descuento"] . '%</span></div>' .
-                '<div class="w3-container"><span style="text-decoration: line-through">' . $fila["precio"] . '&euro;</span><span style="font-weight: bold"> ' . $p_desc . '&euro;</span></div></div>';
-        $str .= '</a></div>';
+        $productos++;
+        $numpaginas=1;
+        if ($productos == 11) {
+            $productos = 0;
+            $numpaginas++;
+            $str .= '</div>';
+            $str .= '<div class="w3-container w3-white w3-border w3-round w3-section tab-content" id="tab-'.$numpaginas.'" >';
+        }//productos
+            $str .= '<div class="w3-container w3-center w3-section w3-border w3-border-white w3-hover-border-blue w3-third"><a href="producto.php?id=' . $fila["id_producto"] . '")" >';
+            $p_desc = (100 - $fila["porcentaje_descuento"]) * $fila["precio"] / 100;
+            $str .= '<div class="w3-container"><div class="zoom"><img class="w3-image" src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="' . $fila["nombre"] . '"/></div></div>' .
+                    '<div class="w3-container"><div class="w3-container"><span style="font-weight: bold">' . $fila["nombre"] . ' </span><span class="w3-tag w3-small w3-padding w3-red" style="transform:rotate(-5deg)">-' . $fila["porcentaje_descuento"] . '%</span></div>' .
+                    '<div class="w3-container"><span style="text-decoration: line-through">' . $fila["precio"] . '&euro;</span><span style="font-weight: bold"> ' . $p_desc . '&euro;</div></div>';
+            $str .= '</a></div>';
+        
     }
+    $str .= '</div>';
+    $i=1;   
+    $str .= '<ul class="tabs">';
+    $str .= '<li class="tab-link current" data-tab="tab-'.$i.'">'.$i.'</li>';
+    $i=2;
+    while($i<=$numpaginas){
+            $str .= '<li class="tab-link" data-tab="tab-'.$i.'">'.$i.'</li>';
+         $i++;
+    }
+    $str .='</ul>';
     return $str;
 }
 
 function desplegarPaginaPrincipal($categoria) {
     global $esquema;
-    $str = '<div class="w3-container w3-white w3-border w3-round w3-section">';
+    $str = '';
+   
     //BÚSQUEDA NACIONAL
     if (!isset($_SESSION['cuenta'])) {
         //BÚSQUEDA CON CATEGORIA
@@ -419,7 +441,7 @@ function desplegarPaginaPrincipal($categoria) {
           }
           $str .= '</table>'; */
     }
-    $str .= previewProducto($result) . '</div>';
+    $str .= previewProducto($result);
     return $str;
 }
 
@@ -481,3 +503,6 @@ $tamTelefono = 9;
 $tamNombreCliente = 50;
 $tamApellidosCliente = 50;
 ?>
+
+
+
