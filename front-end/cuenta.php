@@ -22,6 +22,8 @@ if (!isset($_GET['categoria'])) {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
         <script src="../back-end/funciones.js"></script>
         <script src="../back-end/libs/jquery.zoom.min.js"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyCGIDi9rfr_YQw-4Mrj5yBIVrfmr__Fb10"></script>
+        <script src="../back-end/libs/map.js"></script>
     </head>
     <body>
         <header class="w3-container w3-flat-midnight-blue">
@@ -60,7 +62,7 @@ if (!isset($_GET['categoria'])) {
                 require_once '../back-end/lectura_cuenta.php';
 
                 if ($_SESSION['tipo'] === 'empresa') {
-                    echo '<button class="w3-btn w3-hover-pale-blue" type="submit" onclick="location.href = \'creacion_catalogo.php\'">Crear Cat&aacute;logo</button> 
+                    echo '<button class="w3-btn w3-hover-pale-blue w3-border w3-round" type="submit" onclick="location.href = \'creacion_catalogo.php\'">Crear Cat&aacute;logo</button> 
                     <button class="w3-btn w3-hover-pale-blue w3-border w3-round" type="submit" onclick="location.href = \'creacion_producto.php\'">Crear Producto</button> 
                     <button class="w3-btn w3-hover-pale-blue w3-border w3-round" type="submit" onclick="location.href = \'../front-end/busqueda_modificar_catalogo.php\'">Modificar Cat&aacute;logo</button> 
                     <button class="w3-btn w3-hover-pale-blue w3-border w3-round" type="submit" onclick="location.href = \'listado_productos.php\'">Modificar Producto</button>

@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../back-end/funciones.php';
+inicializarDB();
 if (!isset($_GET['categoria'])) {
     $_GET['categoria'] = 'general';
 }
@@ -45,7 +46,7 @@ if (!isset($_GET['categoria'])) {
                     if (isset($_SESSION['tipo']) && ($_SESSION['tipo'] == 'cliente')) {
                         echo $arrayCategoriasLogged[$_GET['categoria']];
                     } else {
-                        echo $arrayCategorias[$_GET['categoria']];
+                        echo $arrayCategoriasNoLogged[$_GET['categoria']];
                     }
                     ?>
                 </h2>

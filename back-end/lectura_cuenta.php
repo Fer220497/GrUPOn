@@ -20,7 +20,7 @@ function muestraCuenta() {
         $sql = "SELECT * FROM cuenta,empresa WHERE empresa.correo='$correo' AND cuenta.correo='$correo'";
         $result = realizarQuery($esquema, $sql);
         $fila = mysqli_fetch_array($result);    //OP READ SOBRE EMPRESA
-        $string = muestraDatosEmpresa($fila);
+        $string = muestraDatosEmpresaMapa($correo);
     }
     return $string;
 }
@@ -33,11 +33,12 @@ function muestraDatosCliente($fila) {
     global $arrayComunidades;
     return '<div class="w3-container w3-half">Nombre: ' . $fila['nombre_cliente'] . '</div>' .
             '<div class="w3-container w3-half">Apellidos: ' . $fila['apellidos_cliente'] . '</div>' .
-            '<div class="w3-container w3-half">Mail: Correo Electr&oacute;nico: ' . $fila['correo'] . '</div>' .
+            '<div class="w3-container w3-half">Correo Electr&oacute;nico: ' . $fila['correo'] . '</div>' .
             '<div class="w3-container w3-half">Comunidad Aut&oacute;noma: ' . $arrayComunidades[$fila['nombre_ca']] . '</div>';
 }
 
 /**
+ * ESTA FUNCION ESTÁ OBSOLETA
  * Muestra los datos de la empresa
  * @param type $arrayEmpresas
  */
