@@ -44,7 +44,7 @@ if (isset($_POST['nuevo_cat'])) {
  */
 function formularioCreacionCatalogo() {
     $form = ' <form action="" method="post">' .
-            ' Nombre: <input class="w3-input" type="text" name="nombre" /><br/>' .
+            ' Nombre: <input class="w3-input" type="text" name="nombre" required/><br/>' .
             ' Categor&iacute;a: <select class="w3-input" name="nombre_categoria">' . optionCategorias() .
             '</select>' .
             ' <input class="w3-margin w3-border w3-btn w3-block w3-light-grey w3-round w3-hover-pale-green" type="submit" name="nuevo_cat" value="Enviar"/>' .

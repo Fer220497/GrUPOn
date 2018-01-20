@@ -92,7 +92,7 @@ function formularioModificacionCatalogo($catalogoVisitado) {
 
     $form = '<div class="w3-container w3-white w3-border w3-round w3-section ">' .
             '<form action="" method="post">' .
-            '<br/>Nombre: <input class="w3-input" type="text" name="nombre" value="' . $nombre . '"> ' .
+            '<br/>Nombre: <input class="w3-input" type="text" name="nombre" value="' . $nombre . '" required/> ' .
             'Categoria: <select class="w3-input" name="categoria">' . opcionesCatSeleccionada($ca) . '</select><br>' .
             ' <input class="w3-btn w3-light-grey w3-border w3-block w3-round w3-hover-pale-green w3-margin" type="submit" name="modificarCatalogo" value="Enviar"/>' .
             ' </form></div>';

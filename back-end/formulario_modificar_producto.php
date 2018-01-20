@@ -131,9 +131,9 @@ function formularioModificarProducto($id) {
     $producto = mysqli_fetch_array($result);
     $form = '<div class="w3-container w3-white w3-border w3-round w3-section ">' .
             '<form action="" method="post" enctype="multipart/form-data">' .
-            'Nombre: <input  class="w3-input" type="text" name="nombre" value="' . $producto["nombre"] . '"/><br/>' .
-            'Precio: <input class="w3-input"  type="number" name="precio" value="' . $producto["precio"] . '"/><br/>' .
-            'Descripci&oacute;n: <textarea name="descripcion" rows="4" cols="10">' . $producto["descripcion"] . '</textarea><br/>' .
+            'Nombre: <input  class="w3-input" type="text" name="nombre" value="' . $producto["nombre"] . '" required/><br/>' .
+            'Precio: <input class="w3-input"  type="number" name="precio" value="' . $producto["precio"] . '" required/><br/>' .
+            'Descripci&oacute;n: <textarea name="descripcion" rows="4" cols="10" required>' . $producto["descripcion"] . '</textarea><br/>' .
             'Categor&iacute;a: <select class="w3-input" name="categoria">' . optionCategoriasSeleccionadas($producto["nombre_categoria"]) . '</select><br/>' .
             'Comunidad aut&oacute;noma: <select class="w3-input" name="comunidad">' . opcionesComunidadSeleccionada($producto["nombre_ca"]) . '</select><br/>' .
             'Cat&aacute;logo <select class="w3-input" name="id_catalogo">' .
@@ -144,11 +144,11 @@ function formularioModificarProducto($id) {
         $form .= '<option value="' . $fila[0] . '">' . $fila[1] . '</option>';
     }
     $form .= '</select><br>' .
-            'Localizaci&oacute;n: <input  class="w3-input"  type="text" name="localizacion" value="' . $producto["localizacion"] . '" /><br/>' .
-            'Porcentaje descuento: <input  class="w3-input"  type="number" name="porcentaje_descuento" value="' . $producto["porcentaje_descuento"] . '" /><br/>' .
-            'Cantidad disponible: <input class="w3-input"  type="number" name="cantidad" value="' . $producto["cantidad_disponible"] . '" /><br/>' .
+            'Localizaci&oacute;n: <input  class="w3-input"  type="text" name="localizacion" value="' . $producto["localizacion"] . '" required/><br/>' .
+            'Porcentaje descuento: <input  class="w3-input"  type="number" name="porcentaje_descuento" value="' . $producto["porcentaje_descuento"] . '" required/><br/>' .
+            'Cantidad disponible: <input class="w3-input"  type="number" name="cantidad" value="' . $producto["cantidad_disponible"] . '" required/><br/>' .
             'Imagen: <div><img alt="' . $producto["nombre"] . '" src="../imagenesSubidas/' . $producto['ruta_imagen'] . '" height = "200"></div>' .
-            '<input type="file" name="imagen"/><br/>' .
+            '<input type="file" name="imagen" required/><br/>' .
             '<input class="w3-btn w3-light-grey w3-round w3-block w3-hover-pale-green w3-margin w3-border" type="submit" name="modificarProducto" value="Enviar"/>' .
             '</form></div>';
 
