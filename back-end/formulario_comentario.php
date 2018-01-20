@@ -24,7 +24,7 @@ if(isset($_POST['enviado'])){
             $query = "INSERT INTO comentarios VALUES ('".$_GET['id']
                     ."','".$_SESSION['cuenta']."','".$comment."','".$number."')";
             realizarQuery($esquema, $query);
-            header('Location:producto.php');
+            header('Location: producto.php?id=' .$_GET['id'] .'&categoria='.$_GET['categoria']);
         }
     }
 }
