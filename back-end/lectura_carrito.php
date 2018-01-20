@@ -44,7 +44,7 @@ function pagoConExito() {
     $str .= '<a class="w3-block w3-flat-orange w3-btn w3-hover-pale-blue w3-border w3-round" '
             . 'href="../front-end/index.php" '
             . 'onclick="setCookie(\'carrito\', \'\', 1)"'
-            . 'style="height:500px;font-size:300px;">👌</a>';
+            . 'style="height:80vh;font-size:300px;">👌</a>';
     return $str;
 }
 
