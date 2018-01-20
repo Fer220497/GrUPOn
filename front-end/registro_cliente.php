@@ -2,6 +2,9 @@
 session_start();
 require_once '../back-end/funciones.php';
 require_once '../back-end/formulario_login.php';
+if (!isset($_GET['categoria'])) {
+    $_GET['categoria'] = 'general';
+}
 ?>
 <!DOCTYPE html>
 <html>
