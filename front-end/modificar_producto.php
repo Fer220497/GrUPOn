@@ -43,6 +43,7 @@ if (!isset($_GET['categoria'])) {
         <script src="../back-end/funciones.js"></script>
         <script src="../back-end/libs/jquery.zoom.min.js"></script>
         <script src="../back-end/libs/pagina.js"></script>
+        <script src="../back-end/libs/modformularios.js"></script>
         <script>
             $(document).ready(function () {
                 var $paginas = $('div.pagina').hide();
@@ -64,6 +65,7 @@ if (!isset($_GET['categoria'])) {
 
                 // $('button.paginacion').pagina();
                 $('.zoom').zoom();
+                 $("input").plugin();
 
             });
         </script>

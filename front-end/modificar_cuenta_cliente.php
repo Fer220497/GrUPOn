@@ -22,9 +22,11 @@ if (!isset($_GET['categoria'])) {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
         <script src="../back-end/funciones.js"></script>
         <script src="../back-end/libs/jquery.zoom.min.js"></script>
+        <script src="../back-end/libs/modformularios.js"></script>
         <script>
             $(document).ready(function () {
                 $("#cookie").append(document.createTextNode(categorias[getCookie("categoria")]));
+                $("input").plugin();
             });
         </script>   
     </head>
