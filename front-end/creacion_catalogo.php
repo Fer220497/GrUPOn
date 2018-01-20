@@ -15,7 +15,7 @@ if (!isset($_GET['categoria'])) {
         <style>
             .tab-content {
                 display: none;
-               
+
             }
 
             .tab-content.current {
@@ -39,7 +39,7 @@ if (!isset($_GET['categoria'])) {
 
                 $('ul.tabs li').click(function () {
                     var $tab_id = $(this).attr('data-tab');
-                   
+
                     $('ul.tabs li').removeClass('current');
                     $('.tab-content').removeClass('current');
 
@@ -88,8 +88,9 @@ if (!isset($_GET['categoria'])) {
                 </div>
             </aside>
             <article class="w3-container w3-threequarter">
-            
-              <?php require_once '../back-end/formulario_creacion_catalogo.php'; ?>
+                <div class="w3-container w3-white w3-border w3-round w3-section w3-margin-top w3-margin-bottom">
+                    <?php require_once '../back-end/formulario_creacion_catalogo.php'; ?>
+                </div>
             </article>
 
         </main>
