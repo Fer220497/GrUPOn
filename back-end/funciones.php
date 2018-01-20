@@ -237,11 +237,11 @@ function menuCategorias() {
     if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] == 'empresa') {
 
         foreach ($arrayCategoriasNoLogged as $key => $val) {
-            $form .= '<div class="w3-btn w3-block w3-hover-pale-green"><a href="index.php?categoria=' . $key . '">' . $val . '</a></div>';
+            $form .= '<a href="index.php?categoria=' . $key . '"><div class="w3-btn w3-block w3-hover-pale-green">' . $val . '</div></a>';
         }
     } else {
         foreach ($arrayCategoriasLogged as $key => $val) {
-            $form .= '<div class="w3-btn w3-block w3-hover-pale-green"><a href="index.php?categoria=' . $key . '">' . $val . '</a></div>';
+            $form .= '<a href="index.php?categoria=' . $key . '"><div class="w3-btn w3-block w3-hover-pale-green">' . $val . '</div></a>';
         }
     }
     return $form;
