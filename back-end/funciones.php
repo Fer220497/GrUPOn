@@ -43,7 +43,7 @@ function mostrarComentarios($producto) {
         $str = '<div class="w3-container w3-white w3-border w3-round w3-section"><h1>Comentarios</h1>';
         while ($fila = mysqli_fetch_array($result)) {
             $str .= '<div class="w3-panel w3-light-grey"><span style="font-size:150px;line-height:0.6em;opacity:0.2">❝</span>'
-                    . ' <p class="w3-xlarge" style="margin-top:-40px"><i>' . $fila['comentario'] . '<i></p>'
+                    . ' <p class="w3-xlarge" style="margin-top:-40px">' . $fila['comentario'] . '</p>'
                     . $fila['nombre_cliente'] . ' ' . $fila['apellidos_cliente'] . ', valoraci&oacute;n: ' . $fila['valoracion'] . '/5</div>';
             $sumaPuntuaciones += $fila['valoracion'];
         }
