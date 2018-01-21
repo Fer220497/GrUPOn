@@ -148,7 +148,7 @@ function formularioModificarProducto($id) {
             'Porcentaje descuento: <input  class="w3-input"  type="number" name="porcentaje_descuento" value="' . $producto["porcentaje_descuento"] . '" required/><br/>' .
             'Cantidad disponible: <input class="w3-input"  type="number" name="cantidad" value="' . $producto["cantidad_disponible"] . '" required/><br/>' .
             'Imagen: <div><img alt="' . $producto["nombre"] . '" src="../imagenesSubidas/' . $producto['ruta_imagen'] . '" height = "200"></div>' .
-            '<input type="file" name="imagen" required/><br/>' .
+            '<input type="file" name="imagen"/><br/>' .
             '<input class="w3-btn w3-light-grey w3-round w3-block w3-hover-pale-green w3-margin w3-border" type="submit" name="modificarProducto" value="Enviar"/>' .
             '</form></div>';
 
