@@ -27,7 +27,7 @@ if (isset($_POST['modificarCatalogo'])) {
        
        $nombre= sanitarString($_POST['nombre']);
        $nombre_categoria=sanitarString($_POST['categoria']);
-       $id_catalogo=$_COOKIE['id_catalogo'];
+       $id_catalogo=$_GET['id'];
        $sql="UPDATE catalogo SET nombre='$nombre', nombre_categoria='$nombre_categoria' WHERE id_catalogo='$id_catalogo'";
        realizarQuery($esquema, $sql);
        //header('Location: modificar_catalogo.php');
