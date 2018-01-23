@@ -5,9 +5,6 @@ require_once '../back-end/conexion_db.php';
 require_once '../back-end/funciones.php';
 
 if (isset($_POST['crearProducto'])) {
-//
-
-
     if (!array_key_exists($_POST["nombre_categoria"], $arrayCategorias)) {
         $error[] = "No existe la categoria";
     }
@@ -112,7 +109,6 @@ if (isset($_POST['crearProducto'])) {
         $dirpath = realpath(dirname(getcwd()));
         $arch=$_FILES['imagen']['name'];
         $fichero=explode('.',$_FILES['imagen']['name']);
-        //print_r($fichero);
         $extension = '.'.$fichero[count($fichero)-1];
         $nombreFichero = microtime() . $extension;
         if ($_POST["id_catalogo"] == "") {
@@ -136,7 +132,6 @@ if (isset($_POST['crearProducto'])) {
         $uploadroot="/docs";
         $arch=$_FILES['imagen']['name'];
         $tmp=$_FILES['imagen']['tmp_name'];
-        //echo $dirpath;
         move_uploaded_file($tmp,"../imagenesSubidas/$nombreFichero");
         header('Location:index.php');
     }
@@ -154,14 +149,12 @@ if (!isset($_POST["crearProducto"]) || isset($error)) {
 
 
 /*
- * Esta funcion genera un formulario para que los clientes puedan registrarse en forma de string
+ * Esta funcion genera un formulario para que los clientes puedan registrarse
+ * @return string
  */
-
 function formularioCrearProducto() {
     global $esquema;
     $correo = $_SESSION["cuenta"];
-
-
     $form = '<div class="w3-container w3-white w3-border w3-round w3-section ">' .
             '<form action="" method="post" enctype="multipart/form-data">' .
             '<br/>Nombre: <input class="w3-input" type="text" name="nombre" required/><br/>' .

@@ -1,6 +1,5 @@
 <?php
     require_once '../back-end/funciones.php';
-    //setcookie('carrito','1,2,3',time()+ 60*60*24*30);
     
     if(isset($_POST['borraCarrito'])){
         $carrito = explode(',',$_COOKIE['carrito']);
@@ -18,6 +17,12 @@
             header('carrito.php');
         }
     }
+    
+    /**
+     * Función que muesra el formulario para borrar un producto del carrito según el id dado.
+     * @param int $id_prod
+     * @return string
+     */
     function borrarProductoCarrito($id_prod){
         global $error;
         if(isset($error)){

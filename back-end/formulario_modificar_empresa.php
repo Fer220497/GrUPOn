@@ -2,11 +2,6 @@
 
 require_once '../back-end/conexion_db.php';
 require_once '../back-end/funciones.php';
-/*
-echo $_SESSION['cuenta'];
-if (!isset($_SESSION)) {
-    echo 'desdefinida';
-}*/
 $correo = $_SESSION['cuenta'];
 
 if (isset($_POST['modificarEmpresa'])) {
@@ -150,8 +145,6 @@ if (isset($_POST['cambioContrasenya'])) {
     $result = realizarQuery("grupon", $sql);
     $datopwd = mysqli_fetch_array($result);
     $contra = $datopwd["pwd"];
-    //echo $contra;
-    //echo $_POST['pwd_antigua'];
     if (!password_verify($_POST['pwd_antigua'], $contra)) {
         $error[] = "La contraseña antigua es incorrecta";
     }
@@ -159,8 +152,6 @@ if (isset($_POST['cambioContrasenya'])) {
     if ($_POST['pwd'] != $_POST['pwd_confirmar']) {
         $error[] = 'Las contrase&ntilde;as nuevas no coinciden';
     }
-    //A
-    //A
 
     if (!isset($error)) {
         $pwd = $_POST['pwd'];
@@ -175,6 +166,11 @@ if (isset($error)) {
 }
 echo formularioModEmpresa();
 
+/**
+ * Función que devuelve un formulario para modificar los datos de una empresa.
+ * Este formulario viene ya relleno con los datos actuales de la empresa.
+ * @return string
+ */
 function formularioModEmpresa() {
     global $esquema;
     $correo = $_SESSION["cuenta"];
@@ -213,5 +209,4 @@ function formularioModEmpresa() {
 
     return $form;
 }
-
 ?>

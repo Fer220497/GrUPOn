@@ -3,6 +3,11 @@
 require_once '../back-end/conexion_db.php';
 require_once '../back-end/funciones.php';
 
+/*
+ * Muestra los datos de un catálogo cuyo id se corresponde con el pasado por 
+ * parámetro.
+ * @param int $id
+ */
 function mostrarCatalogo($id) {
     global $esquema;
     global $arrayCategorias;
@@ -14,15 +19,6 @@ function mostrarCatalogo($id) {
 
     $sql = "SELECT * FROM producto WHERE id_catalogo='$id'";
     $result = realizarQuery($esquema, $sql);
-    /**
-      $html.='<table border="1">';
-      while($fila = mysqli_fetch_array($result)){
-      $html.='<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila[0] . '\',1)">'
-      . '<img src="'.$fila["ruta_imagen"].'" alt="'.$fila["nombre"].'"></a></td></tr>'
-      . '<tr><td><a href="producto.php" onclick="setCookie(\'' . $cookie_name . '\',\'' . $fila[0] . '\',1)">'.$fila["nombre"].'</a></td></tr>';
-      }
-      $html.='</table>';
-     * */
     if (mysqli_num_rows($result)) {
         $html .= previewProducto($result);
     } else {

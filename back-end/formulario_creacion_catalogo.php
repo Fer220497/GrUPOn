@@ -30,7 +30,7 @@ if (isset($_POST['nuevo_cat'])) {
 }
 
 /**
- * Esta funcion genera un login en forma de string
+ * Esta funcion genera un formulario para crear un catálogo
  * @return string
  */
 function formularioCreacionCatalogo() {

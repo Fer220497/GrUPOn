@@ -93,12 +93,6 @@ if (isset($_POST['cambiarPwd'])) {
         $error[] = 'Las contrase&ntilde;s no coinciden';
     }
     //Checkeo de entradas correctas (no vacias, min caracteres,regexp....)
-   
-   
-
-    
-    
-    
     //Depuracion de entradas (sanitize)
     if (!isset($error)) {
         $pwdNew = sanitarString($_POST['pwd_new']);
@@ -115,6 +109,12 @@ if (isset($error)) {
     echo muestraFormularioPwd();
 }
 
+/**
+ * Función que devuelve un formulario para modificar los datos de un cliente, 
+ * excepto la contraseña según la sesión. Este formulario viene ya relleno con 
+ * los datos del cliente.
+ * @return string
+ */
 function muestraFormularioDatos() {
     global $esquema;
     global $correo;
