@@ -2,15 +2,6 @@
 require_once '../back-end/conexion_db.php';
 require_once '../back-end/funciones.php';
 
-foreach ($arrayCategorias as $categoria=>$val) {
-    $sql = 'SELECT * FROM categoria';
-    $result = realizarQuery($esquema, $sql);
-    if (mysqli_num_rows($result) != count($arrayCategorias)) {
-        $sql = "INSERT INTO categoria VALUES ('$categoria')";
-        realizarQuery($esquema, $sql);
-    }
-}
-
 if (isset($_POST['nuevo_cat'])) {
     if (!isset($_POST['nombre'])) {
         $error[] = "Debes introducir nombre.";
