@@ -28,9 +28,9 @@ function puedeComentar($correo, $producto) {
 
 function mostrarCajaComentario() {
     $form = '<form method="post" action="">'
-            . '<textarea name="comentario" placeholder="Comenta algo!" maxlength="5000"></textarea>'
-            . '<input type="number" name="valoracion" min="0" max="5" value="3"/>'
-            . '<input type="submit" name="enviado" value="Enviar comentario"/></form>';
+            . '<textarea class="w3-input" name="comentario" placeholder="Comenta algo!" maxlength="5000"></textarea>'
+            . '<input class="w3-input" type="number" name="valoracion" min="0" max="5" value="3"/>'
+            . '<input class="w3-btn" type="submit" name="enviado" value="Enviar comentario"/></form>';
     return $form;
 }
 
