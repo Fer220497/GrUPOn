@@ -30,7 +30,7 @@ function mostrarCajaComentario() {
     $form = '<form method="post" action="">'
             . '<textarea class="w3-input" name="comentario" placeholder="Comenta algo!" maxlength="5000"></textarea>'
             . '<input class="w3-input" type="number" name="valoracion" min="0" max="5" value="3"/>'
-            . '<input class="w3-btn" type="submit" name="enviado" value="Enviar comentario"/></form>';
+            . '<input class="w3-margin w3-btn w3-hover-pale-green w3-border w3-round" type="submit" name="enviado" value="Enviar comentario"/></form>';
     return $form;
 }
 
