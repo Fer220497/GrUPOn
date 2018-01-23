@@ -2,8 +2,8 @@
 -- version 4.7.6
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 23-01-2018 a las 18:11:55
+-- Servidor: localhost:3306
+-- Tiempo de generación: 23-01-2018 a las 22:09:50
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.0.26
 
@@ -44,7 +44,8 @@ INSERT INTO `afinidades` (`correo`, `nombre_categoria`) VALUES
 ('cliente@cliente.es', 'entretenimiento'),
 ('cliente@cliente.es', 'gastronomia'),
 ('pepe@gmail.com', 'viajes'),
-('pepe@gmail.com', 'gastronomia');
+('pepe@gmail.com', 'gastronomia'),
+('clientetest@cliente.es', 'viajes');
 
 -- --------------------------------------------------------
 
@@ -109,6 +110,7 @@ CREATE TABLE `cliente` (
 
 INSERT INTO `cliente` (`correo`, `nombre_cliente`, `apellidos_cliente`) VALUES
 ('cliente@cliente.es', 'Cliencio', 'Cliencez'),
+('clientetest@cliente.es', 'Cliente Test', 'Tested'),
 ('pepe@gmail.com', 'Pepe', 'Pérez');
 
 -- --------------------------------------------------------
@@ -160,7 +162,8 @@ INSERT INTO `compra` (`id_compra`, `correo`, `id_producto`, `fecha`, `cantidad`)
 (3, 'cliente@cliente.es', 11, '2018-01-20', 1),
 (4, 'pepe@gmail.com', 13, '2018-01-21', 1),
 (5, 'cliente@cliente.es', 13, '2018-01-21', 1),
-(6, 'cliente@cliente.es', 15, '2018-01-23', 1);
+(6, 'cliente@cliente.es', 15, '2018-01-23', 1),
+(7, 'cliente@cliente.es', 3, '2018-01-23', 1);
 
 -- --------------------------------------------------------
 
@@ -217,6 +220,7 @@ INSERT INTO `cuenta` (`correo`, `nombre_ca`, `pwd`) VALUES
 ('ceupo@gmail.com', 'andalucia', '$2y$10$RYuukL7ka1OI0Xfa/I4ixuQIt1duRY3qVx8DciPxV2I6rMpMVUB4O'),
 ('cinesmadrid@empresa.com', 'madrid', '$2y$10$I6GMK4b9M9iCt7ycv2TvwOitucVGxAvXkkjlh5LKCsLZrc6r7pScq'),
 ('cliente@cliente.es', 'andalucia', '$2y$10$pK/keSAYcoEIvYQyGqFxW.sC4LcObGG3./.O2b75SxXlZ51pMGLoa'),
+('clientetest@cliente.es', 'andalucia', '$2y$10$OXqcE0c6va5cgRwxlly48.aeoJ1qS8bhjt7WaDOwRVJ.OKKwkaSOW'),
 ('copisteria@upo.es', 'andalucia', '$2y$10$PIZNTm/KZLKdAiLuSz7GOeSlQg352jw6qlis/T1F73/6STqFkd6py'),
 ('meme@vrchat.ug', 'andalucia', '$2y$10$/M31ptw8OD4ZLp2jUgUf5O0L7L/t.j04CO/ZyOjLLhlgVS13Iz2xS'),
 ('pepe@gmail.com', 'andalucia', '$2y$10$7wJIg6V.xrEZCuK5VsAO8Oz7eDRFI7haRcJXL./uWeJP/5Hqa8xNi'),
@@ -285,7 +289,7 @@ INSERT INTO `lanzamientos` (`correo`, `id_producto`, `fecha_ini`, `fecha_fin`, `
 ('meme@vrchat.ug', 12, '2018-01-20', '2018-01-20', 0),
 ('sevitravel@empresa.com', 1, '2018-01-20', '2018-01-20', 1),
 ('sevitravel@empresa.com', 2, '2018-01-20', '2018-01-20', 1),
-('sevitravel@empresa.com', 3, '2018-01-20', '2018-01-20', 0),
+('sevitravel@empresa.com', 3, '2018-01-20', '2018-01-20', 1),
 ('sevitravel@empresa.com', 5, '2018-01-20', '2018-01-20', 0),
 ('sevitravel@empresa.com', 8, '2018-01-20', '2018-01-20', 0),
 ('sevitravel@empresa.com', 10, '2018-01-20', '2018-01-20', 0),
@@ -322,7 +326,7 @@ CREATE TABLE `producto` (
 INSERT INTO `producto` (`id_producto`, `nombre_categoria`, `nombre_ca`, `id_catalogo`, `nombre`, `precio`, `descripcion`, `localizacion`, `porcentaje_descuento`, `cantidad_vendida`, `cantidad_total`, `cantidad_disponible`, `ruta_imagen`) VALUES
 (1, 'viajes', 'andalucia', NULL, 'Viaje Interdimensional', 4000, 'Viaje a una dimensión donde existen las vacaciones de Navidad. ¿Ah que es muy caro? Pues trabaja. ¿Ah que estás en la carrera aún? Pues sácatela. ¿Ah que te ha quedado cálculo? Pues vete a magis.', 'Tus Sueños', 5, 1, 5, 4, '0.88052600 1516477728.jpg'),
 (2, 'entretenimiento', 'andalucia', NULL, '5ª matrícula de Cálculo', 1200, 'El dinero subvencionará los viajes de Sergio.', 'Universidad Pablo de Olavide', 1, 1, 100, 99, '0.46066000 1516479191.png'),
-(3, 'salud_y_belleza', 'andalucia', NULL, 'Boletín de EPDs de PA', 30, 'Ponemos este producto en la categoría de salud porque es lo que te faltará cuando acabes todas', 'Universidad Pablo de Olavide', 10, 0, 9, 9, '0.44343000 1516481150.jpg'),
+(3, 'salud_y_belleza', 'andalucia', NULL, 'Boletín de EPDs de PA', 30, 'Ponemos este producto en la categoría de salud porque es lo que te faltará cuando acabes todas', 'Universidad Pablo de Olavide', 10, 1, 9, 8, '0.44343000 1516481150.jpg'),
 (4, 'entretenimiento', 'andalucia', NULL, 'Ayuda', 1, 'Esto no es un producto, es un mensaje de ayuda para que me saquen de aquí. Llevo encerrado en mi cuarto demasiado, en este tiempo ha nacido mi hija que todavía no me conoce, la última vez que pude ver un partido de fútbol era un Madrid-Barça con Raúl y Ronaldinho.', 'Ciudad del Vaticano', 2, 0, 1, 1, '0.30452400 1516480935.jpg'),
 (5, 'entretenimiento', 'andalucia', NULL, 'Mi nota en JavaScript', 1, 'Bueno pues... No es mucho, pero ¿y la bonita que ha quedado la web?', 'Universidad Pablo de Olavide', 99, 0, 2, 2, '0.44958000 1516481102.jpg'),
 (6, 'entretenimiento', 'andalucia', NULL, 'Opel Corsa', 8500, 'Vendo Opel Corsa, razón aquí.', 'Forocohes', 10, 0, 1, 1, '0.31949100 1516487234.jpg'),
@@ -407,8 +411,7 @@ ALTER TABLE `cuenta`
 -- Indices de la tabla `empresa`
 --
 ALTER TABLE `empresa`
-  ADD PRIMARY KEY (`correo`),
-  ADD UNIQUE KEY `nif_empresa` (`nif_empresa`);
+  ADD PRIMARY KEY (`correo`);
 
 --
 -- Indices de la tabla `lanzamientos`
@@ -441,7 +444,7 @@ ALTER TABLE `catalogo`
 -- AUTO_INCREMENT de la tabla `compra`
 --
 ALTER TABLE `compra`
-  MODIFY `id_compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
