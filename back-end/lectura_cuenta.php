@@ -7,6 +7,10 @@ if (isset($_SESSION['cuenta'])) {
     $correo = $_SESSION['cuenta'];
 }
 
+/**
+ * Muestra los datos de una cuenta
+ * @return string
+ */
 function muestraCuenta() {
     global $correo;
     global $esquema;
@@ -28,6 +32,7 @@ function muestraCuenta() {
 /**
  * Muestra los datos del cliente.
  * @param type $arrayClientes
+ * @return 
  */
 function muestraDatosCliente($fila) {
     global $arrayComunidades;
@@ -35,24 +40,6 @@ function muestraDatosCliente($fila) {
             '<div class="w3-container w3-half">Apellidos: ' . $fila['apellidos_cliente'] . '</div>' .
             '<div class="w3-container w3-half">Correo Electr&oacute;nico: ' . $fila['correo'] . '</div>' .
             '<div class="w3-container w3-half">Comunidad Aut&oacute;noma: ' . $arrayComunidades[$fila['nombre_ca']] . '</div>';
-}
-
-/**
- * ESTA FUNCION ESTÁ OBSOLETA
- * Muestra los datos de la empresa
- * @param type $arrayEmpresas
- */
-function muestraDatosEmpresa($fila) {
-    global $esquema;
-    global $arrayComunidades;
-    return '<div class="w3-container w3-half">' . $fila['nombre_empresa'] . '</div>' .
-            '<div class="w3-container w3-half">NIF: ' . $fila['nif_empresa'] . '</div>' .
-            '<div class="w3-container w3-half">Correo Electr&oacute;nico: ' . $fila['email_empresa'] . '</div>' .
-            '<div class="w3-container w3-half">Tel&eacute;fono: ' . $fila['telefono_empresa'] . '</div>' .
-            '<div class="w3-container w3-half">' . $fila['direccion_empresa'] . '</div>' .
-            '<div class="w3-container w3-half">' . $arrayComunidades[$fila['nombre_ca']] . '</div>' .
-            '<div class="w3-container">' . $fila['web_empresa'] . '</div>' .
-            '<div id="map-canvas"></div>';
 }
 
 /**
@@ -65,17 +52,6 @@ function muestraDatosEmpresaMapa($correo) {
     $sql = "SELECT * FROM empresa,cuenta WHERE cuenta.correo='$correo' AND empresa.correo='$correo'";
     $result = realizarQuery($esquema, $sql);
     $fila = mysqli_fetch_array($result);
-//    $str = '<input type=hidden id="localizacion" value="' . $fila['direccion_empresa'] . '"/>'
-//            . '<table border="1"><tr><td>Correo</td><td><span class="dato">' . $fila['correo'] . '</span></td></tr>' .
-//            '<tr><td>Comunidad Aut&oacute;noma</td><td>' . $arrayComunidades[$fila['nombre_ca']] . '</td></tr>' .
-//            '<tr><td>Nombre</td><td><span class="dato">' . $fila['nombre_empresa'] . '</span></td>' .
-//            '<tr><td>NIF</td><td><span class="dato">' . $fila['nif_empresa'] . '</span></td>' .
-//            '<tr><td>Web</td><td><span class="dato">' . $fila['web_empresa'] . '</span></td>' .
-//            '<tr><td>Cuenta Bancaria</td><td><span class="dato">' . $fila['cuenta_bancaria'] . '</span></td>' .
-//            '<tr><td>Tel&eacute;fono</td><td><span class="dato">' . $fila['telefono_empresa'] . '</span></td>' .
-//            '<tr><td>Email para Clientes</td><td><span class="dato">' . $fila['email_empresa'] . '</span></td>' .
-//            '<tr><td>Direcci&oacute;n</td><td><span class="dato">' . $fila['direccion_empresa'] . '</span></td>' .
-//            '<tr><td><div id="map-canvas"></div></td></tr></table>';
 
     $str = '<input type=hidden id="localizacion" value="' . $fila['direccion_empresa'] . '"/>' .
             '<div class="w3-container w3-half"><h1>' . $fila['nombre_empresa'] . '</h1></div><div style="width:100%; clear:both;"></div>' .

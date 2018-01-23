@@ -5,7 +5,6 @@ require_once '../back-end/conexion_db.php';
 /**
  * Un cliente solo puede comentar si:
  * Está loggeado, ha comprado el produto y NO ha comentado.
- * @global type $esquema
  * @param type $correo
  * @return string
  */
@@ -26,6 +25,11 @@ function puedeComentar($correo, $producto) {
     }
 }
 
+/**
+ * Función que devuelve un formulario con un valor numérico para indicar la 
+ * valoración de un producto y un campo de texto para dejar un comentario.
+ * @return string
+ */
 function mostrarCajaComentario() {
     $form = '<form method="post" action="">'
             . '<textarea class="w3-input" name="comentario" placeholder="Comenta algo!" maxlength="5000"></textarea>'
@@ -34,6 +38,11 @@ function mostrarCajaComentario() {
     return $form;
 }
 
+/**
+ * Devuelve todos los comentarios del producto del id dado.
+ * @param id $producto
+ * @return string
+ */
 function mostrarComentarios($producto) {
     global $esquema;
     $query = "SELECT * FROM comentarios,cliente WHERE comentarios.correo=cliente.correo AND id_producto='$producto'";
@@ -64,6 +73,12 @@ function mostrarComentarios($producto) {
     }
 }
 
+/**
+ * Función que devuelve un string con todos los productos cuyo vendedor es el 
+ * cual tiene el correo dado por parámetros.
+ * @param string $correo
+ * @return string
+ */
 function mostrarProductosVendedor($correo) {
     $cookie_name = 'productoVisitado';
     $productos = 1;
@@ -105,6 +120,13 @@ function mostrarProductosVendedor($correo) {
     }
 }
 
+/**
+ * Devuelve un boolean si la empresa es la vendedora del producto, ambos 
+ * parámetros.
+ * @param type $id_prod
+ * @param type $correo
+ * @return boolean
+ */
 function esVendedor($id_prod, $correo) {
     global $esquema;
     $query = "SELECT * FROM lanzamientos WHERE correo='$correo' AND id_producto='$id_prod'";
@@ -116,6 +138,12 @@ function esVendedor($id_prod, $correo) {
     }
 }
 
+/**
+ * Función que devuelve un string con los productos que ha comprado el cliente 
+ * cuyo correo es el dado por parámetros.
+ * @param string $correo
+ * @return string
+ */
 function historialCliente($correo) {
     global $esquema;
     $sql = "SELECT * FROM compra,producto WHERE compra.correo='$correo' AND compra.id_producto = producto.id_producto";
@@ -124,10 +152,16 @@ function historialCliente($correo) {
     while ($fila = mysqli_fetch_array($result)) {
         $html .= '<div class="w3-btn w3-block w3-flat-silver w3-round w3-margin"><a href="producto.php?id=' . $fila['id_producto'] . '" onclick="setCookie(' . $fila['id_producto'] . ',1)"><div class="w3-container w3-quarter">' . $fila['nombre'] . '</div><div class="w3-container w3-quarter">' . $fila['fecha'] . '</div><div class="w3-container w3-quarter">Cantidad: ' . $fila['cantidad'] . '</div><div class="w3-container w3-quarter">Precio: ' . $fila['precio'] . '&euro;</div></a></div>';
     }
-    $html .= '</div>'; //$html .= '<div class="w3-container w3-white w3-border w3-round w3-section">';
+    $html .= '</div>';
     return $html;
 }
 
+/**
+ * Función que devuelve un string con los productos que hayan sido puesto en 
+ * venta por la empresa cuyo correo es el dado por parámetros.
+ * @param string $correo
+ * @return string
+ */
 function historialVentas($correo) {
     $correo = $_SESSION["cuenta"];
     global $esquema;
@@ -143,7 +177,7 @@ function historialVentas($correo) {
 
 /**
  * Función que checkea si existe un correo que se le pase ya en la DB.
- * @param type $correo
+ * @param string $correo
  * @return boolean
  */
 function existeCorreo($correo) {
@@ -157,11 +191,21 @@ function existeCorreo($correo) {
     }
 }
 
+/**
+ * Devuelve true si el fichero pasado por parámetro posee un tipo MIME aceptado.
+ * @param array $fichero
+ * @return boolean
+ */
 function esImagen($fichero) {
     $tiposAceptados = Array('image/gif', 'image/jpeg', 'image/pjpeg', 'image/png');
     return in_array($fichero['type'], $tiposAceptados);
 }
 
+/**
+ * Devuelve true si el fichero pasado por parámetro cumple el tamaño permitido.
+ * @param array $fichero
+ * @return boolean
+ */
 function limiteTamanyo($fichero, $limite) {
     return $fichero['size'] <= $limite;
 }
@@ -207,16 +251,6 @@ $arrayCategoriasNoLogged = array(
     "salud_y_belleza" => "Salud y belleza",
     "deporte" => "Deporte",
 );
-/* $arrayCategorias = array(
-  "viajes" => "Viajes",
-  "entretenimiento" => "Entretenimiento",
-  "gastronomia" => "Gastronom&iacute;a",
-  "electronica" => "Electr&oacute;nica",
-  "ropa" => "Ropa",
-  "salud_y_belleza" => "Salud y belleza",
-  "deporte" => "Deporte",
-  );
- */
 $arrayCategoriasLogged = array(
     "general" => "General",
     "tus_gustos" => "Tus Gustos",
@@ -229,10 +263,13 @@ $arrayCategoriasLogged = array(
     "deporte" => "Deporte",
 );
 
+/**
+ * Función que devuelve unos enlaces a cada categoría.
+ * @return string
+ */
 function menuCategorias() {
     global $arrayCategoriasNoLogged;
     global $arrayCategoriasLogged;
-    //$form = '<div><a href="index.php?categoria=general"';
     $form = '';
     if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] == 'empresa') {
 
@@ -248,7 +285,8 @@ function menuCategorias() {
 }
 
 /**
- * Función que genera options con las comunidades autonomas
+ * Devuelve un string con unos option para cada Comunidad Autónoma.
+ * @return string
  */
 function opcionesComunidades() {
     $opt = '';
@@ -261,8 +299,10 @@ function opcionesComunidades() {
 }
 
 /**
- * Función que genera options con las comunidades autonomas y una seleccionada.
- * @param type $comunidadAutonoma
+ * Función que genera options con las comunidades autonomas y una seleccionada 
+ * dada por parámetro.
+ * @param int $comunidadAutonoma
+ * @return string
  */
 function opcionesComunidadSeleccionada($comunidadAutonoma) {
     $opt = '';
@@ -277,19 +317,10 @@ function opcionesComunidadSeleccionada($comunidadAutonoma) {
     return $opt;
 }
 
-function opcionesCatSeleccionada($catsel) {
-    $opt = '';
-    global $arrayCategorias;
-    foreach ($arrayCategorias as $key => $val) {
-        if ($catsel == $key) {
-            $opt .= '<option value="' . $key . '" selected="selected">' . $val . '</option>';
-        } else {
-            $opt .= '<option value="' . $key . '">' . $val . '</option>';
-        }
-    }
-    return $opt;
-}
-
+/**
+ * Función que genera checkboxes con las categorias.
+ * @return string
+ */
 function checkboxesCategorias() {
     global $arrayCategorias;
     $form = '';
@@ -299,6 +330,12 @@ function checkboxesCategorias() {
     return $form;
 }
 
+/**
+ * Función que genera checkboxes con las categorias, seleccionando las que 
+ * vienen dadas por parámetro.
+ * @param array $afinidades
+ * @return string
+ */
 function checkboxesCategoriasSeleccionadas($afinidades) {
     global $arrayCategorias;
     $form = '';
@@ -312,6 +349,10 @@ function checkboxesCategoriasSeleccionadas($afinidades) {
     return $form;
 }
 
+/**
+ * Función que genera options con las categorias.
+ * @return string
+ */
 function optionCategorias() {
     global $arrayCategorias;
     $form = '';
@@ -322,6 +363,12 @@ function optionCategorias() {
     return $form;
 }
 
+/**
+ * Función que genera options con las categorias y una seleccionada dada por 
+ * parámetro.
+ * @param int $cat
+ * @return string
+ */
 function optionCategoriasSeleccionadas($cat) {
     $opt = '';
     global $arrayCategorias;
@@ -357,6 +404,9 @@ function muestraErrores($error) {
     return $bloqueHTML;
 }
 
+/**
+ * Inicializa la base de datos
+ */
 function inicializarDB() {
     global $arrayCategorias;
     global $arrayComunidades;
@@ -379,8 +429,12 @@ function inicializarDB() {
     }
 }
 
+/**
+ * Devuelve true si es un cliente, false empresa.
+ * @param string $correo
+ * @return boolean
+ */
 function tipoCuenta($correo) {
-    //True cliente, false empresa
     global $esquema;
     $cuenta = TRUE;
     $query = "SELECT * FROM cliente WHERE correo = '$correo'";
@@ -439,6 +493,11 @@ function previewProducto($result) {
     return $str;
 }
 
+/**
+ * Devuelve un string con la página principal según la categoría dada.
+ * @param type $categoria
+ * @return string
+ */
 function desplegarPaginaPrincipal($categoria) {
     global $esquema;
     $str = '';
@@ -480,21 +539,15 @@ function desplegarPaginaPrincipal($categoria) {
             $sql = 'SELECT * FROM producto WHERE nombre_ca LIKE "' . $ca . '" AND cantidad_disponible > 0';
             $result = realizarQuery("grupon", $sql);
         }
-
-
-        /*
-          $str .= '<table border=1>';
-          while ($fila = mysqli_fetch_array($result)) {
-          $str .= '<tr><a href="producto.php?id='.$fila["id_producto"].'")" ><img src="' . '../imagenesSubidas/' . $fila['ruta_imagen'] . '"alt="IMAGEN" height="200"/></a></tr>' .
-          '<tr><td><a href="producto.php?id='.$fila["id_producto"].'")" >' . $fila["nombre"] . '</a></td></tr>' .
-          '</td><td> Precio: ' . $fila["precio"] . '</td><td> Descuento: ' . $fila["porcentaje_descuento"] . '</td></tr>';
-          }
-          $str .= '</table>'; */
     }
     $str .= previewProducto($result);
     return $str;
 }
 
+/**
+ * Devuelve un string con el menú de navegación
+ * @return string
+ */
 function navigation() {
     $nav = '';
     if (isset($_SESSION["cuenta"])) {
@@ -515,6 +568,11 @@ function navigation() {
     return $nav;
 }
 
+/**
+ * Devuelve un string con los catálogos de la cuenta a la que pertenezca la 
+ * sesión.
+ * @return string
+ */
 function busquedaCatalogo() {
     global $esquema;
     $form = '<div class="w3-container w3-white w3-border w3-round w3-section ">';
@@ -529,6 +587,10 @@ function busquedaCatalogo() {
     return $form;
 }
 
+/**
+ * Devuelve el cuadro de búsqueda del menú de navegación.
+ * @return string
+ */
 function formularioBusquedaProducto() {
     if (isset($_SESSION["cuenta"])) {
         $form = '<form class="w3-row" action="busqueda.php" method="get">'

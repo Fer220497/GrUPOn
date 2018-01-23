@@ -1,27 +1,20 @@
 /**
- * Recibe un id y un string de la siguiente forma 1,2,3,4
- * Añade el id al final
- * @param string $id
- * @param string $carritoActual
- * @return string
+ * Setea las cookies del carrito
  */
-
 function iniciarCarrito() {
     //añadir // en caso de querer reiniciar con el login
     if (getCookie("carrito") == "") {
         setCookie("carrito", "", 1);
     }
 }
-function addCarrito(id, cantidadDisponible) {
-    /*
-    var var_string = id;
-    var valueofCarrito = getCookie("carrito");
-    if (valueofCarrito == "") {
-        setCookie("carrito", var_string, 1);
-    }*/
 
+/**
+ * Añade un producto según el id dado al carrito.
+ * @param int id
+ * @param int cantidadDisponible
+ */
+function addCarrito(id, cantidadDisponible) {
     if(getCookie(id) == ""){
-        //alert('hola');
         setCookie(id, 0, 1); 
     } 
     if(getCookie("carrito") == ""){
@@ -32,12 +25,9 @@ function addCarrito(id, cantidadDisponible) {
             'class="w3-button w3-red w3-large w3-display-topright">&times;</span>' +
             '<h1>&iexcl;Se ha a&ntilde;adido el producto correctamente!</h1></div>';  
     }else{
-        //alert('holo');
         cantidadActual = getCookie(id);
         cantidadActualInt = parseInt(cantidadActual);
-        //alert(cantidadActual);
         cantidadActualInt += 1;
-        //alert(cantidadActual);
         if(cantidadActualInt > parseInt(cantidadDisponible)){
             var bloqueHTML = '<div class="w3-panel w3-red w3-display-container">' +
                 '<span onclick="this.parentElement.style.display=\'none\'"' +
@@ -61,10 +51,8 @@ function addCarrito(id, cantidadDisponible) {
 
 }
 
-
-
 /**
- * Recibe un id y un string de la siguiente forma 1,2,3,4
+ * Recibe un id y un string de la siguiente forma 1, 2, 3, 4
  * Elimina el id
  * @param string $id
  * @param string $carritoActual
@@ -81,21 +69,18 @@ function removeCarrito(index) {
     setCookie(cookie_name, array, 1);
     
     cantidadProducto = getCookie(idProducto);
-    //alert(idProducto);
-    //alert(cantidadProducto);
     cantidadProductoInt = parseInt(cantidadProducto);
     cantidadProductoInt--;
-    //alert(cantidadProductoInt);
     setCookie(idProducto, cantidadProductoInt, 1);
-    
-    /*
-     array.splice(index,1);
-     alert(array);
-     var string = array.join();
-     var cookie_name = "carrito";
-     setCookie(cookie_name, string, 1);*/
     location.reload();
 }
+
+/**
+ * Setea una cookie con los parámetros dados.
+ * @param string cname
+ * @param int cvalue
+ * @param int exdays
+ */
 function setCookie(cname, cvalue, exdays) {
 
     var d = new Date();
@@ -104,6 +89,11 @@ function setCookie(cname, cvalue, exdays) {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
+/**
+ * Devuelve el valor de una cookie.
+ * @param string cname
+ * @return string
+ */
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -118,16 +108,6 @@ function getCookie(cname) {
         }
     }
     return "";
-}
-
-function checkCookie() {
-    var valueofCarrito = getCookie("carrito");
-    if (valueofCarrito != "") {
-
-    } else {
-
-    }
-
 }
 
 categorias = {viajes: "Viajes",

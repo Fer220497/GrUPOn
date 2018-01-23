@@ -2,26 +2,19 @@
 
 require_once '../back-end/lectura_producto.php';
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Función que permite finalizar la compra
+ * @return string
  */
-
 function pagoConExito() {
     global $esquema;
     $cookiecarrito = explode(",", $_COOKIE["carrito"]);
-    //echo "<br/> Vas a comprar:<br/>";
-    //print_r($cookiecarrito);
-    //echo "<br/>";
     foreach ($cookiecarrito as $producto) {
         $sql = "SELECT * FROM producto WHERE id_producto='$producto'";
         $result = realizarQuery($esquema, $sql);
         $datos_producto = mysqli_fetch_array($result);
         $cantidad_vendida = $datos_producto["cantidad_vendida"] + 1;
-        //echo "Productos vendidos actualizados:".$cantidad_vendida." |Para producto:".$producto."<br/>";
         $cantidad_disponible = $datos_producto["cantidad_disponible"] - 1;
-        //echo "Productos disponibles actualizados: ".$cantidad_disponible." |Para producto:".$producto."<br/>";
         $sql = "UPDATE producto SET cantidad_vendida='$cantidad_vendida', cantidad_disponible='$cantidad_disponible' WHERE id_producto=$producto";
         realizarQuery($esquema, $sql);
         $sql = "SELECT * FROM lanzamientos WHERE id_producto='$producto'";
@@ -47,19 +40,3 @@ function pagoConExito() {
             . 'style="height:60vh;font-size:30vh;">👌</a>';
     return $str;
 }
-
-/*
-function mostrarBotonPagar(){
-    $form = '<form action="" method="post" >' .
-            '<input type="submit" name="pagar" value="Comprar">';
-    return $form;
-            
-}
-function mostrarBotonCompra(){
-    echo '<button type="submit" onclick="location.href = \'pantalla_compra.php\'">Comprar</button>';
-    
-}
-//<button type="submit" onclick="location.href = 'creacion_catalogo.php'">Crear Cat&aacute;logo</button> 
-
-
-*/
