@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../back-end/funciones.php';
-if(!isset($_GET['categoria'])){
+if (!isset($_GET['categoria'])) {
     $_GET['categoria'] = 'general';
 }
 if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'empresa') {
@@ -23,10 +23,32 @@ if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'empresa') {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
         <script src="../back-end/funciones.js"></script>
         <script src="../back-end/libs/jquery.zoom.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+        <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+        <script>
+            window.addEventListener("load", function () {
+                window.cookieconsent.initialise({
+                    "palette": {
+                        "popup": {
+                            "background": "#252e39"
+                        },
+                        "button": {
+                            "background": "#14a7d0"
+                        }
+                    },
+                    "theme": "classic",
+                    "content": {
+                        "message": "Todo el mundo sabe que las webs usan cookies, pero la UE nos obliga a poner esta obviedad.",
+                        "dismiss": "Okey!",
+                        "link": "Aprende más sobre las cookies"
+                    }
+                })
+            });
+        </script>
         <script>
             var valueofCarrito = getCookie("carrito");
             if (valueofCarrito == "") {
-                setCookie("carrito",'', 1);
+                setCookie("carrito", '', 1);
             }</script>
     </head>
     <body class="w3-display-container">
@@ -69,8 +91,7 @@ if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'empresa') {
                     echo mostrarCarrito();
                     if (isset($_SESSION['cuenta'])) {
                         echo opcionesCompra();
-                    }
-                    else{
+                    } else {
                         echo '<div class="w3-panel w3-pale-yellow"><h4>Advertencia</h4><p>Para poder finalizar su compra debe usted logearse</p></div>';
                     }
                 }

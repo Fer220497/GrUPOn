@@ -33,6 +33,28 @@ if (!isset($_GET['categoria'])) {
         <script src="../back-end/funciones.js"></script>
         <script src="../back-end/libs/jquery.zoom.min.js"></script>
         <script src="../back-end/libs/pagina.js"></script>
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+        <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+        <script>
+            window.addEventListener("load", function () {
+                window.cookieconsent.initialise({
+                    "palette": {
+                        "popup": {
+                            "background": "#252e39"
+                        },
+                        "button": {
+                            "background": "#14a7d0"
+                        }
+                    },
+                    "theme": "classic",
+                    "content": {
+                        "message": "Todo el mundo sabe que las webs usan cookies, pero la UE nos obliga a poner esta obviedad.",
+                        "dismiss": "Okey!",
+                        "link": "Aprende más sobre las cookies"
+                    }
+                })
+            });
+        </script>
         <script>
             $(document).ready(function () {
                 var $paginas = $('div.pagina').hide();

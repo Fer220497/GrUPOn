@@ -20,6 +20,28 @@ if (!isset($_GET['categoria'])) {
         <link rel="stylesheet" href="estilow3.css">
         <script src='https://www.google.com/recaptcha/api.js'></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+        <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+        <script>
+            window.addEventListener("load", function () {
+                window.cookieconsent.initialise({
+                    "palette": {
+                        "popup": {
+                            "background": "#252e39"
+                        },
+                        "button": {
+                            "background": "#14a7d0"
+                        }
+                    },
+                    "theme": "classic",
+                    "content": {
+                        "message": "Todo el mundo sabe que las webs usan cookies, pero la UE nos obliga a poner esta obviedad.",
+                        "dismiss": "Okey!",
+                        "link": "Aprende más sobre las cookies"
+                    }
+                })
+            });
+        </script>
     </head>
     <body class="w3-display-container">
         <header class="w3-container w3-flat-midnight-blue">

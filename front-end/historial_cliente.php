@@ -5,6 +5,9 @@ inicializarDB();
 if (!isset($_GET['categoria'])) {
     $_GET['categoria'] = 'general';
 }
+if(!isset($_SESSION['cuenta']) || $_SESSION['tipo'] != 'cliente'){
+    header('Location:index.php');
+}
 ?>
 <!DOCTYPE html>
 <html>

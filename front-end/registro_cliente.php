@@ -15,13 +15,35 @@ if (!isset($_GET['categoria'])) {
         <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="estilow3.css">
-      
+
         <script src='https://www.google.com/recaptcha/api.js'></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
         <script src="../back-end/libs/modformularios.js"></script>
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+        <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+        <script>
+            window.addEventListener("load", function () {
+                window.cookieconsent.initialise({
+                    "palette": {
+                        "popup": {
+                            "background": "#252e39"
+                        },
+                        "button": {
+                            "background": "#14a7d0"
+                        }
+                    },
+                    "theme": "classic",
+                    "content": {
+                        "message": "Todo el mundo sabe que las webs usan cookies, pero la UE nos obliga a poner esta obviedad.",
+                        "dismiss": "Okey!",
+                        "link": "Aprende más sobre las cookies"
+                    }
+                })
+            });
+        </script>
         <script>
             $(document).ready(function () {
-                 $("input").plugin();
+                $("input").plugin();
             });
         </script>   
     </head>
@@ -44,7 +66,7 @@ if (!isset($_GET['categoria'])) {
         <main class="w3-container w3-flat-clouds">
             <div class="w3-container w3-third"></div>
             <div class="w3-container w3-white w3-border w3-round w3-section w3-third w3-margin-top w3-margin-bottom">
-            <h2>Registro Cliente</h2>
+                <h2>Registro Cliente</h2>
                 <?php require_once '../back-end/formulario_registro_cliente.php'; ?>
             </div>
         </main>
