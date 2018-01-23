@@ -160,10 +160,9 @@ if (!isset($_POST['registroEmpresa']) || isset($error)) {
 }
 
 /*
- * Esta funcion genera un formulario para que las empresas puedan registrarse en forma de string
+ * Función que genera un formulario para registrar una empresa.
  * @return string
  */
-
 function formularioRegistroEmpresa() {
 
     global $recaptcha;

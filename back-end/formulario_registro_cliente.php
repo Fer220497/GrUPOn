@@ -122,10 +122,10 @@ if (!isset($_POST["registroCliente"]) || isset($error)) {
     echo formularioRegistroCliente();
 }
 
-/*
- * Esta funcion genera un formulario para que los clientes puedan registrarse en forma de string
+/**
+ * Función que genera un formulario para registrar un cliente.
+ * @return string
  */
-
 function formularioRegistroCliente() {
 
     global $recaptcha;

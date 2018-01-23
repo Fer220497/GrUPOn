@@ -3,15 +3,11 @@
 require_once '../back-end/conexion_db.php';
 require_once '../back-end/funciones.php';
 
-
-
-
 if (isset($_POST['modificarProducto'])) {
     if (!isset($_POST['nombre'])) {
         $errores[] = 'Debes introducir nombre.';
     }
     if (!isset($_POST['precio'])) {
-        //echo "error2";
         $errores[] = 'Debes introducir precio.';
     }
     if (!isset($_POST['descripcion'])) {
@@ -90,17 +86,13 @@ if (isset($_POST['modificarProducto'])) {
         } else {
             $id_catalogo = $_POST['id_catalogo'];
         }
-        //$arch = $_FILES['imagen']['name'];
         if ($_FILES['imagen']['name'] != '') {
             $fichero = explode('.', $_FILES['imagen']['name']);
-            //print_r($fichero);
             $extension = '.' . $fichero[count($fichero) - 1];
             $nombreFichero = microtime() . $extension;
         } else {
             $nombreFichero = $producto["ruta_imagen"];
         }
-
-        //  echo $nombreFichero;
         $total = $cantidadVendida + $cantidad;
         $sql = "UPDATE producto SET nombre_categoria = '" . $categoria . "', nombre_ca = '" . $comunidad . "', nombre = '" . $nombre . "'"
                 . ", precio = '" . $precio . "', descripcion = '" . $descripcion . "', localizacion = '" . $localizacion . "'"
@@ -123,6 +115,13 @@ if (!isset($_POST['modificarProducto']) || isset($errores)) {
     echo formularioModificarProducto($_GET['id']);
 }
 
+/**
+ * Función que devuelve un formulario para modificar los datos de un producto 
+ * según el id dado. Este formulario viene ya relleno con los datos actuales del
+ * producto.
+ * @param type $id
+ * @return string
+ */
 function formularioModificarProducto($id) {
     $correo = $_SESSION['cuenta'];
     global $esquema;

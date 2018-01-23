@@ -63,7 +63,7 @@ if (isset($_POST['login'])) {
 }
 
 /**
- * Esta funcion genera un login en forma de string
+ * Esta funcion genera un formulario de login
  * @return string
  */
 function formularioLogin() {

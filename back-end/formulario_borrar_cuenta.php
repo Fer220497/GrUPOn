@@ -10,7 +10,7 @@
                 realizarQuery($esquema, $sql);
             }
             $sql = "DELETE FROM cuenta WHERE correo='$correo'";
-            realizarQuery($esquema, $sql);  //OP DELETE SOBRE CUENTA, CLIENTE Y EMPRESA
+            realizarQuery($esquema, $sql);
             header('Location: ../back-end/logout.php');
         }
     
@@ -26,4 +26,3 @@
     }
 
 ?>
-

@@ -32,7 +32,6 @@ if (!isset($_GET['categoria'])) {
     </head>
     <body class="w3-display-container">
         <header class="w3-container w3-flat-midnight-blue">
-            <header class="w3-container w3-flat-midnight-blue">
                 <div id="logo">
                     <a href="index.php?categoria=general"><img alt="GrUPOn" src="..\img\logo.png" height="90"/></a>
                 </div>
